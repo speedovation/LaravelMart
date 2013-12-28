@@ -1,0 +1,22 @@
+label.valid
+{
+    width: 24px;
+    height: 24px;
+    background: url(../img/valid.png) center center no-repeat;
+/*    display: inline-block;*/
+    text-indent: -9999px;
+    float: right;
+    
+    position: relative;
+    right: 0;
+    top: -31px;
+}
+
+label.error
+{
+    font-weight: bold;
+    color: #B94A48;
+    padding: 2px 8px;
+    margin-top: 2px;
+}
+

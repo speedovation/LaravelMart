@@ -7,7 +7,7 @@
 		"laravel/framework": "4.1.*",
 		"dompdf/dompdf"     : "dev-master",
 		"fzaninotto/faker"  : "dev-master",
-		"stripe/stripe-php" : "dev-master"
+		"codesleeve/asset-pipeline": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

@@ -1,0 +1,1 @@
+data-foobar.js
