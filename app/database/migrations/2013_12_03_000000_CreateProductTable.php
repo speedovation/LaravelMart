@@ -16,9 +16,11 @@ extends Migration
       $table->integer("stock");
       $table->float("price");
       $table->integer("category_id");
-      $table->dateTime("created_at");
-      $table->dateTime("updated_at");
-      $table->dateTime("deleted_at");
+      $table->timestamps();
+      $table->softDeletes();
+//      $table->dateTime("created_at");
+//      $table->dateTime("updated_at");
+//      $table->dateTime("deleted_at");
     });
   }
 

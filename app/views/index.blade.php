@@ -6,28 +6,30 @@
     <link
       type="text/css"
       rel="stylesheet"
-      href="{{ asset("css/bootstrap.3.0.3.min.css") }}"
+      href="{{ asset('css/bootstrap.3.0.3.min.css') }}"
     />
     <link
       type="text/css"
       rel="stylesheet"
-      href="{{ asset("css/bootstrap.theme.3.0.3.min.css") }}"
+      href="{{ asset('css/bootstrap.theme.3.0.3.min.css') }}"
     />
     <link
       type="text/css"
       rel="stylesheet"
-      href="{{ asset("css/shared.css") }}"
+      href="{{ asset('css/shared.css') }}"
     />
     <script
       type="text/javascript"
-      src="{{ asset("js/angularjs.1.2.4.min.js") }}"
+      src="{{ asset('js/angularjs.1.2.4.min.js') }}"
     ></script>
     <script
       type="text/javascript"
-      src="{{ asset("js/angularjs.cookies.1.2.4.min.js") }}"
+      src="{{ asset('js/angularjs.cookies.1.2.4.min.js') }}"
     ></script>
   </head>
   <body ng-controller="main">
+      
+   
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -214,7 +216,7 @@
     </div>
     <script
       type="text/javascript"
-      src="{{ asset("js/shared.js") }}"
+      src="{{ asset('js/shared.js') }}"
     ></script>
   </body>
 </html>

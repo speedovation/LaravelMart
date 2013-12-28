@@ -14,9 +14,11 @@ extends Migration
       $table->increments("id");
       $table->string("email");
       $table->string("password");
-      $table->dateTime("created_at");
-      $table->dateTime("updated_at");
-      $table->dateTime("deleted_at");
+      $table->timestamps();
+      $table->softDeletes();
+//      $table->dateTime("created_at");
+//      $table->dateTime("updated_at");
+//      $table->dateTime("deleted_at");
     });
   }
 

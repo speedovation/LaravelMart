@@ -1,8 +1,8 @@
 <?php
 
-App::bind("Formativ\Billing\GatewayInterface", "Formativ\Billing\StripeGateway");
-App::bind("Formativ\Billing\DocumentInterface", "Formativ\Billing\PDFDocument");
-App::bind("Formativ\Billing\MessengerInterface", "Formativ\Billing\EmailMessenger");
+//App::bind("Formativ\Billing\GatewayInterface", "Formativ\Billing\StripeGateway");
+//App::bind("Formativ\Billing\DocumentInterface", "Formativ\Billing\PDFDocument");
+//App::bind("Formativ\Billing\MessengerInterface", "Formativ\Billing\EmailMessenger");
 
 Route::any("/", [
   "as"   => "index/index",

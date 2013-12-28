@@ -1,9 +1,10 @@
 var app = angular.module("app", ["ngCookies"]);
+var baseurl = '/cart/public/'
 
 app.factory("CategoryService", function($http) {
   return {
     "getCategories": function() {
-      return $http.get("/category/index");
+      return $http.get( baseurl + "category/index");
     }
   };
 });
@@ -11,7 +12,7 @@ app.factory("CategoryService", function($http) {
 app.factory("ProductService", function($http) {
   return {
     "getProducts": function() {
-      return $http.get("/product/index");
+      return $http.get(baseurl +  "product/index");
     }
   };
 });
@@ -92,7 +93,7 @@ app.factory("AccountService", function(
   return {
     "authenticate": function(email, password) {
 
-      var request = $http.post("/account/authenticate", {
+      var request = $http.post( baseurl +  "account/authenticate", {
         "email"    : email,
         "password" : password
       });
@@ -135,7 +136,7 @@ app.factory("OrderService", function(
 
       }
 
-      return $http.post("/order/add", {
+      return $http.post( baseurl +  "order/add", {
         "account"  : account.id,
         "items"    : JSON.stringify(items),
         "number"   : number,
