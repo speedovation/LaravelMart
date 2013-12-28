@@ -2,28 +2,23 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAccountTable
-extends Migration
-{
-  public function up()
-  {
-    Schema::create("account", function($table)
-    {
-      $table->engine = "InnoDB";
-      
-      $table->increments("id");
-      $table->string("email");
-      $table->string("password");
-      $table->timestamps();
-      $table->softDeletes();
-//      $table->dateTime("created_at");
-//      $table->dateTime("updated_at");
-//      $table->dateTime("deleted_at");
-    });
-  }
+class CreateAccountTable extends Migration {
 
-  public function down()
-  {
-    Schema::dropIfExists("account");
-  }
+    public function up() {
+        Schema::create("account", function($table) {
+                    $table->engine = "InnoDB";
+
+                    $table->increments("id");
+                    $table->string("email");
+                    $table->string("password");
+                    $table->string("username");
+                    $table->timestamps();
+                    $table->softDeletes();
+                });
+    }
+
+    public function down() {
+        Schema::dropIfExists("account");
+    }
+
 }

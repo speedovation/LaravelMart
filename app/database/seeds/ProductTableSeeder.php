@@ -1,29 +1,27 @@
 <?php
 
-class ProductTableSeeder
-extends DatabaseSeeder
-{
-  public function run()
-  {
-    $faker = $this->getFaker();
+class ProductTableSeeder extends DatabaseSeeder {
 
-    $categories = Category::all();
+    public function run() {
+        $faker = $this->getFaker();
 
-    foreach ($categories as $category)
-    {
-      for ($i = 0; $i < rand(-1, 10); $i++)
-      {
-        $name  = ucwords($faker->word);
-        $stock = $faker->randomNumber(0, 100);
-        $price = $faker->randomFloat(2, 5, 100);
+        $categories = Category::all();
 
-        Product::create([
-          "name"        => $name,
-          "stock"       => $stock,
-          "price"       => $price,
-          "category_id" => $category->id
-        ]);
-      }
+        foreach ($categories as $category) {
+            for ($i = 0; $i < rand(-1, 10); $i++) {
+                $name = ucwords($faker->word);
+                $stock = $faker->randomNumber(0, 100);
+                $price = $faker->randomFloat(2, 5, 100);
+
+                Product::create([
+                    "name" => $name,
+                    "stock" => $stock,
+                    "price" => $price,
+                    "category_id" => $category->id,
+                    "image" => $name,
+                ]);
+            }
+        }
     }
-  }
+
 }

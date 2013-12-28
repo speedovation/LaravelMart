@@ -3,35 +3,31 @@
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Account
-extends Eloquent
-implements UserInterface, RemindableInterface
-{
-  protected $table = "account";
+class Account extends Eloquent implements UserInterface, RemindableInterface {
 
-  protected $hidden = ["password"];
+    protected $table = "account";
+    protected $hidden = ["password"];
+    protected $guarded = ["id"];
+    protected $softDelete = true;
 
-  protected $guarded = ["id"];
+    public function getAuthIdentifier() {
+        return $this->getKey();
+    }
 
-  protected $softDelete = true;
+    public function getAuthPassword() {
+        return $this->password;
+    }
+    
+    public function getUsername() {
+        return $this->username;
+    }
 
-  public function getAuthIdentifier()
-  {
-    return $this->getKey();
-  }
+    public function getReminderEmail() {
+        return $this->email;
+    }
 
-  public function getAuthPassword()
-  {
-    return $this->password;
-  }
+    public function orders() {
+        return $this->hasMany("Order");
+    }
 
-  public function getReminderEmail()
-  {
-    return $this->email;
-  }
-
-  public function orders()
-  {
-    return $this->hasMany("Order");
-  }
 }

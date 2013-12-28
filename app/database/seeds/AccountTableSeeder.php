@@ -1,21 +1,18 @@
 <?php
 
-class AccountTableSeeder
-extends DatabaseSeeder
-{
-  public function run()
-  {
-    $faker = $this->getFaker();
+class AccountTableSeeder extends DatabaseSeeder {
 
-    for ($i = 0; $i < 10; $i++)
-    {
-      $email    = $faker->email;
-      $password = Hash::make("password");
+    public function run() {
+        $faker = $this->getFaker();
 
-      Account::create([
-        "email"    => $email,
-        "password" => $password
-      ]);
+        for ($i = 0; $i < 10; $i++) {
+
+            Account::create([
+                "email" => $faker->email,
+                "password" => Hash::make("password"),
+                "username" => $faker->username
+            ]);
+        }
     }
-  }
+
 }

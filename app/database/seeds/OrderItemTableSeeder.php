@@ -1,39 +1,35 @@
 <?php
 
-class OrderItemTableSeeder
-extends DatabaseSeeder
-{
-  public function run()
-  {
-    $faker = $this->getFaker();
+class OrderItemTableSeeder extends DatabaseSeeder {
 
-    $orders   = Order::all();
-    $products = Product::all()->toArray();
+    public function run() {
+        $faker = $this->getFaker();
 
-    foreach ($orders as $order)
-    {
-      $used = [];
+        $orders = Order::all();
+        $products = Product::all()->toArray();
 
-      for ($i = 0; $i < rand(1, 5); $i++)
-      {
-        $product  = $faker->randomElement($products);
+        foreach ($orders as $order) {
+            $used = [];
 
-        if (!in_array($product["id"], $used))
-        {
-          $id       = $product["id"];
-          $price    = $product["price"];
-          $quantity = $faker->randomNumber(1, 3);
-          
-          OrderItem::create([
-            "order_id"   => $order->id,
-            "product_id" => $id,
-            "price"      => $price,
-            "quantity"   => $quantity
-          ]);
+            for ($i = 0; $i < rand(1, 5); $i++) {
+                $product = $faker->randomElement($products);
 
-          $used[] = $product["id"];
+                if (!in_array($product["id"], $used)) {
+                    $id = $product["id"];
+                    $price = $product["price"];
+                    $quantity = $faker->randomNumber(1, 3);
+
+                    OrderItem::create([
+                        "order_id" => $order->id,
+                        "product_id" => $id,
+                        "price" => $price,
+                        "quantity" => $quantity
+                    ]);
+
+                    $used[] = $product["id"];
+                }
+            }
         }
-      }
     }
-  }
+
 }

@@ -1,22 +1,19 @@
 <?php
 
-class OrderTableSeeder
-extends DatabaseSeeder
-{
-  public function run()
-  {
-    $faker = $this->getFaker();
+class OrderTableSeeder extends DatabaseSeeder {
 
-    $accounts = Account::all();
+    public function run() {
+        $faker = $this->getFaker();
 
-    foreach ($accounts as $account)
-    {
-      for ($i = 0; $i < rand(-1, 5); $i++)
-      {
-        Order::create([
-          "account_id" => $account->id
-        ]);
-      }
+        $accounts = Account::all();
+
+        foreach ($accounts as $account) {
+            for ($i = 0; $i < rand(-1, 5); $i++) {
+                Order::create([
+                    "account_id" => $account->id
+                ]);
+            }
+        }
     }
-  }
+
 }
