@@ -15,9 +15,7 @@ class CreateOrderItemTable extends Migration {
                     $table->float("price");
                     $table->timestamps();
                     $table->softDeletes();
-//      $table->dateTime("created_at");
-//      $table->dateTime("updated_at");
-//      $table->dateTime("deleted_at");
+
                 });
     }
 

@@ -12,9 +12,7 @@ class CreateCategoryTable extends Migration {
                     $table->string("name");
                     $table->timestamps();
                     $table->softDeletes();
-//      $table->dateTime("created_at");
-//      $table->dateTime("updated_at");
-//      $table->dateTime("deleted_at");
+
                 });
     }
 
