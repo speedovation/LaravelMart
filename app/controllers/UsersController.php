@@ -19,7 +19,6 @@ class UsersController extends BaseController {
 		if ($validator->passes()) {
 			$user = new Account;
 			$user->username = Input::get('username');
-			$user->lastname = Input::get('lastname');
 			$user->email = Input::get('email');
 			$user->password = Hash::make(Input::get('password'));
 			$user->save();
@@ -47,6 +46,10 @@ class UsersController extends BaseController {
 	public function getDashboard() {
 		$this->layout->content = View::make('users.dashboard');
 	}
+    
+    public function getProfile() {
+        $this->layout->content = View::make("users.profile");
+    }
 
 	public function getLogout() {
 		Auth::logout();

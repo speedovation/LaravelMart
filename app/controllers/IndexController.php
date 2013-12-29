@@ -2,8 +2,10 @@
 
 class IndexController extends BaseController {
 
+    protected $layout = "layouts.main";
+    
     public function indexAction() {
-        return View::make("index");
+        $this->layout->content =  View::make("cart.index");
     }
 
 }

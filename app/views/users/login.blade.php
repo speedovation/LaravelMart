@@ -1,5 +1,10 @@
 <h2 class="form-signin-heading">Please Login</h2>
 
+ @if(Session::has('message'))
+            <p class="alert">{{ Session::get('message') }}</p>
+            @endif
+            
+            
 {{ Form::open(array('url'=>'users/signin','role'=>'form', 'class'=>' form-signin')) }}
 
   <div class="form-group">

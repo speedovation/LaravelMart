@@ -12,7 +12,7 @@
 //
 //= require vendors/jquery.js
 //= require vendors/bootstrap.js 
-//= require vendors/angularjs.1.2.4.min.js
+//= require vendors/angular.js
 //= require vendors/angularjs.cookies.1.2.4.min.js 
 //= require cart.js
 // require_tree .

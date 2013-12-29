@@ -10,6 +10,7 @@
  * but before any files alphabetically greater than 'application.css' 
  *
  * require_tree .
+ * require base.css
  *= require bootstrap.css
  * require bootstrap-theme.css
  *= require market.css
