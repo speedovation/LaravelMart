@@ -8,7 +8,7 @@ class ProductTableSeeder extends DatabaseSeeder {
         $categories = Category::all();
 
         foreach ($categories as $category) {
-            for ($i = 0; $i < rand(-1, 10); $i++) {
+            for ($i = 0; $i < 40; $i++) {
                 $name = ucwords($faker->word);
                 $stock = $faker->randomNumber(0, 100);
                 $price = $faker->randomFloat(2, 5, 100);

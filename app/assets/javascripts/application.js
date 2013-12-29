@@ -14,5 +14,16 @@
 //= require vendors/bootstrap.js 
 //= require vendors/angular.js
 //= require vendors/angularjs.cookies.1.2.4.min.js 
+// require plugins/scroll-append.js
+// 
+// Cart code
+// 
 //= require cart.js
+// 
+// require cart/product.js
+// require cart/store.js
+// require cart/shoppingCart.js
+// require cart/app.js
+// require cart/controller.js
+// 
 // require_tree .
