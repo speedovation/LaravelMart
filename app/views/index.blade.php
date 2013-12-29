@@ -3,17 +3,8 @@
     <head>
         <meta charset="utf-8" />
         <title>Laravel 4 E-Commerce</title>
-        <link  type="text/css"  rel="stylesheet" href="{{ asset('css/bootstrap.3.0.3.min.css') }}" />
-        <link type="text/css" rel="stylesheet" href="{{ asset('css/bootstrap.theme.3.0.3.min.css') }}" />
-        <link type="text/css" rel="stylesheet" href="{{ asset('css/shared.css') }}" />
-        <script
-            type="text/javascript"
-            src="{{ asset('js/angularjs.1.2.4.min.js') }}"
-        ></script>
-        <script
-            type="text/javascript"
-            src="{{ asset('js/angularjs.cookies.1.2.4.min.js') }}"
-        ></script>
+                <?= stylesheet_link_tag() ?>
+        <?= javascript_include_tag() ?>
     </head>
     <body ng-controller="main">
 
@@ -202,9 +193,6 @@
                 </div>
             </div>
         </div>
-        <script
-            type="text/javascript"
-            src="{{ asset('js/shared.js') }}"
-        ></script>
+        
     </body>
 </html>
