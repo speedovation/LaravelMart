@@ -8,7 +8,7 @@
 		"dompdf/dompdf"     : "dev-master",
 		"fzaninotto/faker"  : "dev-master",
 		"codesleeve/asset-pipeline": "dev-master",
-        "mike182uk/cart" : "v2.1.0"
+        "gloudemans/shoppingcart": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
