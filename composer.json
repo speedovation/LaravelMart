@@ -7,7 +7,8 @@
 		"laravel/framework": "4.1.*",
 		"dompdf/dompdf"     : "dev-master",
 		"fzaninotto/faker"  : "dev-master",
-		"codesleeve/asset-pipeline": "dev-master"
+		"codesleeve/asset-pipeline": "dev-master",
+        "mike182uk/cart" : "v2.1.0"
 	},
 	"autoload": {
 		"classmap": [

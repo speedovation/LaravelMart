@@ -41,6 +41,7 @@ return array(
     'Codesleeve\\Sprockets' => array($vendorDir . '/codesleeve/sprockets/src'),
     'Codesleeve\\AssetPipeline' => array($vendorDir . '/codesleeve/asset-pipeline/src'),
     'ClassPreloader' => array($vendorDir . '/classpreloader/classpreloader/src'),
+    'Cart' => array($vendorDir . '/mike182uk/cart/src'),
     'Carbon' => array($vendorDir . '/nesbot/carbon/src'),
     'Boris' => array($vendorDir . '/d11wtq/boris/lib'),
     'Assetic' => array($vendorDir . '/kriswallsmith/assetic/src'),

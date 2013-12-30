@@ -9,6 +9,6 @@ return array(
     $vendorDir . '/swiftmailer/swiftmailer/lib/swift_required.php',
     $vendorDir . '/phpseclib/phpseclib/phpseclib/Crypt/Random.php',
     $vendorDir . '/ircmaxell/password-compat/lib/password.php',
-    $vendorDir . '/laravel/framework/src/Illuminate/Support/helpers.php',
     $vendorDir . '/kriswallsmith/assetic/src/functions.php',
+    $vendorDir . '/laravel/framework/src/Illuminate/Support/helpers.php',
 );
