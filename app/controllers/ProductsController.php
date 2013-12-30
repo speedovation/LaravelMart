@@ -1,10 +1,10 @@
 <?php
 
-class ProductController extends BaseController {
+class ProductsController extends BaseController {
     
     protected $layout = "layouts.main";
 
-    public function indexAction() {
+    public function getIndex() {
         //eager loading
         //http://laravel.com/docs/eloquent
         $products = Product::with('category');
@@ -20,18 +20,18 @@ class ProductController extends BaseController {
     }
     
     
-    public function nextAction() {
+    public function getProduct() {
         //eager loading
         //http://laravel.com/docs/eloquent
         $products = Product::with('category');
+        //$products->where("category_id", $category);
         
-        $category = Input::get("page_no");
+        //$id = Input::get("id");
+        $products->where("id",  Request::segment(3));
+        
 
-        if ($category) {
-            $products->where("category_id", $category);
-        }
-
-        $this->layout->content = View::make('products.index', ['products' => $products->get()] );
+        $this->layout->content = View::make('products.product', [ 'product' => $products->firstOrFail() ] );
+        
     }
 
 }

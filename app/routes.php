@@ -14,10 +14,15 @@ Route::any("category/index", [
     "uses" => "CategoryController@indexAction"
 ]);
 
-Route::any("product/index", [
-    "as" => "product/index",
-    "uses" => "ProductController@indexAction"
-]);
+//Route::any("product/index", [
+//    "as" => "product/index",
+//    "uses" => "ProductController@indexAction"
+//]);
+//
+//Route::any("product/product/", [
+//    "as" => "product/index",
+//    "uses" => "ProductController@indexAction"
+//]);
 
 Route::any("account/authenticate", [
     "as" => "account/authenticate",
@@ -41,6 +46,7 @@ Route::any("order/delete", [
 
 
 Route::controller('users', 'UsersController');
+Route::controller('products', 'ProductsController');
 
 //Route::group(["before" => "guest"], function()
 //{

@@ -21,7 +21,10 @@ foreach ($products as $product) {
 
         <table class="table well">
             <tr>
-                <td>Name : {{$product->name}} Code :{{$product->id}}</td>
+                <td>                 
+                    {{ link_to_action('ProductsController@getProduct', $product->name , [$product->id]); }}
+                
+                </td>
             </tr>
             <tr>
                 <td>{{$product->image}}</td>
