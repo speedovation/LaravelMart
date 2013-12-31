@@ -12,14 +12,20 @@
 //
 //= require vendors/jquery.js
 //= require vendors/bootstrap.js 
-//= require vendors/angular.js
-// require vendors/angularjs.cookies.1.2.4.min.js
+//
+//= require vendors/angular/angular.js
+//= require vendors/angular/angular.route.js
+//= require vendors/angular/angular.cookies.js
+//= require vendors/angular/angular.resource.js
+//= require cart/basket.js
+//= require cart/currentcart.js
+//
 //= require vendors/holder.js 
 // require plugins/scroll-append.js
 // 
 // Cart code
 // 
-//= require cart.js
+// require cart.js
 // 
 // require cart/product.js
 // require cart/store.js

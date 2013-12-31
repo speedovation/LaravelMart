@@ -168,6 +168,11 @@ class CartController extends BaseController
                 //
                return  View::make('cart.mycart');
         }
+        
+        public function getCurrentcart() 
+        {
+            return  View::make('cart.currentcart');
+        }
 }
 
 

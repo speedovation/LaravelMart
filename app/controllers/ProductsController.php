@@ -33,5 +33,20 @@ class ProductsController extends BaseController {
         $this->layout->content = View::make('products.product', [ 'product' => $products->firstOrFail() ] );
         
     }
+    
+      public function getListproducts() {
+        //eager loading
+        //http://laravel.com/docs/eloquent
+        $products = Product::with('category');
+        
+        
+        $category = Input::get("category");
+
+        if ($category) {
+            $products->where("category_id", $category);
+        }
+
+        return Response::json($products->paginate(12));
+    }
 
 }

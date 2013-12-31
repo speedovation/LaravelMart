@@ -5,7 +5,7 @@ class BaseComposer
     public  $base_url;
    
     public function __construct() {
-         $this->base_url = '/cart/public/';
+         $this->base_url = '/';
          
          
     }
