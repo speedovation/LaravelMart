@@ -55,7 +55,7 @@
                 </form>
                 
                 <div class="navbar-form navbar-right" >
-                    Cart
+                     {{ link_to_action('CartController@getIndex', 'Cart' ) }}
                 </div>
                 
             </div><!-- /.navbar-collapse -->

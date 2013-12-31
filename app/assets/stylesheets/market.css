@@ -506,5 +506,7 @@ h3{
 :focus {outline:none;}
 ::-moz-focus-inner {border:0;}
 
-
+.table {
+    background-color: #fff;
+}
 

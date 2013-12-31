@@ -13,8 +13,8 @@ var storeApp = angular.module('app', []).
         templateUrl: 'partials/product.htm',
         controller: storeController
       }).
-      when('/cart', {
-        templateUrl: 'partials/shoppingCart.htm',
+      when('/mycart', {
+        templateUrl: '/public/cart/cart/mycart/',
         controller: storeController
       }).
       otherwise({

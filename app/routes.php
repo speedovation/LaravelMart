@@ -47,6 +47,7 @@ Route::any("order/delete", [
 
 Route::controller('users', 'UsersController');
 Route::controller('products', 'ProductsController');
+Route::controller('cart', 'CartController');
 
 //Route::group(["before" => "guest"], function()
 //{
