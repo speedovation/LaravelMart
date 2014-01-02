@@ -21,22 +21,20 @@ foreach ($products as $product) {
 
         <table class="table well">
             <tr>
-                <td>                 
+                <td class='text-center'>                 
                     {{ link_to_action('ProductsController@getProduct', $product->name , [$product->id]); }}
                 
                 </td>
             </tr>
             <tr>
-                <td>{{$product->image}}</td>
+                <td class='text-center'><img data-src='holder.js/300x200' src='{{$product->image}}' /></td>
             </tr>
-            <tr>
-                <td>More options</td>
-            </tr>
+           
             <tr>
                 <td>Category : {{$product->category->name}} Stock: {{$product->stock}}</td>
             </tr>
              <tr>
-                <td>Price: {{$product->price}}</td>
+                <td>Price: {{round($product->price,3)}}</td>
             </tr>
         </table>
 

@@ -12,15 +12,18 @@
 //
 //= require vendors/jquery.js
 //= require vendors/bootstrap.js 
-//
-//= require vendors/angular/angular.js
-//= require vendors/angular/angular.route.js
-//= require vendors/angular/angular.cookies.js
-//= require vendors/angular/angular.resource.js
-//= require cart/basket.js
-//= require cart/currentcart.js
-//
 //= require vendors/holder.js 
+//
+//
+// Angular part
+// require vendors/angular/angular.js
+// require vendors/angular/angular.route.js
+// require vendors/angular/angular.cookies.js
+// require vendors/angular/angular.resource.js
+// require cart/basket.js
+// require cart/currentcart.js
+//
+
 // require plugins/scroll-append.js
 // 
 // Cart code

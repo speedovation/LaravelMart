@@ -1,0 +1,994 @@
+/*
+Item Name : CSS3 Mega Drop Down Menu
+Author URI : http://codecanyon.net/user/Pixelworkshop/
+Item URI : http://codecanyon.net/item/css3-mega-drop-down-menu/126387
+Version : 6.1
+*/
+
+/*
+
+TABLE OF CONTENTS
+
+01 MENU BAR
+02 DROP DOWN MENU
+03 CONTENT STYLING
+04 CONTACT FORM
+05 VERTICAL MEGA MENU
+06 LIGHT THEME
+07 DARK THEME
+08 COLORS
+09 MOBILE DEVICES
+
+*/
+
+
+.pagecontent{width:960px;margin:30px auto; text-shadow:1px 1px 1px #ffffff;}
+.pagecontent p,.pagecontent li{color:#666;font-size:12px;line-height:18px;}
+.pagecontent ul,.pagecontent li{padding-left: 16px}
+.pagecontent .pusher{width:100%;height:50px}
+.pagecontent a{color:#999;text-decoration:none}
+.pagecontent h1,.pagecontent h3{color:#222}
+.pagecontentclear {clear: both;}
+/* Vertical Menu Demos */
+.pagewrapper {width: 960px;margin: 0 auto;}
+.pagewrapper .pagecontent {width:690px;float: left;margin: 10px 0 0 0;}
+.pagewrapper .megamenu_vertical_left {margin-right: 30px;}
+.pagewrapper .megamenu_vertical_right {margin-left: 30px;}
+@media only screen and (max-width: 1024px) {
+	.pagecontent, .pagewrapper{width:95%;}
+	.pagewrapper .pagecontent {width:100%;}
+	.pagewrapper .megamenu_vertical_left {margin-right: auto;}
+	.pagewrapper .megamenu_vertical_right {margin-left: auto;}
+}
+@media only screen and (max-width:767px) {
+	.pagecontent, .pagewrapper{width:420px;}
+	.pagewrapper .pagecontent {width:420px;}
+}
+@media only screen and (max-width:479px) {
+	.pagecontent, .pagewrapper{width:300px;}
+	.pagewrapper .pagecontent {width:300px;}
+}
+
+
+/*  _______________________________________
+
+	01 MENU BAR
+    _______________________________________  */
+
+
+
+
+/* 
+	IMPORTANT NOTICE
+	If you're using the whole width menu, you should use at least a reset like :
+	body {margin:0; padding:0;}
+	Otherwise, some browsers may add margins and won't place the menu properly.
+	It generally helps to include a CSS reset like : 
+	http://meyerweb.com/eric/tools/css/reset/
+	Keep in mind that a reset must be placed first, before any other CSS markup.
+*/
+.megamenu_wrapper {
+	margin:0 auto;
+	display:block;
+	position: relative;
+	z-index:9999;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	line-height:21px;
+}
+.megamenu_wrapper {
+	width: 980px;
+	margin-top: 30px;
+}
+	.megamenu_container {
+		width:100%;
+		margin:0 auto;
+		height:40px;
+	}
+	.megamenu_wrapper .megamenu_container {
+		width:100%;
+		-webkit-border-radius: 6px;
+		-moz-border-radius: 6px;
+		border-radius: 6px;
+	}
+	.megamenu_container .megamenu {
+		list-style:none;
+		width:960px;
+		margin:0 auto;
+		padding: 0;
+	}
+.megamenu > li {
+	float:left;
+	position:relative;
+	margin-right:5px;
+	border:none;
+}
+.megamenu li.menuitem_fullwidth {
+	position: static !important;
+}
+.megamenu > li > a {
+	outline:0;
+	padding: 9px 15px 11px 15px;
+	text-decoration:none;
+	display:block;
+}
+.megamenu > li .menuitem_drop {
+	padding-right:27px;
+}
+.megamenu > li.menuitem_nodrop > a {
+	padding-bottom:10px;
+}
+
+/* Right aligned menu item */
+
+.megamenu > li.menuitem_right {
+	float:right;
+	right:0;
+	margin-right:0;
+}
+
+/* Menu Button (Mobiles) */
+
+.megamenu li.megamenu_button {
+	display: none;
+}
+.megamenu li.megamenu_button_active {
+	background:#000000 !important;
+}
+
+
+
+
+/*  _______________________________________
+
+	02 DROP DOWN MENU
+    _______________________________________  */
+
+
+
+
+/* Drop Downs Containers */
+
+.megamenu .dropdown_1column, 
+.megamenu .dropdown_2columns, 
+.megamenu .dropdown_3columns, 
+.megamenu .dropdown_4columns,
+.megamenu .dropdown_5columns,
+.megamenu .dropdown_fullwidth {
+	margin:0;
+	display:none;
+	position:absolute;
+	top:41px;
+	left:-1px;
+	-webkit-border-radius: 0 0 5px 5px;
+	-moz-border-radius: 0 0 5px 5px;
+	border-radius: 0 0 5px 5px;
+}
+
+/* Drop Downs Sizes */
+
+.megamenu .dropdown_1column {width: 135px;padding:15px 14px 15px 15px;}
+.megamenu .dropdown_2columns {width: 290px;padding:15px 11px 15px 15px;}
+.megamenu .dropdown_3columns {width: 445px;padding:15px 8px 15px 15px;}
+.megamenu .dropdown_4columns {width: 600px;padding:15px 5px 15px 15px;}
+.megamenu .dropdown_5columns {width: 755px;padding:15px 2px 15px 15px;}
+.megamenu .dropdown_fullwidth {
+	width: 945px;
+	padding:15px 0 15px 15px;
+	top:42px;
+	left:10px;
+    -webkit-border-radius: 0 0 5px 5px;
+	-moz-border-radius:0 0 5px 5px;
+    border-radius:0 0 5px 5px;
+}
+.megamenu_wrapper .dropdown_right {
+	left:auto;
+	right:-1px;
+}
+.megamenu_wrapper .megamenu li.menuitem_right .dropdown_fullwidth {
+	left:auto;
+	right:8px;
+}
+
+/* Showing Drop Down on Mouse Hover */
+
+.megamenu li:hover > div {
+	display: block;
+}
+
+/* Columns Sizes */
+
+.megamenu .col_one_sixth,
+.megamenu .col_one_fifth,
+.megamenu .col_one_quarter,
+.megamenu .col_one_third,
+.megamenu .col_two_fifths,
+.megamenu .col_half,
+.megamenu .col_three_fifths,
+.megamenu .col_two_thirds,
+.megamenu .col_three_quarters,
+.megamenu .col_four_fifths,
+.megamenu .col_five_sixths,
+.megamenu .col_full {
+	float: left;
+	margin-left: 2%;
+}
+.megamenu .col_one_sixth {width:14.66667%;}
+.megamenu .col_one_fifth {width:18%;}
+.megamenu .col_one_quarter {width:23%;}
+.megamenu .col_one_third {width:31.33333%;}
+.megamenu .col_two_fifths {width:38%;}
+.megamenu .col_half {width:48%;}
+.megamenu .col_three_fifths {width:58%;}
+.megamenu .col_two_thirds {width:64.66667%;}
+.megamenu .col_three_quarters {width:73%;}
+.megamenu .col_four_fifths {width:78%;}
+.megamenu .col_five_sixths {width:81.33333%;}
+.megamenu .col_full {width:98%;}
+
+/* IMPORTANT */
+
+/* Use the firstcolumn class for the first element of a new row of content */
+.megamenu .firstcolumn {
+	margin-left: 0;
+	clear: left;
+}
+
+
+
+
+/*  _______________________________________
+
+	03 CONTENT STYLING
+    _______________________________________  */
+
+
+
+
+.megamenu p,
+.megamenu ul,
+.megamenu li,
+.megamenu h2,
+.megamenu h3 {
+	font-size:12px; 
+	font-family:Arial, Helvetica, sans-serif;
+	line-height:21px;
+	text-align:left;
+}
+.megamenu p {
+	margin:0;
+	margin-bottom:18px;
+}
+.megamenu .strong {
+	font-weight:bold;
+}
+.megamenu .italic {
+	font-style:italic;
+}
+.megamenu h2, 
+.megamenu h3 {
+	margin-top:7px;
+}
+.megamenu h2 {
+	font-weight:400;
+	font-size:21px;
+	margin-bottom:18px;
+	padding-bottom:11px;
+}
+.megamenu h3 {
+	font-weight:600;
+	font-size:14px;
+	margin-bottom:14px;
+	padding-bottom:7px;
+}
+.megamenu li a {
+	text-decoration:none;
+}
+.megamenu .pusher { /* Use this pucher if you want to give more vertical spacing between your rows of content */
+	margin-top:18px;
+}
+
+/* Icon paragraphs */
+
+.megamenu .help,
+.megamenu .favorite,
+.megamenu .mail,
+.megamenu .print {
+	padding-left:36px;
+	margin-bottom:18px;
+}
+.megamenu .help {background:url("../img/help.png") no-repeat 0 2px;}
+.megamenu .favorite {background:url("../img/favorite.png") no-repeat 0 2px;}
+.megamenu .mail {background:url("../img/mail.png") no-repeat 0 2px;}
+.megamenu .print {background:url("../img/print.png") no-repeat 0 2px;}
+
+/* Images styles */
+
+.megamenu .imgshadow_dark,
+.megamenu .imgshadow_light {
+	padding:4px;
+	margin-top:5px;
+}
+.megamenu .img_left { /* Image sticks to the left */
+	float:left;
+	margin:5px 15px 5px 0;
+}
+.megamenu .img_right { /* Image sticks to the right */
+	float:right;
+	margin:5px 0 5px 15px;
+}
+
+/* Box styles */
+
+.megamenu li .black_box,
+.megamenu li .dark_grey_box {
+	margin: -8px 0 18px 0;
+	color: #eeeeee;
+	text-shadow: 1px 1px 1px #000;
+	padding:8px 12px;
+    -webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+/* Standard lists styles */
+
+.megamenu li ul {
+	list-style:none;
+	padding:0;
+	margin:0 0 12px 0;
+}
+.megamenu li ul li {
+	font-size:12px;
+	line-height:24px;
+	position:relative;
+	text-shadow: 1px 1px 1px #000000;
+	padding:0;
+	margin:0;
+	float:left;
+	text-align:left;
+	width:100%;
+}
+.megamenu li ul li a {
+	padding:0;
+}
+
+/* Greybox lists styles */
+
+.megamenu li .greybox li {
+	margin:0 0 4px 0;
+	padding:4px 6% 4px 6%;
+	width:88%;
+    -webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+/* Other lists styles */
+
+.megamenu li .plus li {
+	margin:0 0 4px 0;
+	padding:0 0 0 20px;
+	float: left;
+}
+
+/* Social Icons */
+
+.megamenu li ul.social {
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+.megamenu li ul.social li {
+	padding-top:5px;
+	margin:0 12px 12px 0;
+	float:left;
+	position:relative;
+	display:inline;
+	width:32px;
+}
+.megamenu li ul.social li img {
+	border:none;
+}
+.megamenu li ul.social li:hover {
+	padding-top:5px;
+	margin:-1px 12px 12px 0;
+}
+.megamenu li ul.social li span {
+	display:none;
+}
+
+/* 2-Levels Drop Down */
+
+.megamenu .dropdown_flyout {
+	min-width: 120px;
+}
+.megamenu .levels, 
+.megamenu .levels ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+.megamenu .levels a {
+	display: block;
+	width: 10em;
+}
+.megamenu .levels li {
+	float: left;
+}
+.megamenu .levels li ul {
+	position: absolute;
+	top:-23px;
+	margin:15px 0 0 4px;
+	padding:6px 12px;
+	left: -999em;
+	z-index: 9999;
+    -webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.megamenu .levels li:hover > ul {
+	left: 96%;
+}
+
+
+
+
+/*  _______________________________________
+
+	04 CONTACT FORM
+    _______________________________________  */
+
+
+
+
+.megamenu .contact_form {
+	display: block;
+	margin-bottom:10px;
+	font-size: 12px;
+	font-family:Arial, Helvetica, sans-serif;
+}
+.megamenu .contact_form label {
+	display: inline-block; 
+	float: left; 
+	width:80px;
+	font-size:12px; 
+}
+.megamenu .contact_form input, 
+.megamenu .contact_form textarea {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	width:90%;
+	padding: 8px 4% 8px 4%;
+	margin: 9px 0 9px 0; 
+    -webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+    border-radius: 3px;
+}   
+.megamenu .contact_form textarea {
+	resize:none;
+}   
+.megamenu .contact_form .required {
+	color:#C00;
+}
+.megamenu .contact_form .form_buttons {
+	margin:4px 0 0 0;
+}
+.megamenu .contact_form input.button {
+	width: 80px;
+	margin-right:10px;
+	cursor: pointer;
+	padding: 8px;
+}
+.megamenu .contact_form .special {
+	display:none;
+}
+.megamenu .contact_form .error, 
+.megamenu .contact_form .sent {
+	font-size:11px;
+	padding:2px 5px 2px 5px;
+	text-shadow:none;
+	-webkit-border-radius:3px; 
+	-moz-border-radius:3px; 
+	border-radius: 3px;
+}
+.megamenu .contact_form .error {
+	background:#FBE5E2; 
+	border:#F2A197 solid 1px; 
+	color:#992213;
+}
+.megamenu .contact_form .sent {
+	background:#E1F8CB; 
+	border:#C6D880 solid 1px; 
+	color:#37620d;
+}
+
+
+
+
+/*  _______________________________________
+
+	05 VERTICAL MEGA MENU
+    _______________________________________  */
+
+
+
+
+
+
+
+
+/*  _______________________________________
+
+	06 LIGHT THEME
+    _______________________________________  */
+
+
+
+
+.megamenu_light_theme .megamenu_container > ul > li:hover,
+.megamenu_light_theme .megamenu_container .megamenu > li.active,
+.megamenu_light_theme .megamenu_container > ul > li.menuitem_nodrop:hover {
+	background-color:#eeeeee;
+}
+.megamenu_light_theme .megamenu_container > ul > li > a,
+.megamenu_light_theme .megamenu_container .megamenu > li.noactive a {
+	color:#eee;
+	text-shadow: 1px 1px 1px #000000;
+}
+.megamenu_light_theme .megamenu_container > ul > li:hover > a {
+	color:#161616;
+	text-shadow: 1px 1px 1px #fff;
+}
+.megamenu_light_theme ul li .menuitem_drop,
+.megamenu_light_theme .megamenu li.noactive .menuitem_drop {
+	background-image:url("../img/arrow_down1.png");
+	background-repeat:no-repeat;
+	background-position: right 17px;
+}
+.megamenu_vertical_left .megamenu_light_theme ul li .menuitem_drop,
+.megamenu_vertical_left .megamenu_light_theme .megamenu li.noactive .menuitem_drop {
+	background-image:url("../img/arrow_right1.png");
+	background-position: 90% 15px;
+}
+.megamenu_vertical_right .megamenu_light_theme ul li .menuitem_drop,
+.megamenu_vertical_right .megamenu_light_theme .megamenu li.noactive .menuitem_drop {
+	background-image:url("../img/arrow_left1.png");
+	background-position: 10% 15px;
+}
+.megamenu_light_theme .megamenu > li > div,
+.megamenu_light_theme ul .levels li ul {
+	background:#eeeeee;
+	border:1px solid #444444;
+	border-top: none;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#EEEEEE), to(#BBBBBB));
+	background: -webkit-linear-gradient(top, #EEEEEE, #BBBBBB);
+	background: -moz-linear-gradient(top, #EEEEEE, #BBBBBB);
+	background: -o-linear-gradient(top, #EEEEEE, #BBBBBB);
+	background: -ms-linear-gradient(top, #EEEEEE, #BBBBBB);
+	background: linear-gradient(top, #EEEEEE, #BBBBBB);
+}
+.megamenu_wrapper_vertical .megamenu_light_theme .megamenu > li > div,
+.megamenu_light_theme ul .levels li ul {
+	border:1px solid #444444;
+}
+.megamenu_light_theme ul p,
+.megamenu_light_theme ul h2, 
+.megamenu_light_theme ul h3,
+.megamenu_light_theme ul li ul li {
+	text-shadow: 1px 1px 1px #FFFFFF;
+}
+.megamenu_light_theme ul h2, 
+.megamenu_light_theme ul h3 {
+	border-bottom:1px solid #888888;
+}
+.megamenu_light_theme ul .imgshadow_dark { /* Better style on dark background */
+	background:#FFFFFF;
+	border:1px solid #333333;
+	-moz-box-shadow:0 0 5px #000000;
+	-webkit-box-shadow:0 0 5px #000000;
+	box-shadow:0 0 5px #000000;
+}
+.megamenu_light_theme ul .imgshadow_light { /* Better style on light background */
+	background:#FFFFFF;
+	border:1px solid #777777;
+	-webkit-box-shadow:0 0 5px #666666;
+	-moz-box-shadow:0 0 5px #666666;
+	box-shadow:0 0 5px #666666;
+}
+.megamenu_light_theme ul li .black_box {
+	color:#ffffff;
+	text-shadow:1px 1px 1px #000000;
+	background-color:#333333;
+	-webkit-box-shadow:inset 0 0 3px #000000;
+	-moz-box-shadow:inset 0 0 3px #000000;
+	box-shadow:inset 0 0 3px #000000;
+}
+.megamenu_light_theme ul li .dark_grey_box {
+	color:#ffffff;
+	text-shadow:1px 1px 1px #000000;
+	background-color:#555555;
+	-webkit-box-shadow:inset 0 0 3px #111111;
+	-moz-box-shadow:inset 0 0 3px #111111;
+	box-shadow:inset 0 0 3px #111111;
+}
+.megamenu_light_theme ul li .greybox li {
+	background:#F4F4F4;
+	border:1px solid #bbbbbb;
+}
+.megamenu_light_theme ul li .greybox li:hover {
+	background:#ffffff;
+	border:1px solid #aaaaaa;
+}
+.megamenu_light_theme ul li .plus li {
+	background: url("../img/plus.png") left 6px no-repeat;
+}
+.megamenu_light_theme ul .levels a.parent, 
+.megamenu_light_theme ul .levels a.parent:hover {
+	background: url("../img/arrow_right1.png") right center no-repeat;
+}
+.megamenu_vertical_right .megamenu_light_theme ul .levels a.parent, 
+.megamenu_vertical_right .megamenu_light_theme ul .levels a.parent:hover {
+	background: url("../img/arrow_left1.png") left center no-repeat;
+}
+.megamenu_light_theme ul .contact_form input:focus, 
+.megamenu_light_theme ul .contact_form textarea:focus, 
+.megamenu_light_theme ul .contact_form select:focus,
+.megamenu_light_theme ul .contact_form input:hover, 
+.megamenu_light_theme ul .contact_form textarea:hover, 
+.megamenu_light_theme ul .contact_form select:hover {
+	box-shadow: rgba(0,0,0, 0.7) 0 0 3px;
+	-moz-box-shadow: rgba(0,0,0, 0.7) 0 0 3px;
+	-webkit-box-shadow: rgba(0,0,0, 0.7) 0 0 3px;  
+	border:1px solid #333333;
+}
+.megamenu_light_theme ul .contact_form input, 
+.megamenu_light_theme ul textarea, 
+.megamenu_light_theme ul select {
+	color: #FFFFFF; 
+	background-color:#222222;
+	border:1px solid #0A0A0A;
+}
+.megamenu_light_theme ul .contact_form input.button {
+	background-color:#1E1E1E;
+	border:1px solid #0A0A0A;
+	color:#cccccc;	
+}
+.megamenu_light_theme ul .contact_form input.button:hover {
+	color:#eeeeee;	
+	background-color:#222222;
+	border:1px solid #000000;
+}
+
+
+
+
+/*  _______________________________________
+
+	07 DARK THEME
+    _______________________________________  */
+
+
+
+
+
+
+
+
+/*  _______________________________________
+
+	08 COLORS
+    _______________________________________  */
+
+
+
+
+/* Black */
+
+
+/* Blue */
+
+
+/* Brown */
+
+
+/* Green */
+
+
+/* Light Blue */
+
+.megamenu_lightblue {
+	background: #52786b;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#709e8e), to(#52786b));
+	background: -webkit-linear-gradient(top, #709e8e, #52786b);
+	background: -moz-linear-gradient(top, #709e8e, #52786b);
+	background: -o-linear-gradient(top, #709e8e, #52786b);
+	background: -ms-linear-gradient(top, #709e8e, #52786b);
+	background: linear-gradient(top, #709e8e, #52786b);
+	border: 1px solid #608c7d;
+	border-top: 1px solid #99b9ae;
+}
+.megamenu_dark_theme .megamenu_lightblue li div a {color:#608c7d;}
+.megamenu_dark_theme .megamenu_lightblue li div a:hover {color:#99b9ae;}
+.megamenu_dark_theme .megamenu_lightblue li ul li a:hover {color:#99b9ae;}
+.megamenu_light_theme .megamenu_lightblue li div a {color:#608c7d;}
+.megamenu_light_theme .megamenu_lightblue li div a:hover {color:#99b9ae;}
+.megamenu_light_theme .megamenu_lightblue li ul li a:hover {color:#99b9ae;}
+
+/* Orange */
+
+
+/* Pink */
+
+
+/* Purple */
+
+
+/* Red */
+
+
+/* No left & right borders if full width menu bar */
+
+
+
+
+
+/*  _______________________________________
+
+	09 MOBILE DEVICES
+    _______________________________________  */
+
+
+
+
+.megamenu_dark_theme .megamenu_container .megamenu > li.noactive,
+.megamenu_light_theme .megamenu_container .megamenu > li.noactive {
+	background-color:transparent;
+	border:none;
+}
+
+
+@media only screen and (max-width: 1023px) {
+
+	
+	/* Menu Containers */
+	
+	.megamenu_wrapper {
+		width:95%;
+	}
+	.megamenu_wrapper .megamenu_container {
+		width:100%;
+		padding: 0;
+		margin:0 auto;
+		height:auto;
+		float:left;
+	}
+	.megamenu_wrapper .megamenu_container .megamenu {
+		width:98%;
+		margin:0;
+		padding: 0 1% 0 1%;
+	}
+
+	/* Menu Items */
+	
+	.megamenu_wrapper .megamenu > li {
+		height:40px;
+		position:static;
+		float:left;
+		right:auto;
+	}
+	.megamenu_wrapper .megamenu > li.menuitem_right {
+		float:right;
+	}
+
+	/* Menu Drop Downs */
+	
+	.megamenu_wrapper .megamenu .dropdown_1column, 
+	.megamenu_wrapper .megamenu .dropdown_2columns, 
+	.megamenu_wrapper .megamenu .dropdown_3columns, 
+	.megamenu_wrapper .megamenu .dropdown_4columns,
+	.megamenu_wrapper .megamenu .dropdown_5columns,
+	.megamenu_wrapper .megamenu .dropdown_fullwidth,
+	.megamenu_wrapper .megamenu .dropdown_right {
+		top:auto;
+		right:auto;
+		left:auto;
+		float:left;
+		border-top: none;
+		padding:2%;
+		margin:-1px 0 0 -1px;
+		-webkit-border-radius: 0 0 5px 5px;
+		-moz-border-radius: 0 0 5px 5px;
+		border-radius: 0 0 5px 5px;
+	}
+	.megamenu .dropdown_1column  {
+		width: 12.6666%;
+	}
+	.megamenu .dropdown_2columns  {
+		width: 29.3333%;
+	}
+	.megamenu .dropdown_3columns  {
+		width: 44%;
+	}
+	.megamenu .dropdown_4columns  {
+		width: 60.6666%;
+	}
+	.megamenu .dropdown_5columns  {
+		width: 79.3333%;
+	}
+	.megamenu .dropdown_fullwidth  {
+		width: 94%;
+	}
+	.megamenu_wrapper .megamenu .dropdown_right {
+		left:auto;
+		right:1%;
+	}
+	.megamenu_wrapper .megamenu .dropdown_fullwidth,
+	.megamenu_wrapper .megamenu li.menuitem_right .dropdown_fullwidth {
+		top:41px;
+		right:auto;
+		left:1%;
+		margin: 0;
+	}
+	
+	/* Menu Contact Form */
+	
+	.megamenu .contact_form label {
+		width:92%;
+	}
+	.megamenu .contact_form input, 
+	.megamenu .contact_form textarea {
+		width:92%;
+	}   
+	.megamenu .contact_form .form_buttons {
+		margin:4px 0 0 0;
+	}
+	
+	/* Vertical Menu */
+	
+
+
+
+}
+
+
+@media only screen and (max-width:768px) {
+
+
+	.megamenu_wrapper {
+		width:420px;
+		margin: 0 auto;
+		float: none;
+	}
+	.megamenu_vertical_left,
+	.megamenu_vertical_right {
+		float:none;
+	}
+	.megamenu_wrapper .megamenu_container {
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;
+	}
+	.megamenu_wrapper .megamenu_container .megamenu {
+		width:100%;
+		margin:0;
+		padding: 0;
+	}
+	.megamenu_container .megamenu > li,
+	.megamenu_container .megamenu > li:hover,
+	.megamenu_container .megamenu > li.menuitem_right,
+	.megamenu_container .megamenu > li.menuitem_right:hover {
+		float:left;
+		width:100%;
+		display: block;
+		padding-right:0;
+		margin-right:0;
+	}
+	.megamenu_wrapper .megamenu li.menuitem_right .dropdown_fullwidth {
+		top:auto;
+		right: auto;
+		left: 0;
+	}
+	.megamenu_container .megamenu .dropdown_1column, 
+	.megamenu_container .megamenu .dropdown_2columns, 
+	.megamenu_container .megamenu .dropdown_3columns, 
+	.megamenu_container .megamenu .dropdown_4columns,
+	.megamenu_container .megamenu .dropdown_5columns,
+	.megamenu_container .megamenu .dropdown_fullwidth,
+	.megamenu_container .megamenu .dropdown_right  {
+		left:0;
+		top:auto;
+		margin: -1px 0 0 0;
+		width: 390px;
+		padding:0 15px 0 15px;
+	}
+
+	/* Menu Drop Downs Columns */
+	
+	.megamenu .col_one_sixth,
+	.megamenu .col_one_fifth,
+	.megamenu .col_one_quarter,
+	.megamenu .col_one_third,
+	.megamenu .col_two_fifths,
+	.megamenu .col_half,
+	.megamenu .col_three_fifths,
+	.megamenu .col_two_thirds,
+	.megamenu .col_three_quarters,
+	.megamenu .col_four_fifths,
+	.megamenu .col_five_sixths,
+	.megamenu .col_full {
+		margin-left: 0;
+		margin-right: 0;
+		width: 96%;
+		float: left;
+		display: block;
+	}
+	.megamenu > .col_one_sixth,
+	.megamenu > .col_one_fifth,
+	.megamenu > .col_one_quarter,
+	.megamenu > .col_one_third,
+	.megamenu > .col_two_fifths,
+	.megamenu > .col_half,
+	.megamenu > .col_three_fifths,
+	.megamenu > .col_two_thirds,
+	.megamenu > .col_three_quarters,
+	.megamenu > .col_four_fifths,
+	.megamenu > .col_five_sixths,
+	.megamenu > .col_full {
+		margin-left: 2%;
+		margin-right: 2%;
+	}
+
+	/* Regular Drop Down (turned into a list) */
+
+	.megamenu_wrapper .megamenu .levels li ul {
+		position: relative;
+		top:auto;
+		margin:0;
+		padding:0;
+	    -webkit-border-radius: 0;
+		-moz-border-radius: 0;
+	    border-radius: 0;
+		left: auto;
+		border:none;
+		background:none;
+	}
+	.megamenu_wrapper .megamenu .levels li{
+		float: left;
+		width:100%;
+	}
+	.megamenu_wrapper .megamenu .levels li:hover > ul {
+		left: auto;
+	}
+	.megamenu_light_theme ul .levels a.parent, 
+	.megamenu_light_theme ul .levels a.parent:hover,
+	.megamenu_light_theme ul .levels li ul,
+	.megamenu_wrapper .megamenu_light_theme ul .levels a.parent, 
+	.megamenu_wrapper .megamenu_light_theme ul .levels a.parent:hover,
+	.megamenu_wrapper .megamenu_light_theme ul .levels li ul {
+		background: none;
+		border:none;
+	}
+
+
+}
+
+
+@media only screen and (max-width:479px) {
+
+
+	.megamenu_wrapper {
+		width:300px;
+	}
+	.megamenu_container .megamenu .dropdown_1column, 
+	.megamenu_container .megamenu .dropdown_2columns, 
+	.megamenu_container .megamenu .dropdown_3columns, 
+	.megamenu_container .megamenu .dropdown_4columns,
+	.megamenu_container .megamenu .dropdown_5columns,
+	.megamenu_container .megamenu .dropdown_fullwidth,
+	.megamenu_container .megamenu .dropdown_right  {
+		width: 270px;
+	}
+
+
+}
