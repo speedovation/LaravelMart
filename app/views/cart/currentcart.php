@@ -2,7 +2,7 @@
 <html ng-app="app">
     <head>
         
-         <?= stylesheet_link_tag() ?>
+        <?= stylesheet_link_tag() ?>
         <?= javascript_include_tag() ?>
 
         
@@ -48,9 +48,9 @@
         </div>
         
         <div ng-controller="BasketCtrl">
-            {{clear() }}
+            {{ clear() }}
             
-            {{ add({ "id": 2,"name": "P Name","price" : 30 } ) }}
+            {{ add({ "id": 5,"name": "P Name","price" : 30 } )  }}
             
             {{ getProducts() }}
         </div>

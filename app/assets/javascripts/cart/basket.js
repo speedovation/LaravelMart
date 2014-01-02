@@ -1,6 +1,6 @@
 //angular.module('BasketService', ['ngCookies'])
 //        .factory('Basket', function($cookies) {
-function BasketCtrl($scope,$cookies,Products) {
+function BasketCtrl($scope,$cookies) {
     var products = JSON.parse($cookies.products || "[]");
 
    
@@ -17,7 +17,7 @@ function BasketCtrl($scope,$cookies,Products) {
                 "quantity": 1
             });
 
-            this.store();
+            //this.store();
         },
         $scope.remove= function(product) {
 
@@ -31,7 +31,7 @@ function BasketCtrl($scope,$cookies,Products) {
 
             }
 
-            this.store();
+            //this.store();
 
         },
         $scope.update= function() {
@@ -45,7 +45,7 @@ function BasketCtrl($scope,$cookies,Products) {
 
             }
 
-            this.store();
+            //this.store();
 
         },
         $scope.store = function() {
@@ -53,7 +53,7 @@ function BasketCtrl($scope,$cookies,Products) {
         },
         $scope.clear = function() {
             products.length = 0;
-            this.store();
+            //this.store();
         }
 
     
