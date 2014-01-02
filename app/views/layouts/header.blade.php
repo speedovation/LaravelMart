@@ -69,7 +69,7 @@
 
 
 
-    <div class="megamenu_container megamenu_lightblue  navbar navbar-default" role="navigation" ><!-- BEGIN MENU CONTAINER -->
+    <div class="megamenu_container navbar navbar-default" role="navigation" ><!-- BEGIN MENU CONTAINER -->
 
 
 

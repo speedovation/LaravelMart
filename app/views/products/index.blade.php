@@ -34,7 +34,7 @@ foreach ($products as $product) {
                 <td>Category : {{$product->category->name}} Stock: {{$product->stock}}</td>
             </tr>
              <tr>
-                <td>Price: {{round($product->price,3)}}</td>
+                <td>Rs {{round($product->price,3)}}</td>
             </tr>
         </table>
 
