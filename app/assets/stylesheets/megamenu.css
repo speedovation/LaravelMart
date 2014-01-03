@@ -1,21 +1,21 @@
 .megamenu_wrapper {
-    margin:10px auto;
+    margin:0 auto 10px ;
     display:block;
     position: relative;
     z-index:9999;
-    font-family:Arial, Helvetica, sans-serif;
+/*    font-family:Arial, Helvetica, sans-serif;
     font-size:12px;
-    line-height:21px;
+    line-height:21px;*/
 }
 .megamenu_wrapper {
-    width: 980px;
+    /*width: 980px;*/
    
 }
-.megamenu_container {
+/*.megamenu_container {
     width:100%;
     margin:0 auto;
     height:40px;
-}
+}*/
 .megamenu_container .megamenu {
     list-style:none;
     width:960px;
@@ -172,9 +172,9 @@
 .megamenu li,
 .megamenu h2,
 .megamenu h3 {
-    font-size:12px; 
+/*    font-size:12px; 
     font-family:Arial, Helvetica, sans-serif;
-    line-height:21px;
+    line-height:21px;*/
     text-align:left;
 }
 .megamenu p {
@@ -189,19 +189,19 @@
 }
 .megamenu h2, 
 .megamenu h3 {
-    margin-top:7px;
+    /*margin-top:7px;*/
 }
 .megamenu h2 {
-    font-weight:400;
-    font-size:21px;
-    margin-bottom:18px;
-    padding-bottom:11px;
+    /*font-weight:400;*/
+    /*font-size:21px;*/
+    /*margin-bottom:18px;*/
+    /*padding-bottom:11px;*/
 }
 .megamenu h3 {
-    font-weight:600;
-    font-size:14px;
-    margin-bottom:14px;
-    padding-bottom:7px;
+    /*font-weight:600;*/
+    /*font-size:14px;*/
+    /*margin-bottom:14px;*/
+    /*padding-bottom:7px;*/
 }
 .megamenu li a {
     text-decoration:none;
@@ -261,8 +261,8 @@
     margin:0 0 12px 0;
 }
 .megamenu li ul li {
-    font-size:12px;
-    line-height:24px;
+/*    font-size:12px;
+    line-height:24px;*/
     position:relative;
     /*text-shadow: 1px 1px 1px #000000;*/
     padding:0;
@@ -367,19 +367,19 @@
 .megamenu .contact_form {
     display: block;
     margin-bottom:10px;
-    font-size: 12px;
-    font-family:Arial, Helvetica, sans-serif;
+/*    font-size: 12px;
+    font-family:Arial, Helvetica, sans-serif;*/
 }
 .megamenu .contact_form label {
     display: inline-block; 
     float: left; 
     width:80px;
-    font-size:12px; 
+    /*font-size:12px;*/ 
 }
 .megamenu .contact_form input, 
 .megamenu .contact_form textarea {
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:12px;
+    /*font-family:Arial, Helvetica, sans-serif;*/
+    /*font-size:12px;*/
     width:90%;
     padding: 8px 4% 8px 4%;
     margin: 9px 0 9px 0; 
@@ -407,7 +407,7 @@
 }
 .megamenu .contact_form .error, 
 .megamenu .contact_form .sent {
-    font-size:11px;
+    /*font-size:11px;*/
     padding:2px 5px 2px 5px;
     text-shadow:none;
     -webkit-border-radius:3px; 

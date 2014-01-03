@@ -3105,8 +3105,8 @@ table.rounded tr:last-child td:last-child {
   & {
     $breakpoint-alpha: 480px;
   }
-  .table:after,
-  .table thead:after {
+  .table-r:after,
+  .table-r thead:after {
     visibility: hidden;
     display: block;
     font-size: 0;
@@ -3114,48 +3114,48 @@ table.rounded tr:last-child td:last-child {
     clear: both;
     height: 0;
   }
-  .table {
+  .table-r {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
     display: block;
   }
-  .table th,
-  .table td {
+  .table-r th,
+  .table-r td {
     margin: 0;
     vertical-align: top;
   }
-  .table th {
+  .table-r th {
     text-align: left;
   }
-  .table table {
+  .table-r table {
     display: block;
     position: relative;
     width: 100%;
   }
-  .table thead {
+  .table-r thead {
     display: block;
     float: left;
   }
-  .table tbody {
+  .table-r tbody {
     display: block;
     width: auto;
     position: relative;
     overflow-x: auto;
     white-space: nowrap;
   }
-  .table thead tr {
+  .table-r thead tr {
     display: block;
   }
-  .table th {
+  .table-r th {
     display: block;
     text-align: right;
   }
-  .table tbody tr {
+  .table-r tbody tr {
     display: inline-block;
     vertical-align: top;
   }
-  .table td {
+  .table-r td {
     display: block;
     min-height: 1.25em;
     text-align: left;

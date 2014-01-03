@@ -1,6 +1,20 @@
 
+<div class="row">
+<div class='col-md-2 col-sm-2'>
+    <div class="list-group">
+  <a href="#" class="list-group-item active">
+    Cras justo odio
+  </a>
+  <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+  <a href="#" class="list-group-item">Morbi leo risus</a>
+  <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+  <a href="#" class="list-group-item">Vestibulum at eros</a>
+</div>
 
-<?php
+</div>
+<div class='col-md-10 col-sm-10'>
+    
+    <?php
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -13,11 +27,11 @@ $count = 0;
 foreach ($products as $product) {
 
     if ($count == 0)
-        echo '<div class="row">';
+        //echo '<div class="row">';
     $count++;
     ?>
 
-    <div class='col-md-4 col-sm-4'>
+    <div class='item-box'>
 
         <table class="table well">
             <tr>
@@ -27,14 +41,14 @@ foreach ($products as $product) {
                 </td>
             </tr>
             <tr>
-                <td class='text-center'><img data-src='holder.js/300x200' src='{{$product->image}}' /></td>
+                <td class='text-center'><img data-src='holder.js/260x200' src='{{$product->image}}' /></td>
             </tr>
            
             <tr>
                 <td>Category : {{$product->category->name}} Stock: {{$product->stock}}</td>
             </tr>
              <tr>
-                <td>Rs {{round($product->price,3)}}</td>
+                 <td><span class="pull-left">Price: {{round($product->price,3)}}</span> <button class="btn btn-primary pull-right ">Add to cart</button></td>
             </tr>
         </table>
 
@@ -47,19 +61,21 @@ foreach ($products as $product) {
 
     <?php
     //$product->category_id;
-    if ($count == 3) {
+    if ($count == 2) {
         $count = 0;
-        echo '</div>';
+        //echo '</div>';
     }
 } 
 ?>
-
-
 <div class='row'>
     
      {{$products->links()}} 
     
 </div>
+    
+    
+</div>
+
 
 
 <!--<div id='wrap'>

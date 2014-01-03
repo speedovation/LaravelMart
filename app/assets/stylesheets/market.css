@@ -509,3 +509,7 @@ h3{
 .table {
     background-color: #fff;
 }
+
+.item-box{
+    display: inline-block;
+}

@@ -37,7 +37,7 @@
 
         @include("layouts/header")
 
-        <div class="container">
+        <div class="container grid">
             {{ $content }}
         </div>
         @include("layouts/footer")
