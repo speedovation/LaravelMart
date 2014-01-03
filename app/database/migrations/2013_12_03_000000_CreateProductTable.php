@@ -15,6 +15,8 @@ class CreateProductTable extends Migration {
                     $table->float("price");
                     $table->integer("category_id");
                     $table->string("image");
+                    $table->text("short_desc");
+                    $table->longText("long_desc");
                     $table->timestamps();
                     $table->softDeletes();
                 });

@@ -2,7 +2,7 @@
 
     <div class='col-md-12 col-sm-4'>
 
-        <table class="table well">
+        <table class="table">
             <tr>
                 <td>Product Name : {{$product->name}} #Product Code :{{$product->id}}
                
@@ -10,6 +10,9 @@
             </tr>
             <tr>
                 <td> <img data-src='holder.js/400x300' src='{{$product->image}}' /></td>
+            </tr>
+            <tr>
+                <td>Price: {{$product->long_desc}}</td>
             </tr>
             <tr>
                 <td>More options</td>

@@ -1,18 +1,15 @@
 
 <div class="row">
-<div class='col-md-2 col-sm-2'>
-    <div class="list-group">
-  <a href="#" class="list-group-item active">
-    Cras justo odio
-  </a>
-  <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-  <a href="#" class="list-group-item">Morbi leo risus</a>
-  <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-  <a href="#" class="list-group-item">Vestibulum at eros</a>
-</div>
+<div class='desktop-2'>
+    <ul class="link-list">
+            <li><a title="KineticWing IDE" href="http://kineticwing.com">KineticWing IDE</a></li>
+            <li><a title="MVC Logic" href="http://mvclogic.com" class="active">MVC Logic</a></li>
+            <li><a title="Jals" href="http://www.jals.in/">Jals</a></li>
+            <li><a title="Rudra Icons" href="http://speedovation.com/">Rudra Icons</a></li>
+          </ul>
 
 </div>
-<div class='col-md-10 col-sm-10'>
+<div class='desktop-10'>
     
     <?php
 /*
@@ -33,7 +30,7 @@ foreach ($products as $product) {
 
     <div class='item-box'>
 
-        <table class="table well">
+        <table class="table">
             <tr>
                 <td class='text-center'>                 
                     {{ link_to_action('ProductsController@getProduct', $product->name , [$product->id]); }}
@@ -43,12 +40,16 @@ foreach ($products as $product) {
             <tr>
                 <td class='text-center'><img data-src='holder.js/260x200' src='{{$product->image}}' /></td>
             </tr>
-           
+            
             <tr>
-                <td>Category : {{$product->category->name}} Stock: {{$product->stock}}</td>
+                <td>{{$product->short_desc}}</td>
             </tr>
+           
+<!--            <tr>
+                <td>Category : { {$product->category->name}} Stock: { {$product->stock}}</td>
+            </tr>-->
              <tr>
-                 <td><span class="pull-left">Price: {{round($product->price,3)}}</span> <button class="btn btn-primary pull-right ">Add to cart</button></td>
+                 <td><button class="button float-left ">More Info</button> <button class="button primary float-right ">{{round($product->price,3)}} Add to cart</button></td>
             </tr>
         </table>
 
@@ -76,7 +77,7 @@ foreach ($products as $product) {
     
 </div>
 
-
+</div>
 
 <!--<div id='wrap'>
     <div id='content'></div>
