@@ -1,81 +1,92 @@
 
 <div class="row">
-<div class='desktop-2'>
-    <ul class="link-list">
+    <div class='desktop-3 bg'>
+        <h3>Deal of the day</h3>
+        <ul class="link-list">
             <li><a title="KineticWing IDE" href="http://kineticwing.com">KineticWing IDE</a></li>
             <li><a title="MVC Logic" href="http://mvclogic.com" class="active">MVC Logic</a></li>
             <li><a title="Jals" href="http://www.jals.in/">Jals</a></li>
             <li><a title="Rudra Icons" href="http://speedovation.com/">Rudra Icons</a></li>
-          </ul>
+        </ul>
 
-</div>
-<div class='desktop-10'>
-    
-    <?php
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-$count = 0;
-
-
-
-foreach ($products as $product) {
-
-    if ($count == 0)
-        //echo '<div class="row">';
-    $count++;
-    ?>
-
-    <div class='item-box'>
-
-        <table class="table">
-            <tr>
-                <td class='text-center'>                 
-                    {{ link_to_action('ProductsController@getProduct', $product->name , [$product->id]); }}
-                
-                </td>
-            </tr>
-            <tr>
-                <td class='text-center'><img data-src='holder.js/260x200' src='{{$product->image}}' /></td>
-            </tr>
-            
-            <tr>
-                <td>{{$product->short_desc}}</td>
-            </tr>
-           
-<!--            <tr>
-                <td>Category : { {$product->category->name}} Stock: { {$product->stock}}</td>
-            </tr>-->
-             <tr>
-                 <td><button class="button float-left ">More Info</button> <button class="button primary float-right ">{{round($product->price,3)}} Add to cart</button></td>
-            </tr>
-        </table>
-
-
-
+        <h3>Categories</h3>
+        <ul class="link-list">
+            <li><a title="KineticWing IDE" href="http://kineticwing.com">KineticWing IDE</a></li>
+            <li><a title="MVC Logic" href="http://mvclogic.com" class="active">MVC Logic</a></li>
+            <li><a title="Jals" href="http://www.jals.in/">Jals</a></li>
+            <li><a title="Rudra Icons" href="http://speedovation.com/">Rudra Icons</a></li>
+        </ul>
 
 
 
     </div>
+    <div class='desktop-9 text-center'>
 
-    <?php
-    //$product->category_id;
-    if ($count == 2) {
+        <?php
+        /*
+         * To change this template, choose Tools | Templates
+         * and open the template in the editor.
+         */
+
         $count = 0;
-        //echo '</div>';
-    }
-} 
-?>
-<div class='row'>
-    
-     {{$products->links()}} 
-    
-</div>
-    
-    
-</div>
+
+
+
+        foreach ($products as $product) {
+
+            if ($count == 0)
+            //echo '<div class="row">';
+                $count++;
+            ?>
+
+            <div class='item-box'>
+
+                <table class="table">
+                    <tr>
+                        <td class='text-center'>                 
+                            {{ link_to_action('ProductsController@getProduct', $product->name , [$product->id]); }}
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='text-center'><img data-src='holder.js/260x200' src='{{$product->image}}' /></td>
+                    </tr>
+
+                    <tr>
+                        <td>{{$product->short_desc}}</td>
+                    </tr>
+
+        <!--            <tr>
+             <td>Category : { {$product->category->name}} Stock: { {$product->stock}}</td>
+         </tr>-->
+                    <tr>
+                        <td><button class="button primary large"> <i class="i-shopping-cart"></i> {{round($product->price,3)}} Add to cart</button></td>
+                    </tr>
+                </table>
+
+
+
+
+
+
+            </div>
+
+            <?php
+            //$product->category_id;
+            if ($count == 2) {
+                $count = 0;
+                //echo '</div>';
+            }
+        }
+        ?>
+        <div class='row'>
+
+            {{$products->links()}} 
+
+        </div>
+
+
+    </div>
 
 </div>
 
@@ -84,7 +95,7 @@ foreach ($products as $product) {
 </div>-->
 
 <script type="text/javascript">
-    
+
 //    $(document).ready(function () {
 //		
 //          var count = 2;  
@@ -114,9 +125,9 @@ foreach ($products as $product) {
 //                  });  
 //              return false;  
 //          }  
-    
-     
-		
+
+
+
 //	});
-    
+
 </script>
