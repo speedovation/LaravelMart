@@ -11,7 +11,7 @@
  *
  * require_tree .
  *= require base.css
- *= require rudra.css
+ *= require fonts/rudra.css
  * require bootstrap.css
  * require bootstrap-theme.css
  *= require market.css

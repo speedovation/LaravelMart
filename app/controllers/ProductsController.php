@@ -27,7 +27,7 @@ class ProductsController extends BaseController {
         //$products->where("category_id", $category);
         
         //$id = Input::get("id");
-        $products->where("id",  Request::segment(3));
+        $products->where("code", explode("--",Request::segment(3))[1] );
         
 
         $this->layout->content = View::make('products.product', [ 'product' => $products->firstOrFail() ] );

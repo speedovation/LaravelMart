@@ -44,8 +44,12 @@
                 <table class="table">
                     <tr>
                         <td class='text-center'>                 
-                            {{ link_to_action('ProductsController@getProduct', $product->name , [$product->id]); }}
+                            <h4>
+                                {{ link_to_action('ProductsController@getProduct', 'KENNETH COLE BLACK VINTAGE BY KENNETH COLE FOR MEN '.$product->name , [$product->name.'--'.$product->code]); }}
 
+
+                                 {{$product->name}} </h4>
+                            <h5> #Product Code :{{$product->id}}</h5>
                         </td>
                     </tr>
                     <tr>
@@ -56,11 +60,11 @@
                         <td>{{$product->short_desc}}</td>
                     </tr>
 
-        <!--            <tr>
-             <td>Category : { {$product->category->name}} Stock: { {$product->stock}}</td>
-         </tr>-->
+            <!--            <tr>
+                 <td>Category : { {$product->category->name}} Stock: { {$product->stock}}</td>
+             </tr>-->
                     <tr>
-                        <td><button class="button primary large"> <i class="i-shopping-cart"></i> {{round($product->price,3)}} Add to cart</button></td>
+                        <td><button class="button primary large"> <i class="i-rupee"></i> <span class="rupee">{{round($product->price,3)}}</span> <span><i class="i-plus"></i> Add to cart</span></button></td>
                     </tr>
                 </table>
 

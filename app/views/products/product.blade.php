@@ -1,37 +1,15 @@
 <div class="row">
 
-    <div class='col-md-12 col-sm-4'>
+    <div class='desktop-8 '>
 
-        <table class="table">
-            <tr>
-                <td>Product Name : {{$product->name}} #Product Code :{{$product->id}}
-               
-                </td>
-            </tr>
-            <tr>
-                <td> <img data-src='holder.js/400x300' src='{{$product->image}}' /></td>
-            </tr>
-            <tr>
-                <td>Price: {{$product->long_desc}}</td>
-            </tr>
-            <tr>
-                <td>More options</td>
-            </tr>
-            <tr>
-                <td>Category : {{$product->category->name}} Stock: {{$product->stock}}</td>
-            </tr>
-             <tr>
-                <td>Price: {{$product->price}}</td>
-            </tr>
-        </table>
-
-
-
-
-
+        @include('products.single',['product' => $product] )
 
     </div>
+
+    <div class='desktop-4 bg text-center'>
+        <h3>Deal of the day</h3>
+        <img data-src='holder.js/350x300' src='{{$product->image}}' />
+        <h3>Related Items</h3>
+        <img data-src='holder.js/350x300' src='{{$product->image}}' />
+    </div>
 </div>
-
-
-

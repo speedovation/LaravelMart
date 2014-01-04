@@ -10,6 +10,7 @@ class CreateProductTable extends Migration {
                     $table->engine = "InnoDB";
 
                     $table->increments("id");
+                    $table->string("code");
                     $table->string("name");
                     $table->integer("stock");
                     $table->float("price");

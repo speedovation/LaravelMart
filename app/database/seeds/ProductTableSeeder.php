@@ -13,7 +13,15 @@ class ProductTableSeeder extends DatabaseSeeder {
                 $stock = $faker->randomNumber(0, 100);
                 $price = $faker->randomFloat(2, 5, 100);
 
+
+                //generate unique 8 code               
+                $code = substr(uniqid('hjmoe56d2hhuJteXZADuH' . mt_rand()), 0, 8);
+
+
+
+
                 Product::create([
+                    "code" => $code,
                     "name" => $name,
                     "stock" => $stock,
                     "price" => $price,
@@ -24,7 +32,6 @@ class ProductTableSeeder extends DatabaseSeeder {
                         <li><span class="text">0.3 MP Primary Camera</span></li>
                         <li><span class="text">1.8-inch LCD Screen</span></li>
                     </ul>',
-                    
                     "long_desc" => "Deep Red Ruffle Top 
 
 A stylish top in red colour. The top features three fourth sleeves. The top is designed with ruffle V neck collar cascading in the center. Pair the dainty top with light brown trousers and heels.
