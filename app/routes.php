@@ -79,3 +79,5 @@ Route::controller('cart', 'CartController');
 //        "uses" => "UserController@logoutAction"
 //    ]);
 //});
+
+Route::resource('wishlists', 'WishlistsController');

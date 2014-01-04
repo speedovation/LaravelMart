@@ -5,7 +5,7 @@
         {{$product->name}} 
         <small class='text-small'>(#{{$product->code}})</small> 
         <button class='button success add-to-cart-button float-right'> 
-            <i class='i-rupee size-24'></i> {{$discounted_price}} 
+            <i class='i-rupee size-24'></i> {{$discounted_price}}  
             <i class='i-shopping-cart size-24'></i> ADD TO CART
         </button>
     </h2>
@@ -48,7 +48,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">Add to Wishlist</td>
+                    <td colspan="2">{{link_to_route('WishlistController@getAddwishlist','Add to Wishlist',['class'=>'button'])}}</td>
                 </tr>
             </table> 
             

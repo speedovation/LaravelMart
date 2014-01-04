@@ -1,0 +1,4 @@
+	public function up()
+	{
+		Schema::drop('{{tableName}}');
+	}

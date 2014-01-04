@@ -99,7 +99,8 @@ return array(
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Workbench\WorkbenchServiceProvider',
         'Codesleeve\AssetPipeline\AssetPipelineServiceProvider',
-        'Gloudemans\Shoppingcart\ShoppingcartServiceProvider'
+        'Gloudemans\Shoppingcart\ShoppingcartServiceProvider',
+        'Way\Generators\GeneratorsServiceProvider'
         
     ),
     /*

@@ -32,6 +32,7 @@ Look at one of the following topics to learn more about LaravelShoppingcart
 * [Collections](#collections)
 * [Instances](#instances)
 * [Exceptions](#exceptions)
+* [Events](#events)
 * [Example](#example)
 
 ## Usage
@@ -61,23 +62,6 @@ Cart::add(array('id' => '293ad', 'name' => 'Product 1', 'qty' => 1, 'price' => 9
 Cart::add(array(
   array('id' => '293ad', 'name' => 'Product 1', 'qty' => 1, 'price' => 10.00),
   array('id' => '4832k', 'name' => 'Product 2', 'qty' => 1, 'price' => 10.00, 'options' => array('size' => 'large'))
-));
-```
-
-**Cart::addBatch()**
-
-Don't use this anymore, just pass a multidimensional array to the `Cart::add()` method
-
-```php
-/**
- * Add multiple rows to the cart
- *
- * @param Array $items An array of items to add, use array keys corresponding to the 'add' method's parameters
- */
-
-Cart::addBatch(array(
-	array('id' => '293ad', 'name' => 'Product 1', 'qty' => 1, 'price' => 10.00),
-	array('id' => '4832k', 'name' => 'Product 2', 'qty' => 1, 'price' => 10.00, 'options' => array('size' => 'large'))
 ));
 ```
 
@@ -241,6 +225,17 @@ The Cart package will throw exceptions if something goes wrong. This way it's ea
 | *ShoppingcartInvalidQtyException*     | When a not numeric quantity is passed                                    |
 | *ShoppingcartInvalidRowIDException*   | When the rowId that got passed doesn't exists in the current cart        |
 
+## Events
+
+The cart also has events build in. There are five events available for you to listen for.
+
+| Event                | Fired                                   |
+|----------------------------------------------------------------|
+| cart.add($item)      | When a single item is added             |
+| cart.batch($items)   | When a batch if items is added          |
+| cart.update($rowId)  | When an item in the cart is updated     |
+| cart.remove($rowId)  | When an item is removed from the cart   |
+| cart.destroy()       | When the cart is destroyed              |
 
 ## Example
 
