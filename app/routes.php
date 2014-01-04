@@ -49,6 +49,8 @@ Route::controller('users', 'UsersController');
 Route::controller('products', 'ProductsController');
 Route::controller('cart', 'CartController');
 
+Route::resource('wishlist', 'WishlistController');
+
 //Route::group(["before" => "guest"], function()
 //{
 //    Route::any("/", [
@@ -80,4 +82,3 @@ Route::controller('cart', 'CartController');
 //    ]);
 //});
 
-Route::resource('wishlists', 'WishlistsController');

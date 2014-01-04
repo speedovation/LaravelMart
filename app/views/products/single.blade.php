@@ -48,7 +48,16 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">{{link_to_route('WishlistController@getAddwishlist','Add to Wishlist',['class'=>'button'])}}</td>
+                    <td colspan="2">
+                        {{link_to_action('WishlistController@create','Add to Wishlist',[],['class'=>'button'])}}
+                         
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"> 
+                       <div data-number="5" data-score='4.5' class='raty float-left'></div> 
+                        <div class="review-panel float-right"> 43 Reviews | Write a Review</div>
+                    </td>
                 </tr>
             </table> 
             

@@ -1,6 +1,6 @@
 <?php
 
-class WishlistsController extends BaseController {
+class WishlistController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -19,6 +19,15 @@ class WishlistsController extends BaseController {
 	 */
 	public function create()
 	{
+        //store wishlist
+        
+        //get user id
+        //get product code from request segment
+        
+        //insert new record
+        
+        //show index of wishlist
+        
         return View::make('wishlists.create');
 	}
 
@@ -29,7 +38,7 @@ class WishlistsController extends BaseController {
 	 */
 	public function store()
 	{
-		//
+		//not required
 	}
 
 	/**

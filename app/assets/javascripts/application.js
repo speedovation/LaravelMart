@@ -11,9 +11,11 @@
 // The available directives right now are require, require_directory, and require_tree
 //
 //= require vendors/jquery.js
-//= require vendors/bootstrap.js 
+// require vendors/bootstrap.js 
 //= require vendors/holder.js 
 //
+// Plugins
+//= require plugins/raty/lib/jquery.raty.js
 //
 // Angular part
 // require vendors/angular/angular.js
@@ -35,5 +37,8 @@
 // require cart/shoppingCart.js
 // require cart/app.js
 // require cart/controller.js
+// 
+//  General app requirements
+//= require app.js
 // 
 // require_tree .

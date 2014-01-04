@@ -622,3 +622,13 @@ h3{
 {
     margin-top: -5px;
 }
+
+.raty {
+    margin-top: 6px;
+}
+.review-panel
+{
+    color: #777777;
+    font-size: 0.86rem;
+    margin-top: 8px;
+}
