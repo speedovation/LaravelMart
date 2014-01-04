@@ -1,53 +1,71 @@
+{{ $discounted_price = round($product->price - ($product->price * $product->discount / 100), 3 )}}
+
 <div>
     <h2 class='divide-section' >
         {{$product->name}} 
         <small class='text-small'>(#{{$product->code}})</small> 
         <button class='button success add-to-cart-button float-right'> 
-            <i class='i-rupee size-24'></i> {{round($product->price,3)}} 
+            <i class='i-rupee size-24'></i> {{$discounted_price}} 
             <i class='i-shopping-cart size-24'></i> ADD TO CART
         </button>
     </h2>
     <p></p>
     <div class='row section'> 
-        <div class='desktop-7'><img data-src='holder.js/400x300' src='{{$product->image}}' /></div>
+        <div class='desktop-7'>
+        
+            <img data-src='holder.js/400x300' src='{{$product->image}}' />
+            
+            <div>
+                <img class='item-box' data-src='holder.js/170x120' src='{{$product->image}}' />
+                <img class='item-box' data-src='holder.js/170x120' src='{{$product->image}}' />
+                <img class='item-box' data-src='holder.js/170x120' src='{{$product->image}}' />
+                <img class='item-box' data-src='holder.js/170x120' src='{{$product->image}}' />
+     
+                
+                
+            </div>
+        
+        </div>
         <div class='desktop-5'>
 
-
-
-            <div>
-                <img class='item-box' data-src='holder.js/140x80' src='{{$product->image}}' />
-                <img class='item-box' data-src='holder.js/140x80' src='{{$product->image}}' />
-                <img class='item-box' data-src='holder.js/140x80' src='{{$product->image}}' />
-                <img class='item-box' data-src='holder.js/140x80' src='{{$product->image}}' />
-                <img class='item-box' data-src='holder.js/140x80' src='{{$product->image}}' />
-                <img class='item-box' data-src='holder.js/140x80' src='{{$product->image}}' />
-            </div>
-        </div>
-    </div>
-    <div class="row section">
-        <div class="desktop-6">
-            
-            <table class="table bordered rounded">
+<table class="table bordered rounded">
                 <tr>
                     <th colspan="2">OFFER Details</th>
                 </tr>
                 <tr>
                     <td>MRP</td>
-                    <td>1400</td>
+                    <td>{{ round($product->mrp,3) }}</td>
                 </tr>
                  <tr>
                      <td>Selling Price</td>
-                     <td> Rs 1400</td>
+                     <td>{{ round($product->price,3) }}</td>
                 </tr>
                 <tr>
                     <td>OFFER PRICE </td>
-                    <td>Rs 1372 2%</td>
+                    <td>
+                        {{$discounted_price}} 
+                        <span class="badge badge-danger badge-inside-table"> {{$product->discount}}% </span>
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="2">Add to Wishlist</td>
                 </tr>
-            </table>   
+            </table> 
+            
+             <ul>
+                <li><i class='i-vehical size-32'></i>FREE SHIPPING</li>
+                <li><i class='i-rupee size-32'></i>30 DAYS MONEY BACK GUARANTEE</li>
+                <li><i class='i-repeat size-32'></i>30 DAYS FREE RETURN</li>
+            </ul>
 
+            
+        </div>
+    </div>
+    <div class="row section">
+        <div class="desktop-7 text-center">
+            
+            
+            
 
 <!--Selling Price Rs 1400
 OFFER PRICE
@@ -62,12 +80,8 @@ Dispatched in 3 business days-->
 
         </div>
         
-        <div class="desktop-5 desktop-push-1">
-            <ul>
-                <li><i class='i-vehical size-32'></i>FREE SHIPPING</li>
-                <li><i class='i-rupee size-32'></i>30 DAYS MONEY BACK GUARANTEE</li>
-                <li><i class='i-repeat size-32'></i>30 DAYS FREE RETURN</li>
-            </ul>
+        <div class="desktop-5">
+           
         </div>
         
 

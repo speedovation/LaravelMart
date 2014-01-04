@@ -13,7 +13,17 @@ class CreateProductTable extends Migration {
                     $table->string("code");
                     $table->string("name");
                     $table->integer("stock");
+                    
+                    //mrp cost
+                    $table->float("mrp");
+                    
+                    //selling price
                     $table->float("price");
+                    
+                    //discount in percentage
+                    $table->float("discount");
+                    
+                    
                     $table->integer("category_id");
                     $table->string("image");
                     $table->text("short_desc");

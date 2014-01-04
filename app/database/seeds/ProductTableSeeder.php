@@ -24,7 +24,10 @@ class ProductTableSeeder extends DatabaseSeeder {
                     "code" => $code,
                     "name" => $name,
                     "stock" => $stock,
+                    "mrp" => $price,
                     "price" => $price,
+                    "discount" => 20,
+                    
                     "category_id" => $category->id,
                     "image" => $name,
                     "short_desc" => '<ul>                    
