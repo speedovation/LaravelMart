@@ -22,7 +22,7 @@ class ProductTableSeeder extends DatabaseSeeder {
 
                 Product::create([
                     "code" => $code,
-                    "name" => $name,
+                    "name" => $name." ".ucwords($faker->word)." ".ucwords($faker->word),
                     "stock" => $stock,
                     "mrp" => $price,
                     "price" => $price,

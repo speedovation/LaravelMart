@@ -632,3 +632,22 @@ h3{
     font-size: 0.86rem;
     margin-top: 8px;
 }
+
+
+
+.spinner
+{
+    background: url("img/loader/28.gif") no-repeat scroll 3px -2px rgba(0, 0, 0, 0);
+    float: right;
+    height: 21px;
+    margin-left: 5px;
+    width: 28px;
+}
+
+.spinner-big{
+    background: url("img/loader/28.gif") no-repeat scroll 4px 9px rgba(0, 0, 0, 0);
+    float: right;
+    height: 31px;
+    margin-left: 5px;
+    width: 28px;
+}

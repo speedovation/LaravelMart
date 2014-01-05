@@ -3,19 +3,16 @@
     display:block;
     position: relative;
     z-index:9999;
-/*    font-family:Arial, Helvetica, sans-serif;
-    font-size:12px;
-    line-height:21px;*/
+    
+    
+    background: none repeat scroll 0 0 #CCCCCC;
+    border-bottom: 1px solid #AAAAAA;
+    height: 41px;
 }
 .megamenu_wrapper {
-    /*width: 980px;*/
    
 }
-/*.megamenu_container {
-    width:100%;
-    margin:0 auto;
-    height:40px;
-}*/
+
 .megamenu_container .megamenu {
     list-style:none;
     width:960px;
@@ -46,7 +43,6 @@
 }
 
 /* Right aligned menu item */
-
 .megamenu > li.menuitem_right {
     float:right;
     right:0;
@@ -54,7 +50,6 @@
 }
 
 /* Menu Button (Mobiles) */
-
 .megamenu li.megamenu_button {
     display: none;
 }
@@ -62,15 +57,9 @@
     background:#000000 !important;
 }
 
-
-
-
 /*  _______________________________________
-
     02 DROP DOWN MENU
-    _______________________________________  */
-
-
+   _______________________________________  */
 
 
 /* Drop Downs Containers */
@@ -92,7 +81,6 @@
 }
 
 /* Drop Downs Sizes */
-
 .megamenu .dropdown_1column {width: 135px;padding:15px 14px 15px 15px;}
 .megamenu .dropdown_2columns {width: 290px;padding:15px 11px 15px 15px;}
 .megamenu .dropdown_3columns {width: 445px;padding:15px 8px 15px 15px;}
@@ -117,13 +105,11 @@
 }
 
 /* Showing Drop Down on Mouse Hover */
-
 .megamenu li:hover > div {
     display: block;
 }
 
 /* Columns Sizes */
-
 .megamenu .col_one_sixth,
 .megamenu .col_one_fifth,
 .megamenu .col_one_quarter,
@@ -166,16 +152,11 @@
     03 CONTENT STYLING
     _______________________________________  */
 
-
-
 .megamenu p,
 .megamenu ul,
 .megamenu li,
 .megamenu h2,
 .megamenu h3 {
-/*    font-size:12px; 
-    font-family:Arial, Helvetica, sans-serif;
-    line-height:21px;*/
     text-align:left;
 }
 .megamenu p {
@@ -190,19 +171,12 @@
 }
 .megamenu h2, 
 .megamenu h3 {
-    /*margin-top:7px;*/
+   
 }
 .megamenu h2 {
-    /*font-weight:400;*/
-    /*font-size:21px;*/
-    /*margin-bottom:18px;*/
-    /*padding-bottom:11px;*/
+   
 }
 .megamenu h3 {
-    /*font-weight:600;*/
-    /*font-size:14px;*/
-    /*margin-bottom:14px;*/
-    /*padding-bottom:7px;*/
 }
 .megamenu li a {
     text-decoration:none;
@@ -213,7 +187,7 @@
 
 /* Icon paragraphs */
 
-.megamenu .help,
+/*.megamenu .help,
 .megamenu .favorite,
 .megamenu .mail,
 .megamenu .print {
@@ -223,7 +197,7 @@
 .megamenu .help {background:url("../img/help.png") no-repeat 0 2px;}
 .megamenu .favorite {background:url("../img/favorite.png") no-repeat 0 2px;}
 .megamenu .mail {background:url("../img/mail.png") no-repeat 0 2px;}
-.megamenu .print {background:url("../img/print.png") no-repeat 0 2px;}
+.megamenu .print {background:url("../img/print.png") no-repeat 0 2px;}*/
 
 /* Images styles */
 
@@ -245,59 +219,52 @@
 
 .megamenu li .black_box,
 .megamenu li .dark_grey_box {
-    margin: -8px 0 18px 0;
+/*    margin: -8px 0 18px 0;
     color: #eeeeee;
     text-shadow: 1px 1px 1px #000;
     padding:8px 12px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
-    border-radius: 5px;
+    border-radius: 5px;*/
 }
 
 /* Standard lists styles */
 
 .megamenu li ul {
-    list-style:none;
+/*    list-style:none;
     padding:0;
-    margin:0 0 12px 0;
+    margin:0 0 12px 0;*/
 }
 .megamenu li ul li {
-/*    font-size:12px;
-    line-height:24px;*/
-    position:relative;
-    /*text-shadow: 1px 1px 1px #000000;*/
-/*    padding:0;
-    margin:0;*/
+/*    position:relative;
     float:left;
     text-align:left;
-    width:100%;
+    width:100%;*/
 }
 .megamenu li ul li a {
-    /*padding:0;*/
 }
 
 /* Greybox lists styles */
-
 .megamenu li .greybox li {
-    margin:0 0 4px 0;
+/*    margin:0 0 4px 0;
     padding:4px 6% 4px 6%;
     width:88%;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
-    border-radius: 3px;
+    border-radius: 3px;*/
 }
 
 /* Other lists styles */
 
 .megamenu li .plus li {
-    margin:0 0 4px 0;
+/*    margin:0 0 4px 0;
     padding:0 0 0 20px;
-    float: left;
+    float: left;*/
 }
 
 /* Social Icons */
 
-.megamenu li ul.social {
+/*.megamenu li ul.social {
     list-style:none;
     margin:0;
     padding:0;
@@ -319,7 +286,7 @@
 }
 .megamenu li ul.social li span {
     display:none;
-}
+}*/
 
 /* 2-Levels Drop Down */
 
@@ -354,15 +321,10 @@
     left: 96%;
 }
 
-
-
-
 /*  _______________________________________
 
     04 CONTACT FORM
     _______________________________________  */
-
-
 
 
 .megamenu .contact_form {
@@ -427,26 +389,10 @@
 }
 
 
-
-
-/*  _______________________________________
-
-    05 VERTICAL MEGA MENU
-    _______________________________________  */
-
-
-
-
-
-
-
-
 /*  _______________________________________
 
     06 LIGHT THEME
     _______________________________________  */
-
-
 
 
 .megamenu_light_theme .megamenu_container > ul > li:hover,
@@ -486,10 +432,10 @@
     border-top: none;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#EEEEEE), to(#BBBBBB));
     background: -webkit-linear-gradient(top, #EEEEEE, #BBBBBB);
-    background: -moz-linear-gradient(top, #EEEEEE, #BBBBBB);
+    background: -moz-linear-gradient(top, #EEEEEE, #ddd);
     background: -o-linear-gradient(top, #EEEEEE, #BBBBBB);
     background: -ms-linear-gradient(top, #EEEEEE, #BBBBBB);
-    background: linear-gradient(top, #EEEEEE, #BBBBBB);
+    background: linear-gradient(top, #EEEEEE, #ddd);
 }
 .megamenu_wrapper_vertical .megamenu_light_theme .megamenu > li > div,
 .megamenu_light_theme ul .levels li ul {
@@ -582,9 +528,6 @@
     background-color:#222222;
     /*border:1px solid #000000;*/
 }
-
-
-
 
 
 
@@ -699,15 +642,10 @@
     }
 
     /* Vertical Menu */
-
-
-
-
 }
 
 
 @media only screen and (max-width:768px) {
-
 
     .megamenu_wrapper {
         width:420px;

@@ -44,6 +44,7 @@ Route::any("order/delete", [
     "uses" => "OrderController@deleteAction"
 ]);
 
+Route::get('/login', 'UsersController@getLogin');
 
 Route::controller('users', 'UsersController');
 Route::controller('products', 'ProductsController');

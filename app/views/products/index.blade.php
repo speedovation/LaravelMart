@@ -1,6 +1,6 @@
 
 <div class="row">
-    <div class='desktop-3 bg'>
+    <div class='desktop-3'>
         <h3>Deal of the day</h3>
         <ul class="link-list">
             <li><a title="KineticWing IDE" href="http://kineticwing.com">KineticWing IDE</a></li>
@@ -11,10 +11,19 @@
 
         <h3>Categories</h3>
         <ul class="link-list">
-            <li><a title="KineticWing IDE" href="http://kineticwing.com">KineticWing IDE</a></li>
-            <li><a title="MVC Logic" href="http://mvclogic.com" class="active">MVC Logic</a></li>
-            <li><a title="Jals" href="http://www.jals.in/">Jals</a></li>
-            <li><a title="Rudra Icons" href="http://speedovation.com/">Rudra Icons</a></li>
+            
+            
+            <li> 
+                {{ link_to_action('ProductsController@getIndex', 'All Products',[],['class'=> Request::segment(2) != 'category' ? 'active' : '']) }} 
+            </li>
+            @foreach( Category::all() as $category)
+
+            <?php $active = (Request::segment(2) == 'category' && explode("--",Request::segment(3))[1] == $category->id ) ? 'active' : ''?> 
+            <li>
+                {{ link_to_action('ProductsController@getCategory', $category->name , [snake_case($category->name).'--'.$category->id],['class'=>$active]); }} 
+            </li>
+            @endforeach
+           
         </ul>
 
 
@@ -45,10 +54,10 @@
                     <tr>
                         <td class='text-center'>                 
                             <h4>
-                                {{ link_to_action('ProductsController@getProduct', 'KENNETH COLE BLACK VINTAGE BY KENNETH COLE FOR MEN '.$product->name , [$product->name.'--'.$product->code]); }}
+                                {{ link_to_action('ProductsController@getProduct', $product->name , [snake_case($product->name).'--'.$product->code]); }}
 
 
-                                 {{$product->name}} </h4>
+                                 </h4>
                             <h5> #Product Code :{{$product->id}}</h5>
                         </td>
                     </tr>

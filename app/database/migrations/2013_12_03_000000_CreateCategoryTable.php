@@ -9,6 +9,7 @@ class CreateCategoryTable extends Migration {
                     $table->engine = "InnoDB";
 
                     $table->increments("id");
+                    $table->integer("parent_id")->nullable();
                     $table->string("name");
                     $table->timestamps();
                     $table->softDeletes();

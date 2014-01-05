@@ -59,7 +59,7 @@ return array(
       | will not be safe. Please do this before deploying an application!
       |
      */
-    'key' => 'dfgdf7567fsdfasfs55xgdfgdfGOHMKi',
+    'key' => 'oesyrNXEWZ9zdRbU5xqbF3IsS8jceRQR',
     
     /*
       |--------------------------------------------------------------------------
