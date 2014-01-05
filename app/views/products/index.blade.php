@@ -1,17 +1,16 @@
 
 <div class="row">
     <div class='desktop-3'>
-        <h3>Deal of the day</h3>
+        
         <ul class="link-list">
+            <li><h3>Deal of the day</h3></li>
             <li><a title="KineticWing IDE" href="http://kineticwing.com">KineticWing IDE</a></li>
             <li><a title="MVC Logic" href="http://mvclogic.com" class="active">MVC Logic</a></li>
             <li><a title="Jals" href="http://www.jals.in/">Jals</a></li>
             <li><a title="Rudra Icons" href="http://speedovation.com/">Rudra Icons</a></li>
-        </ul>
+        
 
-        <h3>Categories</h3>
-        <ul class="link-list">
-            
+            <li><h3>Categories</h3></li>
             
             <li> 
                 {{ link_to_action('ProductsController@getIndex', 'All Products',[],['class'=> Request::segment(2) != 'category' ? 'active' : '']) }} 

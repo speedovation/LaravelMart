@@ -548,6 +548,10 @@ h3{
     font-weight: 500;
 }
 
+.link-list h3, .link-list h2
+{
+    margin-left: 1rem;
+}
 
 .button.large, button.large, a.button.large {
     font-size: 1.1rem;

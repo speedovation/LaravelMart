@@ -49,6 +49,7 @@ Route::get('/login', 'UsersController@getLogin');
 Route::controller('users', 'UsersController');
 Route::controller('products', 'ProductsController');
 Route::controller('cart', 'CartController');
+Route::controller('about', 'AboutController');
 
 Route::resource('wishlist', 'WishlistController');
 

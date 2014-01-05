@@ -26,7 +26,7 @@ class ProductTableSeeder extends DatabaseSeeder {
                     "stock" => $stock,
                     "mrp" => $price,
                     "price" => $price,
-                    "discount" => 20,
+                    "discount" => $faker->randomNumber(5, 30),
                     
                     "category_id" => $category->id,
                     "image" => $name,

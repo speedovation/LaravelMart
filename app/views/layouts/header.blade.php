@@ -127,77 +127,51 @@
 
 
 
-            <li><a href="#_" class="menuitem_drop">Typography</a><!-- Begin Typography Item -->
+            <li><a href="#_" class="menuitem_drop">Hot Offers</a>
 
-
-                <div class="dropdown_5columns"><!-- Begin columns container -->
-
-
-                    <div class="col_full firstcolumn">
-
-                        <h2>This is an example of a large container with 5 columns</h2>
-
-                        <div class="col_one_fifth firstcolumn">
-
-                            <p class="dark_grey_box">This is a dark grey box text. Fusce in metus at enim porta lacinia vitae a arcu. Sed sed lacus nulla mollis porta.</p>
-
+                <div class="dropdown_3columns">
+                    <h3>Today's Hot offers</h3>
+                    <div class="grid">
+                        <div class='w-50'>
+                            <ul class="link-list">
+                                <li><a href=''>Product 1</a></li>
+                                <li><a href=''>Product 1</a></li>
+                                <li><a href=''>Product 1</a></li>
+                                <li><a href=''>Product 1</a></li>
+                            </ul>
                         </div>
-
-                        <div class="col_one_fifth">
-
-                            <p>Phasellus vitae sapien ac leo mollis porta quis sit amet nisi. Mauris hendrerit, metus cursus lectus at arcu accumsan tincidunt.</p>
-
+                        <div class='w-50'>
+                            <ul class="link-list">
+                                <li><a href=''>Product 1</a></li>
+                                <li><a href=''>Product 1</a></li>
+                                <li><a href=''>Product 1</a></li>
+                                <li><a href=''>Product 1</a></li>
+                            </ul>
                         </div>
-
-                        <div class="col_one_fifth">
-
-                            <p class="italic">This is a sample of an italic text. Consequat scelerisque. Fusce sed lectus at arcu mollis accumsan at nec nisi porta quis sit amet.</p>
-
-                        </div>
-
-                        <div class="col_one_fifth">
-
-                            <p>Curabitur euismod gravida ante nec commodo. Nunc dolor nulla, semper in ultricies vitae, vulputate porttitor neque.</p>
-
-                        </div>
-
-                        <div class="col_one_fifth">
-
-                            <p class="strong">This is a sample of a bold text. Aliquam sodales nisi nec felis hendrerit ac eleifend lectus feugiat scelerisque.</p>
-
-                        </div>
-
                     </div>
 
-                    <div class="col_full firstcolumn">
-
-                        <h2>Here is some content with side images</h2>
-
-                        <div class="col_two_thirds firstcolumn">
-
-                            <img src="img/01.jpg" class="img_left imgshadow_light" alt="" />
-                            <p>Maecenas eget eros lorem, nec pellentesque lacus quis felis consequat scelerisque. Aenean dui orci, rhoncus sit amet tristique eu, tristique sed odio. Praesent ut interdum elit. Sed in sem mauris. Aenean a commodo mi. Praesent augue lacus.<br /><a href="#">Read more...</a></p>
-
-                            <div class="clear"></div>
-
-                            <img src="img/02.jpg" class="img_left imgshadow_light" alt="" />
-                            <p>Aliquam elementum felis quis felis consequat scelerisque. Fusce sed lectus at arcu mollis accumsan at nec nisi. Aliquam pretium mollis fringilla. Nunc in leo urna vestibulum nisi non nunc blandit placerat, eget varius metus. Aliquam sodales nisi.<br /><a href="#">Read more...</a></p>
-
+                    <h3>Best Selling Products</h3>
+                    <div class="grid">
+                        <div class='w-50'>
+                            <ul class="link-list">
+                                <li><a href=''>Product 1</a></li>
+                                <li><a href=''>Product 1</a></li>
+                                <li><a href=''>Product 1</a></li>
+                                <li><a href=''>Product 1</a></li>
+                            </ul>
                         </div>
-
-                        <div class="col_one_third">
-
-                            <p class="black_box">This is a black box, you can use it to highligh some content. Sed sed lacus nulla, et lacinia risus. Phasellus vitae sapien ac leo mollis porta quis sit amet nisi. Mauris hendrerit, metus cursus accumsan tincidunt.Quisque vestibulum nisi non nunc blandit placerat. Mauris facilisis, risus ut lobortis posuere, diam lacus congue lorem, ut condimentum ligula est vel orci. Donec interdum lacus at velit.</p>
-
+                        <div class='w-50'>
+                            <ul class="link-list">
+                                <li><a href=''>Product 1</a></li>
+                                <li><a href=''>Product 1</a></li>
+                                <li><a href=''>Product 1</a></li>
+                                <li><a href=''>Product 1</a></li>
+                            </ul>
                         </div>
-
                     </div>
+                </div>
 
-
-                </div><!-- End columns container -->
-
-
-            </li><!-- End Typography Item -->
+            </li>
 
 
 
@@ -219,9 +193,9 @@
 
                             <ul class="link-list">
                                 <li> {{ link_to_action('ProductsController@getIndex', 'All Products' ) }}</li>
-                               
-                                 @foreach( Category::all() as $category)
-                                <?php $active = (Request::segment(2) == 'category' && explode("--",Request::segment(3))[1] == $category->id ) ? 'active' : ''?> 
+
+                                @foreach( Category::all() as $category)
+                                <?php $active = (Request::segment(2) == 'category' && explode("--", Request::segment(3))[1] == $category->id ) ? 'active' : '' ?> 
                                 <li>
                                     {{ link_to_action('ProductsController@getCategory', $category->name , [snake_case($category->name).'--'.$category->id],['class'=>$active]); }} 
                                 </li>
@@ -249,11 +223,11 @@
 
                         <h3>Random Featured Products</h2>
 
-                        <img data-src="holder.js/75x75" class='w-25' />
-                        <p class='w-75'>Maecenas eros lorem, nec eget eros lorem, nec  vulputate, lorem sem condimentum.<br /><a href="#">Read more...</a></p>
+                            <img data-src="holder.js/75x75" class='w-25' />
+                            <p class='w-75'>Maecenas eros lorem, nec eget eros lorem, nec  vulputate, lorem sem condimentum.<br /><a href="#">Read more...</a></p>
 
-                        <p class='w-75'>Aliquam t nec nisi. Aliquam pretium mollis fringilla. Vestibulum tempor facilisis malesuada.<br /><a href="#">Read more...</a></p>
-                        <img data-src="holder.js/75x75" class='w-25' />
+                            <p class='w-75'>Aliquam t nec nisi. Aliquam pretium mollis fringilla. Vestibulum tempor facilisis malesuada.<br /><a href="#">Read more...</a></p>
+                            <img data-src="holder.js/75x75" class='w-25' />
 
                     </div>
 
@@ -269,10 +243,10 @@
             <li><a href="#_" class="menuitem_drop">Account</a><!-- Begin Lists Item -->
 
 
-                <div class="dropdown_2columns"><!-- Begin columns container -->
+                <div class="grid dropdown_3columns"><!-- Begin columns container -->
 
 
-                    <div class="col_half firstcolumn">
+                    <div class="w-50">
 
                         <h3>Accounts</h3>
                         <ul>
@@ -287,7 +261,7 @@
                         </ul>
                     </div>
 
-                    <div class="col_half">
+                    <div class="w-50">
 
                         <h3>Useful Links</h3>
                         <ul>
@@ -300,7 +274,7 @@
 
                     </div>
 
-                    <div class="col_half firstcolumn">
+                    <div class="w-50">
 
                         <h3>Other Stuff</h3>
                         <ul>
@@ -313,7 +287,7 @@
 
                     </div>
 
-                    <div class="col_half">
+                    <div class="w-50">
 
                         <h3>Misc</h3>
                         <ul>
@@ -333,91 +307,13 @@
             </li><!-- Begin Lists Item -->
 
 
+            <li><a href="#_" class="menuitem_drop">About</a><!-- Begin Lists Item -->
 
 
-            <li><a href="#_" class="menuitem_drop">Drop Down</a><!-- Begin Drop Down Item -->
-
-
-                <div class="dropdown_1column dropdown_flyout"><!-- Begin columns container -->
-
-
-                    <ul class="levels">
-
-                        <li><a href="#">FreelanceSwitch</a></li>
-
-                        <li><a href="#" class="parent">Creattica</a>
-
-                            <ul>
-                                <li><a href="#">This is a</a></li>
-                                <li><a href="#">Second Level</a></li>
-                                <li><a href="#">Submenu</a></li>
-                            </ul>
-
-                        </li>
-
-                        <li><a href="#">WorkAwesome</a></li>
-
-                        <li><a href="#">Mac Apps</a></li>
-
-                        <li><a href="#" class="parent">Web Apps</a>
-
-                            <ul>
-                                <li><a href="#">Another</a></li>
-                                <li><a href="#" class="parent">Drop Down</a>
-
-                                    <ul>
-                                        <li><a href="#">This is a</a></li>
-                                        <li><a href="#">Second</a></li>
-                                        <li><a href="#">Level</a></li>
-                                        <li><a href="#">Submenu</a></li>
-                                    </ul>
-
-                                </li>
-                                <li><a href="#">Menu</a></li>
-                            </ul>
-
-                        </li>
-
-                        <li><a href="#">NetTuts</a></li>
-
-                        <li><a href="#" class="parent">VectorTuts</a>
-
-                            <ul>
-                                <li><a href="#">Put anything</a></li>
-                                <li><a href="#">You want</a></li>
-                                <li><a href="#" class="parent">Here</a>
-
-                                    <ul>
-                                        <li><a href="#">Unlimited</a></li>
-                                        <li><a href="#">Possibilities</a></li>
-                                        <li><a href="#">With this</a></li>
-                                        <li><a href="#">Mega Menu</a></li>
-                                    </ul>
-
-                                </li>
-                            </ul>
-
-                        </li>
-
-                        <li><a href="#">PsdTuts</a></li>
-                        <li><a href="#">PhotoTuts</a></li>
-                        <li><a href="#">ActiveTuts</a></li>
-                        <li><a href="#">Design</a></li>
-                        <li><a href="#">Logo</a></li>
-                        <li><a href="#">Flash</a></li>
-                        <li><a href="#">Illustration</a></li>
-                        <li><a href="#">More...</a></li>
-
-                    </ul>   
-
-
-                </div><!-- End columns container -->
-
-
-            </li><!-- End Drop Down Item -->
-
-
-
+                <div class="grid dropdown_4columns">
+                    @include("abouts/aboutnav")
+                </div>
+            </li>
 
             <li class="menuitem_nodrop"><a href="http://codecanyon.net/user/Pixelworkshop/portfolio">Link</a></li><!-- No Drop Down Item -->
 
