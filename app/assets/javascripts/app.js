@@ -1,12 +1,43 @@
 /* 
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
+ * 'autoScale': true,
+            'transitionIn': 'elastic',
+            'transitionOut': 'elastic',
+            'speedIn': 500,
+            'speedOut': 300,
+            'autoDimensions': true,
+            'centerOnScroll': true
  */
 
 $(function() {
 // Handler for .ready() called.
 
-    $(".fancybox").fancybox({scrolling:'no'});
+    $(".add-to-cart-button").fancybox(
+            {
+                type : 'ajax',
+                href : '/cart/basket',
+                scrolling:'no',
+                beforeLoad : myfunction
+            });
+//    
+//    $(".add-to-cart-button").click(function() {
+//        $.fancybox.open();
+//    });
+//    
+    
+     function myfunction(me)
+    {
+        alert('ddd');
+        
+        
+        
+        
+    }
+
+
+    
+    
 
 
     $('.raty').raty({
