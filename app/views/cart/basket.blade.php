@@ -35,6 +35,7 @@ Offer Discount: (-) 14-->
               
 
                 @foreach (Cart::content() as $row) 
+                
                     <tr>
                         <td data-title='Preview'>
                             <img data-src='holder.js/100x100' src="{{$row->options->has('img') ? $row->options->img : 'default-image'}}" /> 
@@ -43,7 +44,7 @@ Offer Discount: (-) 14-->
                         <td data-title='Qty'> {{ $row->qty }}</td>
                         <td data-title='Price'><i class='i-rupee'></i> {{$row->price}}</td>
                         <td data-title='Subtotal'><i class='i-rupee'></i> {{$row->subtotal}} </td>
-                        <td data-title='Remove'> <a href="javascipt://;"><i class='i-close'></i></a> </td>
+                        <td data-title='Remove'> <a class='remove-cart-item' href="javascipt://;" row-id='{{ $row->rowid }}'><i class='i-close'></i></a> </td>
 
                     </tr>
 
@@ -79,7 +80,7 @@ Offer Discount: (-) 14-->
             <button class="button"><i class='i-chevron-circleleft'></i> Continue Shopping</button>
         </div>
         <div class="desktop-4 bottom-margin-cart">
-            Need Help? 1800 208 9898 or contact us
+            Need Help? {{ trans('about.telephone')}} or contact us
         </div>
         <div class="desktop-4 text-right">
            

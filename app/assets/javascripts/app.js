@@ -19,6 +19,20 @@ $(function() {
             return $(this).attr('data-number');
         }
     });
-
+    
+    
+    //cart functions
+    $( ".remove-cart-item" ).click(remove_cart_item);
+    
+    
+    //remove action will trigger remove item from cart
+    function remove_cart_item()
+    {
+        
+        $.post( "test.php", { name: "John", time: "2pm" })
+        .done(function( data ) {
+        alert( "Data Loaded: " + data );
+        });
+    }   
 
 });

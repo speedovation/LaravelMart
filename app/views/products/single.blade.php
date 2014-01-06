@@ -12,23 +12,23 @@
     <p></p>
     <div class='row section'> 
         <div class='desktop-7'>
-        
+
             <img data-src='holder.js/400x300' src='{{$product->image}}' />
-            
+
             <div>
                 <img class='item-box' data-src='holder.js/170x120' src='{{$product->image}}' />
                 <img class='item-box' data-src='holder.js/170x120' src='{{$product->image}}' />
                 <img class='item-box' data-src='holder.js/170x120' src='{{$product->image}}' />
                 <img class='item-box' data-src='holder.js/170x120' src='{{$product->image}}' />
-     
-                
-                
+
+
+
             </div>
-        
+
         </div>
         <div class='desktop-5'>
 
-<table class="table bordered rounded">
+            <table class="table bordered rounded">
                 <tr>
                     <th colspan="2">OFFER Details</th>
                 </tr>
@@ -36,9 +36,9 @@
                     <td>MRP</td>
                     <td>{{ round($product->mrp,3) }}</td>
                 </tr>
-                 <tr>
-                     <td>Selling Price</td>
-                     <td>{{ round($product->price,3) }}</td>
+                <tr>
+                    <td>Selling Price</td>
+                    <td>{{ round($product->price,3) }}</td>
                 </tr>
                 <tr>
                     <td>OFFER PRICE </td>
@@ -50,55 +50,55 @@
                 <tr>
                     <td colspan="2">
                         {{link_to_action('WishlistController@create','Add to Wishlist ',['product_code'=> $product->code ],['class'=>'button'])}}
-                         <a class="button" href="http://cart.po/wishlist/create">Add to Wishlist <span class="spinner"></span></a>
+                        <a class="button" href="http://cart.po/wishlist/create">Add to Wishlist <span class="spinner"></span></a>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2"> 
-                       <div data-number="5" data-score='4.5' class='raty float-left'></div> 
+                        <div data-number="5" data-score='4.5' class='raty float-left'></div> 
                         <div class="review-panel float-right"> 43 Reviews | Write a Review</div>
                     </td>
                 </tr>
             </table> 
-            
-             <ul>
+
+            <ul>
                 <li><i class='i-vehical size-32'></i>FREE SHIPPING</li>
                 <li><i class='i-rupee size-32'></i>30 DAYS MONEY BACK GUARANTEE</li>
                 <li><i class='i-repeat size-32'></i>30 DAYS FREE RETURN</li>
             </ul>
 
-            
+
         </div>
     </div>
     <div class="row section">
         <div class="desktop-7 text-center">
-            
-            
-            
 
-<!--Selling Price Rs 1400
-OFFER PRICE
-Rs 1372
-2%
-Available
-Add to Wishlist
-Free Delivery
-Dispatched in 3 business days-->
+
+
+
+            <!--Selling Price Rs 1400
+            OFFER PRICE
+            Rs 1372
+            2%
+            Available
+            Add to Wishlist
+            Free Delivery
+            Dispatched in 3 business days-->
 
 
 
         </div>
-        
+
         <div class="desktop-5">
-           
+
         </div>
-        
+
 
 
     </div>
     <div class="hidden"> 
         <div class="w-25">
-             <i class='i-vehical size-32'></i>FREE SHIPPING
+            <i class='i-vehical size-32'></i>FREE SHIPPING
         </div>
         <div class="w-42">
 
