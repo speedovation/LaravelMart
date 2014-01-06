@@ -21,10 +21,11 @@ class CartController extends BaseController
          */
         public function getIndex()
         {
+            Cart::destroy();
 
             // Batch method
             Cart::add(array(
-              array('id' => '293ad', 'name' => 'Product 1', 'qty' => 1, 'price' => 10.00),
+              array('id' => '293ad', 'name' => 'Product 1', 'qty' => 4, 'price' => 10.00,'options' => array('img' => 'img')),
               array('id' => '4832k', 'name' => 'Product 2', 'qty' => 1, 'price' => 10.00, 'options' => array('size' => 'large'))
             ));
 
@@ -169,9 +170,9 @@ class CartController extends BaseController
                return  View::make('cart.mycart');
         }
         
-        public function getCurrentcart() 
+        public function getBasket() 
         {
-            return  View::make('cart.currentcart');
+            return  View::make('cart.basket');
         }
 }
 

@@ -543,6 +543,10 @@ h3{
     font-size: 4rem;
 }
 
+.strong
+{
+    font-weight: 600;
+}
 .info strong
 {
     font-weight: 500;
@@ -553,6 +557,10 @@ h3{
     margin-left: 1rem;
 }
 
+.text-right
+{
+    text-align: right !important;
+}
 .button.large, button.large, a.button.large {
     font-size: 1.1rem;
 }
@@ -574,11 +582,27 @@ h3{
     background-color: #FFFFFF;
     border: 1px solid #DDDDDD;
     padding: 0 0.5rem;
-    min-height: 800px;
+    /*min-height: 800px;*/
 }
-.table {
-    /*background-color: #fff;*/
+
+/*basket related styling*/ 
+.cart{
+    background-color: #fff;
+   
 }
+
+table.cart td,table.cart th
+{
+    text-align: center;
+}
+
+.cart td[data-title='Item']
+{
+    width: 48%;
+    max-width: 48%;
+}
+
+
 
 .item-box{
     display: inline-block;
@@ -654,4 +678,9 @@ h3{
     height: 31px;
     margin-left: 5px;
     width: 28px;
+}
+
+.bottom-margin-cart
+{
+margin-top:  1.22rem;
 }
