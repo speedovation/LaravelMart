@@ -1,25 +1,8 @@
-<?= stylesheet_link_tag() ?>
-<?= javascript_include_tag() ?>
-
-
-
-<!--1My Cart
-close
-Item(s)
-Description
-Unit Price
-Quantity
-Sub Total
-Bajaj DX7 Dry Iron
-Rs 643
-Rs 643
-Offer Discount: (-) 14-->
-
-
-<div class='grid'>
+<div class='grid cart-container'>
 
     <div class='row'>
         <h1>Shopping cart </h1>
+        <div class='cart-info'></div>
         <table width="100%" cellspacing="0" cellpadding="0" class="cart table rounded bordered zebra desktop-12">
             <thead>
                 <tr>
@@ -44,7 +27,7 @@ Offer Discount: (-) 14-->
                         <td data-title='Qty'> {{ $row->qty }}</td>
                         <td data-title='Price'><i class='i-rupee'></i> {{$row->price}}</td>
                         <td data-title='Subtotal'><i class='i-rupee'></i> {{$row->subtotal}} </td>
-                        <td data-title='Remove'> <a class='remove-cart-item' href="javascipt://;" row-id='{{ $row->rowid }}'><i class='i-close'></i></a> </td>
+                        <td data-title='Remove'> <a class='remove-cart-item' href="javascipt://;" row-id='{{ $row->rowid }}'><i class='i-close-square '></i></a> </td>
 
                     </tr>
 

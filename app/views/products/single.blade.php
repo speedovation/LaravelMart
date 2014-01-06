@@ -116,6 +116,8 @@
     <p>Category : {{$product->category->name}}  #Product Code :{{$product->code}}</p>
 
     <div class="info section">
+        
+        <li><a class="fancybox fancybox.ajax" href="/cart/basket">Ajax</a></li>
 
         <h3><b> Key Features </b></h3>
         <div class="line bmargin10">

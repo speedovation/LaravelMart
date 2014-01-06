@@ -111,6 +111,19 @@ class CartController extends BaseController
                         return Redirect::to('cart')->with('success', 'Your shopping cart was cleared!');
                 }
         }
+        
+        
+        public function getRemoveitem() {
+            
+            //get rowid
+            $row_id = Input::get('row_id');
+            
+            //remove            
+            Cart::remove($row_id);
+            
+            //provide result
+            return json_encode(['result'=> true , 'message'=>'Item Removed Successfuly']);
+        }
 
         /**
          * Removes an item from the shopping cart.

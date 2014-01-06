@@ -16,6 +16,7 @@
 //
 // Plugins
 //= require plugins/raty/lib/jquery.raty.js
+//= require plugins/fancybox/jquery.fancybox.js
 //
 // Angular part
 // require vendors/angular/angular.js

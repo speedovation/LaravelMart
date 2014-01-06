@@ -16,4 +16,7 @@
  * require bootstrap-theme.css
  *= require market.css
  *= require megamenu.css
+ *= require plugins/fancybox/jquery.fancybox.css
+ *
+ *
  */

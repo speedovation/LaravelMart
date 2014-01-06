@@ -586,6 +586,10 @@ h3{
 }
 
 /*basket related styling*/ 
+.cart-container .row
+{
+    /*width: 80% !important;*/
+}
 .cart{
     background-color: #fff;
    
@@ -600,6 +604,10 @@ table.cart td,table.cart th
 {
     width: 48%;
     max-width: 48%;
+}
+.remove-cart-item
+{
+    color: #CB2402;
 }
 
 
