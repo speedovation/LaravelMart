@@ -13,14 +13,6 @@
 $(function() {
 // Handler for .ready() called.
 
-//    $(".add-to-cart-button").fancybox(
-//            {
-//                type : 'ajax',
-//                href : '/cart/basket',
-//                scrolling:'no',
-//                beforeLoad : myfunction
-//            });
-//    
     $(".add-to-cart-button").click(myfunction);
 //    
 

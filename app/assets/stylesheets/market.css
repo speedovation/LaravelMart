@@ -605,16 +605,15 @@ table.cart td,table.cart th
     width: 48%;
     max-width: 48%;
 }
-.remove-cart-item
+a.remove-cart-item:hover
 {
     color: #CB2402;
 }
 .cart-info{
-    margin-right: 0.8rem;
-    padding: 1rem;
-    position: absolute;
-    right: 0;
-    top: 1rem;
+     float: right;
+     margin-top: 0.5rem;
+     padding: 1rem;
+     display: none;
 }
 .qty
 {

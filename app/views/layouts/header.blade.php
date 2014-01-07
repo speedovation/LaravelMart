@@ -315,7 +315,7 @@
                 </div>
             </li>
 
-            <li class="menuitem_nodrop"><a href="http://codecanyon.net/user/Pixelworkshop/portfolio">Link</a></li><!-- No Drop Down Item -->
+            <li class="menuitem_nodrop">{{ link_to_action('CartController@getIndex', 'Cart' ) }}</li><!-- No Drop Down Item -->
 
 
 

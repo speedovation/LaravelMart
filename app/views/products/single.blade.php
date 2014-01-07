@@ -50,7 +50,7 @@
                 <tr>
                     <td colspan="2">
                         {{link_to_action('WishlistController@create','Add to Wishlist ',['product_code'=> $product->code ],['class'=>'button'])}}
-                        <a class="button" href="http://cart.po/wishlist/create">Add to Wishlist <span class="spinner"></span></a>
+                        <!--<a class="button" href="http://cart.po/wishlist/create">Add to Wishlist <span class="spinner"></span></a>-->
                     </td>
                 </tr>
                 <tr>
