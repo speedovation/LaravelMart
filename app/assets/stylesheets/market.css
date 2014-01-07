@@ -1,10 +1,10 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,500,700,800,300,600);
+/*@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,500,700,800,300,600);
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500,700);*/
 
 /*@import "http://fonts.googleapis.com/css?family=Lato:300,400,700";*/
 
 /*<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>*/
 
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500,700);
 
 html,body
 {
@@ -608,6 +608,18 @@ table.cart td,table.cart th
 .remove-cart-item
 {
     color: #CB2402;
+}
+.cart-info{
+    margin-right: 0.8rem;
+    padding: 1rem;
+    position: absolute;
+    right: 0;
+    top: 1rem;
+}
+.qty
+{
+    text-align: center;
+    width: 3rem;
 }
 
 

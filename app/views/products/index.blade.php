@@ -57,7 +57,7 @@
 
 
                                  </h4>
-                            <h5> #Product Code :{{$product->id}}</h5>
+                            <h5> #Product Code :{{$product->code}}</h5>
                         </td>
                     </tr>
                     <tr>

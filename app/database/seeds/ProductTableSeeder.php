@@ -15,7 +15,8 @@ class ProductTableSeeder extends DatabaseSeeder {
 
 
                 //generate unique 8 code               
-                $code = substr(uniqid('hjmoe56d2hhuJteXZADuH' . mt_rand()), 0, 8);
+                //$code = substr(uniqid('hjmoe56d2hhuJteXZADuH' . mt_rand()), 0, 8);
+                $code = uniqid();
 
 
 

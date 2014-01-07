@@ -2,42 +2,53 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  * 'autoScale': true,
-            'transitionIn': 'elastic',
-            'transitionOut': 'elastic',
-            'speedIn': 500,
-            'speedOut': 300,
-            'autoDimensions': true,
-            'centerOnScroll': true
+ 'transitionIn': 'elastic',
+ 'transitionOut': 'elastic',
+ 'speedIn': 500,
+ 'speedOut': 300,
+ 'autoDimensions': true,
+ 'centerOnScroll': true
  */
 
 $(function() {
 // Handler for .ready() called.
 
-    $(".add-to-cart-button").fancybox(
-            {
-                type : 'ajax',
-                href : '/cart/basket',
-                scrolling:'no',
-                beforeLoad : myfunction
-            });
+//    $(".add-to-cart-button").fancybox(
+//            {
+//                type : 'ajax',
+//                href : '/cart/basket',
+//                scrolling:'no',
+//                beforeLoad : myfunction
+//            });
 //    
-//    $(".add-to-cart-button").click(function() {
-//        $.fancybox.open();
-//    });
+    $(".add-to-cart-button").click(myfunction);
 //    
-    
-     function myfunction(me)
+
+    function myfunction(event)
     {
-        alert('ddd');
         
-        
-        
-        
+        event.preventDefault();
+
+        var url = '/cart/additem';
+        var product_code = $('.add-to-cart-button').attr('product-code');
+
+        $.getJSON(url, {product_code: product_code})
+                .done(function(data) {
+            if (data.result)
+            {
+                $.fancybox.open({
+                    type: 'ajax',
+                    href: '/cart/basket',
+                    scrolling: 'no',
+                    afterShow: function() {
+                        $('.cart-info').fadeIn().html(data.message).addClass('message-success').fadeOut({duration: 3000});
+                    }
+                });
+
+            } //end of done
+
+        }); //end of getjson
     }
-
-
-    
-    
 
 
     $('.raty').raty({
@@ -55,7 +66,7 @@ $(function() {
 
 
     //cart functions
-    $(".remove-cart-item").click(remove_cart_item);
+    $("body").on("click", ".remove-cart-item", remove_cart_item);
 
 
     //remove action will trigger remove item from cart
@@ -74,16 +85,64 @@ $(function() {
                 .done(function(data) {
             if (data.result)
             {
-                $('.cart-info').html(data.message);
+
+                $('.cart-info').fadeIn().html(data.message).addClass('message-danger').fadeOut({duration: 3000});
+
+                //remove item row
                 a.parent().parent().remove();
 
-            }
+                //update total item count
+                $('.items_count').html(data.items_count);
 
-            //alert("Data Loaded: " + data['result'] + data.result);
+                //update total amount
+                $('.total_amount').html(data.total_amount);
+
+
+            }
 
 
         });
     }
+
+    $("body").on("keyup", ".qty", function(e) {
+// Check input( $( this ).val() ) for validity here
+        this.value = this.value.replace(/[^0-9\.]/g, '');
+
+        if (this.value === '')
+        {
+            e.preventDefault();
+            return false;
+        }
+
+
+
+        var url = '/cart/updateqtyitem';
+        var row_id = $(this).attr('row-id');
+        var qty = this.value;
+        var i = $(this);
+
+        $.getJSON(url, {row_id: row_id, qty: qty})
+                .done(function(data) {
+            if (data.result)
+            {
+
+                $('.cart-info').fadeIn({duration:0}).html(data.message).addClass('message-info').fadeOut({duration: 3000});
+
+                //update subtotal
+                i.parent().parent().find('.subtotal').html(data.subtotal);
+
+                //update total item count
+                $('.items_count').html(data.items_count);
+
+                //update total amount
+                $('.total_amount').html(data.total_amount);
+
+
+            }
+
+        });
+
+    });
 
 
     function reload_shopping_cart() {
