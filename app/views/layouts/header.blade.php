@@ -179,7 +179,8 @@
 
 
 
-            <li><a href="#_" class="menuitem_drop">Products</a><!-- Begin Elements Item -->
+            <li>{{ link_to_action('ProductsController@getIndex', 'Products',[],['class'=> 'menuitem_drop'] ) }}
+                <!-- Begin Elements Item -->
 
 
                 <div class="dropdown_3columns"><!-- Begin columns container -->
@@ -315,7 +316,9 @@
                 </div>
             </li>
 
-            <li class="menuitem_nodrop">{{ link_to_action('CartController@getIndex', 'Cart' ) }}</li><!-- No Drop Down Item -->
+            <li class="menuitem_nodrop"> 
+            <a href="{{ url('/cart') }}" ><i class="i-shoping-cart"></i> Cart </a>
+            </li><!-- No Drop Down Item -->
 
 
 
