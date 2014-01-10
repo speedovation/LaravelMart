@@ -146,10 +146,10 @@ return array(
 	| environments listed below. You can turn off local environment if
 	| you are trying to troubleshoot, but you will likely have better
 	| performance if you leave concat on (except if you are doing a lot
-	| of minification stuff on each page refresh)
+	| of minification stuff on each page refresh) production
 	|
 	*/
-	'concat' => array('production'),
+	'concat' => array(''),
 
 	/*
 	|--------------------------------------------------------------------------
