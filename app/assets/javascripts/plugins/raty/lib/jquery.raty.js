@@ -18,7 +18,7 @@
  *  $('#star').raty();
  *
  */
- 
+
 ;(function($) {
 
   var methods = {
