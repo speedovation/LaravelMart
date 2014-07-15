@@ -428,7 +428,7 @@ ul.disc {
   list-style: disc outside;
 }
 li {
-  line-height: 1;
+  /*line-height: 1;*/
 }
 ul.large li {
   line-height: 21px;

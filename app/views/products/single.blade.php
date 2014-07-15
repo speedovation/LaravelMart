@@ -1,4 +1,4 @@
-{{ $discounted_price = round($product->price - ($product->price * $product->discount / 100), 3 )}}
+<?php $discounted_price = round($product->price - ($product->price * $product->discount / 100), 3 ) ?>
 
 <div>
     <h2 class='divide-section' >
@@ -13,13 +13,12 @@
     <div class='row section'> 
         <div class='desktop-7'>
 
-            <img data-src='holder.js/400x300' src='{{$product->image}}' />
+            <img data-src='holder.js/485x300' src='{{$product->image}}' />
 
             <div>
-                <img class='item-box' data-src='holder.js/170x120' src='{{$product->image}}' />
-                <img class='item-box' data-src='holder.js/170x120' src='{{$product->image}}' />
-                <img class='item-box' data-src='holder.js/170x120' src='{{$product->image}}' />
-                <img class='item-box' data-src='holder.js/170x120' src='{{$product->image}}' />
+                <img class='item-box' data-src='holder.js/160x120' src='{{$product->image}}' />
+                <img class='item-box' data-src='holder.js/160x120' src='{{$product->image}}' />
+                <img class='item-box' data-src='holder.js/160x120' src='{{$product->image}}' />
 
 
 
@@ -113,11 +112,11 @@
 
     </div>
 
-    <p>Category : {{$product->category->name}}  #Product Code :{{$product->code}}</p>
+    <h3> Category : {{$product->category->name}}  #Product Code :{{$product->code}}</h3>
 
     <div class="info section">
         
-        <li><a class="fancybox fancybox.ajax" href="/cart/basket">Ajax</a></li>
+<!--        <li><a class="fancybox fancybox.ajax" href="/cart/basket">Ajax</a></li>-->
 
         <h3><b> Key Features </b></h3>
         <div class="line bmargin10">
