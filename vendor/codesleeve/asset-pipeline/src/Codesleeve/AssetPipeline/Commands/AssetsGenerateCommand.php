@@ -18,7 +18,7 @@ class AssetsGenerateCommand extends Command
      *
      * @var string
      */
-    protected $description = "Generates the default asset pipeline folders for you";
+    protected $description = "Generate static assets in your public folder";
 
     /**
      * Execute the console command.
@@ -27,32 +27,36 @@ class AssetsGenerateCommand extends Command
      */
     public function fire()
     {
-        $structure = __DIR__ . '/../../../../structure';
-        $base = base_path();
+        $asset = \App::make('asset');
 
-        $this->line('');
-        $this->line('Creating initial directory structure and copying some general purpose assets over.');
-        $this->line('');
+	// we need to turn on concatenation
+	// since we are spitting out assets
 
-        $this->xcopy(realpath($structure), realpath($base));
+        $config = $asset->getConfig();
+	$config['environment'] = $this->option('env');
+	$asset->setConfig($config);
 
-        $this->line('');
-        $this->line('Finished. Have a nice day!');
-        $this->line('         - Codesleeve Team');
+	$generator = new Codesleeve\Sprockets\StaticFileGenerator($asset->getGenerator());
+
+        $generated = $generator->generate(public_path() . '/' . $config['routing.prefix']);
+
+        foreach ($generated as $file)
+        {
+            $this->line($file);
+        }
+
+        $this->line('Finished. Have a nice day! :)');
     }
 
-    private function xcopy($source, $dest)
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
     {
-        $base = base_path();
-        foreach ($iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($source, \RecursiveDirectoryIterator::SKIP_DOTS), \RecursiveIteratorIterator::SELF_FIRST) as $item) {
-            if ($item->isDir()) {
-                if (!is_dir($dest . '/' . $iterator->getSubPathName())) {
-                    mkdir($dest . '/' . $iterator->getSubPathName());
-                }
-            } else {
-                copy($item, $dest . '/' . $iterator->getSubPathName());
-                $this->line('   Copying -> ' . str_replace($base, '', $dest . '/' . $iterator->getSubPathName()));
-            }
-        }
+        return array(
+		array('env', 'e', InputOption::VALUE_OPTIONAL, 'What environment should we generate assets for? Default: production', 'production'),
+	);
     }
 }

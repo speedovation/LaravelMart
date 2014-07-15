@@ -1,0 +1,117 @@
+/* ========================================================================
+Component: Search
+========================================================================== */
+/*
+* 1. Create position context for dropdowns
+* 2. Needed for `form` element
+*/
+.search {
+  display: inline-block;
+  position: relative;
+/* 1 */
+  margin: 0;
+/* 2 */
+}
+/*
+* Icon
+*/
+.search:before {
+  content: "\f002";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-family: FontAwesome;
+  font-size: 14px;
+  color: rgba(0,0,0,0.2);
+}
+/* Sub-object `search-field`
+========================================================================== */
+/*
+* 1. Needed to reset iOS `input[type="search"]` appearance
+*/
+.search-field {
+/* 1 */
+  width: 120px;
+  height: 30px;
+  padding: 0 30px;
+  border: 1px solid rgba(0,0,0,0);
+  border-radius: 0;
+/* 1 */
+  background: rgba(0,0,0,0);
+  color: #444;
+  -webkit-transition: all linear 0.2s;
+  transition: all linear 0.2s;
+}
+/*
+* Needed to reset iOS `input[type="search"]` appearance
+* Higher specificity to override appearance set by normalize.less
+*/
+input.search-field {
+  -webkit-appearance: none;
+}
+/* Placeholder */
+.search-field:-ms-input-placeholder {
+  color: #999;
+}
+.search-field::-moz-placeholder {
+  color: #999;
+}
+.search-field::-webkit-input-placeholder {
+  color: #999;
+}
+/* Removes cancel button in IE10 */
+.search-field::-ms-clear {
+  display: none;
+}
+/* Focus */
+.search-field:focus {
+  outline: 0;
+}
+/* Focus + active */
+.search-field:focus,
+.active .search-field {
+  width: 180px;
+}
+/* Sub-object `search-close`
+========================================================================== */
+/*
+* 1. Required for `button` elements
+*/
+.search-close {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 14px;
+  color: rgba(0,0,0,0.2);
+/* 1. */
+  padding: 0;
+  border: 0;
+  -webkit-appearance: none;
+  background: transparent;
+/* Needed for Sarari */
+}
+.loading > .search-close,
+.active > .search-close {
+  display: block;
+}
+/*
+* Icon
+*/
+.search-close:after {
+  display: block;
+  content: "\f00d";
+  font-family: FontAwesome;
+}
+/* Loading icon */
+.loading > .search-close:after {
+  content: "\f110";
+  -webkit-animation: spin 2s infinite linear;
+  animation: spin 2s infinite linear;
+}

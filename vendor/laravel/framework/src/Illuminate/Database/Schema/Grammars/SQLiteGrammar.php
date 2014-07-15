@@ -7,13 +7,6 @@ use Illuminate\Database\Schema\Blueprint;
 class SQLiteGrammar extends Grammar {
 
 	/**
-	 * The keyword identifier wrapper format.
-	 *
-	 * @var string
-	 */
-	protected $wrapper = '"%s"';
-
-	/**
 	 * The possible column modifiers.
 	 *
 	 * @var array
@@ -294,6 +287,17 @@ class SQLiteGrammar extends Grammar {
 	}
 
 	/**
+	 * Create the column definition for a char type.
+	 *
+	 * @param  \Illuminate\Support\Fluent  $column
+	 * @return string
+	 */
+	protected function typeChar(Fluent $column)
+	{
+		return 'varchar';
+	}
+
+	/**
 	 * Create the column definition for a string type.
 	 *
 	 * @param  \Illuminate\Support\Fluent  $column
@@ -538,7 +542,7 @@ class SQLiteGrammar extends Grammar {
 	 */
 	protected function modifyIncrement(Blueprint $blueprint, Fluent $column)
 	{
-		if (in_array($column->type, $this->serials) and $column->autoIncrement)
+		if (in_array($column->type, $this->serials) && $column->autoIncrement)
 		{
 			return ' primary key autoincrement';
 		}

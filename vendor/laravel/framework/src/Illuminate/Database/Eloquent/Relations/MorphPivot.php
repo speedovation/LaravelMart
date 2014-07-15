@@ -5,9 +5,18 @@ use Illuminate\Database\Eloquent\Builder;
 class MorphPivot extends Pivot {
 
 	/**
+	 * The type of the polymorphic relation.
+	 *
+	 * Explicitly define this so it's not included in saved attributes.
+	 *
+	 * @var string
+	 */
+	protected $morphType;
+
+	/**
 	 * Set the keys for a save update query.
 	 *
-	 * @param  \Illuminate\Database\Eloquent\Builder
+	 * @param  \Illuminate\Database\Eloquent\Builder  $query
 	 * @return \Illuminate\Database\Eloquent\Builder
 	 */
 	protected function setKeysForSaveQuery(Builder $query)

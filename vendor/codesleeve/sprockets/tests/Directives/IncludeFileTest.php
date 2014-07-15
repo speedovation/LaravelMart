@@ -1,7 +1,7 @@
 <?php namespace Codesleeve\Sprockets;
 
 class IncludeFileTest extends TestCase
-{ 
+{
     public function setUp()
     {
     	$this->basePath = realpath(__DIR__ . '/../fixtures');
@@ -16,13 +16,12 @@ class IncludeFileTest extends TestCase
     }
 
     /**
-     * Not implemented yet
-     * @expectedException InvalidArgumentException
      * @return void
      */
     public function testProcess()
     {
-        $this->directive->process('manifest8');
+        $output = $this->stripBasePathFromArray($this->directive->process('manifest8'));
+        $this->assertEquals(array('/app/assets/javascripts/manifest8.js'), $output);
     }
 
 }

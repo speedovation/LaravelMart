@@ -1,12 +1,12 @@
-# Faker #
+# Faker
 
 Faker is a PHP library that generates fake data for you. Whether you need to bootstrap your database, create good-looking XML documents, fill-in your persistence to stress test it, or anonymize data taken from a production service, Faker is for you.
 
-Faker is heavily inspired by Perl's [Data::Faker](http://search.cpan.org/~jasonk/Data-Faker-0.07/), and by ruby's [Faker](http://faker.rubyforge.org/).
+Faker is heavily inspired by Perl's [Data::Faker](http://search.cpan.org/~jasonk/Data-Faker-0.07/), and by ruby's [Faker](https://rubygems.org/gems/faker).
 
 Faker requires PHP >= 5.3.3.
 
-[![Build Status](https://secure.travis-ci.org/fzaninotto/Faker.png)](http://travis-ci.org/fzaninotto/Faker) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/eceb78a9-38d4-4ad5-8b6b-b52f323e3549/mini.png)](https://insight.sensiolabs.com/projects/eceb78a9-38d4-4ad5-8b6b-b52f323e3549)
+[![Monthly Downloads](https://poser.pugx.org/fzaninotto/faker/d/monthly.png)](https://packagist.org/packages/fzaninotto/faker) [![Build Status](https://secure.travis-ci.org/fzaninotto/Faker.png)](http://travis-ci.org/fzaninotto/Faker) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/eceb78a9-38d4-4ad5-8b6b-b52f323e3549/mini.png)](https://insight.sensiolabs.com/projects/eceb78a9-38d4-4ad5-8b6b-b52f323e3549)
 
 ## Basic Usage
 
@@ -58,17 +58,47 @@ for ($i=0; $i < 10; $i++) {
   // Ms. Karley Kiehn V
 ```
 
+**Tip**: For a quick generation of fake data, you can also use Faker as a command line tool thanks to [faker-cli](https://github.com/bit3/faker-cli).
+
 ## Formatters
 
 Each of the generator properties (like `name`, `address`, and `lorem`) are called "formatters". A faker generator has many of them, packaged in "providers". Here is a list of the bundled formatters in the default locale.
 
+### `Faker\Provider\Base`
+
+    randomDigit             // 7
+    randomDigitNotNull      // 5
+    randomNumber($nbDigits = NULL) // 79907610
+    randomFloat($nbMaxDecimals = NULL, $min = 0, $max = NULL) // 48.8932
+    numberBetween($min = 1000, $max = 9000) // 8567
+    randomLetter            // 'b'
+    randomElements($array = array ('a','b','c'), $count = 1) // array('c')
+    randomElement($array = array ('a','b','c')) // 'b'
+    numerify($string = '###') // '609'
+    lexify($string = '????') // 'wgts'
+    bothify($string = '## ??') // '42 jz'
+
+### `Faker\Provider\Lorem`
+
+    word                    // 'aut'
+    words($nb = 3)          // array('porro', 'sed', 'magni')
+    sentence($nbWords = 6)  // 'Sit vitae voluptas sint non voluptates.'
+    sentences($nb = 3)      // array('Optio quos qui illo error.', 'Laborum vero a officia id corporis.', 'Saepe provident esse hic eligendi.')
+    paragraph($nbSentences = 3) // 'Ut ab voluptas sed a nam. Sint autem inventore aut officia aut aut blanditiis. Ducimus eos odit amet et est ut eum.'
+    paragraphs($nb = 3)     // array('Quidem ut sunt et quidem est accusamus aut. Fuga est placeat rerum ut. Enim ex eveniet facere sunt.', 'Aut nam et eum architecto fugit repellendus illo. Qui ex esse veritatis.', 'Possimus omnis aut incidunt sunt. Asperiores incidunt iure sequi cum culpa rem. Rerum exercitationem est rem.')
+    text($maxNbChars = 200) // 'Fuga totam reiciendis qui architecto fugiat nemo. Consequatur recusandae qui cupiditate eos quod.'
+
 ### `Faker\Provider\en_US\Person`
 
-    prefix                  // 'Ms.'
-    suffix                  // 'Jr.'
-    name                    // 'Dr. Zane Stroman'
-    firstName               // 'Maynard'
-    lastName                // 'Zulauf'
+    title($gender = null|'male'|'female')     // 'Ms.'
+    titleMale                                 // 'Mr.'
+    titleFemale                               // 'Ms.'
+    suffix                                    // 'Jr.'
+    name($gender = null|'male'|'female')      // 'Dr. Zane Stroman'
+    firstName($gender = null|'male'|'female') // 'Maynard'
+    firstNameMale                             // 'Maynard'
+    firstNameFemale                           // 'Rachel'
+    lastName                                  // 'Zulauf'
 
 ### `Faker\Provider\en_US\Address`
 
@@ -99,23 +129,31 @@ Each of the generator properties (like `name`, `address`, and `lorem`) are calle
     company                 // 'Bogan-Treutel'
     companySuffix           // 'and Sons'
 
-### `Faker\Provider\Payment`
+### `Faker\Provider\en_US\Text`
 
-    creditCardType          // 'MasterCard'
-    creditCardNumber        // '4485480221084675'
-    creditCardExpirationDate // 04/13
-    creditCardExpirationDateString // '04/13'
-    creditCardDetails       // array('MasterCard', '4485480221084675', 'Aleksander Nowak', '04/13')
+    realText($maxNbChars = 200, $indexSize = 2) // "And yet I wish you could manage it?) 'And what are they made of?' Alice asked in a shrill, passionate voice. 'Would YOU like cats if you were never even spoke to Time!' 'Perhaps not,' Alice replied."
 
-### `Faker\Provider\Lorem`
+### `Faker\Provider\DateTime`
 
-    word                    // 'aut'
-    words($nb = 3)          // array('porro', 'sed', 'magni')
-    sentence($nbWords = 6)  // 'Sit vitae voluptas sint non voluptates.'
-    sentences($nb = 3)      // array('Optio quos qui illo error.', 'Laborum vero a officia id corporis.', 'Saepe provident esse hic eligendi.')
-    paragraph($nbSentences = 3) // 'Ut ab voluptas sed a nam. Sint autem inventore aut officia aut aut blanditiis. Ducimus eos odit amet et est ut eum.'
-    paragraphs($nb = 3)     // array('Quidem ut sunt et quidem est accusamus aut. Fuga est placeat rerum ut. Enim ex eveniet facere sunt.', 'Aut nam et eum architecto fugit repellendus illo. Qui ex esse veritatis.', 'Possimus omnis aut incidunt sunt. Asperiores incidunt iure sequi cum culpa rem. Rerum exercitationem est rem.')
-    text($maxNbChars = 200) // 'Fuga totam reiciendis qui architecto fugiat nemo. Consequatur recusandae qui cupiditate eos quod.'
+    unixTime($max = 'now')                // 58781813
+    dateTime($max = 'now')                // DateTime('2008-04-25 08:37:17')
+    dateTimeAD($max = 'now')              // DateTime('1800-04-29 20:38:49')
+    iso8601($max = 'now')                 // '1978-12-09T10:10:29+0000'
+    date($format = 'Y-m-d', $max = 'now') // '1979-06-09'
+    time($format = 'H:i:s', $max = 'now') // '20:49:42'
+    dateTimeBetween($startDate = '-30 years', $endDate = 'now') // DateTime('2003-03-15 02:00:49')
+    dateTimeThisCentury($max = 'now')     // DateTime('1915-05-30 19:28:21')
+    dateTimeThisDecade($max = 'now')      // DateTime('2007-05-29 22:30:48')
+    dateTimeThisYear($max = 'now')        // DateTime('2011-02-27 20:52:14')
+    dateTimeThisMonth($max = 'now')       // DateTime('2011-10-23 13:46:23')
+    amPm($max = 'now')                    // 'pm'
+    dayOfMonth($max = 'now')              // '04'
+    dayOfWeek($max = 'now')               // 'Friday'
+    month($max = 'now')                   // '06'
+    monthName($max = 'now')               // 'January'
+    year($max = 'now')                    // '1993'
+    century                               // 'VI'
+    timezone                              // 'Europe/Paris'
 
 ### `Faker\Provider\Internet`
 
@@ -129,31 +167,63 @@ Each of the generator properties (like `name`, `address`, and `lorem`) are calle
     domainName              // 'wolffdeckow.net'
     domainWord              // 'feeney'
     tld                     // 'biz'
-    url                     // 'http://www.strackeframi.com/'
+    url                     // 'http://www.skilesdonnelly.biz/aut-accusantium-ut-architecto-sit-et.html'
+    slug                    // 'aut-repellat-commodi-vel-itaque-nihil-id-saepe-nostrum'
     ipv4                    // '109.133.32.252'
+    localIpv4               // '10.242.58.8'
     ipv6                    // '8e65:933d:22ee:a232:f1c1:2741:1f10:117c'
+    macAddress              // '43:85:B7:08:10:CA'
 
-### `Faker\Provider\DateTime`
+### `Faker\Provider\UserAgent`
 
-    unixTime                // 58781813
-    dateTime                // DateTime('2008-04-25 08:37:17')
-    dateTimeAD              // DateTime('1800-04-29 20:38:49')
-    iso8601                 // '1978-12-09T10:10:29+0000'
-    date($format = 'Y-m-d') // '1979-06-09'
-    time($format = 'H:i:s') // '20:49:42'
-    dateTimeBetween($startDate = '-30 years', $endDate = 'now') // DateTime('2003-03-15 02:00:49')
-    dateTimeThisCentury     // DateTime('1915-05-30 19:28:21')
-    dateTimeThisDecade      // DateTime('2007-05-29 22:30:48')
-    dateTimeThisYear        // DateTime('2011-02-27 20:52:14')
-    dateTimeThisMonth       // DateTime('2011-10-23 13:46:23')
-    amPm                    // 'pm'
-    dayOfMonth              // '04'
-    dayOfWeek               // 'Friday'
-    month                   // '06'
-    monthName               // 'January'
-    year                    // '1993'
-    century                 // 'VI'
-    timezone                // 'Europe/Paris'
+    userAgent              // 'Mozilla/5.0 (Windows CE) AppleWebKit/5350 (KHTML, like Gecko) Chrome/13.0.888.0 Safari/5350'
+    chrome                 // 'Mozilla/5.0 (Macintosh; PPC Mac OS X 10_6_5) AppleWebKit/5312 (KHTML, like Gecko) Chrome/14.0.894.0 Safari/5312'
+    firefox                // 'Mozilla/5.0 (X11; Linuxi686; rv:7.0) Gecko/20101231 Firefox/3.6'
+    safari                 // 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_7_1 rv:3.0; en-US) AppleWebKit/534.11.3 (KHTML, like Gecko) Version/4.0 Safari/534.11.3'
+    opera                  // 'Opera/8.25 (Windows NT 5.1; en-US) Presto/2.9.188 Version/10.00'
+    internetExplorer       // 'Mozilla/5.0 (compatible; MSIE 7.0; Windows 98; Win 9x 4.90; Trident/3.0)'
+
+### `Faker\Provider\Payment`
+
+    creditCardType          // 'MasterCard'
+    creditCardNumber        // '4485480221084675'
+    creditCardExpirationDate // 04/13
+    creditCardExpirationDateString // '04/13'
+    creditCardDetails       // array('MasterCard', '4485480221084675', 'Aleksander Nowak', '04/13')
+
+### `Faker\Provider\Color`
+
+    hexcolor               // '#fa3cc2'
+    rgbcolor               // '0,255,122'
+    rgbColorAsArray        // array(0,255,122)
+    rgbCssColor            // 'rgb(0,255,122)'
+    safeColorName          // 'fuchsia'
+    colorName              // 'Gainsbor'
+
+### `Faker\Provider\File`
+
+    fileExtension          // 'avi'
+    mimeType               // 'video/x-msvideo'
+    // Copy a random file from the source to the target directory and returns the fullpath or filename
+    file($sourceDir = '/tmp', $targetDir = '/tmp') // '/path/to/targetDir/13b73edae8443990be1aa8f1a483bc27.jpg'
+    file($sourceDir, $targetDir, false) // '13b73edae8443990be1aa8f1a483bc27.jpg'
+
+### `Faker\Provider\Image`
+
+    // Image generation provided by LoremPixel (http://lorempixel.com/)
+    imageUrl($width = 640, $height = 480) // 'http://lorempixel.com/640/480/'
+    imageUrl($width, $height, 'cats')     // 'http://lorempixel.com/800/600/cats/'
+    image($dir = '/tmp', $width = 640, $height = 480) // '/tmp/13b73edae8443990be1aa8f1a483bc27.jpg'
+    image($dir, $width, $height, 'cats')  // 'tmp/13b73edae8443990be1aa8f1a483bc27.jpg' it's a cat!
+
+### `Faker\Provider\Uuid`
+
+    uuid                   // '7e57d004-2b97-0e7a-b45f-5387367791cd'
+
+### `Faker\Provider\Barcode`
+
+    ean13          // '4006381333931'
+    ean8           // '73513537'
 
 ### `Faker\Provider\Miscellaneous`
 
@@ -165,72 +235,9 @@ Each of the generator properties (like `name`, `address`, and `lorem`) are calle
     countryCode             // UK
     languageCode            // en
 
-### `Faker\Provider\Base`
-
-    randomDigit             // 7
-    randomDigitNotNull      // 5
-    randomNumber($nbDigits = NULL) // 79907610
-    randomNumber($from, $to) // 39049
-    randomFloat($nbMaxDecimals = NULL, $min = 0, $max = NULL) // 48.8932
-    randomLetter            // 'b'
-    randomElement($array = array ('a','b','c')) // 'b'
-    numerify($string = '###') // '609'
-    lexify($string = '????') // 'wgts'
-    bothify($string = '## ??') // '42 jz'
-
-### `Faker\Provider\UserAgent`
-
-    userAgent              // 'Mozilla/5.0 (Windows CE) AppleWebKit/5350 (KHTML, like Gecko) Chrome/13.0.888.0 Safari/5350'
-    chrome                 // 'Mozilla/5.0 (Macintosh; PPC Mac OS X 10_6_5) AppleWebKit/5312 (KHTML, like Gecko) Chrome/14.0.894.0 Safari/5312'
-    firefox                // 'Mozilla/5.0 (X11; Linuxi686; rv:7.0) Gecko/20101231 Firefox/3.6'
-    safari                 // 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_7_1 rv:3.0; en-US) AppleWebKit/534.11.3 (KHTML, like Gecko) Version/4.0 Safari/534.11.3'
-    opera                  // 'Opera/8.25 (Windows NT 5.1; en-US) Presto/2.9.188 Version/10.00'
-    internetExplorer       // 'Mozilla/5.0 (compatible; MSIE 7.0; Windows 98; Win 9x 4.90; Trident/3.0)'
-
-### `Faker\Provider\Uuid`
-
-    uuid                   // '7e57d004-2b97-0e7a-b45f-5387367791cd'
-
-### `Faker\Provider\File`
-
-    fileExtension          // 'avi'
-    mimeType               // 'video/x-msvideo'
-
-### `Faker\Provider\Color`
-
-    hexcolor               // '#fa3cc2'
-    rgbcolor               // '0,255,122'
-    rgbColorAsArray        // array(0,255,122)
-    rgbCssColor            // 'rgb(0,255,122)'
-    safeColorName          // 'fuchsia'
-    colorName              // 'Gainsbor'
-
-### `Faker\Provider\Image`
-
-    /**
-     * Image generation provided by LoremPixel (http://lorempixel.com/)
-     *
-     * @param $dir An absolute path to a local directory
-     * @param $width/$height Size (in pixel) of the generated image (defaults to 640x480)
-     * @param $category One of 'abstract','animals','business','cats','city','food','nightlife','fashion','people','nature','sports','technics', and 'transport'
-     */
-    image($dir)                  // '/path/to/dir/13b73edae8443990be1aa8f1a483bc27.jpg'
-    image($dir, $width, $height) // '/path/to/dir/13b73edae8443990be1aa8f1a483bc27.jpg'
-    image($dir, $width, $height, $category) // '/path/to/dir/13b73edae8443990be1aa8f1a483bc27.jpg'
-    imageUrl                    // 'http://lorempixel.com/640/480/'
-    imageUrl($width, $height)   // 'http://lorempixel.com/800/600/'
-    imageUrl($width, $height, $category) // 'http://lorempixel.com/800/600/person/'
-
-### `Faker\Provider\Payment`
-
-    creditCardType         // 'MasterCard'
-    creditCardNumber($type = null) // '4485480221084675'
-    creditCardExpirationDate($valid = true) // DateTime('2014-10-23 13:46:23')
-    creditCardExpirationDateString($valid = true) // '10/14'
-
 ## Unique and Optional modifiers
 
-Faker provides two special providers, `unique()` and `optional()`, to be called before any provider. `optional()` can be useful for seeding non-required fields, like a mobile telephone number ; `unique()` is required to populate fields that cannot accept twice the same value, like primary identifiers.
+Faker provides two special providers, `unique()` and `optional()`, to be called before any provider. `optional()` can be useful for seeding non-required fields, like a mobile telephone number; `unique()` is required to populate fields that cannot accept twice the same value, like primary identifiers.
 
 ```php
 // unique() forces providers to return unique values
@@ -253,9 +260,9 @@ try {
 
 // you can reset the unique modifier for all providers by passing true as first argument
 $faker->unique($reset = true)->randomDigitNotNull; // will not throw OverflowException since unique() was reset
-// tip: unique() keeps one array of values per provider 
+// tip: unique() keeps one array of values per provider
 
-// optional() sometimes bypasses the provider to return null instead
+// optional() sometimes bypasses the provider to return a default value instead (which defaults to NULL)
 $values = array();
 for ($i=0; $i < 10; $i++) {
   // get a random digit, but also null sometimes
@@ -263,10 +270,15 @@ for ($i=0; $i < 10; $i++) {
 }
 print_r($values); // [1, 4, null, 9, 5, null, null, 4, 6, null]
 
-// optional takes a weight argument to make the null occurrence impossible (value 0) or systematic (value 1)
-$faker->optional($weight = 0.1)->randomDigit; // 10% chance to get null
-$faker->optional($weight = 0.9)->randomDigit; // 90% chance to get null
-// the default $weight value is 0.5
+// optional() accepts a weight argument to specify the probability of receiving the default value.
+// 0 will always return the default value; 1 will always return the provider. Default weight is 0.5.
+$faker->optional($weight = 0.1)->randomDigit; // 90% chance of NULL
+$faker->optional($weight = 0.9)->randomDigit; // 10% chance of NULL
+
+// optional() accepts a default argument to specify the default value to return.
+// Defaults to NULL.
+$faker->optional($weight = 0.5, $default = false)->randomDigit; // 50% chance of FALSE
+$faker->optional($weight = 0.9, $default = 'abc')->word; // 10% chance of 'abc'
 ```
 
 ## Localization
@@ -364,6 +376,15 @@ $faker->seed(1234);
 
 echo $faker->name; // 'Jess Mraz I';
 ```
+
+> **Tip**: DateTime formatters won't reproduce the same fake data if you don't fix the `$max` value:
+>
+> ```php
+> <?php
+> // even when seeded, this line will return different results because $max varies
+> $faker->dateTime(); // equivalent to $faker->dateTime($max = 'now')
+> // make sure you fix the $max parameter
+> $faker->dateTime('2014-02-25 08:37:17'); // will return always the same date when seeded
 
 ## Faker Internals: Understanding Providers
 
@@ -625,39 +646,29 @@ Fugiat non in itaque sunt nobis totam. Sed nesciunt est deleniti cumque alias. R
 
 ## Language specific formatters
 
-
-### `Faker\Provider\fr_FR\Company`
-
+### `Faker\Provider\cs_CZ\Address`
 ```php
 <?php
 
-// Generates a random SIREN number
-echo $faker->siren; // 082 250 104
-
-// Generates a random SIRET number
-echo $faker->siret; // 347 355 708 00224
-
-// Generates a random SIRET number (controlling the number of sequential digits)
-echo $faker->siret(3); // 438 472 611 01513
+echo $faker->region; // "Liberecký kraj"
 
 ```
 
-### `Faker\Provider\fr_FR\Address`
-
+### `Faker\Provider\cs_CZ\Company`
 ```php
 <?php
 
-// Generates a random department name
-echo $faker->departmentName; // "Haut-Rhin"
+// Generates a valid IČO
+echo $faker->ico; // "69663963"
 
-// Generates a random department number
-echo $faker->departmentNumber; // "2B"
+```
 
-// Generates a random department info (department number => department name)
-$faker->department; // array('18' => 'Cher');
+### `Faker\Provider\cs_CZ\DateTime`
+```php
+<?php
 
-// Generates a random region
-echo $faker->region; // "Saint-Pierre-et-Miquelon"
+echo $faker->monthNameGenitive; // "prosince"
+echo $faker->formattedDate; // "12. listopadu 2015"
 
 ```
 
@@ -695,6 +706,56 @@ echo $faker->cvr; // "32458723"
 // Generates a random P number
 echo $faker->p; // "5398237590"
 
+```
+
+### `Faker\Provider\fr_FR\Company`
+
+```php
+<?php
+
+// Generates a random SIREN number
+echo $faker->siren; // 082 250 104
+
+// Generates a random SIRET number
+echo $faker->siret; // 347 355 708 00224
+
+// Generates a random SIRET number (controlling the number of sequential digits)
+echo $faker->siret(3); // 438 472 611 01513
+
+```
+
+### `Faker\Provider\fr_FR\Address`
+
+```php
+<?php
+
+// Generates a random department name
+echo $faker->departmentName; // "Haut-Rhin"
+
+// Generates a random department number
+echo $faker->departmentNumber; // "2B"
+
+// Generates a random department info (department number => department name)
+$faker->department; // array('18' => 'Cher');
+
+// Generates a random region
+echo $faker->region; // "Saint-Pierre-et-Miquelon"
+
+```
+
+### `Faker\Provider\ja_JP\Person`
+
+```php
+<?php
+
+// Generates a 'kana' name
+echo $faker->kanaName; // "アオタ ナオコ"
+
+// Generates a 'kana' first name
+echo $faker->firstKanaName; // "トモミ"
+
+// Generates a 'kana' last name
+echo $faker->lastKanaName; // "ナギサ"
 ```
 
 ### `Faker\Provider\pl_PL\Person`
@@ -735,19 +796,64 @@ echo $faker->bankAccountNumber; // "PL14968907563953822118075816"
 
 ```
 
-### `Faker\Provider\ja_JP\Person`
+### `Faker\Provider\pt_PT\Person`
 
 ```php
 <?php
 
-// Generates a 'kana' name
-echo $faker->kanaName; // "アオタ ナオコ"
+// Generates a random taxpayer identification number (in portuguese - Número de Identificação Fiscal NIF)
+echo $faker->taxpayerIdentificationNumber; // '165249277'
 
-// Generates a 'kana' first name
-echo $faker->firstKanaName; // "トモミ"
+```
 
-// Generates a 'kana' last name
-echo $faker->lastKanaName; // "ナギサ"
+### `Faker\Provider\ro_RO\Person`
+
+```php
+<?php
+
+// Generates a random male name prefix/title
+echo $faker->prefixMale; // "ing."
+// Generates a random female name prefix/title
+echo $faker->prefixFemale; // "d-na."
+// Generates a random male fist name
+echo $faker->firstNameMale; // "Adrian"
+// Generates a random female fist name
+echo $faker->firstNameFemale; // "Miruna"
+
+// Generates a random Personal Numerical Code (CNP)
+echo $faker->cnp; // "2800523081231"
+echo $faker->cnp($gender = NULL, $century = NULL, $county = NULL);
+
+// Valid option values:
+//  $gender: m, f, 1, 2
+//  $century: 1800, 1900, 2000, 1, 2, 3, 4, 5, 6
+//  $county: 2 letter ISO 3166-2:RO county codes and B1-B6 for Bucharest's 6 sectors
+```
+
+### `Faker\Provider\ro_RO\PhoneNumber`
+
+```php
+<?php
+
+// Generates a random toll-free phone number
+echo $faker->tollFreePhoneNumber; // "0800123456"
+// Generates a random premium-rate phone number
+echo $faker->premiumRatePhoneNumber; // "0900123456"
+```
+
+### `Faker\Provider\en_NZ\Phone`
+
+```php
+<?php
+
+// Generates a cell (mobile) phone number
+echo $faker->cellNumber; // "021 123 4567"
+
+// Generates a toll free number
+echo $faker->tollFreeNumber; // "0800 123 456"
+
+// Area Code
+echo $faker->areaCode; // "03"
 ```
 
 ## License

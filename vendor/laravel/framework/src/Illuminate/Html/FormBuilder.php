@@ -239,7 +239,7 @@ class FormBuilder {
 			$value = $this->getValueAttribute($name, $value);
 		}
 
-		// Once we have the type, value, and ID we can marge them into the rest of the
+		// Once we have the type, value, and ID we can merge them into the rest of the
 		// attributes array so we can convert them into their HTML attribute format
 		// when creating the HTML element. Then, we will return the entire input.
 		$merge = compact('type', 'value', 'id');
@@ -410,7 +410,7 @@ class FormBuilder {
 
 		$options['id'] = $this->getIdAttribute($name, $options);
 
-		$options['name'] = $name;
+		if ( ! isset($options['name'])) $options['name'] = $name;
 
 		// We will simply loop through the options and build an HTML value for each of
 		// them until we have an array of HTML declarations. Then we will join them
@@ -470,15 +470,16 @@ class FormBuilder {
 	 * @param  string  $name
 	 * @param  string  $selected
 	 * @param  array   $options
+	 * @param  string  $format
 	 * @return string
 	 */
-	public function selectMonth($name, $selected = null, $options = array())
+	public function selectMonth($name, $selected = null, $options = array(), $format = '%B')
 	{
 		$months = array();
 
 		foreach (range(1, 12) as $month)
 		{
-			$months[$month] = strftime('%B', mktime(0, 0, 0, $month, 1));
+			$months[$month] = strftime($format, mktime(0, 0, 0, $month, 1));
 		}
 
 		return $this->select($name, $months, $selected, $options);
@@ -612,7 +613,7 @@ class FormBuilder {
 	 * @param  string  $name
 	 * @param  mixed   $value
 	 * @param  bool    $checked
-	 * @return void
+	 * @return bool
 	 */
 	protected function getCheckedState($type, $name, $value, $checked)
 	{
@@ -639,7 +640,7 @@ class FormBuilder {
 	 */
 	protected function getCheckboxCheckedState($name, $value, $checked)
 	{
-		if ( ! $this->oldInputIsEmpty() && is_null($this->old($name))) return false;
+		if (isset($this->session) && ! $this->oldInputIsEmpty() && is_null($this->old($name))) return false;
 
 		if ($this->missingOldAndModel($name)) return $checked;
 

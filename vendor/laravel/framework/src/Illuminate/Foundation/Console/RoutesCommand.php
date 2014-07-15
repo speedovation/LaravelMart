@@ -44,7 +44,7 @@ class RoutesCommand extends Command {
 	protected $table;
 
 	/**
-	 * The table headeers for the command.
+	 * The table headers for the command.
 	 *
 	 * @var array
 	 */
@@ -109,7 +109,7 @@ class RoutesCommand extends Command {
 	 */
 	protected function getRouteInformation(Route $route)
 	{
-		$uri = head($route->methods()).' '.$route->uri();
+		$uri = implode('|', $route->methods()).' '.$route->uri();
 
 		return $this->filterRoute(array(
 			'host'   => $route->domain(),

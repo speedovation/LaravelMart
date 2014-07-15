@@ -11,8 +11,6 @@
 /**
  * Handles Base 64 Encoding in Swift Mailer.
  *
- * @package    Swift
- * @subpackage Encoder
  * @author     Chris Corbyn
  */
 class Swift_Encoder_Base64Encoder implements Swift_Encoder
@@ -25,8 +23,8 @@ class Swift_Encoder_Base64Encoder implements Swift_Encoder
      * $firstLineOffset.
      *
      * @param string  $string          to encode
-     * @param integer $firstLineOffset
-     * @param integer $maxLineLength   optional, 0 indicates the default of 76 bytes
+     * @param int     $firstLineOffset
+     * @param int     $maxLineLength   optional, 0 indicates the default of 76 bytes
      *
      * @return string
      */

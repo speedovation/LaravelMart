@@ -138,13 +138,13 @@ class ProcessBuilderTest extends \PHPUnit_Framework_TestCase
 
     public function testShouldEscapeArguments()
     {
-        $pb = new ProcessBuilder(array('%path%', 'foo " bar'));
+        $pb = new ProcessBuilder(array('%path%', 'foo " bar', '%baz%baz'));
         $proc = $pb->getProcess();
 
         if (defined('PHP_WINDOWS_VERSION_BUILD')) {
-            $this->assertSame('^%"path"^% "foo "\\"" bar"', $proc->getCommandLine());
+            $this->assertSame('^%"path"^% "foo \\" bar" "%baz%baz"', $proc->getCommandLine());
         } else {
-            $this->assertSame("'%path%' 'foo \" bar'", $proc->getCommandLine());
+            $this->assertSame("'%path%' 'foo \" bar' '%baz%baz'", $proc->getCommandLine());
         }
     }
 
@@ -192,5 +192,15 @@ class ProcessBuilderTest extends \PHPUnit_Framework_TestCase
         } else {
             $this->assertEquals("'/usr/bin/php'", $process->getCommandLine());
         }
+    }
+
+    /**
+     * @expectedException \Symfony\Component\Process\Exception\InvalidArgumentException
+     * @expectedExceptionMessage Symfony\Component\Process\ProcessBuilder::setInput only accepts strings.
+     */
+    public function testInvalidInput()
+    {
+        $builder = ProcessBuilder::create();
+        $builder->setInput(array());
     }
 }

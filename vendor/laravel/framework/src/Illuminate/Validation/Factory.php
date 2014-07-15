@@ -9,7 +9,7 @@ class Factory {
 	/**
 	 * The Translator implementation.
 	 *
-	 * @var \Symfony\Component\Translator\TranslatorInterface
+	 * @var \Symfony\Component\Translation\TranslatorInterface
 	 */
 	protected $translator;
 
@@ -40,6 +40,13 @@ class Factory {
 	 * @var array
 	 */
 	protected $implicitExtensions = array();
+
+	/**
+	 * All of the custom validator message replacers.
+	 *
+	 * @var array
+	 */
+	protected $replacers = array();
 
 	/**
 	 * All of the fallback messages for custom rules.
@@ -74,6 +81,7 @@ class Factory {
 	 * @param  array  $data
 	 * @param  array  $rules
 	 * @param  array  $messages
+	 * @param  array  $customAttributes
 	 * @return \Illuminate\Validation\Validator
 	 */
 	public function make(array $data, array $rules, array $messages = array(), array $customAttributes = array())
@@ -107,7 +115,7 @@ class Factory {
 	 * @param  \Illuminate\Validation\Validator  $validator
 	 * @return void
 	 */
-	protected function addExtensions($validator)
+	protected function addExtensions(Validator $validator)
 	{
 		$validator->addExtensions($this->extensions);
 
@@ -118,6 +126,8 @@ class Factory {
 
 		$validator->addImplicitExtensions($implicit);
 
+		$validator->addReplacers($this->replacers);
+
 		$validator->setFallbackMessages($this->fallbackMessages);
 	}
 
@@ -127,9 +137,10 @@ class Factory {
 	 * @param  array  $data
 	 * @param  array  $rules
 	 * @param  array  $messages
+	 * @param  array  $customAttributes
 	 * @return \Illuminate\Validation\Validator
 	 */
-	protected function resolve($data, $rules, $messages, $customAttributes)
+	protected function resolve(array $data, array $rules, array $messages, array $customAttributes)
 	{
 		if (is_null($this->resolver))
 		{
@@ -145,7 +156,7 @@ class Factory {
 	 * Register a custom validator extension.
 	 *
 	 * @param  string  $rule
-	 * @param  Closure|string  $extension
+	 * @param  \Closure|string  $extension
 	 * @param  string  $message
 	 * @return void
 	 */
@@ -160,15 +171,27 @@ class Factory {
 	 * Register a custom implicit validator extension.
 	 *
 	 * @param  string   $rule
-	 * @param  Closure  $extension
+	 * @param  \Closure|string  $extension
 	 * @param  string  $message
 	 * @return void
 	 */
-	public function extendImplicit($rule, Closure $extension, $message = null)
+	public function extendImplicit($rule, $extension, $message = null)
 	{
 		$this->implicitExtensions[$rule] = $extension;
 
 		if ($message) $this->fallbackMessages[snake_case($rule)] = $message;
+	}
+
+	/**
+	 * Register a custom implicit validator message replacer.
+	 *
+	 * @param  string   $rule
+	 * @param  \Closure|string  $replacer
+	 * @return void
+	 */
+	public function replacer($rule, $replacer)
+	{
+		$this->replacers[$rule] = $replacer;
 	}
 
 	/**

@@ -4,7 +4,7 @@ class SprocketsParser extends Parsers\ConfigParser implements Interfaces\ParserI
 {
     /**
      * Keep up with the config array
-     * 
+     *
      * @param array $config
      */
     public function __construct(array $config)
@@ -15,9 +15,9 @@ class SprocketsParser extends Parsers\ConfigParser implements Interfaces\ParserI
     /**
      * Returns an array of files of any mime type from
      * the manifest file passed into this function
-     * 
+     *
      * @param  string $filename
-     * @return array          
+     * @return array
      */
     public function files($filename)
     {
@@ -35,7 +35,7 @@ class SprocketsParser extends Parsers\ConfigParser implements Interfaces\ParserI
     /**
      * Returns an array of javascript files that are extracted
      * from the manifest file passed into this function
-     * 
+     *
      * @param  string $filename
      * @return array
      */
@@ -49,17 +49,15 @@ class SprocketsParser extends Parsers\ConfigParser implements Interfaces\ParserI
             return array($absolutePath);
         }
 
-        $javascript_files = $parser->get('javascript_files', array());
-
-        return $javascript_files + $parser->getFilesArrayFromDirectives($absolutePath);
+        return $parser->getFilesArrayFromDirectives($absolutePath);
     }
 
     /**
      * Returns an array of stylesheet files that are extracted
      * from the manifest file passed into this function
-     * 
+     *
      * @param  string $filename
-     * @return array          
+     * @return array
      */
     public function stylesheetFiles($filename)
     {
@@ -71,17 +69,15 @@ class SprocketsParser extends Parsers\ConfigParser implements Interfaces\ParserI
             return array($absolutePath);
         }
 
-        $stylesheet_files = $parser->get('stylesheet_files', array());
-
-        return $stylesheet_files + $parser->getFilesArrayFromDirectives($absolutePath);
+        return $parser->getFilesArrayFromDirectives($absolutePath);
     }
 
     /**
      * Returns a short web path and is how you would access
      * this asset from a browser.
-     * 
+     *
      * @param  string $filename
-     * @return string          
+     * @return string
      */
     public function absolutePathToWebPath($filename)
     {
@@ -94,7 +90,7 @@ class SprocketsParser extends Parsers\ConfigParser implements Interfaces\ParserI
 
     /**
      * Returns the absolute path to this javascript filename
-     * 
+     *
      * @param  string $filename
      * @return string
      */
@@ -107,9 +103,9 @@ class SprocketsParser extends Parsers\ConfigParser implements Interfaces\ParserI
 
     /**
      * Returns the absolute path to this stylesheet filename
-     * 
+     *
      * @param  string $filename
-     * @return string          
+     * @return string
      */
     public function absoluteStylesheetPath($filename)
     {
@@ -120,9 +116,9 @@ class SprocketsParser extends Parsers\ConfigParser implements Interfaces\ParserI
 
     /**
      * Returns any file with this absolute path that matches filename
-     * 
+     *
      * @param  string $filename
-     * @return string          
+     * @return string
      */
     public function absoluteFilePath($filename)
     {

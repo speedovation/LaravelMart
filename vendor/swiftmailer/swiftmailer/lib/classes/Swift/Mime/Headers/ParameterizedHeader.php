@@ -11,8 +11,6 @@
 /**
  * An abstract base MIME Header.
  *
- * @package    Swift
- * @subpackage Mime
  * @author     Chris Corbyn
  */
 class Swift_Mime_Headers_ParameterizedHeader extends Swift_Mime_Headers_UnstructuredHeader implements Swift_Mime_ParameterizedHeader
@@ -144,7 +142,6 @@ class Swift_Mime_Headers_ParameterizedHeader extends Swift_Mime_Headers_Unstruct
         return $body;
     }
 
-    // -- Protected methods
 
     /**
      * Generate a list of all tokens in the final header.
@@ -173,8 +170,6 @@ class Swift_Mime_Headers_ParameterizedHeader extends Swift_Mime_Headers_Unstruct
 
         return $tokens;
     }
-
-    // -- Private methods
 
     /**
      * Render a RFC 2047 compliant header parameter from the $name and $value.
@@ -241,8 +236,8 @@ class Swift_Mime_Headers_ParameterizedHeader extends Swift_Mime_Headers_Unstruct
      * Returns the parameter value from the "=" and beyond.
      *
      * @param string  $value     to append
-     * @param boolean $encoded
-     * @param boolean $firstLine
+     * @param bool    $encoded
+     * @param bool    $firstLine
      *
      * @return string
      */

@@ -23,9 +23,26 @@ class BaseTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(BaseProvider::randomDigitNotNull() < 10);
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testRandomNumberThrowsExceptionWhenCalledWithAMax()
+    {
+        BaseProvider::randomNumber(5, 200);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testRandomNumberThrowsExceptionWhenCalledWithATooHighNumberOfDigits()
+    {
+        BaseProvider::randomNumber(10);
+    }
+
     public function testRandomNumberReturnsInteger()
     {
         $this->assertTrue(is_integer(BaseProvider::randomNumber()));
+        $this->assertTrue(is_integer(BaseProvider::randomNumber(5, false)));
     }
 
     public function testRandomNumberReturnsDigit()
@@ -34,13 +51,9 @@ class BaseTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(BaseProvider::randomNumber(3) < 1000);
     }
 
-    public function testRandomNumberAcceptsMinMax()
+    public function testRandomNumberAcceptsStrictParamToEnforceNumberSize()
     {
-        $min = 5;
-        $max = 6;
-
-        $this->assertGreaterThanOrEqual($min, BaseProvider::randomNumber($min, $max));
-        $this->assertGreaterThanOrEqual(BaseProvider::randomNumber($min, $max), $max);
+        $this->assertEquals(5, strlen((string) BaseProvider::randomNumber(5, true)));
     }
 
     public function testNumberBetween()
@@ -50,6 +63,11 @@ class BaseTest extends \PHPUnit_Framework_TestCase
 
         $this->assertGreaterThanOrEqual($min, BaseProvider::numberBetween($min, $max));
         $this->assertGreaterThanOrEqual(BaseProvider::numberBetween($min, $max), $max);
+    }
+
+    public function testNumberBetweenAcceptsZeroAsMax()
+    {
+        $this->assertEquals(0, BaseProvider::numberBetween(0, 0));
     }
 
     public function testRandomFloat()
@@ -84,6 +102,11 @@ class BaseTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(strpos($lowercaseLetters, BaseProvider::randomLetter()) !== false);
     }
 
+    public function testRandomElementReturnsNullWhenArrayEmpty()
+    {
+        $this->assertNull(BaseProvider::randomElement(array()));
+    }
+
     public function testRandomElementReturnsElementFromArray()
     {
         $elements = array('23', 'e', 32, '#');
@@ -116,12 +139,18 @@ class BaseTest extends \PHPUnit_Framework_TestCase
         $this->assertNotEquals('0', BaseProvider::numerify('%'));
     }
 
+    public function testNumerifyCanGenerateALargeNumberOfDigits()
+    {
+        $largePattern = str_repeat('#', 20); // definitely larger than PHP_INT_MAX on all systems
+        $this->assertEquals(20, strlen(BaseProvider::numerify($largePattern)));
+    }
+
     public function testLexifyReturnsSameStringWhenItContainsNoQuestionMark()
     {
         $this->assertEquals('fooBar#', BaseProvider::lexify('fooBar#'));
     }
 
-    public function testNumerifyReturnsStringWithQuestionMarksReplacedByLetters()
+    public function testLexifyReturnsStringWithQuestionMarksReplacedByLetters()
     {
         $this->assertRegExp('/foo[a-z]Ba[a-z]r/', BaseProvider::lexify('foo?Ba?r'));
     }
@@ -228,5 +257,28 @@ class BaseTest extends \PHPUnit_Framework_TestCase
         }
         sort($values);
         $this->assertEquals(array(0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9), $values);
+    }
+
+    /**
+     * @expectedException LengthException
+     * @expectedExceptionMessage Cannot get 2 elements, only 1 in array
+     */
+    public function testRandomElementsThrowsWhenRequestingTooManyKeys()
+    {
+        BaseProvider::randomElements(array('foo'), 2);
+    }
+
+    public function testRandomElements()
+    {
+        $this->assertCount(1, BaseProvider::randomElements(), 'Should work without any input');
+
+        $empty = BaseProvider::randomElements(array(), 0);
+        $this->assertInternalType('array', $empty);
+        $this->assertCount(0, $empty);
+
+        $shuffled = BaseProvider::randomElements(array('foo', 'bar', 'baz'), 3);
+        $this->assertContains('foo', $shuffled);
+        $this->assertContains('bar', $shuffled);
+        $this->assertContains('baz', $shuffled);
     }
 }

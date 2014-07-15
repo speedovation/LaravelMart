@@ -4,6 +4,7 @@ use Closure;
 use Illuminate\Events\Dispatcher;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger as MonologLogger;
+use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\RotatingFileHandler;
 
 class Writer {
@@ -34,7 +35,7 @@ class Writer {
 	/**
 	 * The event dispatcher instance.
 	 *
-	 * @var \Illuminate\Events\Dispacher
+	 * @var \Illuminate\Events\Dispatcher
 	 */
 	protected $dispatcher;
 
@@ -83,7 +84,9 @@ class Writer {
 	{
 		$level = $this->parseLevel($level);
 
-		$this->monolog->pushHandler(new StreamHandler($path, $level));
+		$this->monolog->pushHandler($handler = new StreamHandler($path, $level));
+
+		$handler->setFormatter(new LineFormatter(null, null, true));
 	}
 
 	/**
@@ -98,7 +101,9 @@ class Writer {
 	{
 		$level = $this->parseLevel($level);
 
-		$this->monolog->pushHandler(new RotatingFileHandler($path, $days, $level));
+		$this->monolog->pushHandler($handler = new RotatingFileHandler($path, $days, $level));
+
+		$handler->setFormatter(new LineFormatter(null, null, true));
 	}
 
 	/**
@@ -208,6 +213,19 @@ class Writer {
 		{
 			$this->dispatcher->fire('illuminate.log', compact('level', 'message', 'context'));
 		}
+	}
+
+	/**
+	 * Dynamically pass log calls into the writer.
+	 *
+	 * @param  dynamic (level, param, param)
+	 * @return mixed
+	 */
+	public function write()
+	{
+		$level = head(func_get_args());
+
+		return call_user_func_array(array($this, $level), array_slice(func_get_args(), 1));
 	}
 
 	/**

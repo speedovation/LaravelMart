@@ -1,7 +1,7 @@
 <?php namespace Codesleeve\Sprockets;
 
 class DependOnTest extends TestCase
-{ 
+{
     public function setUp()
     {
     	$this->basePath = realpath(__DIR__ . '/../fixtures');
@@ -12,17 +12,55 @@ class DependOnTest extends TestCase
  		$parser = new Parsers\DirectivesParser($config);
 
         $this->directive = new Directives\DependOn;
-        $this->directive->initialize($parser, $this->basePath . '/app/assets/javascripts/manifest7.js');
+        $this->directive->initialize($parser, $this->basePath . '/app/assets/stylesheets/manifest9.css');
     }
 
     /**
-     * Not implemented yet
-     * @expectedException InvalidArgumentException
+     * See how it responds to a file
+     *
      * @return void
      */
-    public function testProcess()
+    public function testProcessForFile()
     {
-        $this->directive->process('manifest8');
+        $output = $this->stripBasePathFromArray($this->directive->process('app/subdir/add-blog-modal'));
+
+        $expected = array(
+            'depend' => array(
+                '/app/assets/stylesheets/app/subdir/add-blog-modal.css.less',
+            )
+        );
+
+        $this->assertEquals($output, $expected);
     }
 
+    /**
+     * See how it responds to a directory
+     *
+     * @return void
+     */
+    public function testProcessForDirectory()
+    {
+        $output = $this->stripBasePathFromArray($this->directive->process('app/subdir'));
+
+        $expected = array(
+            'depend' => array(
+                "/app/assets/stylesheets/app/subdir/add-blog-modal.css.less",
+                "/app/assets/stylesheets/app/subdir/foo.css",
+                "/app/assets/stylesheets/app/subdir/foo/bar.css.less",
+            )
+        );
+
+        $this->assertEquals($output, $expected);
+    }
+
+    /**
+     * See how it responds to an invalid path
+     *
+     * @expectedException Codesleeve\Sprockets\Exceptions\InvalidPathException
+     * @return void
+     */
+    public function testProcessForInvalidPath()
+    {
+        $output = $this->directive->process('invalid/path');
+    }
 }

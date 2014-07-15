@@ -11,8 +11,6 @@
 /**
  * DKIM Signer used to apply DKIM Signature to a message
  *
- * @package    Swift
- * @subpackage Signatures
  * @author     Xavier De Cock <xdecock@gmail.com>
  */
 class Swift_Signers_DKIMSigner implements Swift_Signers_HeaderSigner
@@ -90,7 +88,7 @@ class Swift_Signers_DKIMSigner implements Swift_Signers_HeaderSigner
     /**
      * Embbed bodyLen in signature
      *
-     * @var boolean
+     * @var bool
      */
     protected $_showLen = false;
 
@@ -112,7 +110,7 @@ class Swift_Signers_DKIMSigner implements Swift_Signers_HeaderSigner
     /**
      * Must we embed signed headers?
      *
-     * @var boolean
+     * @var bool
      */
     protected $_debugHeaders = false;
 
@@ -185,6 +183,24 @@ class Swift_Signers_DKIMSigner implements Swift_Signers_HeaderSigner
         $this->_selector = $selector;
     }
 
+    /**
+     * Instanciate DKIMSigner
+     *
+     * @param string $privateKey
+     * @param string $domainName
+     * @param string $selector
+     * @return Swift_Signers_DKIMSigner
+     */
+    public static function newInstance($privateKey, $domainName, $selector)
+    {
+        return new static($privateKey, $domainName, $selector);
+    }
+
+
+    /**
+     * Reset the Signer
+     * @see Swift_Signer::reset()
+     */
     public function reset()
     {
         $this->_headerHash = null;
@@ -194,7 +210,7 @@ class Swift_Signers_DKIMSigner implements Swift_Signers_HeaderSigner
         $this->_bodyHashHandler = null;
         $this->_bodyCanonIgnoreStart = 2;
         $this->_bodyCanonEmptyCounter = 0;
-        $this->_bodyCanonLastChar = NULL;
+        $this->_bodyCanonLastChar = null;
         $this->_bodyCanonSpace = false;
     }
 
@@ -261,6 +277,7 @@ class Swift_Signers_DKIMSigner implements Swift_Signers_HeaderSigner
         foreach ($this->_bound as $k => $stream) {
             if ($stream === $is) {
                 unset($this->_bound[$k]);
+
                 return;
             }
         }
@@ -395,7 +412,7 @@ class Swift_Signers_DKIMSigner implements Swift_Signers_HeaderSigner
     /**
      * Enable / disable the DebugHeaders
      *
-     * @param boolean $debug
+     * @param bool    $debug
      * @return Swift_Signers_DKIMSigner
      */
     public function setDebugHeaders($debug)
@@ -645,6 +662,10 @@ class Swift_Signers_DKIMSigner implements Swift_Signers_HeaderSigner
         $this->_headerCanonData .= $header;
     }
 
+    /**
+     * @throws Swift_SwiftException
+     * @return string
+     */
     private function _getEncryptedHash()
     {
         $signature = '';
@@ -660,7 +681,7 @@ class Swift_Signers_DKIMSigner implements Swift_Signers_HeaderSigner
         if (!$pkeyId) {
             throw new Swift_SwiftException('Unable to load DKIM Private Key ['.openssl_error_string().']');
         }
-        if (openssl_sign($this->_headerCanonData, $signature, $this->_privateKey, $algorithm)) {
+        if (openssl_sign($this->_headerCanonData, $signature, $pkeyId, $algorithm)) {
             return $signature;
         }
         throw new Swift_SwiftException('Unable to sign DKIM Hash ['.openssl_error_string().']');

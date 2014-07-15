@@ -22,6 +22,13 @@ class Repository implements ArrayAccess {
 	protected $default = 60;
 
 	/**
+	 * An array of registered Cache macros.
+	 *
+	 * @var array
+	 */
+	protected $macros = array();
+
+	/**
 	 * Create a new cache repository instance.
 	 *
 	 * @param  \Illuminate\Cache\StoreInterface  $store
@@ -59,9 +66,9 @@ class Repository implements ArrayAccess {
 	/**
 	 * Store an item in the cache.
 	 *
-	 * @param  string              $key
-	 * @param  mixed               $value
-	 * @param  Carbon|Datetime|int $minutes
+	 * @param  string  $key
+	 * @param  mixed   $value
+	 * @param  \DateTime|int  $minutes
 	 * @return void
 	 */
 	public function put($key, $value, $minutes)
@@ -74,9 +81,9 @@ class Repository implements ArrayAccess {
 	/**
 	 * Store an item in the cache if the key does not exist.
 	 *
-	 * @param  string              $key
-	 * @param  mixed               $value
-	 * @param  Carbon|Datetime|int $minutes
+	 * @param  string  $key
+	 * @param  mixed   $value
+	 * @param  \DateTime|int  $minutes
 	 * @return bool
 	 */
 	public function add($key, $value, $minutes)
@@ -92,9 +99,9 @@ class Repository implements ArrayAccess {
 	/**
 	 * Get an item from the cache, or store the default value.
 	 *
-	 * @param  string              $key
-	 * @param  Carbon|Datetime|int $minutes
-	 * @param  Closure             $callback
+	 * @param  string  $key
+	 * @param  \DateTime|int  $minutes
+	 * @param  Closure  $callback
 	 * @return mixed
 	 */
 	public function remember($key, $minutes, Closure $callback)
@@ -225,7 +232,7 @@ class Repository implements ArrayAccess {
 	/**
 	 * Calculate the number of minutes with the given duration.
 	 *
-	 * @param  Carbon|DateTime|int  $duration
+	 * @param  \DateTime|int  $duration
 	 * @return int
 	 */
 	protected function getMinutes($duration)
@@ -233,20 +240,29 @@ class Repository implements ArrayAccess {
 		if ($duration instanceof DateTime)
 		{
 			$duration = Carbon::instance($duration);
-		}
 
-		if ($duration instanceof Carbon)
-		{
 			return max(0, Carbon::now()->diffInMinutes($duration, false));
 		}
 		else
 		{
-			return intval($duration);
+			return is_string($duration) ? intval($duration) : $duration;
 		}
 	}
 
 	/**
-	 * Dynamically pass missing methods to the store.
+	 * Register a macro with the Cache class.
+	 *
+	 * @param  string    $name
+	 * @param  callable  $callback
+	 * @return void
+	 */
+	public function macro($name, $callback)
+	{
+		$this->macros[$name] = $callback;
+	}
+
+	/**
+	 * Handle dynamic calls into macros or pass missing methods to the store.
 	 *
 	 * @param  string  $method
 	 * @param  array   $parameters
@@ -254,7 +270,14 @@ class Repository implements ArrayAccess {
 	 */
 	public function __call($method, $parameters)
 	{
-		return call_user_func_array(array($this->store, $method), $parameters);
+		if (isset($this->macros[$method]))
+		{
+			return call_user_func_array($this->macros[$method], $parameters);
+		}
+		else
+		{
+			return call_user_func_array(array($this->store, $method), $parameters);
+		}
 	}
 
 }

@@ -1,0 +1,54 @@
+.welcome {
+  margin-bottom: 50px;
+}
+.example .grid {
+  margin-bottom: 30px;
+  margin-top: 0;
+}
+.example .grid [class*="desktop-"] {
+  background: none repeat scroll 0 0 #ddd;
+  border-radius: 3px;
+  color: #555;
+  margin-bottom: 1.8%;
+  overflow: hidden;
+  padding-bottom: 60px;
+  padding-top: 60px;
+  text-align: center;
+  -webkit-transition: background-color 2s ease-out;
+  -moz-transition: background-color 2s ease-out;
+  -o-transition: background-color 2s ease-out;
+  transition: background-color 2s ease-out;
+}
+.example .row .row [class*="desktop-"] {
+  background: none repeat scroll 0 0 rgba(255,255,255,0.25);
+  margin-bottom: 0;
+}
+.example .row:hover [class*="desktop-"] {
+  background: none repeat scroll 0 0 #aaa;
+}
+.example .row:hover [class*="desktop-"] [class*="desktop-"] {
+  background: none repeat scroll 0 0 rgba(255,255,255,0.25);
+  margin-bottom: 0;
+}
+.example .span_d {
+  display: block;
+}
+.example .span_t,
+.example .span_m {
+  display: none;
+}
+@media screen and (max-width: 979px) {
+  .example .span_d {
+    display: none;
+  }
+}
+@media screen and (min-width: 740px) and (max-width: 979px) {
+  .example .span_t {
+    display: block;
+  }
+}
+@media screen and (min-width: 0px) and (max-width: 739px) {
+  .example .span_m {
+    display: block;
+  }
+}

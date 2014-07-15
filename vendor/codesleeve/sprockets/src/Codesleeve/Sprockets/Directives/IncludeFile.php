@@ -2,9 +2,15 @@
 
 class IncludeFile extends BaseDirective
 {
-	public function process($directory)
+	public function process($filename)
 	{
-		throw new \InvalidArgumentException("Directive 'include' has not yet been implemented");
+		$fullpath = $this->absolutePath($filename);
+
+		if (!$fullpath) {
+			return array();
+		}
+
+		return array($fullpath);
 	}
 
 }

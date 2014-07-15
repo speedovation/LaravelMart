@@ -11,8 +11,6 @@
 /**
  * Sends Messages over SMTP.
  *
- * @package    Swift
- * @subpackage Transport
  * @author     Chris Corbyn
  */
 abstract class Swift_Transport_AbstractSmtpTransport implements Swift_Transport
@@ -130,7 +128,7 @@ abstract class Swift_Transport_AbstractSmtpTransport implements Swift_Transport
     /**
      * Test if an SMTP connection has been established.
      *
-     * @return boolean
+     * @return bool
      */
     public function isStarted()
     {
@@ -283,8 +281,6 @@ abstract class Swift_Transport_AbstractSmtpTransport implements Swift_Transport
         return $response;
     }
 
-    // -- Protected methods
-
     /** Read the opening SMTP greeting */
     protected function _readGreeting()
     {
@@ -400,19 +396,18 @@ abstract class Swift_Transport_AbstractSmtpTransport implements Swift_Transport
                 $line = $this->_buffer->readLine($seq);
                 $response .= $line;
             } while (null !== $line && false !== $line && ' ' != $line{3});
+        } catch (Swift_TransportException $e) {
+            $this->_throwException($e);
         } catch (Swift_IoException $e) {
             $this->_throwException(
                 new Swift_TransportException(
                     $e->getMessage())
                 );
-        } catch (Swift_TransportException $e) {
-            $this->_throwException($e);
         }
 
         return $response;
     }
 
-    // -- Private methods
 
     /** Send an email to the given recipients from the given reverse path */
     private function _doMailTransaction($message, $reversePath, array $recipients, array &$failedRecipients)

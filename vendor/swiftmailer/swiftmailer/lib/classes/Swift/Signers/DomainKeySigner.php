@@ -11,8 +11,6 @@
 /**
  * DomainKey Signer used to apply DomainKeys Signature to a message
  *
- * @package    Swift
- * @subpackage Signatures
  * @author     Xavier De Cock <xdecock@gmail.com>
  */
 class Swift_Signers_DomainKeySigner implements Swift_Signers_HeaderSigner
@@ -69,7 +67,7 @@ class Swift_Signers_DomainKeySigner implements Swift_Signers_HeaderSigner
     /**
      * Must we embed signed headers?
      *
-     * @var boolean
+     * @var bool
      */
     protected $_debugHeaders = false;
 
@@ -134,6 +132,19 @@ class Swift_Signers_DomainKeySigner implements Swift_Signers_HeaderSigner
     }
 
     /**
+     * Instanciate DomainKeySigner
+     *
+     * @param string $privateKey
+     * @param string $domainName
+     * @param string $selector
+     * @return Swift_Signers_DomainKeySigner
+     */
+    public static function newInstance($privateKey, $domainName, $selector)
+    {
+        return new static($privateKey, $domainName, $selector);
+    }
+
+    /**
      * Resets internal states
      *
      * @return Swift_Signers_DomainKeysSigner
@@ -144,7 +155,7 @@ class Swift_Signers_DomainKeySigner implements Swift_Signers_HeaderSigner
         $this->_hashHandler = null;
         $this->_bodyCanonIgnoreStart = 2;
         $this->_bodyCanonEmptyCounter = 0;
-        $this->_bodyCanonLastChar = NULL;
+        $this->_bodyCanonLastChar = null;
         $this->_bodyCanonSpace = false;
 
         return $this;
@@ -218,7 +229,7 @@ class Swift_Signers_DomainKeySigner implements Swift_Signers_HeaderSigner
         // Don't have to mirror anything
         foreach ($this->_bound as $k => $stream) {
             if ($stream === $is) {
-            	unset($this->_bound[$k]);
+                unset($this->_bound[$k]);
 
                 return;
             }
@@ -287,7 +298,7 @@ class Swift_Signers_DomainKeySigner implements Swift_Signers_HeaderSigner
     /**
      * Enable / disable the DebugHeaders
      *
-     * @param boolean $debug
+     * @param bool    $debug
      * @return Swift_Signers_DomainKeySigner
      */
     public function setDebugHeaders($debug)
@@ -489,6 +500,10 @@ class Swift_Signers_DomainKeySigner implements Swift_Signers_HeaderSigner
         $this->_canonLine = '';
     }
 
+    /**
+     * @throws Swift_SwiftException
+     * @return string
+     */
     private function _getEncryptedHash()
     {
         $signature = '';

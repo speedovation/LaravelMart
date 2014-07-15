@@ -7,7 +7,7 @@ class TestCase extends PHPUnit_Framework_TestCase
     /**
      * This is here so we don't erorr out on phpunit
      * because this class has no tests.
-     * 
+     *
      * @return void
      */
     public function testBlank()
@@ -16,9 +16,9 @@ class TestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Helper function to take out the base path from 
+     * Helper function to take out the base path from
      * a directory string
-     * 
+     *
      * @param  [type] $dir [description]
      * @return [type]      [description]
      */
@@ -30,7 +30,7 @@ class TestCase extends PHPUnit_Framework_TestCase
     /**
      * Helper function to take out the base path from an
      * array of directories
-     * 
+     *
      * @param  [type] $dirs [description]
      * @return [type]       [description]
      */
@@ -42,5 +42,5 @@ class TestCase extends PHPUnit_Framework_TestCase
     		$newDirs[$key] = str_replace($this->basePath, '', $value);
     	}
     	return $newDirs;
-    }	
+    }
 }

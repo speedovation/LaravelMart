@@ -3,13 +3,15 @@
 use Codesleeve\Sprockets\SprocketsParser;
 use Codesleeve\Sprockets\SprocketsGenerator;
 
+require_once 'fixtures/App.php';
+
 class AssetPipelineTest extends \PHPUnit_Framework_TestCase
-{ 
+{
     public function setUp()
     {
         $base = __DIR__ . '/fixtures';
 
-        $config = include $base . '/config/config.php';
+        $config = include __DIR__ . '/../src/config/config.php';
         $config['base_path'] = $base;
         $config['environment'] = "local";
         $config['javascript_include_tag'] = $this->getMock('Codesleeve\AssetPipeline\Composers\JavascriptComposer');
@@ -72,5 +74,11 @@ class AssetPipelineTest extends \PHPUnit_Framework_TestCase
     {
         $output = $this->pipeline->file('some.swf');
         $this->assertEquals($output, "{$this->base}/app/assets/javascripts/some.swf");
+    }
+
+    public function testRegisterAssetPipelineFilters()
+    {
+        $output = $this->pipeline->registerAssetPipelineFilters();
+        $this->assertEquals($output, $this->pipeline);
     }
 }

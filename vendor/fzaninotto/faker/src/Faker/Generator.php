@@ -3,119 +3,126 @@
 namespace Faker;
 
 /**
- * @property string name
- * @property string firstName
- * @property string lastName
+ * @property string $name
+ * @property string $firstName
+ * @property string $lastName
  *
- * @property string citySuffix
- * @property string streetSuffix
- * @property string buildingNumber
- * @property string city
- * @property string streetName
- * @property string streetAddress
- * @property string postcode
- * @property string address
- * @property string country
- * @property float latitude
- * @property float longitude
+ * @property string $citySuffix
+ * @property string $streetSuffix
+ * @property string $buildingNumber
+ * @property string $city
+ * @property string $streetName
+ * @property string $streetAddress
+ * @property string $postcode
+ * @property string $address
+ * @property string $country
+ * @property float  $latitude
+ * @property float  $longitude
  *
- * @property string phoneNumber
+ * @property string $ean13
+ * @property string $ean8
  *
- * @property string company
- * @property string companySuffix
+ * @property string $phoneNumber
  *
- * @property string creditCardType
- * @property string creditCardNumber
- * @property string creditCardExpirationDate
- * @property string creditCardExpirationDateString
- * @property string creditCardDetails
- * @property string bankAccountNumber
+ * @property string $company
+ * @property string $companySuffix
  *
- * @property string word
- * @method string words
- * @method string sentence
- * @method string sentences
- * @method string paragraph
- * @method string paragraphs
- * @method string text
+ * @property string $creditCardType
+ * @property string $creditCardNumber
+ * @property string $creditCardExpirationDate
+ * @property string $creditCardExpirationDateString
+ * @property string $creditCardDetails
+ * @property string $bankAccountNumber
  *
- * @property string email
- * @property string safeEmail
- * @property string freeEmail
- * @property string companyEmail
- * @property string freeEmailDomain
- * @property string safeEmailDomain
- * @property string userName
- * @property string domainName
- * @property string domainWord
- * @property string tld
- * @property string url
- * @property string ipv4
- * @property string ipv6
+ * @property string $word
+ * @method string words()
+ * @method string sentence()
+ * @method string sentences()
+ * @method string paragraph()
+ * @method string paragraphs()
+ * @method string text()
  *
- * @property int unixTime
- * @property string dateTime
- * @property string dateTimeAD
- * @property string iso8601
- * @property string dateTimeThisCentury
- * @property string dateTimeThisDecade
- * @property string dateTimeThisYear
- * @property string dateTimeThisMonth
- * @property string amPm
- * @property int dayOfMonth
- * @property int dayOfWeek
- * @property int month
- * @property string monthName
- * @property int year
- * @property int century
- * @property string timezone
- * @method string date
- * @method string time
- * @method string dateTimeBetween
+ * @method string realText()
  *
- * @property string md5
- * @property string sha1
- * @property string sha256
- * @property string locale
- * @property string countryCode
- * @property string languageCode
- * @method boolean boolean
+ * @property string $email
+ * @property string $safeEmail
+ * @property string $freeEmail
+ * @property string $companyEmail
+ * @property string $freeEmailDomain
+ * @property string $safeEmailDomain
+ * @property string $userName
+ * @property string $domainName
+ * @property string $domainWord
+ * @property string $tld
+ * @property string $url
+ * @property string $ipv4
+ * @property string $ipv6
+ * @property string $internalIpv4
+ * @property string $macAddress
  *
- * @property int randomDigit
- * @property int randomDigitNotNull
- * @property string randomLetter
- * @method int randomNumber
- * @method mixed randomKey
- * @method int numberBetween
- * @method float randomFloat
- * @method string randomElement
- * @method string numerify
- * @method string lexify
- * @method string bothify
- * @method string toLower
- * @method string toUpper
- * @method mixed optional
- * @method UniqueGenerator unique
+ * @property int       $unixTime
+ * @property \DateTime $dateTime
+ * @property \DateTime $dateTimeAD
+ * @property string    $iso8601
+ * @property \DateTime $dateTimeThisCentury
+ * @property \DateTime $dateTimeThisDecade
+ * @property \DateTime $dateTimeThisYear
+ * @property \DateTime $dateTimeThisMonth
+ * @property string    $amPm
+ * @property int       $dayOfMonth
+ * @property int       $dayOfWeek
+ * @property int       $month
+ * @property string    $monthName
+ * @property int       $year
+ * @property int       $century
+ * @property string    $timezone
+ * @method string date()
+ * @method string time()
+ * @method \DateTime dateTimeBetween()
  *
- * @property string userAgent
- * @property string chrome
- * @property string firefox
- * @property string safari
- * @property string opera
- * @property string internetExplorer
+ * @property string $md5
+ * @property string $sha1
+ * @property string $sha256
+ * @property string $locale
+ * @property string $countryCode
+ * @property string $languageCode
+ * @method boolean boolean()
  *
- * @property string uuid
+ * @property int    $randomDigit
+ * @property int    $randomDigitNotNull
+ * @property string $randomLetter
+ * @method int randomNumber()
+ * @method mixed randomKey()
+ * @method int numberBetween()
+ * @method float randomFloat()
+ * @method string randomElement()
+ * @method string numerify()
+ * @method string lexify()
+ * @method string bothify()
+ * @method string toLower()
+ * @method string toUpper()
+ * @method mixed optional()
+ * @method UniqueGenerator unique()
  *
- * @property string mimeType
- * @property string fileExtension
+ * @property string $userAgent
+ * @property string $chrome
+ * @property string $firefox
+ * @property string $safari
+ * @property string $opera
+ * @property string $internetExplorer
  *
- * @property string hexcolor
- * @property string safeHexColor
- * @property string rgbcolor
- * @property string rgbColorAsArray
- * @property string rgbCssColor
- * @property string safeColorName
- * @property string colorName
+ * @property string $uuid
+ *
+ * @property string $mimeType
+ * @property string $fileExtension
+ *
+ * @property string $hexcolor
+ * @property string $safeHexColor
+ * @property string $rgbcolor
+ * @property string $rgbColorAsArray
+ * @property string $rgbCssColor
+ * @property string $safeColorName
+ * @property string $colorName
  */
 class Generator
 {

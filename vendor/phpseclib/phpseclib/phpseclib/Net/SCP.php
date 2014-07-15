@@ -10,8 +10,8 @@
  * Here's a short example of how to use this library:
  * <code>
  * <?php
- *    include('Net/SCP.php');
- *    include('Net/SSH2.php');
+ *    include 'Net/SCP.php';
+ *    include 'Net/SSH2.php';
  *
  *    $ssh = new Net_SSH2('www.domain.tld');
  *    if (!$ssh->login('username', 'password')) {
@@ -29,10 +29,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -83,7 +83,6 @@ define('NET_SCP_SSH2',  2);
  *
  * @package Net_SCP
  * @author  Jim Wigginton <terrafrost@php.net>
- * @version 0.1.0
  * @access  public
  */
 class Net_SCP
@@ -151,7 +150,7 @@ class Net_SCP
      * So, for example, if you set $data to 'filename.ext' and then do Net_SCP::get(), you will get a file, twelve bytes
      * long, containing 'filename.ext' as its contents.
      *
-     * Setting $mode to NET_SCP_LOCAL_FILE will change the above behavior.  With NET_SCP_LOCAL_FILE, $remote_file will 
+     * Setting $mode to NET_SCP_LOCAL_FILE will change the above behavior.  With NET_SCP_LOCAL_FILE, $remote_file will
      * contain as many bytes as filename.ext does on your local filesystem.  If your filename.ext is 1MB then that is how
      * large $remote_file will be, as well.
      *
@@ -171,7 +170,7 @@ class Net_SCP
             return false;
         }
 
-        if (!$this->ssh->exec('scp -t ' . $remote_file, false)) { // -t = to
+        if (!$this->ssh->exec('scp -t "' . $remote_file . '"', false)) { // -t = to
             return false;
         }
 
@@ -216,7 +215,7 @@ class Net_SCP
             $sent+= strlen($temp);
 
             if (is_callable($callback)) {
-                $callback($sent);
+                call_user_func($callback, $sent);
             }
         }
         $this->_close();
@@ -246,7 +245,7 @@ class Net_SCP
             return false;
         }
 
-        if (!$this->ssh->exec('scp -f ' . $remote_file, false)) { // -f = from
+        if (!$this->ssh->exec('scp -f "' . $remote_file . '"', false)) { // -f = from
             return false;
         }
 

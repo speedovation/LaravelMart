@@ -8,7 +8,9 @@ $baseDir = dirname($vendorDir);
 return array(
     'Whoops' => array($vendorDir . '/filp/whoops/src'),
     'Way\\Generators' => array($vendorDir . '/way/generators/src'),
+    'System' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
     'Symfony\\Component\\Translation\\' => array($vendorDir . '/symfony/translation'),
+    'Symfony\\Component\\Security\\Core\\' => array($vendorDir . '/symfony/security-core'),
     'Symfony\\Component\\Routing\\' => array($vendorDir . '/symfony/routing'),
     'Symfony\\Component\\Process\\' => array($vendorDir . '/symfony/process'),
     'Symfony\\Component\\HttpKernel\\' => array($vendorDir . '/symfony/http-kernel'),
@@ -28,8 +30,6 @@ return array(
     'PHPParser' => array($vendorDir . '/nikic/php-parser/lib'),
     'Normalizer' => array($vendorDir . '/patchwork/utf8/class'),
     'Net' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
-    'Mustache' => array($vendorDir . '/mustache/mustache/src'),
-    'Monolog' => array($vendorDir . '/monolog/monolog/src'),
     'Math' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
     'Jeremeamia\\SuperClosure' => array($vendorDir . '/jeremeamia/SuperClosure/src'),
     'JSMinPlus' => array($vendorDir . '/nitra/php-min/JSMinPlus'),

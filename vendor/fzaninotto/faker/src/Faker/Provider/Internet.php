@@ -20,6 +20,14 @@ class Internet extends \Faker\Provider\Base
     protected static $urlFormats = array(
         'http://www.{{domainName}}/',
         'http://{{domainName}}/',
+        'http://www.{{domainName}}/{{slug}}',
+        'http://www.{{domainName}}/{{slug}}',
+        'https://www.{{domainName}}/{{slug}}',
+        'http://www.{{domainName}}/{{slug}}.html',
+        'http://{{domainName}}/{{slug}}',
+        'http://{{domainName}}/{{slug}}',
+        'http://{{domainName}}/{{slug}}.html',
+        'https://{{domainName}}/{{slug}}.html',
     );
 
     /**
@@ -127,6 +135,22 @@ class Internet extends \Faker\Provider\Base
     }
 
     /**
+     * @example 'aut-repellat-commodi-vel-itaque-nihil-id-saepe-nostrum'
+     */
+    public function slug($nbWords = 6, $variableNbWords = true)
+    {
+        if ($nbWords <= 0) {
+            return '';
+        }
+        if ($variableNbWords) {
+            $nbWords = (int) ($nbWords * mt_rand(60, 140) / 100) + 1;
+        }
+        $words = $this->generator->words($nbWords);
+
+        return join($words, '-');
+    }
+
+    /**
      * @example '237.149.115.38'
      */
     public function ipv4()
@@ -145,5 +169,34 @@ class Internet extends \Faker\Provider\Base
         }
 
         return join(':', $res);
+    }
+
+    /**
+     * @example '10.1.1.17'
+     */
+    public static function localIpv4()
+    {
+        if (static::numberBetween(0, 1) === 0) {
+            // 10.x.x.x range
+            $ip = long2ip(static::numberBetween(167772160, 184549375));
+        } else {
+            // 192.168.x.x range
+            $ip = long2ip(static::numberBetween(3232235520, 3232301055));
+        }
+
+        return $ip;
+    }
+
+    /**
+     * @example '32:F1:39:2F:D6:18'
+     */
+    public static function macAddress()
+    {
+        for ($i=0; $i<6; $i++) {
+            $mac[] = sprintf('%02X', static::numberBetween(0, 0xff));
+        }
+        $mac = implode(':', $mac);
+
+        return $mac;
     }
 }

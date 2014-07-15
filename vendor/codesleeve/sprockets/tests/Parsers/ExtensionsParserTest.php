@@ -1,7 +1,7 @@
 <?php namespace Codesleeve\Sprockets;
 
 class ExtensionsParserTest extends TestCase
-{ 
+{
     public function setUp()
     {
         $this->basePath = realpath(__DIR__ . '/../fixtures');
@@ -17,13 +17,16 @@ class ExtensionsParserTest extends TestCase
     	$output = $this->parser->extensions();
     	$this->assertEquals($output, array(
 			'.min.js',
-			'.js',
 			'.min.css',
-			'.css',
+			'.js',
 			'.js.coffee',
+			'.coffee',
+			'.css',
 			'.css.less',
 			'.css.scss',
-			'.html',
+			'.less',
+			'.scss',
+			'.html'
     	));
 	}
 
@@ -34,6 +37,7 @@ class ExtensionsParserTest extends TestCase
 			'.min.js',
 			'.js',
 			'.js.coffee',
+			'.coffee',
 			'.html',
 		));
 	}

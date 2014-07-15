@@ -1,6 +1,5 @@
 <?php namespace Illuminate\Http;
 
-use Illuminate\Session\Store as SessionStore;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
@@ -28,6 +27,16 @@ class Request extends SymfonyRequest {
 	public function instance()
 	{
 		return $this;
+	}
+
+	/**
+	 * Get the request method.
+	 *
+	 * @return string
+	 */
+	public function method()
+	{
+		return $this->getMethod();
 	}
 
 	/**
@@ -75,6 +84,16 @@ class Request extends SymfonyRequest {
 	}
 
 	/**
+	 * Get the current encoded path info for the request.
+	 *
+	 * @return string
+	 */
+	public function decodedPath()
+	{
+		return rawurldecode($this->path());
+	}
+
+	/**
 	 * Get a segment from the URI (1 based index).
 	 *
 	 * @param  string  $index
@@ -83,11 +102,7 @@ class Request extends SymfonyRequest {
 	 */
 	public function segment($index, $default = null)
 	{
-		$segments = explode('/', trim($this->getPathInfo(), '/'));
-
-		$segments = array_filter($segments, function($v) { return $v != ''; });
-
-		return array_get($segments, $index - 1, $default);
+		return array_get($this->segments(), $index - 1, $default);
 	}
 
 	/**
@@ -97,22 +112,22 @@ class Request extends SymfonyRequest {
 	 */
 	public function segments()
 	{
-		$path = $this->path();
+		$segments = explode('/', $this->path());
 
-		return $path == '/' ? array() : explode('/', $path);
+		return array_values(array_filter($segments, function($v) { return $v != ''; }));
 	}
 
 	/**
 	 * Determine if the current request URI matches a pattern.
 	 *
-	 * @param  string  $pattern
+	 * @param  dynamic  string
 	 * @return bool
 	 */
-	public function is($pattern)
+	public function is()
 	{
 		foreach (func_get_args() as $pattern)
 		{
-			if (str_is($pattern, $this->path()))
+			if (str_is($pattern, urldecode($this->path())))
 			{
 				return true;
 			}
@@ -142,29 +157,54 @@ class Request extends SymfonyRequest {
 	}
 
 	/**
-	 * Determine if the request contains a given input item.
+	 * Determine if the request contains a given input item key.
+	 *
+	 * @param  string|array  $key
+	 * @return bool
+	 */
+	public function exists($key)
+	{
+		$keys = is_array($key) ? $key : func_get_args();
+
+		$input = $this->all();
+
+		foreach ($keys as $value)
+		{
+			if ( ! array_key_exists($value, $input)) return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Determine if the request contains a non-emtpy value for an input item.
 	 *
 	 * @param  string|array  $key
 	 * @return bool
 	 */
 	public function has($key)
 	{
-		if (count(func_get_args()) > 1)
-		{
-			foreach (func_get_args() as $value)
-			{
-				if ( ! $this->has($value)) return false;
-			}
+		$keys = is_array($key) ? $key : func_get_args();
 
-			return true;
+		foreach ($keys as $value)
+		{
+			if ($this->isEmptyString($value)) return false;
 		}
 
-		if (is_bool($this->input($key)) || is_array($this->input($key)))
-		{
-			return true;
-		}
+		return true;
+	}
 
-		return trim((string) $this->input($key)) !== '';
+	/**
+	 * Determine if the given input key is an empty string for "has".
+	 *
+	 * @param  string  $key
+	 * @return bool
+	 */
+	protected function isEmptyString($key)
+	{
+		$boolOrArray = is_bool($this->input($key)) || is_array($this->input($key));
+
+		return ! $boolOrArray && trim((string) $this->input($key)) === '';
 	}
 
 	/**
@@ -278,7 +318,7 @@ class Request extends SymfonyRequest {
 	{
 		if (is_array($file = $this->file($key))) $file = head($file);
 
-		return $file instanceof \SplFileInfo;
+		return $file instanceof \SplFileInfo && $file->getPath() != '';
 	}
 
 	/**
@@ -314,7 +354,7 @@ class Request extends SymfonyRequest {
 	 */
 	public function old($key = null, $default = null)
 	{
-		return $this->getSessionStore()->getOldInput($key, $default);
+		return $this->session()->getOldInput($key, $default);
 	}
 
 	/**
@@ -328,7 +368,7 @@ class Request extends SymfonyRequest {
 	{
 		$flash = ( ! is_null($filter)) ? $this->$filter($keys) : $this->input();
 
-		$this->getSessionStore()->flashInput($flash);
+		$this->session()->flashInput($flash);
 	}
 
 	/**
@@ -364,7 +404,7 @@ class Request extends SymfonyRequest {
 	 */
 	public function flush()
 	{
-		$this->getSessionStore()->flashInput(array());
+		$this->session()->flashInput(array());
 	}
 
 	/**
@@ -487,7 +527,7 @@ class Request extends SymfonyRequest {
 	{
 		if ($request instanceof static) return $request;
 
-		return with($self = new static)->duplicate(
+		return with(new static)->duplicate(
 
 			$request->query->all(), $request->request->all(), $request->attributes->all(),
 
@@ -496,41 +536,20 @@ class Request extends SymfonyRequest {
 	}
 
 	/**
-	 * Get the Illuminate session store implementation.
+	 * Get the session associated with the request.
 	 *
 	 * @return \Illuminate\Session\Store
 	 *
 	 * @throws \RuntimeException
 	 */
-	public function getSessionStore()
+	public function session()
 	{
-		if ( ! isset($this->sessionStore))
+		if ( ! $this->hasSession())
 		{
 			throw new \RuntimeException("Session store not set on request.");
 		}
 
-		return $this->sessionStore;
-	}
-
-	/**
-	 * Set the Illuminate session store implementation.
-	 *
-	 * @param  \Illuminate\Session\Store  $session
-	 * @return void
-	 */
-	public function setSessionStore(SessionStore $session)
-	{
-		$this->sessionStore = $session;
-	}
-
-	/**
-	 * Determine if the session store has been set.
-	 *
-	 * @return bool
-	 */
-	public function hasSessionStore()
-	{
-		return isset($this->sessionStore);
+		return $this->getSession();
 	}
 
 }

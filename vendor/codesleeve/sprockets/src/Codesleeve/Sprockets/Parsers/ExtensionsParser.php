@@ -4,7 +4,7 @@ class ExtensionsParser extends ConfigParser
 {
     /**
      * Returns all the extensions for this configuration
-     * 
+     *
      * @return array
      */
     public function extensions($mime = null)
@@ -25,7 +25,7 @@ class ExtensionsParser extends ConfigParser
 
     /**
      * Gets the extension for the current filename
-     * 
+     *
      * @param  string $filename
      * @return string
      */
@@ -37,17 +37,17 @@ class ExtensionsParser extends ConfigParser
 
         if ($newfile != $filename) {
             $extension = str_replace($newfile, '', $filename);
-        }         
+        }
 
         return $extension;
     }
 
     /**
      * Returns true or false if this has a valid extension
-     * 
+     *
      * @param  string  $fullpath
-     * @param  string  $mime     
-     * @return boolean           
+     * @param  string  $mime
+     * @return boolean
      */
     public function hasValidExtension($fullpath, $mime)
     {
@@ -64,7 +64,7 @@ class ExtensionsParser extends ConfigParser
 
     /**
      * Take off all dots from end of filename.
-     * 
+     *
      * @param  [type] $filename [description]
      * @return [type]           [description]
      */
@@ -83,9 +83,9 @@ class ExtensionsParser extends ConfigParser
 
     /**
      * Returns the mime type if known
-     * 
+     *
      * @param  string $filename
-     * @return string  
+     * @return string
      */
     public function mimeType($filename)
     {
@@ -106,7 +106,7 @@ class ExtensionsParser extends ConfigParser
      * Returns mime types for the current mime
      * restriction. If no $mime restriction is placed
      * then this is always true.
-     * 
+     *
      * @return bool
      */
     private function isValidExtension($extension, $mime)

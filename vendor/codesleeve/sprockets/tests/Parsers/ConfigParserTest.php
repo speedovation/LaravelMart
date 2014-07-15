@@ -1,7 +1,7 @@
 <?php namespace Codesleeve\Sprockets;
 
 class ConfigParserTest extends TestCase
-{ 
+{
     public function setUp()
     {
         $this->basePath = realpath(__DIR__ . '/../fixtures');
@@ -15,12 +15,15 @@ class ConfigParserTest extends TestCase
     public function testPaths()
     {
         $this->assertEquals($this->parser->paths(), array(
-			'app/assets/javascripts',
-			'app/assets/stylesheets',
-			'lib/assets/javascripts',
-			'lib/assets/stylesheets',
-			'provider/assets/javascripts',
-			'provider/assets/stylesheets',
+            'app/assets/javascripts',
+            'app/assets/stylesheets',
+            'app/assets/images',
+            'lib/assets/javascripts',
+            'lib/assets/stylesheets',
+            'lib/assets/images',
+            'provider/assets/javascripts',
+            'provider/assets/stylesheets',
+            'provider/assets/images'
         ));
     }
 

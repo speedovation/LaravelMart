@@ -11,8 +11,6 @@
 /**
  * A HTML output reporter for the Reporter plugin.
  *
- * @package    Swift
- * @subpackage Plugins
  * @author     Chris Corbyn
  */
 class Swift_Plugins_Reporters_HtmlReporter implements Swift_Plugins_Reporter
@@ -22,7 +20,7 @@ class Swift_Plugins_Reporters_HtmlReporter implements Swift_Plugins_Reporter
      *
      * @param Swift_Mime_Message $message
      * @param string             $address
-     * @param integer            $result  from {@see RESULT_PASS, RESULT_FAIL}
+     * @param int                $result  from {@see RESULT_PASS, RESULT_FAIL}
      */
     public function notify(Swift_Mime_Message $message, $address, $result)
     {

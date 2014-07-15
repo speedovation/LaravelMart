@@ -4,7 +4,7 @@ use Assetic\Asset\AssetInterface;
 use Assetic\Asset\AssetCollection;
 use Assetic\Filter\FilterInterface;
 
-class SprocketsFilter implements FilterInterface 
+class SprocketsFilter implements FilterInterface
 {
     public function __construct($parser, $generator)
     {
@@ -23,38 +23,30 @@ class SprocketsFilter implements FilterInterface
 
         $files = array();
 
-        $extraFiles = array();
-
         $absolutePath = $asset->getSourceRoot() . '/' . $asset->getSourcePath();
 
         $this->parser->mime = $this->parser->mimeType($absolutePath);
 
-        if ($this->parser->mime === 'javascripts') {
-            $extraFiles = $this->parser->get("javascript_files", array());
-        }
-
-        if ($this->parser->mime === 'stylesheets') {
-            $extraFiles = $this->parser->get("stylesheet_files", array());            
-        }
-
         $absoluteFilePaths = $this->parser->getFilesArrayFromDirectives($absolutePath);
-
-        if ($absoluteFilePaths)
-        {
-            $absoluteFilePaths = $extraFiles + $absoluteFilePaths;
-        }
 
         foreach ($absoluteFilePaths as $absoluteFilePath)
         {
-            $files[] = $this->generator->file($absoluteFilePath, false);
+            $files[] = $this->generator->cachedFile($absoluteFilePath);
         }
 
+        // this happens when the file isn't a manifest
         if (!$absoluteFilePaths)
         {
-            $files[] = $this->generator->file($absolutePath, false);
+            $files[] = $this->generator->cachedFile($absolutePath);
         }
 
         $global_filters = $this->parser->get("sprockets_filters.{$this->parser->mime}", array());
+
+        // handle ASI issue with javascripts
+        if ($this->parser->mime == "javascripts")
+        {
+            $global_filters = array_merge($global_filters, array(new Filters\JavascriptConcatenationFilter));
+        }
 
         $collection = new AssetCollection($files, $global_filters);
 

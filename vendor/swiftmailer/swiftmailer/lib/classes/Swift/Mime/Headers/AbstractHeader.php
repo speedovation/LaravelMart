@@ -11,8 +11,6 @@
 /**
  * An abstract base MIME Header.
  *
- * @package    Swift
- * @subpackage Mime
  * @author     Chris Corbyn
  */
 abstract class Swift_Mime_Headers_AbstractHeader implements Swift_Mime_Header
@@ -179,7 +177,7 @@ abstract class Swift_Mime_Headers_AbstractHeader implements Swift_Mime_Header
     /**
      * Set the maximum length of lines in the header (excluding EOL).
      *
-     * @param integer $lineLength
+     * @param int     $lineLength
      */
     public function setMaxLineLength($lineLength)
     {
@@ -240,7 +238,7 @@ abstract class Swift_Mime_Headers_AbstractHeader implements Swift_Mime_Header
      * @param string                   $string  as displayed
      * @param string                   $charset of the text
      * @param Swift_Mime_HeaderEncoder $encoder
-     * @param boolean                  $shorten the first line to make remove for header name
+     * @param bool                     $shorten the first line to make remove for header name
      *
      * @return string
      */
@@ -317,7 +315,7 @@ abstract class Swift_Mime_Headers_AbstractHeader implements Swift_Mime_Header
      *
      * @param string $token
      *
-     * @return boolean
+     * @return bool
      */
     protected function tokenNeedsEncoding($token)
     {
@@ -359,7 +357,7 @@ abstract class Swift_Mime_Headers_AbstractHeader implements Swift_Mime_Header
      * Get a token as an encoded word for safe insertion into headers.
      *
      * @param string  $token           token to encode
-     * @param integer $firstLineOffset optional
+     * @param int     $firstLineOffset optional
      *
      * @return string
      */
@@ -430,7 +428,7 @@ abstract class Swift_Mime_Headers_AbstractHeader implements Swift_Mime_Header
     /**
      * Clear the cached value if $condition is met.
      *
-     * @param boolean $condition
+     * @param bool    $condition
      */
     protected function clearCachedValueIf($condition)
     {
@@ -439,7 +437,6 @@ abstract class Swift_Mime_Headers_AbstractHeader implements Swift_Mime_Header
         }
     }
 
-    // -- Private methods
 
     /**
      * Generate a list of all tokens in the final header.
@@ -463,6 +460,7 @@ abstract class Swift_Mime_Headers_AbstractHeader implements Swift_Mime_Header
                 $tokens[] = $newToken;
             }
         }
+
         return $tokens;
     }
 

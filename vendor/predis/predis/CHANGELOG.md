@@ -1,4 +1,38 @@
-v0.8.5 (2013-xx-xx)
+v0.8.6 (2014-xx-xx)
+================================================================================
+
+- Switched to Redis 2.8 as the default server profile as there are no changes
+  that would break compatibility with previous releases.
+
+- Added `PFADD`, `PFCOUNT`, `PFMERGE` to the server profile for Redis 2.8 for
+  handling the HyperLogLog data structure introduced in Redis 2.8.9.
+
+- Added `ZLEXCOUNT`, `ZRANGEBYLEX`, `ZREMRANGEBYLEX` to the server profile for
+  Redis 2.8 for handling lexicographic operations on members of sorted sets.
+
+- Minor tweaks to make this version of Predis compatible with HHVM >= 2.4.0.
+
+- Add support for key hash tags when using redis-cluster (Redis 3.0.0b1).
+
+- __FIX__: redis-sentinel does not break the parsing of responses to `INFO`.
+
+- __FIX__: `INCRBYFLOAT` is now handled as expected in cluster and replication
+  configurations (ISSUE #159).
+
+- __FIX__: fix parsing of the output of `CLUSTER NODES` to fetch the slots map
+  from a node when redis-cluster has slaves in its configuration (ISSUE #165).
+
+- __FIX__: prevent stack overflows when using the abstraction for cursor-based
+  iterators over large collections (ISSUE #182).
+
+- __FIX__: properly discards a transaction when the server immediatly returns an
+  error response (e.g. -OOM or -ERR on invalid arguments for a command) instead
+  of a +QUEUED response (ISSUE #187).
+
+- Upgraded to PHPUnit 4.* for the test suite.
+
+
+v0.8.5 (2014-01-16)
 ================================================================================
 
 - Added `2.8` in the server profiles aliases list for Redis 2.8. `2.6` is still

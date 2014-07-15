@@ -1,16 +1,15 @@
 <?php namespace Codesleeve\Sprockets;
 
-use ReflectionClass;
+use ReflectionClass, RecursiveIteratorIterator, RecursiveDirectoryIterator;
 use Assetic\Asset\FileAsset;
-use Codesleeve\Sprockets\Asset\AssetCache;
 use Codesleeve\Sprockets\Parsers\DirectivesParser;
 
-class SprocketsGenerator
+class SprocketsGenerator implements Interfaces\GeneratorInterface
 {
     /**
-     * Create a new sprockets generator. This will apply the 
-     * sprockets assetic filter to generate parse out 
-     * 
+     * Create a new sprockets generator. This will apply the
+     * sprockets assetic filter to generate parse out
+     *
      * @param array $config [description]
      */
     public function __construct(array $config)
@@ -20,7 +19,7 @@ class SprocketsGenerator
 
     /**
      * Return the javascript text for this absolutePath
-     * 
+     *
      * @param  string $absolutePath
      * @return string
      */
@@ -30,8 +29,8 @@ class SprocketsGenerator
     }
 
     /**
-     * Return the stylesheet text for this 
-     * 
+     * Return the stylesheet text for this
+     *
      * @param  $absolutePath
      * @return string
      */
@@ -42,9 +41,10 @@ class SprocketsGenerator
 
     /**
      * Returns this file for $absolutePath
-     * 
-     * @param  [type] $absolutePath [description]
-     * @return [type]               [description]
+     *
+     * @param  filepath $absolutePath
+     * @param  bool     $contact        allows us to turn concat on or off manually
+     * @return FileAsset
      */
     public function file($absolutePath, $concat = null)
     {
@@ -54,10 +54,42 @@ class SprocketsGenerator
     }
 
     /**
+     * Returns the file wrapped around the server cache
+     * so that we get a performance boost.
+     *
+     * @param  filepath $absolutePath
+     * @return AssetCache
+     */
+    public function cachedFile($absolutePath)
+    {
+        $file = $this->file($absolutePath, false);
+
+        return $this->parser()->serverCache($file);
+    }
+
+    /**
+     * Returns the cached version of this absolutePath
+     *
+     * @param  string $absolutePath
+     * @return string
+     */
+    public function cached($absolutePath, $concat = null)
+    {
+        $file = $this->file($absolutePath, $concat);
+
+        if (!$this->parser()->cache())
+        {
+            return $file;
+        }
+
+        return $this->parser()->clientCache($file);
+    }
+
+    /**
      * Return the filters for this specific file
-     * 
+     *
      * @param  $absolutePath
-     * @return array             
+     * @return array
      */
     protected function filters($absolutePath, $concat = false)
     {
@@ -65,33 +97,21 @@ class SprocketsGenerator
 
         $filters = isset($this->parser()->filters[$extension]) ? $this->parser()->filters[$extension] : array();
 
-        if (!$concat) {
+        if (!$concat)
+        {
             return $filters;
         }
 
-        $filter = $this->parser()->sprockets_filter ? $this->parser()->sprockets_filter : '\Codesleeve\Sprockets\SprocketsFilter';
-        $class = new ReflectionClass($filter);
+        // concatenate so we need to use the sprockets filter here
+        $class = new ReflectionClass($this->parser()->sprockets_filter);
         $sprockets = $class->newInstanceArgs(array($this->parser(), $this));
 
         return array($sprockets);
     }
 
     /**
-     * Returns the cached version of this absolutePath
-     * 
-     * @param  string $absolutePath
-     * @return string
-     */
-    public function cached($absolutePath)
-    {
-        $file = $this->file($absolutePath);
-
-        return new AssetCache($file, $this->parser()->get('cache'));
-    }
-
-    /**
      * Gets us a new parser
-     * 
+     *
      * @return DirectivesParser
      */
     protected function parser()

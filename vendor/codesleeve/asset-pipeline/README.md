@@ -1,14 +1,8 @@
-### NEW Asset Pipeline for 4.1
-
-The asset pipeline has been refactored to be smarter, cleaner, better. It also has breaking changes (because things work a little differently). So if you have existing projects that were pointing to dev-master, you should probably just use tag v1.3 or...
-
-### You will need to re-publish your config file to use the new version of asset pipeline.
-
 ## What is Asset Pipeline?
 
-For those of you familar with Rails asset pipeline and sprockets, you will hopefully feel right at home using this package.
+For those of you familiar with Rails asset pipeline and sprockets, you will hopefully feel right at home using this package.
 
-For those of you unfamilar with Rails asset pipeline and sprockets, I suggest reading [introduction to directives](#introduction-to-directives).
+For those of you unfamiliar with Rails asset pipeline and sprockets, I suggest reading [introduction to directives](#introduction-to-directives).
 
 ## Installation
 
@@ -29,13 +23,13 @@ Next, update Composer from the Terminal:
     composer update
 ```
 
-Once this operation completes, add the service provider. Open `app/config/app.php`, and add a new item to the providers array.
+Once this operation completes, add the service provider. Open `app/config/app.php`, add the following items to the providers array.
 
 ```php
-    'Codesleeve\AssetPipeline\AssetPipelineServiceProvider'
+    'Codesleeve\AssetPipeline\AssetPipelineServiceProvider',
 ```
 
-Optionally, ensure your environment is setup correctly because by default the asset pipeline will cache and and minify assets on a production environment.
+Next optionally, ensure your environment is setup correctly because by default the asset pipeline will cache and and minify assets on a production environment.
 
 Inside `bootstrap/start.php`
 
@@ -45,10 +39,10 @@ Inside `bootstrap/start.php`
   ));
 ```
 
-Run the `artisan` command from the Terminal for the `assets:generate` command. This will create the default folder structure for you.
+Run the `artisan` command from the Terminal for the `assets:setup` command. This will create the default folder structure for you.
 
 ```php
-    php artisan assets:generate
+    php artisan assets:setup
 ```
 
 ## Usage
@@ -60,7 +54,7 @@ Place these lines into your Laravel view/layout
     <?= javascript_include_tag() ?>
 ```
 
-This will generate a listing of script and link tags for all the dependencies listed in `app/assets/application.js` and `app/assets/application.css`. 
+This will generate a listing of script and link tags for all the dependencies listed in `app/assets/application.js` and `app/assets/application.css`.
 
 #### Parameters
 
@@ -74,7 +68,7 @@ and assuming `concat => array('production')` and we are on a production environm
 
 ```php
     <script src="assets/interior/application.js" data-foo="bar"></script>
-```    
+```
 
 ## Introduction to Directives
 
@@ -95,20 +89,39 @@ This is how you control your dependencies. Simple right?
 #### Here is a list of directives you can use
 
   - **require** filename
- 
+
     This brings in a specific asset file found within your `paths`.
 
   - **require_directory** some/directory
- 
-    This brings in assets only within some/directory (non-recurisve). You can also use '.' and '..' to resolve paths relative to the manifest file itself.
+
+    This brings in assets only within some/directory (non-recursive). You can also use '.' and '..' to resolve paths relative to the manifest file itself.
 
   - **require_tree** some/directory
 
     Just like require_directory except it recursively brings in all sub directories and files.
 
+  - **require_tree_df** some/directory
+
+    This works just like require_tree but it includes directories first and files last where as
+    require_tree brings in files first then directories. You might use this if you have dependencies
+    inside of sub-directories that you want to include first before a file in that same directory.
+
   - **require_self**
 
     This brings in the manifest file itself as an asset. This is already done on `require_tree .` if the manifest file is within that directory. Where you might want to use this is when you have a manifest file that does like `require_tree subdir/`
+
+  - **include** filename
+
+    This brings in a specific asset file found within your `paths`. It differs from **require** though
+    because if the file is not found then it does not throw an exception.
+
+  - **stub** path
+
+    Blacklists the given path. This can be a file or an entire directory. Note that once a path is blacklisted it will be ignored no matter how many times you try to included it.
+
+  - **depend_on** filename
+
+    Let asset pipeline know about a dependency not required through the manifest file. If file1 **depend_on** file2 then the local cache for file1 will be busted when file2 changes. This is very useful for when you are using `@import` in less.
 
 ## Configuration
 
@@ -135,68 +148,17 @@ Sprockets parser also uses this to help generate the correct web path for our as
   'paths' => array(
     'app/assets/javascripts',
     'app/assets/stylesheets',
+    'app/assets/images',
     'lib/assets/javascripts',
     'lib/assets/stylesheets',
+    'lib/assets/images',
     'provider/assets/javascripts',
-    'provider/assets/stylesheets'
+    'provider/assets/stylesheets',
+    'provider/assets/images'
   ),
 ```
-  
+
 These are the directories we search for files in. You can think of this like PATH environment variable on your OS. We search for files in the path order listed below.
-
-### filters
-
-```php
-  'filters' => array(
-    '.min.js' => array(
-
-    ),
-    '.min.css' => array(
-      new Codesleeve\AssetPipeline\Filters\URLRewrite
-    ),
-    '.js' => array(
-      new Codesleeve\AssetPipeline\Filters\MinifyJS(App::environment())
-    ),
-    '.js.coffee' => array(
-      new Codesleeve\AssetPipeline\Filters\CoffeeScript,
-      new Codesleeve\AssetPipeline\Filters\MinifyJS(App::environment())
-    ),
-    '.coffee' => array(
-      new Codesleeve\AssetPipeline\Filters\CoffeeScript,
-      new Codesleeve\AssetPipeline\Filters\MinifyJS(App::environment())
-    ),
-    '.css' => array(
-      new Codesleeve\AssetPipeline\Filters\URLRewrite,
-      new Codesleeve\AssetPipeline\Filters\MinifyCSS(App::environment())
-    ),
-    '.css.less' => array(
-      new Assetic\Filter\LessphpFilter,
-      new Codesleeve\AssetPipeline\Filters\URLRewrite,
-      new Codesleeve\AssetPipeline\Filters\MinifyCSS(App::environment())
-    ),
-    '.css.scss' => array(
-      new Assetic\Filter\ScssphpFilter,
-      new Codesleeve\AssetPipeline\Filters\URLRewrite,
-      new Codesleeve\AssetPipeline\Filters\MinifyCSS(App::environment())
-    ),
-    '.less' => array(
-      new Assetic\Filter\LessphpFilter,
-      new Codesleeve\AssetPipeline\Filters\URLRewrite,
-      new Codesleeve\AssetPipeline\Filters\MinifyCSS(App::environment())
-    ),
-    '.scss' => array(
-      new Assetic\Filter\ScssphpFilter,
-      new Codesleeve\AssetPipeline\Filters\URLRewrite,
-      new Codesleeve\AssetPipeline\Filters\MinifyCSS(App::environment())
-    ),
-    '.html' => array(
-      new Codesleeve\AssetPipeline\Filters\JST,
-      new Codesleeve\AssetPipeline\Filters\MinifyJS(App::environment())
-    )
-  ),
-```
-
-In order for a file to be included with sprockets, the extension needs to be listed here. We can also preprocess those extension types with Assetic Filters.
 
 ### mimes
 
@@ -209,21 +171,116 @@ In order for a file to be included with sprockets, the extension needs to be lis
 
 In order to know which mime type to send back to the server we need to know if it is a javascript or stylesheet type. If the extension is not found below then we just return a regular download. You should include all extensions in your `filters` here or you will likely experience unexpected behavior. This should allow developers to mix javascript and css files in the same directory.
 
+### filters
+
+```php
+  'filters' => array(
+    '.min.js' => array(
+
+    ),
+    '.min.css' => array(
+      new Codesleeve\AssetPipeline\Filters\URLRewrite,
+    ),
+    '.js' => array(
+      new EnvironmentFilter(new Codesleeve\AssetPipeline\Filters\JSMinPlusFilter, App::environment()),
+    ),
+    '.js.coffee' => array(
+      new Codesleeve\AssetPipeline\Filters\CoffeeScript,
+      new EnvironmentFilter(new Codesleeve\AssetPipeline\Filters\JSMinPlusFilter, App::environment()),
+    ),
+    '.coffee' => array(
+      new Codesleeve\AssetPipeline\Filters\CoffeeScript,
+      new EnvironmentFilter(new Codesleeve\AssetPipeline\Filters\JSMinPlusFilter, App::environment()),
+    ),
+    '.css' => array(
+      new Codesleeve\AssetPipeline\Filters\URLRewrite,
+      new EnvironmentFilter(new Codesleeve\AssetPipeline\Filters\CssMinFilter, App::environment()),
+    ),
+    '.css.less' => array(
+      new Assetic\Filter\LessphpFilter,
+      new Codesleeve\AssetPipeline\Filters\URLRewrite,
+      new EnvironmentFilter(new Codesleeve\AssetPipeline\Filters\CssMinFilter, App::environment()),
+    ),
+    '.css.scss' => array(
+      new Assetic\Filter\ScssphpFilter,
+      new Codesleeve\AssetPipeline\Filters\URLRewrite,
+      new EnvironmentFilter(new Codesleeve\AssetPipeline\Filters\CssMinFilter, App::environment()),
+    ),
+    '.less' => array(
+      new Assetic\Filter\LessphpFilter,
+      new Codesleeve\AssetPipeline\Filters\URLRewrite,
+      new EnvironmentFilter(new Codesleeve\AssetPipeline\Filters\CssMinFilter, App::environment()),
+    ),
+    '.scss' => array(
+      new Assetic\Filter\ScssphpFilter,
+      new Codesleeve\AssetPipeline\Filters\URLRewrite,
+      new EnvironmentFilter(new Codesleeve\AssetPipeline\Filters\CssMinFilter, App::environment()),
+    ),
+    '.html' => array(
+      new Codesleeve\AssetPipeline\Filters\JST,
+      new EnvironmentFilter(new Codesleeve\AssetPipeline\Filters\JSMinPlusFilter, App::environment()),
+    )
+  ),
+```
+
+In order for a file to be included with sprockets, the extension needs to be listed here. We can also preprocess those extension types with Assetic Filters.
+
 ### cache
 
 ```php
-  'cache' => new Codesleeve\AssetPipeline\Filters\FilesNotCached,
+  'cache' => array(),   // add 'production' here if you want to cache permanently
 ```
 
-By default we leave caching off. It is up to the developer to determine how the pipeline should tell Assetic to cache assets. 
+**By default we cache all files regardless of the environment.**
 
-You can create your own [CacheInterface](https://github.com/kriswallsmith/assetic/blob/master/src/Assetic/Cache) if you want to handle caching differently. 
+However, we only cache manifest files when in production mode or whatever environments are supplied to `cache`.
 
-If you want a simple file cache, you can use this one:
+
+### cache_server
 
 ```php
-  'cache' => new Assetic\Cache\FilesystemCache(storage_path() . '/cache/asset-pipeline')
+  'cache_server' => new Assetic\Cache\FilesystemCache(App::make('path.storage') . '/cache/asset-pipeline'),
 ```
+
+By default we use Assetic's FilesystemCache to handle caching but you can create your own [CacheInterface](https://github.com/kriswallsmith/assetic/blob/master/src/Assetic/Cache) if you want to handle caching differently.
+
+Caching is used here to speed up when developing locally and production as well. To get an idea of how this works, let's say you are dealing with 80 coffeescript files. You wouldn't want to run pre-compilation on all 80 files each time you load a page. Pipeline will cache all 80 coffeescript files so we only run pre-compilation if one of those files is changed. This makes your pages load faster in when developing.
+
+The only downside to this is if you change your Laravel environment or config for asset pipeline then you will need to clear your cache to see the changes reflected.
+
+If you want to clear your cache then run
+
+```php
+   php artisan assets:clean
+```
+
+This will clear the cached files `application.js` and `application.css` and all required files from within the manifest files. If you have other files you want cleaned then you can pass them as parameters via `-f` or `--file`
+
+```php
+  php artisan assets:clean -f interior/application.js -f exterior/application.js -f interior/application.css -f exterior/application.css
+```
+
+If you don't want to recursively remove cache files for a manifest file then you can pass the `--recursive=false` flag.
+
+**NOTE** If you are using the default configuration for pipeline you can remove your cached files in this directory
+
+```
+  $ rm -f app/storage/cache/asset-pipeline/*
+```
+
+### cache_client
+
+```php
+  'cache_client' => new Codesleeve\AssetPipeline\Filters\ClientCacheFilter,
+```
+
+If you want to handle 304's and what not, to keep users from refetching your assets and saving your bandwidth you can use a cache_client driver that handles this. This doesn't handle assets on the server-side, use cache_server for that.
+
+Note that this needs to implement the interface
+
+    Codesleeve\Sprockets\Interfaces\ClientCacheInterface
+
+or this won't work correctly. It is a wrapper class around your cache_server driver and also uses the AssetCache class to help access files `lastModifiedTime` because `Assetic\Cache\CacheInterface` doesn't give us this ability.
 
 ### concat
 
@@ -239,9 +296,13 @@ This allows us to turn on the asset concatenation for the specific environments 
 ```php
   'directives' => array(
     'require ' => new Codesleeve\Sprockets\Directives\RequireFile,
-    'require_directory' => new Codesleeve\Sprockets\Directives\RequireDirectory,
-    'require_tree' => new Codesleeve\Sprockets\Directives\RequireTree,
+    'require_directory ' => new Codesleeve\Sprockets\Directives\RequireDirectory,
+    'require_tree ' => new Codesleeve\Sprockets\Directives\RequireTree,
+    'require_tree_df ' => new Codesleeve\Sprockets\Directives\RequireTreeDf,
     'require_self' => new Codesleeve\Sprockets\Directives\RequireSelf,
+    'include ' => new Codesleeve\Sprockets\Directives\IncludeFile,
+    'stub ' => new Codesleeve\Sprockets\Directives\Stub,
+    'depend_on ' => new Codesleeve\Sprockets\Directives\DependOn,
   ),
 ```
 
@@ -376,7 +437,7 @@ class MyAwesomeDirective extends Codesleeve\Sprockets\Directives\RequireFile
       if (App::environment() === 'local' && $param == 'foobar')
       {
         // do chicken dance and add some files to array
-        // alos, this needs to be an absolute path to file
+        // also, this needs to be an absolute path to file
         $files[] = __DIR__ . '/chicken/dance.js';
       }
 
@@ -385,17 +446,35 @@ class MyAwesomeDirective extends Codesleeve\Sprockets\Directives\RequireFile
 }
 ```
 
-### I want to use nginx
+### Can I use nginx
 
 You may have to configure nginx. The files are not in `/assets/` so you will likely get a 404. Thus you need to tell nginx to route the request through `index.php` if the file is not found. This can be accomplished with something like this:
 
 ```js
   location ~ ^/(assets)/{
-    try_files $uri $uri/ /index.php?q=$uri&$args;
+    try_files $uri $uri/ /index.php?$args;
     expires max;
     add_header Cache-Control public;
   }
 ```
+
+### Can I use an older version of asset pipeline
+
+The asset pipeline has been re-factored to be smarter, cleaner, better. However, with that brought along breaking changes because things work differently. So if you have older existing projects that were pointing to `dev-master`, you should probably find a tag version that works for you. If it just recently broke, try the latest tag minus 1. Also, I typically push out my changes to `dev-testing`.
+
+
+### Can I do image optimization?
+
+The asset pipeline doesn't do this for you. However, there is nothing stopping you from handling image optimization via a separate script and then including those optimized images through asset pipeline.
+
+For more information [check out this issue](https://github.com/CodeSleeve/asset-pipeline/issues/128).
+
+
+### How does caching work?
+
+For performance reasons, all files are cached using the `cache_server` driver in asset pipeline's configuration file. This is done so you don't have to pre-compile 100's of coffeescript and less/sass files each time you reload the page and fetch assets. However, this can cause confusion sometimes, for example, if you update a [filter](#filters) in the asset pipeline config and then refresh the page and things are still be cached. In this case you should [manually clear the cache](#cache_server).
+
+When your environment matches an environment found in the configured [cache](#cache) array then assets will be permanently cached until manually cleared using `assets:clean`. By default this used to be `production`, however due to the frustration and confusion many developers were having this was removed. So if you want to use caching on your server you need to opt-in and edit your configuration file.
 
 ## License
 
@@ -403,7 +482,7 @@ The codesleeve asset pipeline is open-source software licensed under the [MIT li
 
 ## Support
 
-Before you do a pull request for a new feature please place in a proposal request. For bug fixes, please place in issues to track those, even if you fix the bug yourself and submit a pull request.
+Before you do a pull request for a new feature please place in a proposal request. For bug fixes, please place in issues to track those, even if you fix the bug yourself and submit a pull request. All pull requests go to `dev-testing` before `dev-master`.
 
 We use Travis CI for testing which you can see at: https://travis-ci.org/CodeSleeve/asset-pipeline
 

@@ -64,6 +64,8 @@ class Request
     protected static $httpMethodParameterOverride = false;
 
     /**
+     * Custom parameters
+     *
      * @var \Symfony\Component\HttpFoundation\ParameterBag
      *
      * @api
@@ -71,6 +73,8 @@ class Request
     public $attributes;
 
     /**
+     * Request body parameters ($_POST)
+     *
      * @var \Symfony\Component\HttpFoundation\ParameterBag
      *
      * @api
@@ -78,6 +82,8 @@ class Request
     public $request;
 
     /**
+     * Query string parameters ($_GET)
+     *
      * @var \Symfony\Component\HttpFoundation\ParameterBag
      *
      * @api
@@ -85,6 +91,8 @@ class Request
     public $query;
 
     /**
+     * Server and execution environment parameters ($_SERVER)
+     *
      * @var \Symfony\Component\HttpFoundation\ServerBag
      *
      * @api
@@ -92,6 +100,8 @@ class Request
     public $server;
 
     /**
+     * Uploaded files ($_FILES)
+     *
      * @var \Symfony\Component\HttpFoundation\FileBag
      *
      * @api
@@ -99,6 +109,8 @@ class Request
     public $files;
 
     /**
+     * Cookies ($_COOKIE)
+     *
      * @var \Symfony\Component\HttpFoundation\ParameterBag
      *
      * @api
@@ -106,6 +118,8 @@ class Request
     public $cookies;
 
     /**
+     * Headers (taken from the $_SERVER)
+     *
      * @var \Symfony\Component\HttpFoundation\HeaderBag
      *
      * @api
@@ -344,6 +358,7 @@ class Request
                 if (!isset($server['CONTENT_TYPE'])) {
                     $server['CONTENT_TYPE'] = 'application/x-www-form-urlencoded';
                 }
+                // no break
             case 'PATCH':
                 $request = $parameters;
                 $query = array();
@@ -665,7 +680,7 @@ class Request
     /**
      * Checks whether support for the _method request parameter is enabled.
      *
-     * @return Boolean True when the _method request parameter is enabled, false otherwise
+     * @return bool    True when the _method request parameter is enabled, false otherwise
      */
     public static function getHttpMethodParameterOverride()
     {
@@ -689,7 +704,7 @@ class Request
      *
      * @param string  $key     the key
      * @param mixed   $default the default value
-     * @param Boolean $deep    is parameter deep in multidimensional array
+     * @param bool    $deep    is parameter deep in multidimensional array
      *
      * @return mixed
      */
@@ -714,7 +729,7 @@ class Request
      * Whether the request contains a Session which was started in one of the
      * previous requests.
      *
-     * @return Boolean
+     * @return bool
      *
      * @api
      */
@@ -731,7 +746,7 @@ class Request
      * like whether the session is started or not. It is just a way to check if this Request
      * is associated with a Session instance.
      *
-     * @return Boolean true when the Request contains a Session object, false otherwise
+     * @return bool    true when the Request contains a Session object, false otherwise
      *
      * @api
      */
@@ -941,7 +956,13 @@ class Request
         }
 
         if ($host = $this->headers->get('HOST')) {
-            if (false !== $pos = strrpos($host, ':')) {
+            if ($host[0] === '[') {
+                $pos = strpos($host, ':', strrpos($host, ']'));
+            } else {
+                $pos = strrpos($host, ':');
+            }
+
+            if (false !== $pos) {
                 return intval(substr($host, $pos + 1));
             }
 
@@ -958,7 +979,7 @@ class Request
      */
     public function getUser()
     {
-        return $this->server->get('PHP_AUTH_USER');
+        return $this->headers->get('PHP_AUTH_USER');
     }
 
     /**
@@ -968,7 +989,7 @@ class Request
      */
     public function getPassword()
     {
-        return $this->server->get('PHP_AUTH_PW');
+        return $this->headers->get('PHP_AUTH_PW');
     }
 
     /**
@@ -1099,7 +1120,7 @@ class Request
      * ("SSL_HTTPS" for instance), configure it via "setTrustedHeaderName()" with
      * the "client-proto" key.
      *
-     * @return Boolean
+     * @return bool
      *
      * @api
      */
@@ -1109,7 +1130,9 @@ class Request
             return in_array(strtolower(current(explode(',', $proto))), array('https', 'on', 'ssl', '1'));
         }
 
-        return 'on' == strtolower($this->server->get('HTTPS')) || 1 == $this->server->get('HTTPS');
+        $https = $this->server->get('HTTPS');
+
+        return !empty($https) && 'off' !== strtolower($https);
     }
 
     /**
@@ -1273,8 +1296,6 @@ class Request
                 return $format;
             }
         }
-
-        return null;
     }
 
     /**
@@ -1385,7 +1406,7 @@ class Request
      *
      * @param string $method Uppercase request method (GET, POST etc).
      *
-     * @return Boolean
+     * @return bool
      */
     public function isMethod($method)
     {
@@ -1395,7 +1416,7 @@ class Request
     /**
      * Checks whether the method is safe or not.
      *
-     * @return Boolean
+     * @return bool
      *
      * @api
      */
@@ -1407,7 +1428,7 @@ class Request
     /**
      * Returns the request body content.
      *
-     * @param Boolean $asResource If true, a resource will be returned
+     * @param bool    $asResource If true, a resource will be returned
      *
      * @return string|resource The request body content or a resource to read the body stream.
      *
@@ -1443,7 +1464,7 @@ class Request
     }
 
     /**
-     * @return Boolean
+     * @return bool
      */
     public function isNoCache()
     {
@@ -1582,7 +1603,7 @@ class Request
      * It is known to work with common JavaScript frameworks:
      * @link http://en.wikipedia.org/wiki/List_of_Ajax_frameworks#JavaScript
      *
-     * @return Boolean true if the request is an XMLHttpRequest, false otherwise
+     * @return bool    true if the request is an XMLHttpRequest, false otherwise
      *
      * @api
      */

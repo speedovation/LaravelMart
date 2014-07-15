@@ -1,5 +1,6 @@
 <?php namespace Illuminate\Routing;
 
+use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Container\Container;
 
@@ -135,9 +136,20 @@ class ControllerDispatcher {
 			// router take care of calling these filters so we do not duplicate logics.
 			if ($this->filterApplies($filter, $request, $method))
 			{
-				$route->after($filter['filter']);
+				$route->after($this->getAssignableAfter($filter));
 			}
 		}
+	}
+
+	/**
+	 * Get the assignable after filter for the route.
+	 *
+	 * @param  Closure|string  $filter
+	 * @return string
+	 */
+	protected function getAssignableAfter($filter)
+	{
+		return $filter['original'] instanceof Closure ? $filter['filter'] : $filter['original'];
 	}
 
 	/**
@@ -146,6 +158,7 @@ class ControllerDispatcher {
 	 * @param  array  $filter
 	 * @param  \Illuminate\Http\Request  $request
 	 * @param  string  $method
+	 * @return bool
 	 */
 	protected function filterApplies($filter, $request, $method)
 	{
@@ -161,11 +174,12 @@ class ControllerDispatcher {
 	}
 
 	/**
-	 * Determine if the filter fails the "only" cosntraint.
+	 * Determine if the filter fails the "only" constraint.
 	 *
 	 * @param  array  $filter
 	 * @param  \Illuminate\Http\Request  $request
 	 * @param  string  $method
+	 * @return bool
 	 */
 	protected function filterFailsOnly($filter, $request, $method)
 	{
@@ -175,11 +189,12 @@ class ControllerDispatcher {
 	}
 
 	/**
-	 * Determine if the filter fails the "except" cosntraint.
+	 * Determine if the filter fails the "except" constraint.
 	 *
 	 * @param  array  $filter
 	 * @param  \Illuminate\Http\Request  $request
 	 * @param  string  $method
+	 * @return bool
 	 */
 	protected function filterFailsExcept($filter, $request, $method)
 	{
@@ -189,11 +204,12 @@ class ControllerDispatcher {
 	}
 
 	/**
-	 * Determine if the filter fails the "on" cosntraint.
+	 * Determine if the filter fails the "on" constraint.
 	 *
 	 * @param  array  $filter
 	 * @param  \Illuminate\Http\Request  $request
 	 * @param  string  $method
+	 * @return bool
 	 */
 	protected function filterFailsOn($filter, $request, $method)
 	{

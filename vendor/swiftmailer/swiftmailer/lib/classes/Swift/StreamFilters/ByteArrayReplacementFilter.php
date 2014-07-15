@@ -13,7 +13,6 @@
  *
  * This stream filter deals with Byte arrays rather than simple strings.
  *
- * @package Swift
  * @author  Chris Corbyn
  */
 class Swift_StreamFilters_ByteArrayReplacementFilter implements Swift_StreamFilter
@@ -100,7 +99,7 @@ class Swift_StreamFilters_ByteArrayReplacementFilter implements Swift_StreamFilt
      *
      * @param array $buffer
      *
-     * @return boolean
+     * @return bool
      */
     public function shouldBuffer($buffer)
     {
@@ -113,7 +112,7 @@ class Swift_StreamFilters_ByteArrayReplacementFilter implements Swift_StreamFilt
      * Perform the actual replacements on $buffer and return the result.
      *
      * @param array   $buffer
-     * @param integer $_minReplaces
+     * @param int     $_minReplaces
      *
      * @return array
      */

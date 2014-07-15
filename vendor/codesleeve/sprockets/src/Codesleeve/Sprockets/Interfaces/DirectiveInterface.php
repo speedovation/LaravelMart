@@ -1,7 +1,7 @@
 <?php namespace Codesleeve\Sprockets\Interfaces;
 
 /**
- * This class is a facade class that encapsulates two 
+ * This class is a facade class that encapsulates two
  * main responsibilities. Below they are listed...
  *
  */

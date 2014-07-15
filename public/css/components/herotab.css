@@ -1,0 +1,125 @@
+ul {
+  margin: 0;
+  padding: 0;
+}
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+.tab-nav {
+  margin: 0;
+}
+.tab-nav li {
+  margin-bottom: 5px;
+}
+.tab-pane {
+  position: relative;
+}
+.tabs {
+  width: 600px;
+}
+.tabs .tab-info {
+  padding: 10px 10px;
+  background-color: #333;
+  background-color: rgba(0,0,0,0.7);
+  border-radius: 5px;
+  color: #fff;
+}
+.tabs .tab-info p {
+  margin: 0;
+}
+.tabs .tab-info a {
+  color: inherit;
+}
+.tabs-horiz .tab-nav,
+.tabs-vert .tab-nav {
+  list-style-type: none;
+}
+.tab-container {
+  height: 250px;
+  overflow-y: scroll;
+  overflow-x: auto;
+}
+.is-active .tab-container {
+  height: auto;
+  overflow: visible;
+}
+.tabs-horiz .tab-info {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+.tabs-horiz.is-active .tab-nav {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 5;
+}
+.tabs-horiz.is-active .tab-nav-item {
+  display: inline-block;
+  margin-right: 3px;
+}
+.tabs-horiz.is-active .tab-nav-item a {
+  background-color: #fff;
+  border: 1px solid #444;
+  border-radius: 50%;
+  text-indent: -9999px;
+  width: 15px;
+  height: 15px;
+  display: block;
+}
+.tabs-horiz.is-active .tab-nav-current a {
+  background-color: #ff6d3a;
+}
+.tabs-vert .tab-info {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}
+.tabs-vert.is-active .tab-nav {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 5;
+}
+.tabs-vert.is-active .tab-nav-item {
+  list-style-type: none;
+  margin-bottom: 8px;
+}
+.tabs-vert.is-active .tab-nav-item a {
+  padding: 10px 10px;
+  text-decoration: none;
+  background-color: #333;
+  background-color: rgba(0,0,0,0.7);
+  border-radius: 5px;
+  color: #fff;
+  display: block;
+}
+.tabs-vert.is-active .tab-nav-current a {
+  background-color: #ff1d40;
+}
+.tabs-standard .tab-pane {
+  background-color: #ddd;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+.tabs-standard .tab-pane p {
+  margin: 0;
+}
+.tabs-standard.is-active .tab-nav-item {
+  display: inline-block;
+  margin: 0;
+}
+.tabs-standard.is-active .tab-nav-item a {
+  display: block;
+  background-color: #ddd;
+  padding: 5px 10px;
+}
+.tabs-standard.is-active .tab-current,
+.tabs-standard.is-active .tab-nav-current a {
+  background-color: #aaa;
+}

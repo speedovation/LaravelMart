@@ -1,0 +1,17 @@
+diff a/vendor/codesleeve/asset-pipeline/src/config/config.php b/vendor/codesleeve/asset-pipeline/src/config/config.php	(rejected hunks)
+@@ -204,11 +204,15 @@
+  	| environments listed below. You can turn off local environment if
+  	| you are trying to troubleshoot, but you will likely have better
+  	| performance if you leave concat on (except if you are doing a lot
+ -	| of minification stuff on each page refresh)
+ +	| of minification stuff on each page refresh) production
+  	|
+  	*/
+++<<<<<<< Updated upstream
+ +	'concat' => array(''),
+++=======
++ 	'concat' => array(),
+++>>>>>>> Stashed changes
+  
+  	/*
+  	|--------------------------------------------------------------------------

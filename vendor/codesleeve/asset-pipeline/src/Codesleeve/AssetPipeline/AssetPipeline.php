@@ -3,6 +3,19 @@
 class AssetPipeline
 {
     /**
+     * Parser
+     *
+     * @var Sprockets\Parser
+     */
+    private $parser;
+
+    /**
+     * Generator
+     * @var Sprockets\Generator
+     */
+    private $generator;
+
+    /**
      * Create the asset repository based on this setup
      *
      * @param unsure atm...
@@ -68,18 +81,13 @@ class AssetPipeline
      */
     public function imageTag($filename, $attributes)
     {
-        $file = $this->file($filename);
-        $file = $this->parser->absolutePathToWebPath($file);
-        $html = "<img src=\"{$file}\"";
+        $absolutePath = $this->file($filename);
+        $webPath = $this->parser->absolutePathToWebPath($absolutePath);
 
-        foreach ($attributes as $key => $value)
-        {
-            $html .= "${key} = \"${value}\" ";
-        }
+        $config = $this->getConfig();
+        $composer = $config['image_tag'];
 
-        $html = $html . ">";
-
-        return $html;
+        return $composer->process(array($webPath), array($absolutePath), $attributes);
     }
 
     /**
@@ -169,5 +177,79 @@ class AssetPipeline
     {
         $this->parser->config = $config;
         $this->generator->config = $config;
+        $this->registerAssetPipelineFilters();
+    }
+
+    /**
+     * Get the generator
+     *
+     * @return Sprockets\Generator
+     */
+    public function getGenerator()
+    {
+        return $this->generator;
+    }
+
+    /**
+     * Set the generator
+     *
+     * @param Sprockets\Generator $generator
+     */
+    public function setGenerator($generator)
+    {
+        $this->generator = $generator;
+    }
+
+    /**
+     * Get the parser
+     *
+     * @return Sprockets\Parser
+     */
+    public function getParser()
+    {
+        return $this->parser;
+    }
+
+    /**
+     * Set the parser
+     *
+     * @param Sprockets\Parser $parser
+     */
+    public function setParser($parser)
+    {
+        $this->parser = $parser;
+    }
+
+    /**
+     * This calls a method on every filter we have to pass
+     * in the current pipeline if that method exists
+     *
+     * @return void
+     */
+    public function registerAssetPipelineFilters()
+    {
+        foreach ($this->parser->config['filters'] as $filters)
+        {
+            foreach ($filters as $filter)
+            {
+                if (method_exists($filter, 'setAssetPipeline'))
+                {
+                    $filter->setAssetPipeline($this);
+                }
+            }
+        }
+
+        foreach ($this->generator->config['filters'] as $filters)
+        {
+            foreach ($filters as $filter)
+            {
+                if (method_exists($filter, 'setAssetPipeline'))
+                {
+                    $filter->setAssetPipeline($this);
+                }
+            }
+        }
+
+        return $this;
     }
 }

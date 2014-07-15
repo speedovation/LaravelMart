@@ -5,7 +5,6 @@ namespace Faker\ORM\Doctrine;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\ClassMetadata;
-use Faker\ORM\Doctrine\ColumnTypeGuesser;
 
 /**
  * Service class for populating a table through a Doctrine Entity class.
@@ -78,7 +77,7 @@ class EntityPopulator
         $formatters = array();
         $nameGuesser = new \Faker\Guesser\Name($generator);
         $columnTypeGuesser = new ColumnTypeGuesser($generator);
-        foreach ($this->class->getFieldNames() AS $fieldName) {
+        foreach ($this->class->getFieldNames() as $fieldName) {
             if ($this->class->isIdentifier($fieldName) || !$this->class->hasField($fieldName)) {
                 continue;
             }
@@ -93,28 +92,36 @@ class EntityPopulator
             }
         }
 
-        foreach ($this->class->getAssociationNames() AS $assocName) {
+        foreach ($this->class->getAssociationNames() as $assocName) {
             if ($this->class->isCollectionValuedAssociation($assocName)) {
                 continue;
             }
 
             $relatedClass = $this->class->getAssociationTargetClass($assocName);
 
-            $unique = false;
+            $unique = $optional = false;
             $mappings = $this->class->getAssociationMappings();
             foreach ($mappings as $mapping) {
                 if ($mapping['targetEntity'] == $relatedClass) {
                     if ($mapping['type'] == ClassMetadata::ONE_TO_ONE) {
                         $unique = true;
+                        $optional = isset($mapping['joinColumns'][0]['nullable']) ? $mapping['joinColumns'][0]['nullable'] : false;
                         break;
                     }
                 }
             }
 
             $index = 0;
-            $formatters[$assocName] = function($inserted) use ($relatedClass, &$index, $unique) {
+            $formatters[$assocName] = function ($inserted) use ($relatedClass, &$index, $unique, $optional) {
                 if ($unique && isset($inserted[$relatedClass])) {
-                    return $inserted[$relatedClass][$index++];
+                    $related = null;
+                    if (isset($inserted[$relatedClass][$index]) || !$optional) {
+                        $related = $inserted[$relatedClass][$index];
+                    }
+
+                    $index++;
+
+                    return $related;
                 } elseif (isset($inserted[$relatedClass])) {
                     return $inserted[$relatedClass][mt_rand(0, count($inserted[$relatedClass]) - 1)];
                 }

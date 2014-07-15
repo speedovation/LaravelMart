@@ -7,177 +7,235 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-8" ng-controller="products">
-        <h2>
-            Products
-        </h2>
-        <div class="categories btn-group">
-            <button
-                type="button"
-                class="category btn btn-default active"
-                ng-click="products.setCategory(null)"
-                ng-class="{ 'active' : products.category == null }"
-                >
-                All
-            </button>
-            <button
-                type="button"
-                class="category btn btn-default"
-                ng-repeat="category in products.categories"
-                ng-click="products.setCategory(category)"
-                ng-class="{ 'active' : products.category.id == category.id }"
-                >
-                @{{ category.name }}
-            </button>
-        </div>
-        <div class="products">
-            <div
-                class="product media"
-                ng-repeat="product in products.products | filter : products.filterByCategory"
-                >
-                <button
-                    type="button"
-                    class="pull-left btn btn-default"
-                    ng-click="products.addToBasket(product)"
-                    >
-                    Add to basket
-                </button>
-                <div class="media-body">
-                    <h4 class="media-heading">@{{ product.name }}</h4>
-                    <p>
-                        Price: @{{ product.price }}, Stock: @{{ product.stock }}
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4" ng-controller="basket">
-        <h2>
-            Basket
-        </h2>
-        <form class="basket">
-            <table class="table">
-                <tr
-                    class="product"
-                    ng-repeat="product in basket.products track by $index"
-                    ng-class="{ 'hide' : basket.state != 'shopping' }"
-                    >
-                    <td class="name">
-                        @{{ product.name }}
-                    </td>
-                    <td class="quantity">
-                        <input
-                            class="form-control"
-                            type="number"
-                            ng-model="product.quantity"
-                            ng-change="basket.update()"
-                            min="1"
-                            />
-                    </td>
-                    <td class="product">
-                        @{{ product.total }}
-                    </td>
-                    <td class="product">
-                        <a
-                            class="remove glyphicon glyphicon-remove"
-                            ng-click="basket.remove(product)"
-                            ></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td
-                        colspan="4"
-                        ng-class="{ 'hide' : basket.state != 'shopping' }"
-                        >
-                        <input
-                            type="text"
-                            class="form-control"
-                            placeholder="email"
-                            ng-model="basket.email"
-                            />
-                    </td>
-                </tr>
-                <tr>
-                    <td
-                        colspan="4"
-                        ng-class="{ 'hide' : basket.state != 'shopping' }"
-                        >
-                        <input
-                            type="password"
-                            class="form-control"
-                            placeholder="password"
-                            ng-model="basket.password"
-                            />
-                    </td>
-                </tr>
-                <tr>
-                    <td
-                        colspan="4"
-                        ng-class="{ 'hide' : basket.state != 'shopping' }"
-                        >
-                        <button
-                            type="button"
-                            class="pull-left btn btn-default"
-                            ng-click="basket.authenticate()"
-                            >
-                            Authenticate
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td
-                        colspan="4"
-                        ng-class="{ 'hide' : basket.state != 'paying' }"
-                        >
-                        <input
-                            type="text"
-                            class="form-control"
-                            placeholder="card number"
-                            ng-model="basket.number"
-                            />
-                    </td>
-                </tr>
-                <tr>
-                    <td
-                        colspan="4"
-                        ng-class="{ 'hide' : basket.state != 'paying' }"
-                        >
-                        <input
-                            type="text"
-                            class="form-control"
-                            placeholder="expiry"
-                            ng-model="basket.expiry"
-                            />
-                    </td>
-                </tr>
-                <tr>
-                    <td
-                        colspan="4"
-                        ng-class="{ 'hide' : basket.state != 'paying' }"
-                        >
-                        <input
-                            type="text"
-                            class="form-control"
-                            placeholder="security number"
-                            ng-model="basket.security"
-                            />
-                    </td>
-                </tr>
-                <tr>
-                    <td
-                        colspan="4"
-                        ng-class="{ 'hide' : basket.state != 'paying' }"
-                        >
-                        <button
-                            type="button"
-                            class="pull-left btn btn-default"
-                            ng-click="basket.pay()"
-                            >
-                            Pay
-                        </button>
-                    </td>
-                </tr>
-            </table>
-        </form>
-    </div>
+
+    <ul id="slider3-pager">
+        <li><a href="#"><img src="dist/img/sliders/1_thumb.jpg" alt=""></a></li>
+        <li><a href="#"><img src="dist/img/sliders/2_thumb.jpg" alt=""></a></li>
+        <li><a href="#"><img src="dist/img/sliders/3_thumb.jpg" alt=""></a></li>
+    </ul>
 </div>
+
+{{ HTML::style('assets/css/sliders.css') }}
+<!--<link rel="stylesheet" href="dist/css/components/sliders.css">-->
+<style>
+
+#wrapper {
+    padding: 20px;
+}
+
+p,h3,h4,pre {
+    text-align: left;
+    max-width: 540px;
+    margin: 0 auto 20px;
+}
+
+.rslides {
+    margin: 0 auto 40px;
+}
+
+#slider2,
+#slider3 {
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    margin: 0 auto;
+}
+
+.rslides_tabs {
+    list-style: none;
+    padding: 0;
+    background: rgba(0,0,0,.25);
+    box-shadow: 0 0 1px rgba(255,255,255,.3), inset 0 0 5px rgba(0,0,0,1.0);
+    -moz-box-shadow: 0 0 1px rgba(255,255,255,.3), inset 0 0 5px rgba(0,0,0,1.0);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.3), inset 0 0 5px rgba(0,0,0,1.0);
+    font-size: 18px;
+    list-style: none;
+    margin: 0 auto 50px;
+    max-width: 540px;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+}
+
+.rslides_tabs li {
+    display: inline;
+    float: none;
+    margin-right: 1px;
+}
+
+.rslides_tabs a {
+    width: auto;
+    line-height: 20px;
+    padding: 9px 20px;
+    height: auto;
+    background: transparent;
+    display: inline;
+}
+
+.rslides_tabs li:first-child {
+    margin-left: 0;
+}
+
+.rslides_tabs .rslides_here a {
+    background: rgba(255,255,255,.1);
+    color: #fff;
+    font-weight: bold;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#download {
+    background: #333;
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 60px auto;
+    max-width: 500px;
+    padding: 20px;
+}
+
+#download:hover {
+    background: rgba(255,255,255,.15);
+}
+
+.footer {
+    font-size: 11px;
+}
+
+/* Callback example */
+
+h3 {
+    font: 20px/30px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-align: center;
+    color: #fff;
+}
+
+.events {
+    list-style: none;
+}
+
+.callbacks_container {
+    margin-bottom: 50px;
+    position: relative;
+    float: left;
+    width: 100%;
+}
+
+.callbacks {
+    position: relative;
+    list-style: none;
+    overflow: hidden;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.callbacks li {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
+.callbacks img {
+    display: block;
+    position: relative;
+    z-index: 1;
+    height: auto;
+    width: 100%;
+    border: 0;
+}
+
+.callbacks .caption {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    font-size: 20px;
+    text-shadow: none;
+    color: #fff;
+    background: #000;
+    background: rgba(0,0,0, .8);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 10px 20px;
+    margin: 0;
+    max-width: none;
+}
+
+.callbacks_nav {
+    position: absolute;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    top: 52%;
+    left: 0;
+    opacity: 0.7;
+    z-index: 3;
+    text-indent: -9999px;
+    overflow: hidden;
+    text-decoration: none;
+    height: 61px;
+    width: 38px;
+    background: transparent url("dist/img/sliders/themes.gif") no-repeat left top;
+    margin-top: -45px;
+}
+
+.callbacks_nav:active {
+    opacity: 1.0;
+}
+
+.callbacks_nav.next {
+    left: auto;
+    background-position: right top;
+    right: 0;
+}
+
+#slider3-pager a {
+    display: inline-block;
+}
+
+#slider3-pager img {
+    float: left;
+}
+
+#slider3-pager .rslides_here a {
+    background: transparent;
+    box-shadow: 0 0 0 2px #666;
+}
+
+#slider3-pager a {
+    padding: 0;
+}
+
+@media screen and (max-width: 600px) {
+    h1 {
+        font: 24px/50px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    .callbacks_nav {
+        top: 47%;
+    }
+}
+
+
+
+
+</style>
+{{ HTML::script('assets/js/sliders.js') }}
+<script>
+    // You can also use "$(window).load(function() {"
+    $(function () {
+
+        // Slideshow 3
+        $("#slider3").responsiveSlides({
+            manualControls: '#slider3-pager',
+            maxwidth: 540
+        });
+    });
+</script>

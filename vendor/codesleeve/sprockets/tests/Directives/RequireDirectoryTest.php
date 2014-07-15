@@ -1,7 +1,7 @@
 <?php namespace Codesleeve\Sprockets;
 
 class RequireDirectoryTest extends TestCase
-{ 
+{
     public function setUp()
     {
     	$this->basePath = realpath(__DIR__ . '/../fixtures');
@@ -17,7 +17,7 @@ class RequireDirectoryTest extends TestCase
 
     /**
      * Just make sure it doesn't throw some sort of exception or error
-     * 
+     *
      * @return void
      */
     public function testProcess()

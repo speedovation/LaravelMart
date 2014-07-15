@@ -1,7 +1,7 @@
 <?php namespace Codesleeve\Sprockets;
 
 class ManifestTest extends TestCase
-{ 
+{
     public function setUp()
     {
         $this->basePath = realpath(__DIR__ . '/fixtures');
@@ -46,6 +46,7 @@ class ManifestTest extends TestCase
             '/app/assets/javascripts/app/bindings/data-colors.js.coffee',
             '/app/assets/javascripts/app/bindings/foobar/bar.js',
             '/app/assets/javascripts/app/bindings/foobar/foo.js.coffee',
+            '/app/assets/javascripts/app/bindings/foobar/test spaces.js',
             '/app/assets/javascripts/app/bindings/foobar/bar/lots_of_recursion.js',
             '/app/assets/javascripts/app/bindings/subdir/data-foobar.js',
             '/app/assets/javascripts/app/bindings/subdir/data-model.js',
@@ -62,6 +63,7 @@ class ManifestTest extends TestCase
             '/app/assets/javascripts/app/bindings/data-colors.js.coffee',
             '/app/assets/javascripts/app/bindings/foobar/bar.js',
             '/app/assets/javascripts/app/bindings/foobar/foo.js.coffee',
+            '/app/assets/javascripts/app/bindings/foobar/test spaces.js',
             '/app/assets/javascripts/app/bindings/foobar/bar/lots_of_recursion.js',
             '/app/assets/javascripts/app/bindings/subdir/data-foobar.js',
             '/app/assets/javascripts/app/bindings/subdir/data-model.js',
@@ -89,7 +91,7 @@ class ManifestTest extends TestCase
     {
         $output = $this->parser->javascriptFiles('manifest8');
         $output = $this->stripBasePathFromArray($output);
-        
+
         $this->assertEquals($output[0], '/app/assets/javascripts/app/bindings/data-changer.js');
         $this->assertEquals($output, array_unique($output));
     }
@@ -185,4 +187,15 @@ class ManifestTest extends TestCase
         ));
     }
 
+    public function testFileLoadingOrderForRequireTree()
+    {
+        $output1 = $this->parser->javascriptFiles('manifest9');
+        $output1 = $this->stripBasePathFromArray($output1);
+
+        $output2 = $this->parser->javascriptFiles('manifest10');
+        $output2 = $this->stripBasePathFromArray($output2);
+
+        $this->assertNotEquals($output1, $output2);
+        $this->assertEquals(count($output1), count($output2));
+    }
 }

@@ -53,7 +53,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase {
 	 *
 	 * Needs to be implemented by subclasses.
 	 *
-	 * @return Symfony\Component\HttpKernel\HttpKernelInterface
+	 * @return \Symfony\Component\HttpKernel\HttpKernelInterface
 	 */
 	abstract public function createApplication();
 
@@ -173,20 +173,20 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase {
 	{
 		if (is_array($key)) return $this->assertViewHasAll($key);
 
-		$response = $this->client->getResponse()->original;
+		$response = $this->client->getResponse();
 
-		if ( ! $response instanceof View)
+		if ( ! isset($response->original) || ! $response->original instanceof View)
 		{
 			return $this->assertTrue(false, 'The response was not a view.');
 		}
 
 		if (is_null($value))
 		{
-			$this->assertArrayHasKey($key, $response->getData());
+			$this->assertArrayHasKey($key, $response->original->getData());
 		}
 		else
 		{
-			$this->assertEquals($value, $response->$key);
+			$this->assertEquals($value, $response->original->$key);
 		}
 	}
 
@@ -209,6 +209,24 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase {
 				$this->assertViewHas($key, $value);
 			}
 		}
+	}
+
+	/**
+	 * Assert that the response view is missing a piece of bound data.
+	 *
+	 * @param  string  $key
+	 * @return void
+	 */
+	public function assertViewMissing($key)
+	{
+		$response = $this->client->getResponse();
+
+		if ( ! isset($response->original) || ! $response->original instanceof View)
+		{
+			return $this->assertTrue(false, 'The response was not a view.');
+		}
+
+		$this->assertArrayNotHasKey($key, $response->original->getData());
 	}
 
 	/**
@@ -333,6 +351,47 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase {
 	public function assertHasOldInput()
 	{
 		$this->assertSessionHas('_old_input');
+	}
+
+	/**
+	 * Set the session to the given array.
+	 *
+	 * @param  array  $data
+	 * @return void
+	 */
+	public function session(array $data)
+	{
+		$this->startSession();
+
+		foreach ($data as $key => $value)
+		{
+			$this->app['session']->put($key, $value);
+		}
+	}
+
+	/**
+	 * Flush all of the current session data.
+	 *
+	 * @return void
+	 */
+	public function flushSession()
+	{
+		$this->startSession();
+
+		$this->app['session']->flush();
+	}
+
+	/**
+	 * Start the session for the application.
+	 *
+	 * @return void
+	 */
+	protected function startSession()
+	{
+		if ( ! $this->app['session']->isStarted())
+		{
+			$this->app['session']->start();
+		}
 	}
 
 	/**

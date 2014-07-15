@@ -7,7 +7,7 @@ use Illuminate\Queue\Failed\FailedJobProviderInterface;
 class Worker {
 
 	/**
-	 * THe queue manager instance.
+	 * The queue manager instance.
 	 *
 	 * @var \Illuminate\Queue\QueueManager
 	 */
@@ -162,7 +162,9 @@ class Worker {
 	{
 		if ($this->events)
 		{
-			$this->events->fire('illuminate.queue.failed', array($connection, $job));
+			$data = json_decode($job->getRawBody(), true);
+
+			$this->events->fire('illuminate.queue.failed', array($connection, $job, $data));
 		}
 	}
 

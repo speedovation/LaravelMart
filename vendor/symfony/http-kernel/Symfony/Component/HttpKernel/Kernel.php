@@ -59,25 +59,25 @@ abstract class Kernel implements KernelInterface, TerminableInterface
     protected $startTime;
     protected $loadClassCache;
 
-    const VERSION         = '2.4.1-DEV';
-    const VERSION_ID      = '20401';
+    const VERSION         = '2.4.8-DEV';
+    const VERSION_ID      = '20408';
     const MAJOR_VERSION   = '2';
     const MINOR_VERSION   = '4';
-    const RELEASE_VERSION = '1';
+    const RELEASE_VERSION = '8';
     const EXTRA_VERSION   = 'DEV';
 
     /**
      * Constructor.
      *
      * @param string  $environment The environment
-     * @param Boolean $debug       Whether to enable debugging or not
+     * @param bool    $debug       Whether to enable debugging or not
      *
      * @api
      */
     public function __construct($environment, $debug)
     {
         $this->environment = $environment;
-        $this->debug = (Boolean) $debug;
+        $this->debug = (bool) $debug;
         $this->rootDir = $this->getRootDir();
         $this->name = $this->getName();
 
@@ -260,7 +260,7 @@ abstract class Kernel implements KernelInterface, TerminableInterface
      *
      * @param string  $name  A resource name to locate
      * @param string  $dir   A directory where to look for the resource first
-     * @param Boolean $first Whether to return the first path or paths for all matching bundles
+     * @param bool    $first Whether to return the first path or paths for all matching bundles
      *
      * @return string|array The absolute path of the resource or an array if $first is false
      *
@@ -757,23 +757,39 @@ abstract class Kernel implements KernelInterface, TerminableInterface
         $rawChunk = '';
         $output = '';
         $tokens = token_get_all($source);
+        $ignoreSpace = false;
         for (reset($tokens); false !== $token = current($tokens); next($tokens)) {
             if (is_string($token)) {
                 $rawChunk .= $token;
             } elseif (T_START_HEREDOC === $token[0]) {
-                $output .= preg_replace(array('/\s+$/Sm', '/\n+/S'), "\n", $rawChunk).$token[1];
+                $output .= $rawChunk.$token[1];
                 do {
                     $token = next($tokens);
                     $output .= $token[1];
                 } while ($token[0] !== T_END_HEREDOC);
                 $rawChunk = '';
-            } elseif (!in_array($token[0], array(T_COMMENT, T_DOC_COMMENT))) {
+            } elseif (T_WHITESPACE === $token[0]) {
+                if ($ignoreSpace) {
+                    $ignoreSpace = false;
+
+                    continue;
+                }
+
+                // replace multiple new lines with a single newline
+                $rawChunk .= preg_replace(array('/\n{2,}/S'), "\n", $token[1]);
+            } elseif (in_array($token[0], array(T_COMMENT, T_DOC_COMMENT))) {
+                $ignoreSpace = true;
+            } else {
                 $rawChunk .= $token[1];
+
+                // The PHP-open tag already has a new-line
+                if (T_OPEN_TAG === $token[0]) {
+                    $ignoreSpace = true;
+                }
             }
         }
 
-        // replace multiple new lines with a single newline
-        $output .= preg_replace(array('/\s+$/Sm', '/\n+/S'), "\n", $rawChunk);
+        $output .= $rawChunk;
 
         return $output;
     }

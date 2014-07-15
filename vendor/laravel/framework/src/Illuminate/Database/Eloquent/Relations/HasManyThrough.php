@@ -2,14 +2,30 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Query\Expression;
 use Illuminate\Database\Eloquent\Collection;
 
 class HasManyThrough extends Relation {
 
+	/**
+	 * The distance parent model instance.
+	 *
+	 * @var \Illuminate\Database\Eloquent\Model
+	 */
 	protected $farParent;
 
+	/**
+	 * The near key on the relationship.
+	 *
+	 * @var string
+	 */
 	protected $firstKey;
 
+	/**
+	 * The far key on the relationship.
+	 *
+	 * @var string
+	 */
 	protected $secondKey;
 
 	/**
@@ -17,7 +33,8 @@ class HasManyThrough extends Relation {
 	 *
 	 * @param  \Illuminate\Database\Eloquent\Builder  $query
 	 * @param  \Illuminate\Database\Eloquent\Model  $parent
-	 * @param  string  $foreignKey
+	 * @param  string  $firstKey
+	 * @param  string  $secondKey
 	 * @return void
 	 */
 	public function __construct(Builder $query, Model $farParent, Model $parent, $firstKey, $secondKey)
@@ -50,19 +67,26 @@ class HasManyThrough extends Relation {
 	 * Add the constraints for a relationship count query.
 	 *
 	 * @param  \Illuminate\Database\Eloquent\Builder  $query
+	 * @param  \Illuminate\Database\Eloquent\Builder  $parent
 	 * @return \Illuminate\Database\Eloquent\Builder
 	 */
-	public function getRelationCountQuery(Builder $query)
+	public function getRelationCountQuery(Builder $query, Builder $parent)
 	{
+		$parentTable = $this->parent->getTable();
+
 		$this->setJoin($query);
 
-		return parent::getRelationCountQuery($query);
+		$query->select(new Expression('count(*)'));
+
+		$key = $this->wrap($parentTable.'.'.$this->firstKey);
+
+		return $query->where($this->getHasCompareKey(), '=', new Expression($key));
 	}
 
 	/**
 	 * Set the join clause on the query.
 	 *
-	 * @param  \Illuminate\Databaes\Eloquent\Builder|null  $query
+	 * @param  \Illuminate\Database\Eloquent\Builder|null  $query
 	 * @return void
 	 */
 	protected function setJoin(Builder $query = null)
@@ -92,7 +116,7 @@ class HasManyThrough extends Relation {
 	 *
 	 * @param  array   $models
 	 * @param  string  $relation
-	 * @return void
+	 * @return array
 	 */
 	public function initRelation(array $models, $relation)
 	{
@@ -219,7 +243,7 @@ class HasManyThrough extends Relation {
 	}
 
 	/**
-	 * Get the key for comparing against the pareny key in "has" query.
+	 * Get the key for comparing against the parent key in "has" query.
 	 *
 	 * @return string
 	 */

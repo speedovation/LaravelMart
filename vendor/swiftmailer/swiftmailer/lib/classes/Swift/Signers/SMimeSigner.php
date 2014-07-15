@@ -11,8 +11,6 @@
 /**
  * MIME Message Signer used to apply S/MIME Signature/Encryption to a message.
  *
- * @package    Swift
- * @subpackage Signatures
  *
  * @author     Romain-Geissler
  * @author     Sebastiaan Stok <s.stok@rollerscapes.net>
@@ -89,7 +87,7 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
      *
      * @param string       $certificate
      * @param string|array $privateKey  If the key needs an passphrase use array('file-location', 'passphrase') instead
-     * @param integer      $signOptions Bitwise operator options for openssl_pkcs7_sign()
+     * @param int          $signOptions Bitwise operator options for openssl_pkcs7_sign()
      *
      * @return Swift_Signers_SMimeSigner
      */
@@ -118,7 +116,7 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
      * @link http://nl3.php.net/manual/en/openssl.ciphers.php
      *
      * @param string|array $recipientCerts Either an single X.509 certificate, or an assoc array of X.509 certificates.
-     * @param integer      $cipher
+     * @param int          $cipher
      *
      * @return Swift_Signers_SMimeSigner
      */
@@ -176,7 +174,7 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
     }
 
     /**
-     * @return Boolean
+     * @return bool
      */
     public function isSignThenEncrypt()
     {
@@ -194,13 +192,13 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
     }
 
     /**
-     * Change the Swift_SignedMessage to apply the singing.
+     * Change the Swift_Message to apply the signing.
      *
-     * @param Swift_SignedMessage $message
+     * @param Swift_Message $message
      *
      * @return Swift_Signers_SMimeSigner
      */
-    public function signMessage(Swift_SignedMessage $message)
+    public function signMessage(Swift_Message $message)
     {
         if (null === $this->signCertificate && null === $this->encryptCert) {
             return $this;
@@ -232,9 +230,9 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
 
     /**
      * @param Swift_InputByteStream $inputStream
-     * @param Swift_SignedMessage   $mimeEntity
+     * @param Swift_Message   $mimeEntity
      */
-    protected function toSMimeByteStream(Swift_InputByteStream $inputStream, Swift_SignedMessage $message)
+    protected function toSMimeByteStream(Swift_InputByteStream $inputStream, Swift_Message $message)
     {
         $mimeEntity = $this->createMessage($message);
         $messageStream = new Swift_ByteStream_TemporaryFileByteStream();
@@ -260,11 +258,11 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
     }
 
     /**
-     * @param Swift_SignedMessage $message
+     * @param Swift_Message $message
      *
      * @return Swift_Message
      */
-    protected function createMessage(Swift_SignedMessage $message)
+    protected function createMessage(Swift_Message $message)
     {
         $mimeEntity = new Swift_Message('', $message->getBody(), $message->getContentType(), $message->getCharset());
         $mimeEntity->setChildren($message->getChildren());
@@ -339,7 +337,7 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
     }
 
     /**
-     * Merges an OutputByteStream to Swift_SignedMessage.
+     * Merges an OutputByteStream to Swift_Message.
      *
      * @param Swift_OutputByteStream $fromStream
      * @param Swift_Message          $message

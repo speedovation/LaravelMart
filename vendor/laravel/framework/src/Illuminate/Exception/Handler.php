@@ -102,7 +102,7 @@ class Handler {
 	 */
 	protected function registerExceptionHandler()
 	{
-		set_exception_handler(array($this, 'handleException'));
+		set_exception_handler(array($this, 'handleUncaughtException'));
 	}
 
 	/**
@@ -126,11 +126,11 @@ class Handler {
 	 *
 	 * @throws \ErrorException
 	 */
-	public function handleError($level, $message, $file, $line, $context)
+	public function handleError($level, $message, $file = '', $line = 0, $context = array())
 	{
 		if (error_reporting() & $level)
 		{
-			throw new ErrorException($message, $level, 0, $file, $line);
+			throw new ErrorException($message, 0, $level, $file, $line);
 		}
 	}
 
@@ -138,7 +138,7 @@ class Handler {
 	 * Handle an exception for the application.
 	 *
 	 * @param  \Exception  $exception
-	 * @return void
+	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
 	public function handleException($exception)
 	{
@@ -149,31 +149,24 @@ class Handler {
 		// type of exceptions to handled by a Closure giving great flexibility.
 		if ( ! is_null($response))
 		{
-			$response = $this->prepareResponse($response);
+			return $this->prepareResponse($response);
 		}
 
 		// If no response was sent by this custom exception handler, we will call the
 		// default exception displayer for the current application context and let
 		// it show the exception to the user / developer based on the situation.
-		else
-		{
-			$response = $this->displayException($exception);
-		}
-
-		return $this->sendResponse($response);
+		return $this->displayException($exception);
 	}
 
 	/**
-	 * Send the repsonse back to the client.
+	 * Handle an uncaught exception.
 	 *
-	 * @param  \Symfony\Component\HttpFoundation\Response  $response
-	 * @return mixed
+	 * @param  \Exception  $exception
+	 * @return void
 	 */
-	protected function sendResponse($response)
+	public function handleUncaughtException($exception)
 	{
-		return $this->responsePreparer->readyForResponses() && ! $this->runningInConsole()
-								? $response
-								: $response->send();
+		$this->handleException($exception)->send();
 	}
 
 	/**
@@ -212,7 +205,7 @@ class Handler {
 	/**
 	 * Handle a console exception.
 	 *
-	 * @param  Exception  $exception
+	 * @param  \Exception  $exception
 	 * @return void
 	 */
 	public function handleConsole($exception)
@@ -223,7 +216,7 @@ class Handler {
 	/**
 	 * Handle the given exception.
 	 *
-	 * @param  Exception  $exception
+	 * @param  \Exception  $exception
 	 * @param  bool  $fromConsole
 	 * @return void
 	 */
@@ -290,7 +283,7 @@ class Handler {
 	 * Determine if the given handler handles this exception.
 	 *
 	 * @param  Closure    $handler
-	 * @param  Exception  $exception
+	 * @param  \Exception  $exception
 	 * @return bool
 	 */
 	protected function handlesException(Closure $handler, $exception)
@@ -304,7 +297,7 @@ class Handler {
 	 * Determine if the given handler type hints the exception.
 	 *
 	 * @param  ReflectionFunction  $reflection
-	 * @param  Exception  $exception
+	 * @param  \Exception  $exception
 	 * @return bool
 	 */
 	protected function hints(ReflectionFunction $reflection, $exception)
@@ -319,7 +312,7 @@ class Handler {
 	/**
 	 * Format an exception thrown by a handler.
 	 *
-	 * @param  Exception  $e
+	 * @param  \Exception  $e
 	 * @return string
 	 */
 	protected function formatException(\Exception $e)

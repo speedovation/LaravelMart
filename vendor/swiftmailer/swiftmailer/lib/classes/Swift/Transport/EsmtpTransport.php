@@ -11,8 +11,6 @@
 /**
  * Sends Messages over SMTP with ESMTP support.
  *
- * @package    Swift
- * @subpackage Transport
  * @author     Chris Corbyn
  */
 class Swift_Transport_EsmtpTransport extends Swift_Transport_AbstractSmtpTransport implements Swift_Transport_SmtpAgent
@@ -86,7 +84,7 @@ class Swift_Transport_EsmtpTransport extends Swift_Transport_AbstractSmtpTranspo
     /**
      * Set the port to connect to.
      *
-     * @param integer $port
+     * @param int     $port
      *
      * @return Swift_Transport_EsmtpTransport
      */
@@ -110,7 +108,7 @@ class Swift_Transport_EsmtpTransport extends Swift_Transport_AbstractSmtpTranspo
     /**
      * Set the connection timeout.
      *
-     * @param integer $timeout seconds
+     * @param int     $timeout seconds
      *
      * @return Swift_Transport_EsmtpTransport
      */
@@ -267,8 +265,6 @@ class Swift_Transport_EsmtpTransport extends Swift_Transport_AbstractSmtpTranspo
         trigger_error('Call to undefined method ' . $method, E_USER_ERROR);
     }
 
-    // -- Protected methods
-
     /** Get the params to initialize the buffer */
     protected function _getBufferParams()
     {
@@ -340,8 +336,6 @@ class Swift_Transport_EsmtpTransport extends Swift_Transport_AbstractSmtpTranspo
             sprintf("RCPT TO: <%s>%s\r\n", $address, $paramStr), array(250, 251, 252)
             );
     }
-
-    // -- Private methods
 
     /** Determine ESMTP capabilities by function group */
     private function _getCapabilities($ehloResponse)

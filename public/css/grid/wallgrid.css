@@ -1,0 +1,242 @@
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.row {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1240px;
+  *zoom: 1;
+}
+[class*='col-'] {
+  float: left;
+  padding: 0.3em;
+}
+[class*='col-']:last-of-type {
+  float: right;
+}
+.row:before,
+.row:after {
+  content: "";
+  display: table;
+}
+.row:after {
+  clear: both;
+}
+@media @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .row {
+    width: 480px;
+  }
+  .mobile-1 {
+    width: 100%;
+  }
+  .mobile-2 {
+    width: 50%;
+  }
+  .mobile-3 {
+    width: 33.333333333333336%;
+  }
+  .mobile-4 {
+    width: 25%;
+  }
+  .mobile-5 {
+    width: 20%;
+  }
+  .mobile-6 {
+    width: 16.666666666666668%;
+  }
+  .mobile-7 {
+    width: 14.285714285714286%;
+  }
+  .mobile-8 {
+    width: 12.5%;
+  }
+  .mobile-9 {
+    width: 11.11111111111111%;
+  }
+  .mobile-10 {
+    width: 10%;
+  }
+  .mobile-11 {
+    width: 9.090909090909092%;
+  }
+  .mobile-12 {
+    width: 8.333333333333334%;
+  }
+  .mobile-13 {
+    width: 7.6923076923076925%;
+  }
+  .mobile-14 {
+    width: 7.142857142857143%;
+  }
+  .mobile-15 {
+    width: 6.666666666666667%;
+  }
+  .mobile-16 {
+    width: 6.25%;
+  }
+}
+@media @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+  .row {
+    width: 1024px;
+  }
+  .tablet-1 {
+    width: 100%;
+  }
+  .tablet-2 {
+    width: 50%;
+  }
+  .tablet-3 {
+    width: 33.333333333333336%;
+  }
+  .tablet-4 {
+    width: 25%;
+  }
+  .tablet-5 {
+    width: 20%;
+  }
+  .tablet-6 {
+    width: 16.666666666666668%;
+  }
+  .tablet-7 {
+    width: 14.285714285714286%;
+  }
+  .tablet-8 {
+    width: 12.5%;
+  }
+  .tablet-9 {
+    width: 11.11111111111111%;
+  }
+  .tablet-10 {
+    width: 10%;
+  }
+  .tablet-11 {
+    width: 9.090909090909092%;
+  }
+  .tablet-12 {
+    width: 8.333333333333334%;
+  }
+  .tablet-13 {
+    width: 7.6923076923076925%;
+  }
+  .tablet-14 {
+    width: 7.142857142857143%;
+  }
+  .tablet-15 {
+    width: 6.666666666666667%;
+  }
+  .tablet-16 {
+    width: 6.25%;
+  }
+}
+@media @media only screen and (min-width : 1025px) {
+  .row {
+    width: 1200px;
+  }
+  .desktop-1 {
+    width: 100%;
+  }
+  .desktop-2 {
+    width: 50%;
+  }
+  .desktop-3 {
+    width: 33.333333333333336%;
+  }
+  .desktop-4 {
+    width: 25%;
+  }
+  .desktop-5 {
+    width: 20%;
+  }
+  .desktop-6 {
+    width: 16.666666666666668%;
+  }
+  .desktop-7 {
+    width: 14.285714285714286%;
+  }
+  .desktop-8 {
+    width: 12.5%;
+  }
+  .desktop-9 {
+    width: 11.11111111111111%;
+  }
+  .desktop-10 {
+    width: 10%;
+  }
+  .desktop-11 {
+    width: 9.090909090909092%;
+  }
+  .desktop-12 {
+    width: 8.333333333333334%;
+  }
+  .desktop-13 {
+    width: 7.6923076923076925%;
+  }
+  .desktop-14 {
+    width: 7.142857142857143%;
+  }
+  .desktop-15 {
+    width: 6.666666666666667%;
+  }
+  .desktop-16 {
+    width: 6.25%;
+  }
+}
+@media @media only screen and (min-width : 1440) {
+  .row {
+    width: 1824px;
+  }
+  .large-1 {
+    width: 100%;
+  }
+  .large-2 {
+    width: 50%;
+  }
+  .large-3 {
+    width: 33.333333333333336%;
+  }
+  .large-4 {
+    width: 25%;
+  }
+  .large-5 {
+    width: 20%;
+  }
+  .large-6 {
+    width: 16.666666666666668%;
+  }
+  .large-7 {
+    width: 14.285714285714286%;
+  }
+  .large-8 {
+    width: 12.5%;
+  }
+  .large-9 {
+    width: 11.11111111111111%;
+  }
+  .large-10 {
+    width: 10%;
+  }
+  .large-11 {
+    width: 9.090909090909092%;
+  }
+  .large-12 {
+    width: 8.333333333333334%;
+  }
+  .large-13 {
+    width: 7.6923076923076925%;
+  }
+  .large-14 {
+    width: 7.142857142857143%;
+  }
+  .large-15 {
+    width: 6.666666666666667%;
+  }
+  .large-16 {
+    width: 6.25%;
+  }
+}

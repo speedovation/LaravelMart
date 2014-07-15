@@ -32,7 +32,7 @@ class Environment {
 	/**
 	 * The IoC container instance.
 	 *
-	 * @var \Illuminate\Container
+	 * @var \Illuminate\Container\Container
 	 */
 	protected $container;
 
@@ -283,6 +283,24 @@ class Environment {
 		}
 
 		return $creators;
+	}
+
+	/**
+	 * Register multiple view composers via an array.
+	 *
+	 * @param array  $composers
+	 * @return array
+	 */
+	public function composers(array $composers)
+	{
+		$registered = array();
+
+		foreach ($composers as $callback => $views)
+		{
+			$registered += $this->composer($views, $callback);
+		}
+
+		return $registered;
 	}
 
 	/**
@@ -627,6 +645,18 @@ class Environment {
 	}
 
 	/**
+	 * Prepend a new namespace to the loader.
+	 *
+	 * @param  string  $namespace
+	 * @param  string|array  $hints
+	 * @return void
+	 */
+	public function prependNamespace($namespace, $hints)
+	{
+		$this->finder->prependNamespace($namespace, $hints);
+	}
+
+	/**
 	 * Register a valid view extension and its engine.
 	 *
 	 * @param  string   $extension
@@ -643,7 +673,7 @@ class Environment {
 			$this->engines->register($engine, $resolver);
 		}
 
-		unset($this->extensions[$engine]);
+		unset($this->extensions[$extension]);
 
 		$this->extensions = array_merge(array($extension => $engine), $this->extensions);
 	}

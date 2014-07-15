@@ -42,7 +42,7 @@ class Mailer {
 	/**
 	 * The IoC container instance.
 	 *
-	 * @var \Illuminate\Container
+	 * @var \Illuminate\Container\Container
 	 */
 	protected $container;
 
@@ -59,6 +59,13 @@ class Mailer {
 	 * @var array
 	 */
 	protected $failedRecipients = array();
+
+	/**
+	 * The QueueManager instance.
+	 *
+	 * @var \Illuminate\Queue\QueueManager
+	 */
+	protected $queue;
 
 	/**
 	 * Create a new Mailer instance.

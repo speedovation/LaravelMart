@@ -49,12 +49,14 @@
         "php": ">=5.0.0"
     },
     "require-dev": {
+        "phing/phing": "2.7.*",
+        "phpunit/phpunit": "4.0.*",
         "squizlabs/php_codesniffer": "1.*"
     },
     "suggest": {
         "ext-mcrypt": "Install the Mcrypt extension in order to speed up a wide variety of cryptographic operations.",
         "ext-gmp": "Install the GMP (GNU Multiple Precision) extension in order to speed up arbitrary precision integer arithmetic operations.",
-        "pear-pear/PHP_Compat": "Install PHP_Compat to get phpseclib working on PHP >= 4.3.3." 
+        "pear-pear/PHP_Compat": "Install PHP_Compat to get phpseclib working on PHP < 4.3.3."
     },
     "include-path": ["phpseclib/"],
     "autoload": {
@@ -62,7 +64,8 @@
             "Crypt": "phpseclib/",
             "File": "phpseclib/",
             "Math": "phpseclib/",
-            "Net": "phpseclib/"
+            "Net": "phpseclib/",
+            "System": "phpseclib/"
         },
         "files": [
             "phpseclib/Crypt/Random.php"

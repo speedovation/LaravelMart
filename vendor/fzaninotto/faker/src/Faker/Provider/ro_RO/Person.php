@@ -4,15 +4,18 @@ namespace Faker\Provider\ro_RO;
 class Person extends \Faker\Provider\Person
 {
     // http://en.wikipedia.org/wiki/Romanian_name, prefixes are for more formal purposes
-    protected static $formats = array(
+    protected static $maleNameFormats = array(
         '{{firstNameMale}} {{lastName}}',
         '{{firstNameMale}} {{lastName}}',
         '{{firstNameMale}} {{lastName}}',
+        '{{titleMale}} {{firstNameMale}} {{lastName}}',
+    );
+
+    protected static $femaleNameFormats = array(
         '{{firstNameFemale}} {{lastName}}',
         '{{firstNameFemale}} {{lastName}}',
         '{{firstNameFemale}} {{lastName}}',
-        '{{prefixMale}} {{firstNameMale}} {{lastName}}',
-        '{{prefixFemale}} {{firstNameFemale}} {{lastName}}'
+        '{{titleFemale}} {{firstNameFemale}} {{lastName}}'
     );
 
     //http://ro.wikipedia.org/wiki/List%C4%83_de_prenume_rom%C3%A2ne%C8%99ti#Feminine
@@ -82,50 +85,118 @@ class Person extends \Faker\Provider\Person
         'Vintila', 'Visan', 'Vlad', 'Voicu', 'Voinea', 'Zaharia', 'Zamfir'
     );
 
-    protected static $prefixMale = array('dl.', 'ing.', 'dr.');
-    protected static $prefixFemale = array('d-na.', 'd-șoara', 'ing.', 'dr.');
+    protected static $titleMale = array('dl.', 'ing.', 'dr.');
+    protected static $titleFemale = array('d-na.', 'd-șoara', 'ing.', 'dr.');
+
+    protected static $cnpCountyCodes = array(
+        'AB' => '01', 'AR' => '02', 'AG' => '03', 'B'  => '40', 'BC' => '04', 'BH' => '05',
+        'BN' => '06', 'BT' => '07', 'BV' => '08', 'BR' => '09', 'BZ' => '10', 'CS' => '11',
+        'CL' => '51', 'CJ' => '12', 'CT' => '13', 'CV' => '14', 'DB' => '15', 'DJ' => '16',
+        'GL' => '17', 'GR' => '52', 'GJ' => '18', 'HR' => '19', 'HD' => '20', 'IL' => '21',
+        'IS' => '22', 'IF' => '23', 'MM' => '24', 'MH' => '25', 'MS' => '26', 'NT' => '27',
+        'OT' => '28', 'PH' => '29', 'SM' => '30', 'SJ' => '31', 'SB' => '32', 'SV' => '33',
+        'TR' => '34', 'TM' => '35', 'TL' => '36', 'VS' => '37', 'VL' => '38', 'VN' => '39',
+
+        'B1' => '41', 'B2' => '42', 'B3' => '43', 'B4' => '44', 'B5' => '45', 'B6' => '46'
+    );
 
     /**
-     * @example 'Ion Popescu'
+     * Personal Numerical Code (CNP)
+     *
+     * @link http://ro.wikipedia.org/wiki/Cod_numeric_personal
+     * @example 1111111111118
+     *
+     * @param  string  $gender  Valid values: m, f, 1, 2
+     * @param  integer $century Valid values: 1800, 1900, 2000, 1, 2, 3, 4, 5, 6
+     * @param  string  $county  Valid values: 2 letter ISO 3166-2:RO county codes and B1-B6 for Bucharest's 6 sectors
+     * @return string
+     *
      */
-    public function name()
+    public function cnp($gender = null, $century = null, $county = null)
     {
-        $format = static::randomElement(static::$formats);
+        if (is_null($county) || !array_key_exists($county, static::$cnpCountyCodes)) {
+            $countyCode = static::randomElement(array_values(static::$cnpCountyCodes));
+        } else {
+            $countyCode = static::$cnpCountyCodes[$county];
+        }
 
-        return $this->generator->parse($format);
+        $cnp = (string) static::cnpFirstDigit($gender, $century)
+             . static::numerify('##')
+             . sprintf('%02d', $this->generator->month())
+             . sprintf('%02d', $this->generator->dayOfMonth())
+             . $countyCode
+             . static::numerify('##%')
+        ;
+
+        $cnp = static::cnpAddChecksum($cnp);
+
+        return $cnp;
     }
 
     /**
-     * @example 'Ion'
+     * Calculates the first digit for the Personal Numerical Code (CNP) based on
+     * the gender and century
+     *
+     * @param  string  $gender  Valid values: m, f, 1, 2
+     * @param  integer $century Valid values: 1800, 1900, 2000, 1, 2, 3, 4, 5, 6
+     * @return integer
      */
-    public static function firstNameMale()
+    protected static function cnpFirstDigit($gender = null, $century = null)
     {
-        return static::randomElement(static::$firstNameMale);
+        switch ($century) {
+            case 1800:
+            case 3:
+            case 4:
+                $centuryCode = 2;
+                break;
+            case 1900:
+            case 1:
+            case 2:
+                $centuryCode = 0;
+                break;
+            case 2000:
+            case 5:
+            case 6:
+                $centuryCode = 4;
+                break;
+            default:
+                $centuryCode = static::randomElement(array(0, 2, 4, 6, 9));
+        }
+
+        switch (strtolower($gender)) {
+            case 'm':
+            case 1:
+                $genderCode = 1;
+                break;
+            case 'f':
+            case 2:
+                $genderCode = 2;
+                break;
+            default:
+                $genderCode = static::randomElement(array(1, 2));
+        }
+
+        $firstDigit = $centuryCode + $genderCode;
+
+        return ($firstDigit > 9) ? 9 : $firstDigit;
     }
 
     /**
-     * @example 'Maria'
+     * Calculates a checksum for the Personal Numerical Code (CNP).
+     *
+     * @param  string $cnp Randomly generated CNP
+     * @return string CNP with the last digit altered to a proper checksum
      */
-    public static function firstNameFemale()
+    protected static function cnpAddChecksum($cnp)
     {
-        return static::randomElement(static::$firstNameFemale);
-    }
+        $checkNumber = 279146358279;
 
-    /**
-     * @example 'Popescu'
-     */
-    public static function lastName()
-    {
-        return static::randomElement(static::$lastName);
-    }
+        $checksum = 0;
+        foreach (range(0, 11) as $digit) {
+            $checksum += substr($cnp, $digit, 1) * substr($checkNumber, $digit, 1);
+        }
+        $checksum = $checksum % 11;
 
-    public static function prefixMale()
-    {
-        return static::randomElement(static::$prefixMale);
-    }
-
-    public static function prefixFemale()
-    {
-        return static::randomElement(static::$prefixFemale);
+        return substr($cnp, 0, 12) . ($checksum == 10 ? 1 : $checksum);
     }
 }
