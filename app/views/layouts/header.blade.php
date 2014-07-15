@@ -1,11 +1,11 @@
 @section('header')
 
-<div class="grid top-header">
+<div class="row top-header">
     <div class="row">
         <div class="desktop-4">
             <a class="" href="/">
-                <img title="The Online Fitness Store | Vigormart.in" alt="Vigormart.in : The Online Fitness Store"
-                     src="" class="logo-img" data-src="holder.js/300x50" />
+                <img title="Masala Store | wowmasalas.com" alt="Wowmasalas : The Masalas Store"
+                     src="" class="logo-img" data-src="holder.js/300x55/gray/text:Wow Masalas" />
 
 
             </a>
@@ -103,8 +103,8 @@
     <div class="dropdown_3columns">
         <h3>Today's Hot offers</h3>
 
-        <div class="grid">
-            <div class='w-50'>
+        <div class="row">
+            <div class='width-per-50'>
                 <ul class="link-list">
                     <li><a href=''>Product 1</a></li>
                     <li><a href=''>Product 1</a></li>
@@ -112,7 +112,7 @@
                     <li><a href=''>Product 1</a></li>
                 </ul>
             </div>
-            <div class='w-50'>
+            <div class='width-per-50'>
                 <ul class="link-list">
                     <li><a href=''>Product 1</a></li>
                     <li><a href=''>Product 1</a></li>
@@ -124,8 +124,8 @@
 
         <h3>Best Selling Products</h3>
 
-        <div class="grid">
-            <div class='w-50'>
+        <div class="row">
+            <div class='width-per-50'>
                 <ul class="link-list">
                     <li><a href=''>Product 1</a></li>
                     <li><a href=''>Product 1</a></li>
@@ -133,7 +133,7 @@
                     <li><a href=''>Product 1</a></li>
                 </ul>
             </div>
-            <div class='w-50'>
+            <div class='width-per-50'>
                 <ul class="link-list">
                     <li><a href=''>Product 1</a></li>
                     <li><a href=''>Product 1</a></li>
@@ -154,11 +154,11 @@
     <div class="dropdown_3columns"><!-- Begin columns container -->
 
 
-        <div class="grid">
+        <div class="row">
 
             <h2>Products</h2>
 
-            <div class="w-50">
+            <div class="width-per-50">
 
                 <ul class="link-list">
                     <li> {{ link_to_action('ProductsController@getIndex', 'All Products' ) }}</li>
@@ -174,7 +174,7 @@
 
             </div>
 
-            <div class="w-50">
+            <div class="width-per-50">
 
                 <ul class="link-list">
                     <li><a href="#">ThemeForest</a></li>
@@ -189,18 +189,18 @@
 
         </div>
 
-        <div class="grid">
+        <div class="row">
 
             <h3>Random Featured Products</h2>
 
-                <img data-src="holder.js/75x75" class='w-25'/>
+                <img data-src="holder.js/75x75" class='width-per-25'/>
 
-                <p class='w-75'>Maecenas eros lorem, nec eget eros lorem, nec vulputate, lorem sem condimentum.<br/><a
+                <p class='width-per-75'>Maecenas eros lorem, nec eget eros lorem, nec vulputate, lorem sem condimentum.<br/><a
                         href="#">Read more...</a></p>
 
-                <p class='w-75'>Aliquam t nec nisi. Aliquam pretium mollis fringilla. Vestibulum tempor facilisis
+                <p class='width-per-75'>Aliquam t nec nisi. Aliquam pretium mollis fringilla. Vestibulum tempor facilisis
                     malesuada.<br/><a href="#">Read more...</a></p>
-                <img data-src="holder.js/75x75" class='w-25'/>
+                <img data-src="holder.js/75x75" class='width-per-25'/>
 
         </div>
 
@@ -227,14 +227,14 @@
 <li class="menuitem_right"><a href="#_" class="menuitem_drop">About</a><!-- Begin Lists Item -->
 
 
-    <div class="grid dropdown_4columns dropdown_right">
+    <div class="row dropdown_4columns dropdown_right">
         @include("abouts/aboutnav")
     </div>
 </li>
 <li class="menuitem_right"><a href="#_" class="menuitem_drop">Contact</a><!-- Begin Contact Item -->
 
 
-    <div class="dropdown_2columns dropdown_right"><!-- Begin right aligned columns container -->
+    <div class="dropdown_3columns dropdown_right"><!-- Begin right aligned columns container -->
 
 
         <h2>Contact Us</h2>
@@ -245,7 +245,7 @@
             <li><a href="/account/">Signup</a></li>
             <li><a href="/login/" class="no-border login-required">Login</a></li>
         </ul>
-
+<!--
         <p>Please fill in the following form to contact us</p>
 
         <div class="contact_form">
@@ -278,7 +278,7 @@
             </form>
 
         </div>
-
+-->
         <h2>Find us on social networks</h2>
 
         <ul class="social">
@@ -301,10 +301,10 @@
 <li class="menuitem_right"><a href="#_" class="menuitem_drop">Account</a><!-- Begin Lists Item -->
 
 
-    <div class="grid dropdown_3columns dropdown_right"><!-- Begin columns container -->
+    <div class="row dropdown_3columns dropdown_right"><!-- Begin columns container -->
 
 
-        <div class="w-50">
+        <div class="width-per-50">
 
             <h3>Accounts</h3>
             <ul>
@@ -319,7 +319,7 @@
             </ul>
         </div>
 
-        <div class="w-50">
+        <div class="width-per-50">
 
             <h3>Useful Links</h3>
             <ul>
@@ -332,7 +332,7 @@
 
         </div>
 
-        <div class="w-50">
+        <div class="width-per-50">
 
             <h3>Other Stuff</h3>
             <ul>
@@ -345,7 +345,7 @@
 
         </div>
 
-        <div class="w-50">
+        <div class="width-per-50">
 
             <h3>Misc</h3>
             <ul>

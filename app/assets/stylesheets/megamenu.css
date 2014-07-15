@@ -7,7 +7,12 @@
     
     background: none repeat scroll 0 0 #CCCCCC;
     border-bottom: 1px solid #AAAAAA;
-    height: 41px;
+    height: 53px;
+
+    background: none repeat scroll 0 0 #fff;
+    border-bottom: 1px solid #eee;
+    border-top: 1px solid #f4f4f4;
+
 }
 .megamenu_wrapper {
    
@@ -23,6 +28,7 @@
     float:left;
     position:relative;
     margin-right:5px;
+    margin-top: 5px;
     border:none;
     line-height: inherit;
 }

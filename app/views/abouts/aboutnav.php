@@ -1,5 +1,4 @@
-<div class="grid">
-    <div class="w-33">
+    <div class="width-per-33">
         <h3>Service</h3>
         <ul class="nav nav-side">
             <li> <a rel="nofollow" title="About" href="/about">About</a> </li>
@@ -11,7 +10,7 @@
             <li> <a rel="nofollow" title="Sell On Jabong" href="/sellonjabong">Sell On Jabong</a> </li>
         </ul>
     </div>
-    <div class="w-33">
+    <div class="width-per-33">
         <h3>Our Policies</h3>
         <ul class="nav nav-side">
             <li> <a rel="nofollow" title="Cancellations and Returns" href="/support/faq#Returns">Cancellations and Returns</a> </li>
@@ -20,7 +19,7 @@
             <li> <a rel="nofollow" title="Ordering and Tracking" href="/support/faq#Ordering">Ordering and Tracking</a></li>
         </ul>
     </div>
-    <div class="w-33">
+    <div class="width-per-33">
         <h3>Join us on</h3>
         <ul class="nav nav-side">
             <li> <a rel="nofollow" title="Facebook" target="_blank" href="http://www.facebook.com/myjabong"><font class="facebook common-sprite"></font>Facebook</a>  </li>
@@ -31,13 +30,9 @@
     </div>
 
 
-</div>
-<div class="grid">
-
-    <div class="w-100">
+    <div class="width-per-100">
         <h3>We Accept Payment Methods</h3>
         <img data-src="holder.js/400x50" alt="Visa, Master Card, American Express, Net Banking, Cash On Delivery" />
         <h3>Our Shipping Partner</h3>
         <img data-src="holder.js/300x50" alt="GoJaVAS, First Flight, DTDC" />
     </div>
-</div>

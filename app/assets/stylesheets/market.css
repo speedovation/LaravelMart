@@ -677,3 +677,9 @@ a.remove-cart-item:hover {
 {
     margin-top: 1rem;
 }
+
+
+.megamenu .row
+{
+    width: 400px;
+}
