@@ -227,15 +227,15 @@
 }
 .megamenu_light_theme .megamenu > li > div,
 .megamenu_light_theme ul .levels li ul {
-    background:#eeeeee;
-    /*border:1px solid #444444;*/
+    background:#eee;
+    border:1px solid #888;
     border-top: none;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#EEEEEE), to(#BBBBBB));
-    background: -webkit-linear-gradient(top, #EEEEEE, #BBBBBB);
-    background: -moz-linear-gradient(top, #EEEEEE, #ddd);
-    background: -o-linear-gradient(top, #EEEEEE, #BBBBBB);
-    background: -ms-linear-gradient(top, #EEEEEE, #BBBBBB);
-    background: linear-gradient(top, #EEEEEE, #ddd);
+    /*background-image: -webkit-gradient(linear, left top, left bottom, from(#EEEEEE), to(#BBBBBB));*/
+    /*background: -webkit-linear-gradient(top, #EEEEEE, #BBBBBB);*/
+    /*background: -moz-linear-gradient(top, #EEEEEE, #ddd);*/
+    /*background: -o-linear-gradient(top, #EEEEEE, #BBBBBB);*/
+    /*background: -ms-linear-gradient(top, #EEEEEE, #BBBBBB);*/
+    /*background: linear-gradient(top, #EEEEEE, #ddd);*/
 }
 .megamenu_wrapper_vertical .megamenu_light_theme .megamenu > li > div,
 .megamenu_light_theme ul .levels li ul {
@@ -306,16 +306,16 @@
 .megamenu_light_theme ul .contact_form input:hover, 
 .megamenu_light_theme ul .contact_form textarea:hover, 
 .megamenu_light_theme ul .contact_form select:hover {
-    box-shadow: rgba(0,0,0, 0.7) 0 0 3px;
-    -moz-box-shadow: rgba(0,0,0, 0.7) 0 0 3px;
-    -webkit-box-shadow: rgba(0,0,0, 0.7) 0 0 3px;  
+    /*box-shadow: rgba(0,0,0, 0.7) 0 0 3px;*/
+    /*-moz-box-shadow: rgba(0,0,0, 0.7) 0 0 3px;*/
+    /*-webkit-box-shadow: rgba(0,0,0, 0.7) 0 0 3px;  */
     /*border:1px solid #333333;*/
 }
 .megamenu_light_theme ul .contact_form input, 
 .megamenu_light_theme ul textarea, 
 .megamenu_light_theme ul select {
-    color: #FFFFFF; 
-    background-color:#222222;
+    /*color: #FFFFFF; */
+    /*background-color:#222222;*/
     /*border:1px solid #0A0A0A;*/
 }
 .megamenu_light_theme ul .contact_form input.button {

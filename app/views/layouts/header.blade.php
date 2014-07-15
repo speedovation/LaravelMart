@@ -45,7 +45,7 @@
 <li class="megamenu_button"><a href="#_">Mega Menu</a></li>
 
 
-<li><a href="#_" class="menuitem_drop">Home</a><!-- Begin Home Item -->
+<li><a href="/" class="menuitem_drop">Home</a><!-- Begin Home Item -->
 
 
     <div class="dropdown_2columns"><!-- Begin columns container -->
@@ -98,7 +98,7 @@
 <!-- End Home Item -->
 
 
-<li><a href="#_" class="menuitem_drop">Hot Offers</a>
+<li><a href="#_" class="menuitem_drop">Featured Products</a>
 
     <div class="dropdown_3columns">
         <h3>Today's Hot offers</h3>

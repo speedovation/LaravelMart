@@ -1,20 +1,3 @@
-
-<div class="row">
-    <div class="col-md-12">
-        <h1>
-            Laravel 4 E-Commerce
-        </h1>
-    </div>
-</div>
-<div class="row">
-
-    <ul id="slider3-pager">
-        <li><a href="#"><img src="dist/img/sliders/1_thumb.jpg" alt=""></a></li>
-        <li><a href="#"><img src="dist/img/sliders/2_thumb.jpg" alt=""></a></li>
-        <li><a href="#"><img src="dist/img/sliders/3_thumb.jpg" alt=""></a></li>
-    </ul>
-</div>
-
 {{ HTML::style('assets/css/sliders.css') }}
 <!--<link rel="stylesheet" href="dist/css/components/sliders.css">-->
 <style>
@@ -44,23 +27,25 @@ p,h3,h4,pre {
 .rslides_tabs {
     list-style: none;
     padding: 0;
-    background: rgba(0,0,0,.25);
-    box-shadow: 0 0 1px rgba(255,255,255,.3), inset 0 0 5px rgba(0,0,0,1.0);
-    -moz-box-shadow: 0 0 1px rgba(255,255,255,.3), inset 0 0 5px rgba(0,0,0,1.0);
-    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.3), inset 0 0 5px rgba(0,0,0,1.0);
+    background: rgba(0,0,0,.05);
+    /*box-shadow: 0 0 1px rgba(255,255,255,.3), inset 0 0 5px rgba(0,0,0,1.0);*/
+    /*-moz-box-shadow: 0 0 1px rgba(255,255,255,.3), inset 0 0 5px rgba(0,0,0,1.0);*/
+    /*-webkit-box-shadow: 0 0 1px rgba(255,255,255,.3), inset 0 0 5px rgba(0,0,0,1.0);*/
     font-size: 18px;
     list-style: none;
     margin: 0 auto 50px;
-    max-width: 540px;
+    /*max-width: 540px;*/
     padding: 10px 0;
     text-align: center;
     width: 100%;
 }
 
 .rslides_tabs li {
-    display: inline;
+    display: inline-block;
     float: none;
-    margin-right: 1px;
+    margin-right: 20px;
+    padding: 10px 20px;
+    color: #666 !important;
 }
 
 .rslides_tabs a {
@@ -75,16 +60,20 @@ p,h3,h4,pre {
 .rslides_tabs li:first-child {
     margin-left: 0;
 }
-
-.rslides_tabs .rslides_here a {
-    background: rgba(255,255,255,.1);
-    color: #fff;
-    font-weight: bold;
+.rslides_tabs li h3
+{
+    color: #666666;
 }
 
-a {
-    color: #fff;
-    text-decoration: none;
+.rslides_tabs .rslides_here , .rslides_tabs .rslides_here h3{
+    background: #fff;
+    color: #444 !important;
+    /*font-weight: bold;*/
+}
+
+.rslides_tabs .rslides_here
+{
+    border-top: 4px #f13f3b solid;
 }
 
 #download {
@@ -112,11 +101,6 @@ a {
 
 /* Callback example */
 
-h3 {
-    font: 20px/30px "Helvetica Neue", Helvetica, Arial, sans-serif;
-    text-align: center;
-    color: #fff;
-}
 
 .events {
     list-style: none;
@@ -207,7 +191,7 @@ h3 {
 
 #slider3-pager .rslides_here a {
     background: transparent;
-    box-shadow: 0 0 0 2px #666;
+    /*box-shadow: 0 0 0 2px #666;*/
 }
 
 #slider3-pager a {
@@ -216,7 +200,6 @@ h3 {
 
 @media screen and (max-width: 600px) {
     h1 {
-        font: 24px/50px "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
     .callbacks_nav {
         top: 47%;
@@ -235,7 +218,122 @@ h3 {
         // Slideshow 3
         $("#slider3").responsiveSlides({
             manualControls: '#slider3-pager',
-            maxwidth: 540
+            speed: 2500,
+            pager: true,
+            nav: false
+//            namespace: "callbacks"
+//            maxwidth: 840
         });
     });
 </script>
+
+<div class="row">
+    <div class="col-md-12">
+        <h1>
+            Wow Masalas
+        </h1>
+    </div>
+</div>
+<div class="row">
+
+    <ul id="slider3">
+        <li><a href="#"> {{ HTML::image('assets/img/banners/banner-1.jpg') }}  </a>     </li>
+        <li><a href="#"> {{ HTML::image('assets/img/banners/banner-2.jpg') }}  </a>     </li>
+        <li><a href="#"> {{ HTML::image('assets/img/banners/banner-3.jpg') }}  </a>     </li>
+    </ul>
+
+    <ul id="slider3-pager">
+
+        <li class="">
+            <a href="#">
+                <div class="col-8">
+                    <h3>Magic Masala Treat</h3>
+                    <p>Find out more</p>
+                </div>
+                <div class="col-4">
+                    {{ HTML::image('assets/img/banners/thumbs/thumbnail-1.png') }}
+                </div>
+            </a>
+        </li>
+
+        <li class="">
+            <a href="#">
+                <div class="col-8">
+                    <h3>Magic Masala Treat</h3>
+                    <p>Find out more</p>
+                </div>
+                <div class="col-4">
+                    {{ HTML::image('assets/img/banners/thumbs/thumbnail-2.png') }}
+                </div>
+            </a>
+        </li>
+
+        <li class="">
+            <a href="#">
+                <div class="col-8">
+                    <h3>Magic Masala Treat</h3>
+                    <p>Find out more</p>
+                </div>
+                <div class="col-4">
+                    {{ HTML::image('assets/img/banners/thumbs/thumbnail-3.png') }}
+                </div>
+            </a>
+        </li>
+
+
+    </ul>
+
+</div>
+
+
+
+<div class="row wrap">
+    <hr/>
+
+    <div class="col-4">
+
+        <h3>Featured Product One</h3>
+        <div class="col-3">
+            {{ HTML::image('assets/img/banners/thumbs/thumbnail-1.png','',['class'=>'float-left']) }}
+        </div>
+
+        <div class="col-9">
+            <p>Lorem ispum random description of the product</p>
+            <p><a href="/">Learn More</a></p>
+        </div>
+
+    </div>
+    <div class="col-4">
+
+        <h3>Featured Product Two</h3>
+        <div class="col-3">
+            {{ HTML::image('assets/img/banners/thumbs/thumbnail-2.png','',['class'=>'float-left']) }}
+        </div>
+
+        <div class="col-9">
+            <p>Lorem ispum random description of the product</p>
+            <p><a href="/">Learn More</a></p>
+        </div>
+
+    </div>
+    <div class="col-4">
+
+        <h3>Featured Product Three</h3>
+        <div class="col-3">
+            {{ HTML::image('assets/img/banners/thumbs/thumbnail-3.png','',['class'=>'float-left']) }}
+        </div>
+
+        <div class="col-9">
+            <p>Lorem ispum random description of the product</p>
+            <p><a href="/">Learn More</a></p>
+        </div>
+
+    </div>
+
+
+
+
+
+</div>
+
+

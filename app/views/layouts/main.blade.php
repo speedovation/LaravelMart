@@ -6,7 +6,7 @@
 
         <title>Authentication App With Laravel 4</title>
 
-
+<!--        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,300,300italic,400italic,800,700' rel='stylesheet' type='text/css'>-->
 
         <link rel="shortcut icon" href="../../assets/ico/favicon.png">
 

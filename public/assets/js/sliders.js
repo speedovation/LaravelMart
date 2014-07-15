@@ -270,9 +270,9 @@
 
         // Pager click event handler
         if (settings.pager || settings.manualControls) {
-          $tabs.bind("click", function (e) {
+          $tabs.bind("click hover mouseover", function (e) {
             e.preventDefault();
-
+//alert('dun')
             if (!settings.pauseControls) {
               restartCycle();
             }
