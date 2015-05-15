@@ -10,8 +10,8 @@ class ProductTableSeeder extends DatabaseSeeder {
         foreach ($categories as $category) {
             for ($i = 0; $i < 40; $i++) {
                 $name = ucwords($faker->word);
-                $stock = $faker->randomNumber(0, 100);
-                $price = $faker->randomFloat(2, 5, 100);
+                $stock = $faker->numberBetween(0, 100);
+                $price = $faker->numberBetween(2, 5, 100);
 
 
                 //generate unique 8 code               
@@ -27,7 +27,7 @@ class ProductTableSeeder extends DatabaseSeeder {
                     "stock" => $stock,
                     "mrp" => $price,
                     "price" => $price,
-                    "discount" => $faker->randomNumber(5, 30),
+                    "discount" => $faker->numberBetween(5, 30),
                     
                     "category_id" => $category->id,
                     "image" => $name,

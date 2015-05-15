@@ -56,8 +56,9 @@ return array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
 			'database'  => 'cart',
-			'username'  => 'shop',
-			'password'  => 'Nice121boy#',
+			'username'  => 'cart',
+			'password'  => 'cart121',
+
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
