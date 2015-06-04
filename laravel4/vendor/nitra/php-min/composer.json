@@ -1,0 +1,38 @@
+{
+	"name": "nitra/php-min",
+	"version": "0.0.5",
+	"type": "library",
+	"description": "Minifying CSS, JS",
+	"keywords": ["cssmin","jsminplus","minify"],
+	"homepage": "http://code.google.com/p/cssmin/",
+	"license": "MIT",
+	"authors": [
+        {
+            "name": "Tino Zijdel",
+        	"email": "crisp@tweakers.net",
+		    "homepage": "https://raw.github.com/mrclay/minify/master/min/lib/JSMinPlus.php"
+        },	
+		{
+			"name": "Joe Scylla",
+			"email": "joe.scylla@gmail.com",
+			"homepage": "https://profiles.google.com/joe.scylla"
+		}
+	],
+	"repositories": {
+		"Github": {
+			"vcs": {
+				"url": "git://github.com/nitra/PhpMin.git"
+			}
+		}
+	},
+	"require": {
+		"php": ">=5.3"
+	},
+	"autoload": {
+		"psr-0": {
+			"CssMin": "CssMin/",
+			"JSMinPlus": "JSMinPlus/"
+		}
+	}
+}
+

@@ -1,0 +1,25 @@
+{
+    "name": "gloudemans/shoppingcart",
+    "description": "Laravel 4 Shoppingcart",
+    "keywords": ["laravel", "shoppingcart"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rob Gloudemans",
+            "email": "Rob_Gloudemans@hotmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "~4"
+    },
+    "require-dev": {
+        "mockery/mockery": "0.9.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Gloudemans\\Shoppingcart": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
