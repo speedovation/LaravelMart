@@ -57,7 +57,6 @@ class DumperPrefixCollection extends DumperCollection
         $prefix = $route->getRoute()->compile()->getStaticPrefix();
 
         for ($collection = $this; null !== $collection; $collection = $collection->getParent()) {
-
             // Same prefix, add to current leave
             if ($collection->prefix === $prefix) {
                 $collection->add($route);
@@ -80,7 +79,7 @@ class DumperPrefixCollection extends DumperCollection
     }
 
     /**
-     * Merges nodes whose prefix ends with a slash
+     * Merges nodes whose prefix ends with a slash.
      *
      * Children of a node whose prefix ends with a slash are moved to the parent node
      */

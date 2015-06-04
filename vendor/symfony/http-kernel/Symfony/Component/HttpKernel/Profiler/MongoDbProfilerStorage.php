@@ -20,10 +20,10 @@ class MongoDbProfilerStorage implements ProfilerStorageInterface
     /**
      * Constructor.
      *
-     * @param string  $dsn      A data source name
-     * @param string  $username Not used
-     * @param string  $password Not used
-     * @param int     $lifetime The lifetime to use for the purge
+     * @param string $dsn      A data source name
+     * @param string $username Not used
+     * @param string $password Not used
+     * @param int    $lifetime The lifetime to use for the purge
      */
     public function __construct($dsn, $username = '', $password = '', $lifetime = 86400)
     {
@@ -82,7 +82,7 @@ class MongoDbProfilerStorage implements ProfilerStorageInterface
             'ip' => $profile->getIp(),
             'method' => $profile->getMethod(),
             'url' => $profile->getUrl(),
-            'time' => $profile->getTime()
+            'time' => $profile->getTime(),
         );
 
         $result = $this->getMongo()->update(array('_id' => $profile->getToken()), array_filter($record, function ($v) { return !empty($v); }), array('upsert' => true));
@@ -91,7 +91,7 @@ class MongoDbProfilerStorage implements ProfilerStorageInterface
     }
 
     /**
-     * Internal convenience method that returns the instance of the MongoDB Collection
+     * Internal convenience method that returns the instance of the MongoDB Collection.
      *
      * @return \MongoCollection
      *

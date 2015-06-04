@@ -27,17 +27,39 @@ class LineFormatter extends NormalizerFormatter
 
     protected $format;
     protected $allowInlineLineBreaks;
+    protected $ignoreEmptyContextAndExtra;
+    protected $includeStacktraces;
 
     /**
-     * @param string $format                The format of the message
-     * @param string $dateFormat            The format of the timestamp: one supported by DateTime::format
-     * @param bool   $allowInlineLineBreaks Whether to allow inline line breaks in log entries
+     * @param string $format                     The format of the message
+     * @param string $dateFormat                 The format of the timestamp: one supported by DateTime::format
+     * @param bool   $allowInlineLineBreaks      Whether to allow inline line breaks in log entries
+     * @param bool   $ignoreEmptyContextAndExtra
      */
-    public function __construct($format = null, $dateFormat = null, $allowInlineLineBreaks = false)
+    public function __construct($format = null, $dateFormat = null, $allowInlineLineBreaks = false, $ignoreEmptyContextAndExtra = false)
     {
         $this->format = $format ?: static::SIMPLE_FORMAT;
         $this->allowInlineLineBreaks = $allowInlineLineBreaks;
+        $this->ignoreEmptyContextAndExtra = $ignoreEmptyContextAndExtra;
         parent::__construct($dateFormat);
+    }
+
+    public function includeStacktraces($include = true)
+    {
+        $this->includeStacktraces = $include;
+        if ($this->includeStacktraces) {
+            $this->allowInlineLineBreaks = true;
+        }
+    }
+
+    public function allowInlineLineBreaks($allow = true)
+    {
+        $this->allowInlineLineBreaks = $allow;
+    }
+
+    public function ignoreEmptyContextAndExtra($ignore = true)
+    {
+        $this->ignoreEmptyContextAndExtra = $ignore;
     }
 
     /**
@@ -48,15 +70,29 @@ class LineFormatter extends NormalizerFormatter
         $vars = parent::format($record);
 
         $output = $this->format;
+
         foreach ($vars['extra'] as $var => $val) {
             if (false !== strpos($output, '%extra.'.$var.'%')) {
-                $output = str_replace('%extra.'.$var.'%', $this->replaceNewlines($this->convertToString($val)), $output);
+                $output = str_replace('%extra.'.$var.'%', $this->stringify($val), $output);
                 unset($vars['extra'][$var]);
             }
         }
+
+        if ($this->ignoreEmptyContextAndExtra) {
+            if (empty($vars['context'])) {
+                unset($vars['context']);
+                $output = str_replace('%context%', '', $output);
+            }
+
+            if (empty($vars['extra'])) {
+                unset($vars['extra']);
+                $output = str_replace('%extra%', '', $output);
+            }
+        }
+
         foreach ($vars as $var => $val) {
             if (false !== strpos($output, '%'.$var.'%')) {
-                $output = str_replace('%'.$var.'%', $this->replaceNewlines($this->convertToString($val)), $output);
+                $output = str_replace('%'.$var.'%', $this->stringify($val), $output);
             }
         }
 
@@ -73,16 +109,26 @@ class LineFormatter extends NormalizerFormatter
         return $message;
     }
 
+    public function stringify($value)
+    {
+        return $this->replaceNewlines($this->convertToString($value));
+    }
+
     protected function normalizeException(Exception $e)
     {
         $previousText = '';
         if ($previous = $e->getPrevious()) {
             do {
-                $previousText .= ', '.get_class($previous).': '.$previous->getMessage().' at '.$previous->getFile().':'.$previous->getLine();
+                $previousText .= ', '.get_class($previous).'(code: '.$previous->getCode().'): '.$previous->getMessage().' at '.$previous->getFile().':'.$previous->getLine();
             } while ($previous = $previous->getPrevious());
         }
 
-        return '[object] ('.get_class($e).': '.$e->getMessage().' at '.$e->getFile().':'.$e->getLine().$previousText.')';
+        $str = '[object] ('.get_class($e).'(code: '.$e->getCode().'): '.$e->getMessage().' at '.$e->getFile().':'.$e->getLine().$previousText.')';
+        if ($this->includeStacktraces) {
+            $str .= "\n[stacktrace]\n".$e->getTraceAsString();
+        }
+
+        return $str;
     }
 
     protected function convertToString($data)
@@ -108,6 +154,6 @@ class LineFormatter extends NormalizerFormatter
             return $str;
         }
 
-        return preg_replace('{[\r\n]+}', ' ', $str);
+        return strtr($str, array("\r\n" => ' ', "\r" => ' ', "\n" => ' '));
     }
 }

@@ -18,7 +18,6 @@ use Symfony\Component\EventDispatcher\GenericEvent;
  */
 class GenericEventTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * @var GenericEvent
      */
@@ -54,7 +53,7 @@ class GenericEventTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests Event->getArgs()
+     * Tests Event->getArgs().
      */
     public function testGetArguments()
     {

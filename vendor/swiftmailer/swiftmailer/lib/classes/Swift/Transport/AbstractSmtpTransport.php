@@ -83,7 +83,7 @@ abstract class Swift_Transport_AbstractSmtpTransport implements Swift_Transport
      */
     public function setSourceIp($source)
     {
-        $this->_sourceIp=$source;
+        $this->_sourceIp = $source;
     }
 
     /**
@@ -159,20 +159,21 @@ abstract class Swift_Transport_AbstractSmtpTransport implements Swift_Transport
         }
 
         if (!$reversePath = $this->_getReversePath($message)) {
-            throw new Swift_TransportException(
+            $this->_throwException(new Swift_TransportException(
                 'Cannot send message without a sender address'
-                );
+                )
+            );
         }
 
         $to = (array) $message->getTo();
         $cc = (array) $message->getCc();
+        $tos = array_merge($to, $cc);
         $bcc = (array) $message->getBcc();
 
         $message->setBcc(array());
 
         try {
-            $sent += $this->_sendTo($message, $reversePath, $to, $failedRecipients);
-            $sent += $this->_sendCc($message, $reversePath, $cc, $failedRecipients);
+            $sent += $this->_sendTo($message, $reversePath, $tos, $failedRecipients);
             $sent += $this->_sendBcc($message, $reversePath, $bcc, $failedRecipients);
         } catch (Exception $e) {
             $message->setBcc($bcc);
@@ -213,7 +214,8 @@ abstract class Swift_Transport_AbstractSmtpTransport implements Swift_Transport
 
             try {
                 $this->executeCommand("QUIT\r\n", array(221));
-            } catch (Swift_TransportException $e) {}
+            } catch (Swift_TransportException $e) {
+            }
 
             try {
                 $this->_buffer->terminate();
@@ -372,16 +374,15 @@ abstract class Swift_Transport_AbstractSmtpTransport implements Swift_Transport
         $valid = (empty($wanted) || in_array($code, $wanted));
 
         if ($evt = $this->_eventDispatcher->createResponseEvent($this, $response,
-            $valid))
-        {
+            $valid)) {
             $this->_eventDispatcher->dispatchEvent($evt, 'responseReceived');
         }
 
         if (!$valid) {
             $this->_throwException(
                 new Swift_TransportException(
-                    'Expected response code ' . implode('/', $wanted) . ' but got code ' .
-                    '"' . $code . '", with message "' . $response . '"',
+                    'Expected response code '.implode('/', $wanted).' but got code '.
+                    '"'.$code.'", with message "'.$response.'"',
                     $code)
                 );
         }
@@ -407,7 +408,6 @@ abstract class Swift_Transport_AbstractSmtpTransport implements Swift_Transport
 
         return $response;
     }
-
 
     /** Send an email to the given recipients from the given reverse path */
     private function _doMailTransaction($message, $reversePath, array $recipients, array &$failedRecipients)
@@ -444,17 +444,6 @@ abstract class Swift_Transport_AbstractSmtpTransport implements Swift_Transport
             $failedRecipients);
     }
 
-    /** Send a message to the given Cc: recipients */
-    private function _sendCc(Swift_Mime_Message $message, $reversePath, array $cc, array &$failedRecipients)
-    {
-        if (empty($cc)) {
-            return 0;
-        }
-
-        return $this->_doMailTransaction($message, $reversePath, array_keys($cc),
-            $failedRecipients);
-    }
-
     /** Send a message to all Bcc: recipients */
     private function _sendBcc(Swift_Mime_Message $message, $reversePath, array $bcc, array &$failedRecipients)
     {
@@ -473,8 +462,7 @@ abstract class Swift_Transport_AbstractSmtpTransport implements Swift_Transport
     private function _lookupHostname()
     {
         if (!empty($_SERVER['SERVER_NAME'])
-            && $this->_isFqdn($_SERVER['SERVER_NAME']))
-        {
+            && $this->_isFqdn($_SERVER['SERVER_NAME'])) {
             $this->_domain = $_SERVER['SERVER_NAME'];
         } elseif (!empty($_SERVER['SERVER_ADDR'])) {
             $this->_domain = sprintf('[%s]', $_SERVER['SERVER_ADDR']);

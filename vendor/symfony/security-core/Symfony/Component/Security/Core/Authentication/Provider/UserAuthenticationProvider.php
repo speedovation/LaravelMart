@@ -70,7 +70,7 @@ abstract class UserAuthenticationProvider implements AuthenticationProviderInter
             $user = $this->retrieveUser($username, $token);
         } catch (UsernameNotFoundException $notFound) {
             if ($this->hideUserNotFoundExceptions) {
-                throw new BadCredentialsException('Bad credentials', 0, $notFound);
+                throw new BadCredentialsException('Bad credentials.', 0, $notFound);
             }
             $notFound->setUsername($username);
 
@@ -87,7 +87,7 @@ abstract class UserAuthenticationProvider implements AuthenticationProviderInter
             $this->userChecker->checkPostAuth($user);
         } catch (BadCredentialsException $e) {
             if ($this->hideUserNotFoundExceptions) {
-                throw new BadCredentialsException('Bad credentials', 0, $e);
+                throw new BadCredentialsException('Bad credentials.', 0, $e);
             }
 
             throw $e;
@@ -113,7 +113,7 @@ abstract class UserAuthenticationProvider implements AuthenticationProviderInter
      * @param UserInterface  $user  The user
      * @param TokenInterface $token The token
      *
-     * @return Role[] The user roles
+     * @return array The user roles
      */
     private function getRoles(UserInterface $user, TokenInterface $token)
     {

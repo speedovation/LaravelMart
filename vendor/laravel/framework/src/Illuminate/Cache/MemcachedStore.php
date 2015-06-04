@@ -1,8 +1,8 @@
 <?php namespace Illuminate\Cache;
 
-use Memcached;
+use Illuminate\Contracts\Cache\Store;
 
-class MemcachedStore extends TaggableStore implements StoreInterface {
+class MemcachedStore extends TaggableStore implements Store {
 
 	/**
 	 * The Memcached instance.
@@ -22,10 +22,10 @@ class MemcachedStore extends TaggableStore implements StoreInterface {
 	 * Create a new Memcached store.
 	 *
 	 * @param  \Memcached  $memcached
-	 * @param  string     $prefix
+	 * @param  string      $prefix
 	 * @return void
 	 */
-	public function __construct(Memcached $memcached, $prefix = '')
+	public function __construct($memcached, $prefix = '')
 	{
 		$this->memcached = $memcached;
 		$this->prefix = strlen($prefix) > 0 ? $prefix.':' : '';
@@ -61,11 +61,24 @@ class MemcachedStore extends TaggableStore implements StoreInterface {
 	}
 
 	/**
+	 * Store an item in the cache if the key doesn't exist.
+	 *
+	 * @param  string  $key
+	 * @param  mixed   $value
+	 * @param  int     $minutes
+	 * @return bool
+	 */
+	public function add($key, $value, $minutes)
+	{
+		return $this->memcached->add($this->prefix.$key, $value, $minutes * 60);
+	}
+
+	/**
 	 * Increment the value of an item in the cache.
 	 *
 	 * @param  string  $key
 	 * @param  mixed   $value
-	 * @return void
+	 * @return int|bool
 	 */
 	public function increment($key, $value = 1)
 	{
@@ -77,7 +90,7 @@ class MemcachedStore extends TaggableStore implements StoreInterface {
 	 *
 	 * @param  string  $key
 	 * @param  mixed   $value
-	 * @return void
+	 * @return int|bool
 	 */
 	public function decrement($key, $value = 1)
 	{
@@ -100,11 +113,11 @@ class MemcachedStore extends TaggableStore implements StoreInterface {
 	 * Remove an item from the cache.
 	 *
 	 * @param  string  $key
-	 * @return void
+	 * @return bool
 	 */
 	public function forget($key)
 	{
-		$this->memcached->delete($this->prefix.$key);
+		return $this->memcached->delete($this->prefix.$key);
 	}
 
 	/**

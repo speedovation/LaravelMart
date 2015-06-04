@@ -40,6 +40,16 @@ class TranslationWriter
     }
 
     /**
+     * Disables dumper backup.
+     */
+    public function disableBackup()
+    {
+        foreach ($this->dumpers as $dumper) {
+            $dumper->setBackup(false);
+        }
+    }
+
+    /**
      * Obtains the list of supported formats.
      *
      * @return array
@@ -66,6 +76,10 @@ class TranslationWriter
 
         // get the right dumper
         $dumper = $this->dumpers[$format];
+
+        if (isset($options['path']) && !is_dir($options['path'])) {
+            mkdir($options['path'], 0777, true);
+        }
 
         // save
         $dumper->dump($catalogue, $options);

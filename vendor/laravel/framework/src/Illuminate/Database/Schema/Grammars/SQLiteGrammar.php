@@ -61,7 +61,7 @@ class SQLiteGrammar extends Grammar {
 
 		$sql .= (string) $this->addPrimaryKeys($blueprint);
 
-		return $sql .= ')';
+		return $sql.')';
 	}
 
 	/**
@@ -147,6 +147,8 @@ class SQLiteGrammar extends Grammar {
 		$table = $this->wrapTable($blueprint);
 
 		$columns = $this->prefixArray('add column', $this->getColumns($blueprint));
+
+		$statements = array();
 
 		foreach ($columns as $column)
 		{
@@ -426,7 +428,7 @@ class SQLiteGrammar extends Grammar {
 	 */
 	protected function typeDecimal(Fluent $column)
 	{
-		return 'float';
+		return 'numeric';
 	}
 
 	/**
@@ -449,6 +451,17 @@ class SQLiteGrammar extends Grammar {
 	protected function typeEnum(Fluent $column)
 	{
 		return 'varchar';
+	}
+
+	/**
+	 * Create the column definition for a json type.
+	 *
+	 * @param  \Illuminate\Support\Fluent  $column
+	 * @return string
+	 */
+	protected function typeJson(Fluent $column)
+	{
+		return 'text';
 	}
 
 	/**

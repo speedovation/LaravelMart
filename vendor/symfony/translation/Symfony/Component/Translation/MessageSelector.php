@@ -39,9 +39,9 @@ class MessageSelector
      * The two methods can also be mixed:
      *     {0} There are no apples|one: There is one apple|more: There are %count% apples
      *
-     * @param string  $message The message being translated
-     * @param int     $number  The number of items represented for the message
-     * @param string  $locale  The locale to use for choosing
+     * @param string $message The message being translated
+     * @param int    $number  The number of items represented for the message
+     * @param string $locale  The locale to use for choosing
      *
      * @return string
      *
@@ -82,7 +82,7 @@ class MessageSelector
                 return $standardRules[0];
             }
 
-            throw new \InvalidArgumentException(sprintf('Unable to choose a translation for "%s" with locale "%s". Double check that this translation has the correct plural options (e.g. "There is one apple|There are %%count%% apples").', $message, $locale));
+            throw new \InvalidArgumentException(sprintf('Unable to choose a translation for "%s" with locale "%s" for value "%d". Double check that this translation has the correct plural options (e.g. "There is one apple|There are %%count%% apples").', $message, $locale, $number));
         }
 
         return $standardRules[$position];

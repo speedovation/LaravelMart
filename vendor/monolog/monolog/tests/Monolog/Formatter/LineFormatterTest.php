@@ -77,6 +77,20 @@ class LineFormatterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('['.date('Y-m-d').'] meh.ERROR: log [] test {"ip":"127.0.0.1"}'."\n", $message);
     }
 
+    public function testContextAndExtraOptionallyNotShownIfEmpty()
+    {
+        $formatter = new LineFormatter(null, 'Y-m-d', false, true);
+        $message = $formatter->format(array(
+            'level_name' => 'ERROR',
+            'channel' => 'meh',
+            'context' => array(),
+            'datetime' => new \DateTime,
+            'extra' => array(),
+            'message' => 'log',
+        ));
+        $this->assertEquals('['.date('Y-m-d').'] meh.ERROR: log  '."\n", $message);
+    }
+
     public function testDefFormatWithObject()
     {
         $formatter = new LineFormatter(null, 'Y-m-d');
@@ -106,7 +120,7 @@ class LineFormatterTest extends \PHPUnit_Framework_TestCase
 
         $path = str_replace('\\/', '/', json_encode(__FILE__));
 
-        $this->assertEquals('['.date('Y-m-d').'] core.CRITICAL: foobar {"exception":"[object] (RuntimeException: Foo at '.substr($path, 1, -1).':'.(__LINE__-8).')"} []'."\n", $message);
+        $this->assertEquals('['.date('Y-m-d').'] core.CRITICAL: foobar {"exception":"[object] (RuntimeException(code: 0): Foo at '.substr($path, 1, -1).':'.(__LINE__-8).')"} []'."\n", $message);
     }
 
     public function testDefFormatWithPreviousException()
@@ -124,7 +138,7 @@ class LineFormatterTest extends \PHPUnit_Framework_TestCase
 
         $path = str_replace('\\/', '/', json_encode(__FILE__));
 
-        $this->assertEquals('['.date('Y-m-d').'] core.CRITICAL: foobar {"exception":"[object] (RuntimeException: Foo at '.substr($path, 1, -1).':'.(__LINE__-8).', LogicException: Wut? at '.substr($path, 1, -1).':'.(__LINE__-12).')"} []'."\n", $message);
+        $this->assertEquals('['.date('Y-m-d').'] core.CRITICAL: foobar {"exception":"[object] (RuntimeException(code: 0): Foo at '.substr($path, 1, -1).':'.(__LINE__-8).', LogicException(code: 0): Wut? at '.substr($path, 1, -1).':'.(__LINE__-12).')"} []'."\n", $message);
     }
 
     public function testBatchFormat()

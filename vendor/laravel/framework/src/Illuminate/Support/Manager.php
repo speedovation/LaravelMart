@@ -1,6 +1,7 @@
 <?php namespace Illuminate\Support;
 
 use Closure;
+use InvalidArgumentException;
 
 abstract class Manager {
 
@@ -35,6 +36,13 @@ abstract class Manager {
 	{
 		$this->app = $app;
 	}
+
+	/**
+	 * Get the default driver name.
+	 *
+	 * @return string
+	 */
+	abstract public function getDefaultDriver();
 
 	/**
 	 * Get a driver instance.
@@ -81,7 +89,7 @@ abstract class Manager {
 			return $this->$method();
 		}
 
-		throw new \InvalidArgumentException("Driver [$driver] not supported.");
+		throw new InvalidArgumentException("Driver [$driver] not supported.");
 	}
 
 	/**
@@ -98,9 +106,9 @@ abstract class Manager {
 	/**
 	 * Register a custom driver creator Closure.
 	 *
-	 * @param  string   $driver
-	 * @param  Closure  $callback
-	 * @return \Illuminate\Support\Manager|static
+	 * @param  string    $driver
+	 * @param  \Closure  $callback
+	 * @return $this
 	 */
 	public function extend($driver, Closure $callback)
 	{

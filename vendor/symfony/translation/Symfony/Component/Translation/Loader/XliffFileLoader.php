@@ -53,21 +53,30 @@ class XliffFileLoader implements LoaderInterface
             }
 
             $source = isset($attributes['resname']) && $attributes['resname'] ? $attributes['resname'] : $translation->source;
-            $target = (string) $translation->target;
-
             // If the xlf file has another encoding specified, try to convert it because
             // simple_xml will always return utf-8 encoded values
-            if ('UTF-8' !== $encoding && !empty($encoding)) {
-                if (function_exists('mb_convert_encoding')) {
-                    $target = mb_convert_encoding($target, $encoding, 'UTF-8');
-                } elseif (function_exists('iconv')) {
-                    $target = iconv('UTF-8', $encoding, $target);
-                } else {
-                    throw new \RuntimeException('No suitable convert encoding function (use UTF-8 as your encoding or install the iconv or mbstring extension).');
-                }
-            }
+            $target = $this->utf8ToCharset((string) $translation->target, $encoding);
 
             $catalogue->set((string) $source, $target, $domain);
+
+            if (isset($translation->note)) {
+                $notes = array();
+                foreach ($translation->note as $xmlNote) {
+                    $noteAttributes = $xmlNote->attributes();
+                    $note = array('content' => $this->utf8ToCharset((string) $xmlNote, $encoding));
+                    if (isset($noteAttributes['priority'])) {
+                        $note['priority'] = (int) $noteAttributes['priority'];
+                    }
+
+                    if (isset($noteAttributes['from'])) {
+                        $note['from'] = (string) $noteAttributes['from'];
+                    }
+
+                    $notes[] = $note;
+                }
+
+                $catalogue->setMetadata((string) $source, array('notes' => $notes), $domain);
+            }
         }
         $catalogue->addResource(new FileResource($resource));
 
@@ -75,7 +84,32 @@ class XliffFileLoader implements LoaderInterface
     }
 
     /**
-     * Validates and parses the given file into a SimpleXMLElement
+     * Convert a UTF8 string to the specified encoding.
+     *
+     * @param string $content  String to decode
+     * @param string $encoding Target encoding
+     *
+     * @return string
+     */
+    private function utf8ToCharset($content, $encoding = null)
+    {
+        if ('UTF-8' !== $encoding && !empty($encoding)) {
+            if (function_exists('mb_convert_encoding')) {
+                return mb_convert_encoding($content, $encoding, 'UTF-8');
+            }
+
+            if (function_exists('iconv')) {
+                return iconv('UTF-8', $encoding, $content);
+            }
+
+            throw new \RuntimeException('No suitable convert encoding function (use UTF-8 as your encoding or install the iconv or mbstring extension).');
+        }
+
+        return $content;
+    }
+
+    /**
+     * Validates and parses the given file into a SimpleXMLElement.
      *
      * @param string $file
      *
@@ -116,15 +150,16 @@ class XliffFileLoader implements LoaderInterface
 
         $dom->normalizeDocument();
 
+        libxml_clear_errors();
         libxml_use_internal_errors($internalErrors);
 
         return array(simplexml_import_dom($dom), strtoupper($dom->encoding));
     }
 
     /**
-     * Returns the XML errors of the internal XML parser
+     * Returns the XML errors of the internal XML parser.
      *
-     * @param bool    $internalErrors
+     * @param bool $internalErrors
      *
      * @return array An array of errors
      */

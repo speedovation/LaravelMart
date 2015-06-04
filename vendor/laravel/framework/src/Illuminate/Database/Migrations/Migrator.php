@@ -68,7 +68,7 @@ class Migrator {
 	{
 		$this->notes = array();
 
-		$this->requireFiles($path, $files = $this->getMigrationFiles($path));
+		$files = $this->getMigrationFiles($path);
 
 		// Once we grab all of the migration files for the path, we will compare them
 		// against the migrations that have already been run for this package then
@@ -76,6 +76,8 @@ class Migrator {
 		$ran = $this->repository->getRan();
 
 		$migrations = array_diff($files, $ran);
+
+		$this->requireFiles($path, $migrations);
 
 		$this->runMigrationList($migrations, $pretend);
 	}
@@ -236,7 +238,8 @@ class Migrator {
 	/**
 	 * Require in all the migration files in a given path.
 	 *
-	 * @param  array  $files
+	 * @param  string  $path
+	 * @param  array   $files
 	 * @return void
 	 */
 	public function requireFiles($path, array $files)
@@ -248,6 +251,7 @@ class Migrator {
 	 * Pretend to run the migrations.
 	 *
 	 * @param  object  $migration
+	 * @param  string  $method
 	 * @return void
 	 */
 	protected function pretendToRun($migration, $method)
@@ -321,11 +325,12 @@ class Migrator {
 	/**
 	 * Resolve the database connection instance.
 	 *
+	 * @param  string  $connection
 	 * @return \Illuminate\Database\Connection
 	 */
-	public function resolveConnection()
+	public function resolveConnection($connection)
 	{
-		return $this->resolver->connection($this->connection);
+		return $this->resolver->connection($connection);
 	}
 
 	/**

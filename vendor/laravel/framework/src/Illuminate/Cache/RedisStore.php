@@ -1,8 +1,9 @@
 <?php namespace Illuminate\Cache;
 
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Redis\Database as Redis;
 
-class RedisStore extends TaggableStore implements StoreInterface {
+class RedisStore extends TaggableStore implements Store {
 
 	/**
 	 * The Redis database connection.
@@ -66,9 +67,9 @@ class RedisStore extends TaggableStore implements StoreInterface {
 	{
 		$value = is_numeric($value) ? $value : serialize($value);
 
-		$this->connection()->set($this->prefix.$key, $value);
+		$minutes = max(1, $minutes);
 
-		$this->connection()->expire($this->prefix.$key, $minutes * 60);
+		$this->connection()->setex($this->prefix.$key, $minutes * 60, $value);
 	}
 
 	/**
@@ -76,7 +77,7 @@ class RedisStore extends TaggableStore implements StoreInterface {
 	 *
 	 * @param  string  $key
 	 * @param  mixed   $value
-	 * @return void
+	 * @return int
 	 */
 	public function increment($key, $value = 1)
 	{
@@ -88,7 +89,7 @@ class RedisStore extends TaggableStore implements StoreInterface {
 	 *
 	 * @param  string  $key
 	 * @param  mixed   $value
-	 * @return void
+	 * @return int
 	 */
 	public function decrement($key, $value = 1)
 	{
@@ -113,11 +114,11 @@ class RedisStore extends TaggableStore implements StoreInterface {
 	 * Remove an item from the cache.
 	 *
 	 * @param  string  $key
-	 * @return void
+	 * @return bool
 	 */
 	public function forget($key)
 	{
-		$this->connection()->del($this->prefix.$key);
+		return (bool) $this->connection()->del($this->prefix.$key);
 	}
 
 	/**
@@ -133,7 +134,7 @@ class RedisStore extends TaggableStore implements StoreInterface {
 	/**
 	 * Begin executing a new tags operation.
 	 *
-	 * @param  array|dynamic  $names
+	 * @param  array|mixed  $names
 	 * @return \Illuminate\Cache\RedisTaggedCache
 	 */
 	public function tags($names)
@@ -144,7 +145,7 @@ class RedisStore extends TaggableStore implements StoreInterface {
 	/**
 	 * Get the Redis connection instance.
 	 *
-	 * @return \Predis\Connection\SingleConnectionInterface
+	 * @return \Predis\ClientInterface
 	 */
 	public function connection()
 	{

@@ -24,7 +24,7 @@ class TraceableUrlMatcher extends UrlMatcher
 {
     const ROUTE_DOES_NOT_MATCH = 0;
     const ROUTE_ALMOST_MATCHES = 1;
-    const ROUTE_MATCHES        = 2;
+    const ROUTE_MATCHES = 2;
 
     protected $traces;
 
@@ -103,9 +103,11 @@ class TraceableUrlMatcher extends UrlMatcher
             }
 
             // check HTTP scheme requirement
-            if ($scheme = $route->getRequirement('_scheme')) {
-                if ($this->context->getScheme() !== $scheme) {
-                    $this->addTrace(sprintf('Scheme "%s" does not match the requirement ("%s"); the user will be redirected', $this->context->getScheme(), $scheme), self::ROUTE_ALMOST_MATCHES, $name, $route);
+            if ($requiredSchemes = $route->getSchemes()) {
+                $scheme = $this->context->getScheme();
+
+                if (!$route->hasScheme($scheme)) {
+                    $this->addTrace(sprintf('Scheme "%s" does not match any of the required schemes ("%s"); the user will be redirected to first required scheme', $scheme, implode(', ', $requiredSchemes)), self::ROUTE_ALMOST_MATCHES, $name, $route);
 
                     return true;
                 }
@@ -120,10 +122,10 @@ class TraceableUrlMatcher extends UrlMatcher
     private function addTrace($log, $level = self::ROUTE_DOES_NOT_MATCH, $name = null, $route = null)
     {
         $this->traces[] = array(
-            'log'   => $log,
-            'name'  => $name,
+            'log' => $log,
+            'name' => $name,
             'level' => $level,
-            'path'  => null !== $route ? $route->getPath() : null,
+            'path' => null !== $route ? $route->getPath() : null,
         );
     }
 }

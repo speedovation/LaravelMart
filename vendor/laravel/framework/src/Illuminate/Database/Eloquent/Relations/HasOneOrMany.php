@@ -21,11 +21,12 @@ abstract class HasOneOrMany extends Relation {
 	protected $localKey;
 
 	/**
-	 * Create a new has many relationship instance.
+	 * Create a new has one or many relationship instance.
 	 *
 	 * @param  \Illuminate\Database\Eloquent\Builder  $query
 	 * @param  \Illuminate\Database\Eloquent\Model  $parent
 	 * @param  string  $foreignKey
+	 * @param  string  $localKey
 	 * @return void
 	 */
 	public function __construct(Builder $query, Model $parent, $foreignKey, $localKey)
@@ -182,6 +183,77 @@ abstract class HasOneOrMany extends Relation {
 	}
 
 	/**
+	 * Find a model by its primary key or return new instance of the related model.
+	 *
+	 * @param  mixed  $id
+	 * @param  array  $columns
+	 * @return \Illuminate\Support\Collection|\Illuminate\Database\Eloquent\Model
+	 */
+	public function findOrNew($id, $columns = ['*'])
+	{
+		if (is_null($instance = $this->find($id, $columns)))
+		{
+			$instance = $this->related->newInstance();
+
+			$instance->setAttribute($this->getPlainForeignKey(), $this->getParentKey());
+		}
+
+		return $instance;
+	}
+
+	/**
+	 * Get the first related model record matching the attributes or instantiate it.
+	 *
+	 * @param  array  $attributes
+	 * @return \Illuminate\Database\Eloquent\Model
+	 */
+	public function firstOrNew(array $attributes)
+	{
+		if (is_null($instance = $this->where($attributes)->first()))
+		{
+			$instance = $this->related->newInstance();
+
+			$instance->setAttribute($this->getPlainForeignKey(), $this->getParentKey());
+		}
+
+		return $instance;
+	}
+
+	/**
+	 * Get the first related record matching the attributes or create it.
+	 *
+	 * @param  array  $attributes
+	 * @return \Illuminate\Database\Eloquent\Model
+	 */
+	public function firstOrCreate(array $attributes)
+	{
+		if (is_null($instance = $this->where($attributes)->first()))
+		{
+			$instance = $this->create($attributes);
+		}
+
+		return $instance;
+	}
+
+	/**
+	 * Create or update a related record matching the attributes, and fill it with values.
+	 *
+	 * @param  array  $attributes
+	 * @param  array  $values
+	 * @return \Illuminate\Database\Eloquent\Model
+	 */
+	public function updateOrCreate(array $attributes, array $values = [])
+	{
+		$instance = $this->firstOrNew($attributes);
+
+		$instance->fill($values);
+
+		$instance->save();
+
+		return $instance;
+	}
+
+	/**
 	 * Create a new instance of the related model.
 	 *
 	 * @param  array  $attributes
@@ -189,16 +261,12 @@ abstract class HasOneOrMany extends Relation {
 	 */
 	public function create(array $attributes)
 	{
-		$foreign = array(
-			$this->getPlainForeignKey() => $this->getParentKey(),
-		);
-
 		// Here we will set the raw attributes to avoid hitting the "fill" method so
 		// that we do not have to worry about a mass accessor rules blocking sets
 		// on the models. Otherwise, some of these attributes will not get set.
-		$instance = $this->related->newInstance();
+		$instance = $this->related->newInstance($attributes);
 
-		$instance->setRawAttributes(array_merge($attributes, $foreign));
+		$instance->setAttribute($this->getPlainForeignKey(), $this->getParentKey());
 
 		$instance->save();
 
@@ -233,7 +301,7 @@ abstract class HasOneOrMany extends Relation {
 	{
 		if ($this->related->usesTimestamps())
 		{
-			$attributes[$this->relatedUpdatedAt()] = $this->related->freshTimestamp();
+			$attributes[$this->relatedUpdatedAt()] = $this->related->freshTimestampString();
 		}
 
 		return $this->query->update($attributes);
@@ -272,7 +340,7 @@ abstract class HasOneOrMany extends Relation {
 	}
 
 	/**
-	 * Get the key value of the paren's local key.
+	 * Get the key value of the parent's local key.
 	 *
 	 * @return mixed
 	 */

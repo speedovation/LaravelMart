@@ -18,17 +18,17 @@ class CacheServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app->bindShared('cache', function($app)
+		$this->app->singleton('cache', function($app)
 		{
 			return new CacheManager($app);
 		});
 
-		$this->app->bindShared('cache.store', function($app)
+		$this->app->singleton('cache.store', function($app)
 		{
 			return $app['cache']->driver();
 		});
 
-		$this->app->bindShared('memcached.connector', function()
+		$this->app->singleton('memcached.connector', function()
 		{
 			return new MemcachedConnector;
 		});
@@ -43,12 +43,17 @@ class CacheServiceProvider extends ServiceProvider {
 	 */
 	public function registerCommands()
 	{
-		$this->app->bindShared('command.cache.clear', function($app)
+		$this->app->singleton('command.cache.clear', function($app)
 		{
-			return new Console\ClearCommand($app['cache'], $app['files']);
+			return new Console\ClearCommand($app['cache']);
 		});
 
-		$this->commands('command.cache.clear');
+		$this->app->singleton('command.cache.table', function($app)
+		{
+			return new Console\CacheTableCommand($app['files'], $app['composer']);
+		});
+
+		$this->commands('command.cache.clear', 'command.cache.table');
 	}
 
 	/**
@@ -58,7 +63,9 @@ class CacheServiceProvider extends ServiceProvider {
 	 */
 	public function provides()
 	{
-		return array('cache', 'cache.store', 'memcached.connector', 'command.cache.clear');
+		return [
+			'cache', 'cache.store', 'memcached.connector', 'command.cache.clear', 'command.cache.table'
+		];
 	}
 
 }

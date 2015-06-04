@@ -51,7 +51,32 @@ class SigchildDisabledProcessTest extends AbstractProcessTest
 
     /**
      * @expectedException \Symfony\Component\Process\Exception\RuntimeException
-     * @expectedExceptionMessage his PHP has been compiled with --enable-sigchild. Term signal can not be retrieved.
+     * @expectedExceptionMessage This PHP has been compiled with --enable-sigchild. You must use setEnhanceSigchildCompatibility() to use this method.
+     */
+    public function testMustRun()
+    {
+        parent::testMustRun();
+    }
+
+    /**
+     * @expectedException \Symfony\Component\Process\Exception\RuntimeException
+     * @expectedExceptionMessage This PHP has been compiled with --enable-sigchild. You must use setEnhanceSigchildCompatibility() to use this method.
+     */
+    public function testSuccessfulMustRunHasCorrectExitCode()
+    {
+        parent::testSuccessfulMustRunHasCorrectExitCode();
+    }
+
+    /**
+     * @expectedException \Symfony\Component\Process\Exception\RuntimeException
+     */
+    public function testMustRunThrowsException()
+    {
+        parent::testMustRunThrowsException();
+    }
+
+    /**
+     * @expectedException \Symfony\Component\Process\Exception\RuntimeException
      */
     public function testProcessIsSignaledIfStopped()
     {
@@ -60,7 +85,7 @@ class SigchildDisabledProcessTest extends AbstractProcessTest
 
     /**
      * @expectedException \Symfony\Component\Process\Exception\RuntimeException
-     * @expectedExceptionMessage his PHP has been compiled with --enable-sigchild. Term signal can not be retrieved.
+     * @expectedExceptionMessage This PHP has been compiled with --enable-sigchild. Term signal can not be retrieved.
      */
     public function testProcessWithTermSignal()
     {
@@ -69,7 +94,7 @@ class SigchildDisabledProcessTest extends AbstractProcessTest
 
     /**
      * @expectedException \Symfony\Component\Process\Exception\RuntimeException
-     * @expectedExceptionMessage his PHP has been compiled with --enable-sigchild. Term signal can not be retrieved.
+     * @expectedExceptionMessage This PHP has been compiled with --enable-sigchild. Term signal can not be retrieved.
      */
     public function testProcessIsNotSignaled()
     {
@@ -78,7 +103,7 @@ class SigchildDisabledProcessTest extends AbstractProcessTest
 
     /**
      * @expectedException \Symfony\Component\Process\Exception\RuntimeException
-     * @expectedExceptionMessage his PHP has been compiled with --enable-sigchild. Term signal can not be retrieved.
+     * @expectedExceptionMessage This PHP has been compiled with --enable-sigchild. Term signal can not be retrieved.
      */
     public function testProcessWithoutTermSignal()
     {
@@ -211,12 +236,26 @@ class SigchildDisabledProcessTest extends AbstractProcessTest
         $this->markTestSkipped('Signal is not supported in sigchild environment');
     }
 
+    public function testRunProcessWithTimeout()
+    {
+        $this->markTestSkipped('Signal (required for timeout) is not supported in sigchild environment');
+    }
+
+    public function provideStartMethods()
+    {
+        return array(
+            array('start', 'Symfony\Component\Process\Exception\LogicException', 'Output has been disabled, enable it to allow the use of a callback.'),
+            array('run', 'Symfony\Component\Process\Exception\LogicException', 'Output has been disabled, enable it to allow the use of a callback.'),
+            array('mustRun', 'Symfony\Component\Process\Exception\RuntimeException', 'This PHP has been compiled with --enable-sigchild. You must use setEnhanceSigchildCompatibility() to use this method.'),
+        );
+    }
+
     /**
      * {@inheritdoc}
      */
-    protected function getProcess($commandline, $cwd = null, array $env = null, $stdin = null, $timeout = 60, array $options = array())
+    protected function getProcess($commandline, $cwd = null, array $env = null, $input = null, $timeout = 60, array $options = array())
     {
-        $process = new ProcessInSigchildEnvironment($commandline, $cwd, $env, $stdin, $timeout, $options);
+        $process = new ProcessInSigchildEnvironment($commandline, $cwd, $env, $input, $timeout, $options);
         $process->setEnhanceSigchildCompatibility(false);
 
         return $process;

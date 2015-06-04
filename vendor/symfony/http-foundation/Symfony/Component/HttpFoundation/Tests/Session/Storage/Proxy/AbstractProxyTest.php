@@ -17,7 +17,6 @@ use Symfony\Component\HttpFoundation\Session\Storage\Proxy\AbstractProxy;
 // https://github.com/sebastianbergmann/phpunit-mock-objects/issues/73
 class ConcreteProxy extends AbstractProxy
 {
-
 }
 
 class ConcreteSessionHandlerInterfaceProxy extends AbstractProxy implements \SessionHandlerInterface
@@ -88,7 +87,7 @@ class AbstractProxyTest extends \PHPUnit_Framework_TestCase
 
     public function testIsActivePhp53()
     {
-        if (version_compare(phpversion(), '5.4.0', '>=')) {
+        if (PHP_VERSION_ID >= 50400) {
             $this->markTestSkipped('Test skipped, for PHP 5.3 only.');
         }
 
@@ -97,10 +96,11 @@ class AbstractProxyTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
     public function testIsActivePhp54()
     {
-        if (version_compare(phpversion(), '5.4.0', '<')) {
+        if (PHP_VERSION_ID < 50400) {
             $this->markTestSkipped('Test skipped, for PHP 5.4 only.');
         }
 
@@ -111,7 +111,7 @@ class AbstractProxyTest extends \PHPUnit_Framework_TestCase
 
     public function testSetActivePhp53()
     {
-        if (version_compare(phpversion(), '5.4.0', '>=')) {
+        if (PHP_VERSION_ID >= 50400) {
             $this->markTestSkipped('Test skipped, for PHP 5.3 only.');
         }
 
@@ -123,11 +123,12 @@ class AbstractProxyTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @runInSeparateProcess
+     * @preserveGlobalState disabled
      * @expectedException \LogicException
      */
     public function testSetActivePhp54()
     {
-        if (version_compare(phpversion(), '5.4.0', '<')) {
+        if (PHP_VERSION_ID < 50400) {
             $this->markTestSkipped('Test skipped, for PHP 5.4 only.');
         }
 
@@ -136,6 +137,7 @@ class AbstractProxyTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
     public function testName()
     {
@@ -150,7 +152,7 @@ class AbstractProxyTest extends \PHPUnit_Framework_TestCase
      */
     public function testNameExceptionPhp53()
     {
-        if (version_compare(phpversion(), '5.4.0', '>=')) {
+        if (PHP_VERSION_ID >= 50400) {
             $this->markTestSkipped('Test skipped, for PHP 5.3 only.');
         }
 
@@ -160,11 +162,12 @@ class AbstractProxyTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @runInSeparateProcess
+     * @preserveGlobalState disabled
      * @expectedException \LogicException
      */
     public function testNameExceptionPhp54()
     {
-        if (version_compare(phpversion(), '5.4.0', '<')) {
+        if (PHP_VERSION_ID < 50400) {
             $this->markTestSkipped('Test skipped, for PHP 5.4 only.');
         }
 
@@ -174,6 +177,7 @@ class AbstractProxyTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
     public function testId()
     {
@@ -188,7 +192,7 @@ class AbstractProxyTest extends \PHPUnit_Framework_TestCase
      */
     public function testIdExceptionPhp53()
     {
-        if (version_compare(phpversion(), '5.4.0', '>=')) {
+        if (PHP_VERSION_ID >= 50400) {
             $this->markTestSkipped('Test skipped, for PHP 5.3 only.');
         }
 
@@ -198,11 +202,12 @@ class AbstractProxyTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @runInSeparateProcess
+     * @preserveGlobalState disabled
      * @expectedException \LogicException
      */
     public function testIdExceptionPhp54()
     {
-        if (version_compare(phpversion(), '5.4.0', '<')) {
+        if (PHP_VERSION_ID < 50400) {
             $this->markTestSkipped('Test skipped, for PHP 5.4 only.');
         }
 

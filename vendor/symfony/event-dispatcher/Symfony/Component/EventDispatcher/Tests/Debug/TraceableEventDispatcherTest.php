@@ -24,7 +24,7 @@ class TraceableEventDispatcherTest extends \PHPUnit_Framework_TestCase
         $dispatcher = new EventDispatcher();
         $tdispatcher = new TraceableEventDispatcher($dispatcher, new Stopwatch());
 
-        $tdispatcher->addListener('foo', $listener = function () { ; });
+        $tdispatcher->addListener('foo', $listener = function () {; });
         $listeners = $dispatcher->getListeners('foo');
         $this->assertCount(1, $listeners);
         $this->assertSame($listener, $listeners[0]);
@@ -38,7 +38,7 @@ class TraceableEventDispatcherTest extends \PHPUnit_Framework_TestCase
         $dispatcher = new EventDispatcher();
         $tdispatcher = new TraceableEventDispatcher($dispatcher, new Stopwatch());
 
-        $tdispatcher->addListener('foo', $listener = function () { ; });
+        $tdispatcher->addListener('foo', $listener = function () {; });
         $this->assertSame($dispatcher->getListeners('foo'), $tdispatcher->getListeners('foo'));
     }
 
@@ -50,7 +50,7 @@ class TraceableEventDispatcherTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($dispatcher->hasListeners('foo'));
         $this->assertFalse($tdispatcher->hasListeners('foo'));
 
-        $tdispatcher->addListener('foo', $listener = function () { ; });
+        $tdispatcher->addListener('foo', $listener = function () {; });
         $this->assertTrue($dispatcher->hasListeners('foo'));
         $this->assertTrue($tdispatcher->hasListeners('foo'));
     }
@@ -75,7 +75,7 @@ class TraceableEventDispatcherTest extends \PHPUnit_Framework_TestCase
     {
         $dispatcher = new EventDispatcher();
         $tdispatcher = new TraceableEventDispatcher($dispatcher, new Stopwatch());
-        $tdispatcher->addListener('foo', $listener = function () { ; });
+        $tdispatcher->addListener('foo', $listener = function () {; });
 
         $this->assertEquals(array(), $tdispatcher->getCalledListeners());
         $this->assertEquals(array('foo.closure' => array('event' => 'foo', 'type' => 'Closure', 'pretty' => 'closure')), $tdispatcher->getNotCalledListeners());
@@ -86,14 +86,28 @@ class TraceableEventDispatcherTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(array(), $tdispatcher->getNotCalledListeners());
     }
 
+    public function testGetCalledListenersNested()
+    {
+        $tdispatcher = null;
+        $dispatcher = new TraceableEventDispatcher(new EventDispatcher(), new Stopwatch());
+        $dispatcher->addListener('foo', function (Event $event, $eventName, $dispatcher) use (&$tdispatcher) {
+            $tdispatcher = $dispatcher;
+            $dispatcher->dispatch('bar');
+        });
+        $dispatcher->addListener('bar', function (Event $event) {});
+        $dispatcher->dispatch('foo');
+        $this->assertSame($dispatcher, $tdispatcher);
+        $this->assertCount(2, $dispatcher->getCalledListeners());
+    }
+
     public function testLogger()
     {
         $logger = $this->getMock('Psr\Log\LoggerInterface');
 
         $dispatcher = new EventDispatcher();
         $tdispatcher = new TraceableEventDispatcher($dispatcher, new Stopwatch(), $logger);
-        $tdispatcher->addListener('foo', $listener1 = function () { ; });
-        $tdispatcher->addListener('foo', $listener2 = function () { ; });
+        $tdispatcher->addListener('foo', $listener1 = function () {; });
+        $tdispatcher->addListener('foo', $listener2 = function () {; });
 
         $logger->expects($this->at(0))->method('debug')->with("Notified event \"foo\" to listener \"closure\".");
         $logger->expects($this->at(1))->method('debug')->with("Notified event \"foo\" to listener \"closure\".");
@@ -108,7 +122,7 @@ class TraceableEventDispatcherTest extends \PHPUnit_Framework_TestCase
         $dispatcher = new EventDispatcher();
         $tdispatcher = new TraceableEventDispatcher($dispatcher, new Stopwatch(), $logger);
         $tdispatcher->addListener('foo', $listener1 = function (Event $event) { $event->stopPropagation(); });
-        $tdispatcher->addListener('foo', $listener2 = function () { ; });
+        $tdispatcher->addListener('foo', $listener2 = function () {; });
 
         $logger->expects($this->at(0))->method('debug')->with("Notified event \"foo\" to listener \"closure\".");
         $logger->expects($this->at(1))->method('debug')->with("Listener \"closure\" stopped propagation of the event \"foo\".");

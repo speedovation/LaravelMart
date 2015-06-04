@@ -3,6 +3,13 @@
 interface ViewFinderInterface {
 
 	/**
+	 * Hint path delimiter value.
+	 *
+	 * @var string
+	 */
+	const HINT_PATH_DELIMITER = '::';
+
+	/**
 	 * Get the fully qualified location of the view.
 	 *
 	 * @param  string  $view
@@ -22,10 +29,19 @@ interface ViewFinderInterface {
 	 * Add a namespace hint to the finder.
 	 *
 	 * @param  string  $namespace
-	 * @param  string  $hint
+	 * @param  string|array  $hints
 	 * @return void
 	 */
-	public function addNamespace($namespace, $hint);
+	public function addNamespace($namespace, $hints);
+
+	/**
+	 * Prepend a namespace hint to the finder.
+	 *
+	 * @param  string  $namespace
+	 * @param  string|array  $hints
+	 * @return void
+	 */
+	public function prependNamespace($namespace, $hints);
 
 	/**
 	 * Add a valid view extension to the finder.

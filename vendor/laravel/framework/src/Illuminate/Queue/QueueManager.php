@@ -1,8 +1,11 @@
 <?php namespace Illuminate\Queue;
 
 use Closure;
+use InvalidArgumentException;
+use Illuminate\Contracts\Queue\Factory as FactoryContract;
+use Illuminate\Contracts\Queue\Monitor as MonitorContract;
 
-class QueueManager {
+class QueueManager implements FactoryContract, MonitorContract {
 
 	/**
 	 * The application instance.
@@ -30,6 +33,17 @@ class QueueManager {
 	}
 
 	/**
+	 * Register an event listener for the daemon queue loop.
+	 *
+	 * @param  mixed  $callback
+	 * @return void
+	 */
+	public function looping($callback)
+	{
+		$this->app['events']->listen('illuminate.queue.looping', $callback);
+	}
+
+	/**
 	 * Register an event listener for the failed job event.
 	 *
 	 * @param  mixed  $callback
@@ -38,6 +52,17 @@ class QueueManager {
 	public function failing($callback)
 	{
 		$this->app['events']->listen('illuminate.queue.failed', $callback);
+	}
+
+	/**
+	 * Register an event listener for the daemon queue stopping.
+	 *
+	 * @param  mixed  $callback
+	 * @return void
+	 */
+	public function stopping($callback)
+	{
+		$this->app['events']->listen('illuminate.queue.stopping', $callback);
 	}
 
 	/**
@@ -55,7 +80,7 @@ class QueueManager {
 	 * Resolve a queue connection instance.
 	 *
 	 * @param  string  $name
-	 * @return \Illuminate\Queue\QueueInterface
+	 * @return \Illuminate\Contracts\Queue\Queue
 	 */
 	public function connection($name = null)
 	{
@@ -69,6 +94,8 @@ class QueueManager {
 			$this->connections[$name] = $this->resolve($name);
 
 			$this->connections[$name]->setContainer($this->app);
+
+			$this->connections[$name]->setEncrypter($this->app['encrypter']);
 		}
 
 		return $this->connections[$name];
@@ -78,7 +105,7 @@ class QueueManager {
 	 * Resolve a queue connection.
 	 *
 	 * @param  string  $name
-	 * @return \Illuminate\Queue\QueueInterface
+	 * @return \Illuminate\Contracts\Queue\Queue
 	 */
 	protected function resolve($name)
 	{
@@ -102,14 +129,14 @@ class QueueManager {
 			return call_user_func($this->connectors[$driver]);
 		}
 
-		throw new \InvalidArgumentException("No connector for [$driver]");
+		throw new InvalidArgumentException("No connector for [$driver]");
 	}
 
 	/**
 	 * Add a queue connection resolver.
 	 *
-	 * @param  string   $driver
-	 * @param  Closure  $resolver
+	 * @param  string    $driver
+	 * @param  \Closure  $resolver
 	 * @return void
 	 */
 	public function extend($driver, Closure $resolver)
@@ -120,8 +147,8 @@ class QueueManager {
 	/**
 	 * Add a queue connection resolver.
 	 *
-	 * @param  string   $driver
-	 * @param  Closure  $resolver
+	 * @param  string    $driver
+	 * @param  \Closure  $resolver
 	 * @return void
 	 */
 	public function addConnector($driver, Closure $resolver)
@@ -170,6 +197,16 @@ class QueueManager {
 	public function getName($connection = null)
 	{
 		return $connection ?: $this->getDefaultDriver();
+	}
+
+	/**
+	* Determine if the application is in maintenance mode.
+	*
+	* @return bool
+	*/
+	public function isDownForMaintenance()
+	{
+		return $this->app->isDownForMaintenance();
 	}
 
 	/**

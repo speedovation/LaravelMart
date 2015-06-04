@@ -1,16 +1,21 @@
 <?php namespace Illuminate\Console;
 
+use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\NullOutput;
+use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\ChoiceQuestion;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
+use Illuminate\Contracts\Foundation\Application as LaravelApplication;
 
 class Command extends \Symfony\Component\Console\Command\Command {
 
 	/**
 	 * The Laravel application instance.
 	 *
-	 * @var \Illuminate\Foundation\Application
+	 * @var \Illuminate\Contracts\Foundation\Application
 	 */
 	protected $laravel;
 
@@ -85,7 +90,7 @@ class Command extends \Symfony\Component\Console\Command\Command {
 	 *
 	 * @param  \Symfony\Component\Console\Input\InputInterface  $input
 	 * @param  \Symfony\Component\Console\Output\OutputInterface  $output
-	 * @return integer
+	 * @return int
 	 */
 	public function run(InputInterface $input, OutputInterface $output)
 	{
@@ -105,7 +110,9 @@ class Command extends \Symfony\Component\Console\Command\Command {
 	 */
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
-		return $this->fire();
+		$method = method_exists($this, 'handle') ? 'handle' : 'fire';
+
+		return $this->laravel->call([$this, $method]);
 	}
 
 	/**
@@ -113,7 +120,7 @@ class Command extends \Symfony\Component\Console\Command\Command {
 	 *
 	 * @param  string  $command
 	 * @param  array   $arguments
-	 * @return integer
+	 * @return int
 	 */
 	public function call($command, array $arguments = array())
 	{
@@ -129,7 +136,7 @@ class Command extends \Symfony\Component\Console\Command\Command {
 	 *
 	 * @param  string  $command
 	 * @param  array   $arguments
-	 * @return integer
+	 * @return int
 	 */
 	public function callSilent($command, array $arguments = array())
 	{
@@ -173,11 +180,13 @@ class Command extends \Symfony\Component\Console\Command\Command {
 	 * @param  bool    $default
 	 * @return bool
 	 */
-	public function confirm($question, $default = true)
+	public function confirm($question, $default = false)
 	{
-		$dialog = $this->getHelperSet()->get('dialog');
+		$helper = $this->getHelperSet()->get('question');
 
-		return $dialog->askConfirmation($this->output, "<question>$question</question>", $default);
+		$question = new ConfirmationQuestion("<question>{$question}</question> ", $default);
+
+		return $helper->ask($this->input, $this->output, $question);
 	}
 
 	/**
@@ -189,11 +198,31 @@ class Command extends \Symfony\Component\Console\Command\Command {
 	 */
 	public function ask($question, $default = null)
 	{
-		$dialog = $this->getHelperSet()->get('dialog');
+		$helper = $this->getHelperSet()->get('question');
 
-		return $dialog->ask($this->output, "<question>$question</question>", $default);
+		$question = new Question("<question>$question</question> ", $default);
+
+		return $helper->ask($this->input, $this->output, $question);
 	}
 
+	/**
+	 * Prompt the user for input with auto completion.
+	 *
+	 * @param  string  $question
+	 * @param  array   $choices
+	 * @param  string  $default
+	 * @return string
+	 */
+	public function askWithCompletion($question, array $choices, $default = null)
+	{
+		$helper = $this->getHelperSet()->get('question');
+
+		$question = new Question("<question>$question</question> ", $default);
+
+		$question->setAutocompleterValues($choices);
+
+		return $helper->ask($this->input, $this->output, $question);
+	}
 
 	/**
 	 * Prompt the user for input but hide the answer from the console.
@@ -204,9 +233,13 @@ class Command extends \Symfony\Component\Console\Command\Command {
 	 */
 	public function secret($question, $fallback = true)
 	{
-		$dialog = $this->getHelperSet()->get('dialog');
+		$helper = $this->getHelperSet()->get('question');
 
-		return $dialog->askHiddenResponse($this->output, "<question>$question</question>", $fallback);
+		$question = new Question("<question>$question</question> ");
+
+		$question->setHidden(true)->setHiddenFallback($fallback);
+
+		return $helper->ask($this->input, $this->output, $question);
 	}
 
 	/**
@@ -216,24 +249,33 @@ class Command extends \Symfony\Component\Console\Command\Command {
 	 * @param  array   $choices
 	 * @param  string  $default
 	 * @param  mixed   $attempts
+	 * @param  bool    $multiple
 	 * @return bool
 	 */
-	public function choice($question, array $choices, $default = null, $attempts = false)
+	public function choice($question, array $choices, $default = null, $attempts = null, $multiple = null)
 	{
-		$dialog = $this->getHelperSet()->get('dialog');
+		$helper = $this->getHelperSet()->get('question');
 
-		return $dialog->select($this->output, "<question>$question</question>", $choices, $default, $attempts);
+		$question = new ChoiceQuestion("<question>$question</question> ", $choices, $default);
+
+		$question->setMaxAttempts($attempts)->setMultiselect($multiple);
+
+		return $helper->ask($this->input, $this->output, $question);
 	}
 
 	/**
-	 * Write a string as standard output.
+	 * Format input to textual table
 	 *
-	 * @param  string  $string
+	 * @param  array   $headers
+	 * @param  array   $rows
+	 * @param  string  $style
 	 * @return void
 	 */
-	public function line($string)
+	public function table(array $headers, array $rows, $style = 'default')
 	{
-		$this->output->writeln($string);
+		$table = new Table($this->output);
+
+		$table->setHeaders($headers)->setRows($rows)->setStyle($style)->render();
 	}
 
 	/**
@@ -245,6 +287,17 @@ class Command extends \Symfony\Component\Console\Command\Command {
 	public function info($string)
 	{
 		$this->output->writeln("<info>$string</info>");
+	}
+
+	/**
+	 * Write a string as standard output.
+	 *
+	 * @param  string  $string
+	 * @return void
+	 */
+	public function line($string)
+	{
+		$this->output->writeln($string);
 	}
 
 	/**
@@ -311,9 +364,9 @@ class Command extends \Symfony\Component\Console\Command\Command {
 	}
 
 	/**
-	 * Set the Laravel application instance.
+	 * Get the Laravel application instance.
 	 *
-	 * @return \Illuminate\Foundation\Application
+	 * @return \Illuminate\Contracts\Foundation\Application
 	 */
 	public function getLaravel()
 	{
@@ -323,10 +376,10 @@ class Command extends \Symfony\Component\Console\Command\Command {
 	/**
 	 * Set the Laravel application instance.
 	 *
-	 * @param  \Illuminate\Foundation\Application  $laravel
+	 * @param  \Illuminate\Contracts\Foundation\Application  $laravel
 	 * @return void
 	 */
-	public function setLaravel($laravel)
+	public function setLaravel(LaravelApplication $laravel)
 	{
 		$this->laravel = $laravel;
 	}

@@ -114,7 +114,6 @@ class FlattenExceptionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($exception->getMessage(), $flattened->getMessage(), 'The message is copied from the original exception.');
         $this->assertEquals($exception->getCode(), $flattened->getCode(), 'The code is copied from the original exception.');
         $this->assertInstanceOf($flattened->getClass(), $exception, 'The class is set to the class of the original exception');
-
     }
 
     /**
@@ -127,9 +126,9 @@ class FlattenExceptionTest extends \PHPUnit_Framework_TestCase
 
         $flattened->setPrevious($flattened2);
 
-        $this->assertSame($flattened2,$flattened->getPrevious());
+        $this->assertSame($flattened2, $flattened->getPrevious());
 
-        $this->assertSame(array($flattened2),$flattened->getAllPrevious());
+        $this->assertSame(array($flattened2), $flattened->getAllPrevious());
     }
 
     /**
@@ -160,13 +159,13 @@ class FlattenExceptionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(array(
             array(
-                'message'=> 'test',
-                'class'=>'Exception',
-                'trace'=>array(array(
-                    'namespace'   => '', 'short_class' => '', 'class' => '','type' => '','function' => '', 'file' => 'foo.php', 'line' => 123,
-                    'args'        => array()
+                'message' => 'test',
+                'class' => 'Exception',
+                'trace' => array(array(
+                    'namespace' => '', 'short_class' => '', 'class' => '', 'type' => '', 'function' => '', 'file' => 'foo.php', 'line' => 123,
+                    'args' => array(),
                 )),
-            )
+            ),
         ), $flattened->toArray());
     }
 
@@ -187,6 +186,28 @@ class FlattenExceptionTest extends \PHPUnit_Framework_TestCase
         $this->assertContains('*DEEP NESTED ARRAY*', serialize($trace));
     }
 
+    public function testTooBigArray()
+    {
+        $a = array();
+        for ($i = 0; $i < 20; $i++) {
+            for ($j = 0; $j < 50; $j++) {
+                for ($k = 0; $k < 10; $k++) {
+                    $a[$i][$j][$k] = 'value';
+                }
+            }
+        }
+        $a[20] = 'value';
+        $a[21] = 'value1';
+        $exception = $this->createException($a);
+
+        $flattened = FlattenException::create($exception);
+        $trace = $flattened->getTrace();
+        $serializeTrace = serialize($trace);
+
+        $this->assertContains('*SKIPPED over 10000 entries*', $serializeTrace);
+        $this->assertNotContains('*value1*', $serializeTrace);
+    }
+
     private function createException($foo)
     {
         return new \Exception();
@@ -202,7 +223,7 @@ class FlattenExceptionTest extends \PHPUnit_Framework_TestCase
                     'line' => 123,
                     'function' => 'test',
                     'args' => array(
-                        unserialize('O:14:"BogusTestClass":0:{}')
+                        unserialize('O:14:"BogusTestClass":0:{}'),
                     ),
                 ),
             ),
@@ -211,25 +232,25 @@ class FlattenExceptionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(array(
             array(
-                'message'=> 'test',
-                'class'=>'Exception',
-                'trace'=>array(
+                'message' => 'test',
+                'class' => 'Exception',
+                'trace' => array(
                     array(
-                        'namespace'   => '', 'short_class' => '', 'class' => '','type' => '','function' => '',
-                        'file'        => 'foo.php', 'line' => 123,
-                        'args'        => array(),
+                        'namespace' => '', 'short_class' => '', 'class' => '', 'type' => '', 'function' => '',
+                        'file' => 'foo.php', 'line' => 123,
+                        'args' => array(),
                     ),
                     array(
-                        'namespace'   => '', 'short_class' => '', 'class' => '','type' => '','function' => 'test',
-                        'file'        => __FILE__, 'line' => 123,
-                        'args'        => array(
+                        'namespace' => '', 'short_class' => '', 'class' => '', 'type' => '', 'function' => 'test',
+                        'file' => __FILE__, 'line' => 123,
+                        'args' => array(
                             array(
-                                'incomplete-object', 'BogusTestClass'
+                                'incomplete-object', 'BogusTestClass',
                             ),
                         ),
-                    )
+                    ),
                 ),
-            )
+            ),
         ), $flattened->toArray());
     }
 }

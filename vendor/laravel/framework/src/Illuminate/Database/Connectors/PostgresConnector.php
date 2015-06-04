@@ -10,18 +10,17 @@ class PostgresConnector extends Connector implements ConnectorInterface {
 	 * @var array
 	 */
 	protected $options = array(
-			PDO::ATTR_CASE => PDO::CASE_NATURAL,
-			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-			PDO::ATTR_ORACLE_NULLS => PDO::NULL_NATURAL,
-			PDO::ATTR_STRINGIFY_FETCHES => false,
+		PDO::ATTR_CASE => PDO::CASE_NATURAL,
+		PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+		PDO::ATTR_ORACLE_NULLS => PDO::NULL_NATURAL,
+		PDO::ATTR_STRINGIFY_FETCHES => false,
 	);
-
 
 	/**
 	 * Establish a database connection.
 	 *
 	 * @param  array  $config
-	 * @return PDO
+	 * @return \PDO
 	 */
 	public function connect(array $config)
 	{
@@ -37,6 +36,16 @@ class PostgresConnector extends Connector implements ConnectorInterface {
 		$charset = $config['charset'];
 
 		$connection->prepare("set names '$charset'")->execute();
+
+		// Next, we will check to see if a timezone has been specified in this config
+		// and if it has we will issue a statement to modify the timezone with the
+		// database. Setting this DB timezone is an optional configuration item.
+		if (isset($config['timezone']))
+		{
+			$timezone = $config['timezone'];
+
+			$connection->prepare("set time zone '$timezone'")->execute();
+		}
 
 		// Unlike MySQL, Postgres allows the concept of "schema" and a default schema
 		// may have been specified on the connections. If that is the case we will
@@ -74,6 +83,11 @@ class PostgresConnector extends Connector implements ConnectorInterface {
 		if (isset($config['port']))
 		{
 			$dsn .= ";port={$port}";
+		}
+
+		if (isset($config['sslmode']))
+		{
+			$dsn .= ";sslmode={$sslmode}";
 		}
 
 		return $dsn;

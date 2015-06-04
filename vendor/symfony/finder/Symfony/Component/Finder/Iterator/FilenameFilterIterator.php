@@ -20,11 +20,10 @@ use Symfony\Component\Finder\Expression\Expression;
  */
 class FilenameFilterIterator extends MultiplePcreFilterIterator
 {
-
     /**
      * Filters the iterator values.
      *
-     * @return bool    true if the value should be kept, false otherwise
+     * @return bool true if the value should be kept, false otherwise
      */
     public function accept()
     {

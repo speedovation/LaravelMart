@@ -15,7 +15,7 @@ class PostgresProcessor extends Processor {
 	 */
 	public function processInsertGetId(Builder $query, $sql, $values, $sequence = null)
 	{
-		$results = $query->getConnection()->select($sql, $values);
+		$results = $query->getConnection()->selectFromWriteConnection($sql, $values);
 
 		$sequence = $sequence ?: 'id';
 
@@ -34,7 +34,7 @@ class PostgresProcessor extends Processor {
 	 */
 	public function processColumnListing($results)
 	{
-		return array_values(array_map(function($r) { return $r->column_name; }, $results));
+		return array_values(array_map(function($r) { $r = (object) $r; return $r->column_name; }, $results));
 	}
 
 }

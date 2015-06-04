@@ -116,16 +116,6 @@ abstract class Relation {
 	}
 
 	/**
-	 * Restore all of the soft deleted related models.
-	 *
-	 * @return int
-	 */
-	public function restore()
-	{
-		return $this->query->withTrashed()->restore();
-	}
-
-	/**
 	 * Run a raw update against the base query.
 	 *
 	 * @param  array  $attributes
@@ -160,6 +150,8 @@ abstract class Relation {
 	 */
 	public static function noConstraints(Closure $callback)
 	{
+		$previous = static::$constraints;
+
 		static::$constraints = false;
 
 		// When resetting the relation where clause, we want to shift the first element
@@ -167,7 +159,7 @@ abstract class Relation {
 		// as "extra" on the relationships, and not original relation constraints.
 		$results = call_user_func($callback);
 
-		static::$constraints = true;
+		static::$constraints = $previous;
 
 		return $results;
 	}
@@ -181,11 +173,11 @@ abstract class Relation {
 	 */
 	protected function getKeys(array $models, $key = null)
 	{
-		return array_values(array_map(function($value) use ($key)
+		return array_unique(array_values(array_map(function($value) use ($key)
 		{
 			return $key ? $value->getAttribute($key) : $value->getKey();
 
-		}, $models));
+		}, $models)));
 	}
 
 	/**
@@ -223,7 +215,7 @@ abstract class Relation {
 	 *
 	 * @return string
 	 */
-	protected function getQualifiedParentKeyName()
+	public function getQualifiedParentKeyName()
 	{
 		return $this->parent->getQualifiedKeyName();
 	}
@@ -276,7 +268,7 @@ abstract class Relation {
 	 */
 	public function wrap($value)
 	{
-		return $this->parent->getQuery()->getGrammar()->wrap($value);
+		return $this->parent->newQueryWithoutScopes()->getQuery()->getGrammar()->wrap($value);
 	}
 
 	/**

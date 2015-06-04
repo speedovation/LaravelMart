@@ -1,9 +1,13 @@
 <?php namespace Illuminate\Database\Query;
 
 use Closure;
+use BadMethodCallException;
+use InvalidArgumentException;
 use Illuminate\Support\Collection;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Database\Query\Grammars\Grammar;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Query\Processors\Processor;
 
 class Builder {
@@ -34,7 +38,13 @@ class Builder {
 	 *
 	 * @var array
 	 */
-	protected $bindings = array();
+	protected $bindings = array(
+		'select' => [],
+		'join'   => [],
+		'where'  => [],
+		'having' => [],
+		'order'  => [],
+	);
 
 	/**
 	 * An aggregate function and column to be run.
@@ -121,6 +131,27 @@ class Builder {
 	public $unions;
 
 	/**
+	 * The maximum number of union records to return.
+	 *
+	 * @var int
+	 */
+	public $unionLimit;
+
+	/**
+	 * The number of union records to skip.
+	 *
+	 * @var int
+	 */
+	public $unionOffset;
+
+	/**
+	 * The orderings for the union query.
+	 *
+	 * @var array
+	 */
+	public $unionOrders;
+
+	/**
 	 * Indicates whether row locking is being used.
 	 *
 	 * @var string|bool
@@ -128,39 +159,11 @@ class Builder {
 	public $lock;
 
 	/**
-	 * The backups of fields while doing a pagination count.
+	 * The field backups currently in use.
 	 *
 	 * @var array
 	 */
-	protected $backups = array();
-
-	/**
-	 * The key that should be used when caching the query.
-	 *
-	 * @var string
-	 */
-	protected $cacheKey;
-
-	/**
-	 * The number of minutes to cache the query.
-	 *
-	 * @var int
-	 */
-	protected $cacheMinutes;
-
-	/**
-	 * The tags for the query cache.
-	 *
-	 * @var array
-	 */
-	protected $cacheTags;
-
-	/**
-	 * The cache driver to be used.
-	 *
-	 * @var string
-	 */
-	protected $cacheDriver;
+	protected $backups = [];
 
 	/**
 	 * All of the available clause operators.
@@ -169,9 +172,19 @@ class Builder {
 	 */
 	protected $operators = array(
 		'=', '<', '>', '<=', '>=', '<>', '!=',
-		'like', 'not like', 'between', 'ilike',
+		'like', 'like binary', 'not like', 'between', 'ilike',
 		'&', '|', '^', '<<', '>>',
+		'rlike', 'regexp', 'not regexp',
+		'~', '~*', '!~', '!~*', 'similar to',
+                'not similar to',
 	);
+
+	/**
+	 * Whether use write pdo for select.
+	 *
+	 * @var bool
+	 */
+	protected $useWritePdo = false;
 
 	/**
 	 * Create a new query builder instance.
@@ -194,7 +207,7 @@ class Builder {
 	 * Set the columns to be selected.
 	 *
 	 * @param  array  $columns
-	 * @return \Illuminate\Database\Query\Builder|static
+	 * @return $this
 	 */
 	public function select($columns = array('*'))
 	{
@@ -207,18 +220,60 @@ class Builder {
 	 * Add a new "raw" select expression to the query.
 	 *
 	 * @param  string  $expression
+	 * @param  array   $bindings
 	 * @return \Illuminate\Database\Query\Builder|static
 	 */
-	public function selectRaw($expression)
+	public function selectRaw($expression, array $bindings = array())
 	{
-		return $this->select(new Expression($expression));
+		$this->addSelect(new Expression($expression));
+
+		if ($bindings)
+		{
+			$this->addBinding($bindings, 'select');
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Add a subselect expression to the query.
+	 *
+	 * @param  \Closure|\Illuminate\Database\Query\Builder|string $query
+	 * @param  string  $as
+	 * @return \Illuminate\Database\Query\Builder|static
+	 */
+	public function selectSub($query, $as)
+	{
+		if ($query instanceof Closure)
+		{
+			$callback = $query;
+
+			$callback($query = $this->newQuery());
+		}
+
+		if ($query instanceof Builder)
+		{
+			$bindings = $query->getBindings();
+
+			$query = $query->toSql();
+		}
+		elseif (is_string($query))
+		{
+			$bindings = [];
+		}
+		else
+		{
+			throw new InvalidArgumentException;
+		}
+
+		return $this->selectRaw('('.$query.') as '.$this->grammar->wrap($as), $bindings);
 	}
 
 	/**
 	 * Add a new select column to the query.
 	 *
 	 * @param  mixed  $column
-	 * @return \Illuminate\Database\Query\Builder|static
+	 * @return $this
 	 */
 	public function addSelect($column)
 	{
@@ -232,7 +287,7 @@ class Builder {
 	/**
 	 * Force the query to only return distinct results.
 	 *
-	 * @return \Illuminate\Database\Query\Builder|static
+	 * @return $this
 	 */
 	public function distinct()
 	{
@@ -245,7 +300,7 @@ class Builder {
 	 * Set the table which the query is targeting.
 	 *
 	 * @param  string  $table
-	 * @return \Illuminate\Database\Query\Builder|static
+	 * @return $this
 	 */
 	public function from($table)
 	{
@@ -258,12 +313,12 @@ class Builder {
 	 * Add a join clause to the query.
 	 *
 	 * @param  string  $table
-	 * @param  string  $first
+	 * @param  string  $one
 	 * @param  string  $operator
 	 * @param  string  $two
 	 * @param  string  $type
-	 * @param  bool  $where
-	 * @return \Illuminate\Database\Query\Builder|static
+	 * @param  bool    $where
+	 * @return $this
 	 */
 	public function join($table, $one, $operator = null, $two = null, $type = 'inner', $where = false)
 	{
@@ -272,7 +327,7 @@ class Builder {
 		// one condition, so we'll add the join and call a Closure with the query.
 		if ($one instanceof Closure)
 		{
-			$this->joins[] = new JoinClause($this, $type, $table);
+			$this->joins[] = new JoinClause($type, $table);
 
 			call_user_func($one, end($this->joins));
 		}
@@ -282,7 +337,7 @@ class Builder {
 		// this simple join clauses attached to it. There is not a join callback.
 		else
 		{
-			$join = new JoinClause($this, $type, $table);
+			$join = new JoinClause($type, $table);
 
 			$this->joins[] = $join->on(
 				$one, $operator, $two, 'and', $where
@@ -296,7 +351,7 @@ class Builder {
 	 * Add a "join where" clause to the query.
 	 *
 	 * @param  string  $table
-	 * @param  string  $first
+	 * @param  string  $one
 	 * @param  string  $operator
 	 * @param  string  $two
 	 * @param  string  $type
@@ -325,7 +380,7 @@ class Builder {
 	 * Add a "join where" clause to the query.
 	 *
 	 * @param  string  $table
-	 * @param  string  $first
+	 * @param  string  $one
 	 * @param  string  $operator
 	 * @param  string  $two
 	 * @return \Illuminate\Database\Query\Builder|static
@@ -336,25 +391,70 @@ class Builder {
 	}
 
 	/**
+	 * Add a right join to the query.
+	 *
+	 * @param  string  $table
+	 * @param  string  $first
+	 * @param  string  $operator
+	 * @param  string  $second
+	 * @return \Illuminate\Database\Query\Builder|static
+	 */
+	public function rightJoin($table, $first, $operator = null, $second = null)
+	{
+		return $this->join($table, $first, $operator, $second, 'right');
+	}
+
+	/**
+	 * Add a "right join where" clause to the query.
+	 *
+	 * @param  string  $table
+	 * @param  string  $one
+	 * @param  string  $operator
+	 * @param  string  $two
+	 * @return \Illuminate\Database\Query\Builder|static
+	 */
+	public function rightJoinWhere($table, $one, $operator, $two)
+	{
+		return $this->joinWhere($table, $one, $operator, $two, 'right');
+	}
+
+	/**
 	 * Add a basic where clause to the query.
 	 *
 	 * @param  string  $column
 	 * @param  string  $operator
 	 * @param  mixed   $value
 	 * @param  string  $boolean
-	 * @return \Illuminate\Database\Query\Builder|static
+	 * @return $this
 	 *
 	 * @throws \InvalidArgumentException
 	 */
 	public function where($column, $operator = null, $value = null, $boolean = 'and')
 	{
+		// If the column is an array, we will assume it is an array of key-value pairs
+		// and can add them each as a where clause. We will maintain the boolean we
+		// received when the method was called and pass it into the nested where.
+		if (is_array($column))
+		{
+			return $this->whereNested(function($query) use ($column)
+			{
+				foreach ($column as $key => $value)
+				{
+					$query->where($key, '=', $value);
+				}
+			}, $boolean);
+		}
+
+		// Here we will make some assumptions about the operator. If only 2 values are
+		// passed to the method, we will assume that the operator is an equals sign
+		// and keep going. Otherwise, we'll require the operator to be passed in.
 		if (func_num_args() == 2)
 		{
 			list($value, $operator) = array($operator, '=');
 		}
 		elseif ($this->invalidOperatorAndValue($operator, $value))
 		{
-			throw new \InvalidArgumentException("Value must be provided.");
+			throw new InvalidArgumentException("Value must be provided.");
 		}
 
 		// If the columns is actually a Closure instance, we will assume the developer
@@ -398,7 +498,7 @@ class Builder {
 
 		if ( ! $value instanceof Expression)
 		{
-			$this->bindings[] = $value;
+			$this->addBinding($value, 'where');
 		}
 
 		return $this;
@@ -428,7 +528,7 @@ class Builder {
 	{
 		$isOperator = in_array($operator, $this->operators);
 
-		return ($isOperator && $operator != '=' && is_null($value));
+		return $isOperator && $operator != '=' && is_null($value);
 	}
 
 	/**
@@ -437,7 +537,7 @@ class Builder {
 	 * @param  string  $sql
 	 * @param  array   $bindings
 	 * @param  string  $boolean
-	 * @return \Illuminate\Database\Query\Builder|static
+	 * @return $this
 	 */
 	public function whereRaw($sql, array $bindings = array(), $boolean = 'and')
 	{
@@ -445,7 +545,7 @@ class Builder {
 
 		$this->wheres[] = compact('type', 'sql', 'boolean');
 
-		$this->bindings = array_merge($this->bindings, $bindings);
+		$this->addBinding($bindings, 'where');
 
 		return $this;
 	}
@@ -469,7 +569,7 @@ class Builder {
 	 * @param  array   $values
 	 * @param  string  $boolean
 	 * @param  bool  $not
-	 * @return \Illuminate\Database\Query\Builder|static
+	 * @return $this
 	 */
 	public function whereBetween($column, array $values, $boolean = 'and', $not = false)
 	{
@@ -477,7 +577,7 @@ class Builder {
 
 		$this->wheres[] = compact('column', 'type', 'boolean', 'not');
 
-		$this->bindings = array_merge($this->bindings, $values);
+		$this->addBinding($values, 'where');
 
 		return $this;
 	}
@@ -545,7 +645,7 @@ class Builder {
 	 *
 	 * @param  \Illuminate\Database\Query\Builder|static $query
 	 * @param  string  $boolean
-	 * @return \Illuminate\Database\Query\Builder|static
+	 * @return $this
 	 */
 	public function addNestedWhereQuery($query, $boolean = 'and')
 	{
@@ -568,7 +668,7 @@ class Builder {
 	 * @param  string   $operator
 	 * @param  \Closure $callback
 	 * @param  string   $boolean
-	 * @return \Illuminate\Database\Query\Builder|static
+	 * @return $this
 	 */
 	protected function whereSub($column, $operator, Closure $callback, $boolean)
 	{
@@ -594,7 +694,7 @@ class Builder {
 	 * @param  \Closure $callback
 	 * @param  string   $boolean
 	 * @param  bool     $not
-	 * @return \Illuminate\Database\Query\Builder|static
+	 * @return $this
 	 */
 	public function whereExists(Closure $callback, $boolean = 'and', $not = false)
 	{
@@ -656,7 +756,7 @@ class Builder {
 	 * @param  mixed   $values
 	 * @param  string  $boolean
 	 * @param  bool    $not
-	 * @return \Illuminate\Database\Query\Builder|static
+	 * @return $this
 	 */
 	public function whereIn($column, $values, $boolean = 'and', $not = false)
 	{
@@ -672,7 +772,7 @@ class Builder {
 
 		$this->wheres[] = compact('type', 'column', 'values', 'boolean');
 
-		$this->bindings = array_merge($this->bindings, $values);
+		$this->addBinding($values, 'where');
 
 		return $this;
 	}
@@ -721,7 +821,7 @@ class Builder {
 	 * @param  \Closure $callback
 	 * @param  string   $boolean
 	 * @param  bool     $not
-	 * @return \Illuminate\Database\Query\Builder|static
+	 * @return $this
 	 */
 	protected function whereInSub($column, Closure $callback, $boolean, $not)
 	{
@@ -745,7 +845,7 @@ class Builder {
 	 * @param  string  $column
 	 * @param  string  $boolean
 	 * @param  bool    $not
-	 * @return \Illuminate\Database\Query\Builder|static
+	 * @return $this
 	 */
 	public function whereNull($column, $boolean = 'and', $not = false)
 	{
@@ -788,6 +888,20 @@ class Builder {
 	public function orWhereNotNull($column)
 	{
 		return $this->whereNotNull($column, 'or');
+	}
+
+	/**
+	 * Add a "where date" statement to the query.
+	 *
+	 * @param  string  $column
+	 * @param  string   $operator
+	 * @param  int   $value
+	 * @param  string   $boolean
+	 * @return \Illuminate\Database\Query\Builder|static
+	 */
+	public function whereDate($column, $operator, $value, $boolean = 'and')
+	{
+		return $this->addDateBasedWhere('Date', $column, $operator, $value, $boolean);
 	}
 
 	/**
@@ -840,13 +954,13 @@ class Builder {
 	 * @param  string  $operator
 	 * @param  int  $value
 	 * @param  string  $boolean
-	 * @return \Illuminate\Database\Query\Builder|static
+	 * @return $this
 	 */
 	protected function addDateBasedWhere($type, $column, $operator, $value, $boolean = 'and')
 	{
 		$this->wheres[] = compact('column', 'type', 'boolean', 'operator', 'value');
 
-		$this->bindings[] = $value;
+		$this->addBinding($value, 'where');
 
 		return $this;
 	}
@@ -856,7 +970,7 @@ class Builder {
 	 *
 	 * @param  string  $method
 	 * @param  string  $parameters
-	 * @return \Illuminate\Database\Query\Builder|static
+	 * @return $this
 	 */
 	public function dynamicWhere($method, $parameters)
 	{
@@ -917,12 +1031,15 @@ class Builder {
 	/**
 	 * Add a "group by" clause to the query.
 	 *
-	 * @param  dynamic  $columns
-	 * @return \Illuminate\Database\Query\Builder|static
+	 * @param  array|string  $column,...
+	 * @return $this
 	 */
 	public function groupBy()
 	{
-		$this->groups = array_merge((array) $this->groups, func_get_args());
+		foreach (func_get_args() as $arg)
+		{
+			$this->groups = array_merge((array) $this->groups, is_array($arg) ? $arg : [$arg]);
+		}
 
 		return $this;
 	}
@@ -933,17 +1050,34 @@ class Builder {
 	 * @param  string  $column
 	 * @param  string  $operator
 	 * @param  string  $value
-	 * @return \Illuminate\Database\Query\Builder|static
+	 * @param  string  $boolean
+	 * @return $this
 	 */
-	public function having($column, $operator = null, $value = null)
+	public function having($column, $operator = null, $value = null, $boolean = 'and')
 	{
 		$type = 'basic';
 
-		$this->havings[] = compact('type', 'column', 'operator', 'value');
+		$this->havings[] = compact('type', 'column', 'operator', 'value', 'boolean');
 
-		$this->bindings[] = $value;
+		if ( ! $value instanceof Expression)
+		{
+			$this->addBinding($value, 'having');
+		}
 
 		return $this;
+	}
+
+	/**
+	 * Add a "or having" clause to the query.
+	 *
+	 * @param  string  $column
+	 * @param  string  $operator
+	 * @param  string  $value
+	 * @return \Illuminate\Database\Query\Builder|static
+	 */
+	public function orHaving($column, $operator = null, $value = null)
+	{
+		return $this->having($column, $operator, $value, 'or');
 	}
 
 	/**
@@ -952,7 +1086,7 @@ class Builder {
 	 * @param  string  $sql
 	 * @param  array   $bindings
 	 * @param  string  $boolean
-	 * @return \Illuminate\Database\Query\Builder|static
+	 * @return $this
 	 */
 	public function havingRaw($sql, array $bindings = array(), $boolean = 'and')
 	{
@@ -960,7 +1094,7 @@ class Builder {
 
 		$this->havings[] = compact('type', 'sql', 'boolean');
 
-		$this->bindings = array_merge($this->bindings, $bindings);
+		$this->addBinding($bindings, 'having');
 
 		return $this;
 	}
@@ -982,13 +1116,14 @@ class Builder {
 	 *
 	 * @param  string  $column
 	 * @param  string  $direction
-	 * @return \Illuminate\Database\Query\Builder|static
+	 * @return $this
 	 */
 	public function orderBy($column, $direction = 'asc')
 	{
+		$property = $this->unions ? 'unionOrders' : 'orders';
 		$direction = strtolower($direction) == 'asc' ? 'asc' : 'desc';
 
-		$this->orders[] = compact('column', 'direction');
+		$this->{$property}[] = compact('column', 'direction');
 
 		return $this;
 	}
@@ -1020,7 +1155,7 @@ class Builder {
 	 *
 	 * @param  string  $sql
 	 * @param  array  $bindings
-	 * @return \Illuminate\Database\Query\Builder|static
+	 * @return $this
 	 */
 	public function orderByRaw($sql, $bindings = array())
 	{
@@ -1028,7 +1163,7 @@ class Builder {
 
 		$this->orders[] = compact('type', 'sql');
 
-		$this->bindings = array_merge($this->bindings, $bindings);
+		$this->addBinding($bindings, 'order');
 
 		return $this;
 	}
@@ -1037,11 +1172,13 @@ class Builder {
 	 * Set the "offset" value of the query.
 	 *
 	 * @param  int  $value
-	 * @return \Illuminate\Database\Query\Builder|static
+	 * @return $this
 	 */
 	public function offset($value)
 	{
-		$this->offset = max(0, $value);
+		$property = $this->unions ? 'unionOffset' : 'offset';
+
+		$this->$property = max(0, $value);
 
 		return $this;
 	}
@@ -1061,11 +1198,13 @@ class Builder {
 	 * Set the "limit" value of the query.
 	 *
 	 * @param  int  $value
-	 * @return \Illuminate\Database\Query\Builder|static
+	 * @return $this
 	 */
 	public function limit($value)
 	{
-		if ($value > 0) $this->limit = $value;
+		$property = $this->unions ? 'unionLimit' : 'limit';
+
+		if ($value > 0) $this->$property = $value;
 
 		return $this;
 	}
@@ -1097,7 +1236,7 @@ class Builder {
 	 * Add a union statement to the query.
 	 *
 	 * @param  \Illuminate\Database\Query\Builder|\Closure  $query
-	 * @param  bool $all
+	 * @param  bool  $all
 	 * @return \Illuminate\Database\Query\Builder|static
 	 */
 	public function union($query, $all = false)
@@ -1126,8 +1265,8 @@ class Builder {
 	/**
 	 * Lock the selected rows in the table.
 	 *
-	 * @param  bool  $update
-	 * @return \Illuminate\Database\Query\Builder
+	 * @param  bool  $value
+	 * @return $this
 	 */
 	public function lock($value = true)
 	{
@@ -1164,57 +1303,6 @@ class Builder {
 	public function toSql()
 	{
 		return $this->grammar->compileSelect($this);
-	}
-
-	/**
-	 * Indicate that the query results should be cached.
-	 *
-	 * @param  \DateTime|int  $minutes
-	 * @param  string  $key
-	 * @return \Illuminate\Database\Query\Builder|static
-	 */
-	public function remember($minutes, $key = null)
-	{
-		list($this->cacheMinutes, $this->cacheKey) = array($minutes, $key);
-
-		return $this;
-	}
-
-	/**
-	 * Indicate that the query results should be cached forever.
-	 *
-	 * @param  string  $key
-	 * @return \Illuminate\Database\Query\Builder|static
-	 */
-	public function rememberForever($key = null)
-	{
-		return $this->remember(-1, $key);
-	}
-
-	/**
-	 * Indicate that the results, if cached, should use the given cache tags.
-	 *
-	 * @param  array|dynamic  $cacheTags
-	 * @return \Illuminate\Database\Query\Builder|static
-	 */
-	public function cacheTags($cacheTags)
-	{
-		$this->cacheTags = $cacheTags;
-
-		return $this;
-	}
-
-	/**
-	 * Indicate that the results, if cached, should use the given cache driver.
-	 *
-	 * @param  string  $cacheDriver
-	 * @return \Illuminate\Database\Query\Builder|static
-	 */
-	public function cacheDriver($cacheDriver)
-	{
-		$this->cacheDriver = $cacheDriver;
-
-		return $this;
 	}
 
 	/**
@@ -1263,8 +1351,6 @@ class Builder {
 	 */
 	public function get($columns = array('*'))
 	{
-		if ( ! is_null($this->cacheMinutes)) return $this->getCached($columns);
-
 		return $this->getFresh($columns);
 	}
 
@@ -1288,96 +1374,93 @@ class Builder {
 	 */
 	protected function runSelect()
 	{
-		return $this->connection->select($this->toSql(), $this->bindings);
+		return $this->connection->select($this->toSql(), $this->getBindings(), ! $this->useWritePdo);
 	}
 
 	/**
-	 * Execute the query as a cached "select" statement.
+	 * Paginate the given query into a simple paginator.
 	 *
+	 * @param  int  $perPage
 	 * @param  array  $columns
-	 * @return array
+	 * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
 	 */
-	public function getCached($columns = array('*'))
+	public function paginate($perPage = 15, $columns = ['*'])
 	{
-		if (is_null($this->columns)) $this->columns = $columns;
+		$page = Paginator::resolveCurrentPage();
 
-		// If the query is requested to be cached, we will cache it using a unique key
-		// for this database connection and query statement, including the bindings
-		// that are used on this query, providing great convenience when caching.
-		list($key, $minutes) = $this->getCacheInfo();
+		$total = $this->getCountForPagination();
 
-		$cache = $this->getCache();
+		$results = $this->forPage($page, $perPage)->get($columns);
 
-		$callback = $this->getCacheCallback($columns);
-
-		// If the "minutes" value is less than zero, we will use that as the indicator
-		// that the value should be remembered values should be stored indefinitely
-		// and if we have minutes we will use the typical remember function here.
-		if ($minutes < 0)
-		{
-			return $cache->rememberForever($key, $callback);
-		}
-		else
-		{
-			return $cache->remember($key, $minutes, $callback);
-		}
+		return new LengthAwarePaginator($results, $total, $perPage, $page, [
+			'path' => Paginator::resolveCurrentPath()
+		]);
 	}
 
 	/**
-	 * Get the cache object with tags assigned, if applicable.
+	 * Get a paginator only supporting simple next and previous links.
 	 *
-	 * @return \Illuminate\Cache\CacheManager
-	 */
-	protected function getCache()
-	{
-		$cache = $this->connection->getCacheManager()->driver($this->cacheDriver);
-
-		return $this->cacheTags ? $cache->tags($this->cacheTags) : $cache;
-	}
-
-	/**
-	 * Get the cache key and cache minutes as an array.
+	 * This is more efficient on larger data-sets, etc.
 	 *
-	 * @return array
-	 */
-	protected function getCacheInfo()
-	{
-		return array($this->getCacheKey(), $this->cacheMinutes);
-	}
-
-	/**
-	 * Get a unique cache key for the complete query.
-	 *
-	 * @return string
-	 */
-	public function getCacheKey()
-	{
-		return $this->cacheKey ?: $this->generateCacheKey();
-	}
-
-	/**
-	 * Generate the unique cache key for the query.
-	 *
-	 * @return string
-	 */
-	public function generateCacheKey()
-	{
-		$name = $this->connection->getName();
-
-		return md5($name.$this->toSql().serialize($this->bindings));
-	}
-
-	/**
-	 * Get the Closure callback used when caching queries.
-	 *
+	 * @param  int  $perPage
 	 * @param  array  $columns
-	 * @return \Closure
+	 * @return \Illuminate\Contracts\Pagination\Paginator
 	 */
-	protected function getCacheCallback($columns)
+	public function simplePaginate($perPage = 15, $columns = ['*'])
 	{
-		$me = $this;
+		$page = Paginator::resolveCurrentPage();
 
-		return function() use ($me, $columns) { return $me->getFresh($columns); };
+		$this->skip(($page - 1) * $perPage)->take($perPage + 1);
+
+		return new Paginator($this->get($columns), $perPage, $page, [
+			'path' => Paginator::resolveCurrentPath()
+		]);
+	}
+
+	/**
+	 * Get the count of the total records for the paginator.
+	 *
+	 * @return int
+	 */
+	public function getCountForPagination()
+	{
+		$this->backupFieldsForCount();
+
+		$total = $this->count();
+
+		$this->restoreFieldsForCount();
+
+		return $total;
+	}
+
+	/**
+	 * Backup some fields for the pagination count.
+	 *
+	 * @return void
+	 */
+	protected function backupFieldsForCount()
+	{
+		foreach (['orders', 'limit', 'offset'] as $field)
+		{
+			$this->backups[$field] = $this->{$field};
+
+			$this->{$field} = null;
+		}
+	}
+
+	/**
+	 * Restore some fields after the pagination count.
+	 *
+	 * @return void
+	 */
+	protected function restoreFieldsForCount()
+	{
+		foreach (['orders', 'limit', 'offset'] as $field)
+		{
+			$this->{$field} = $this->backups[$field];
+		}
+
+		$this->backups = [];
 	}
 
 	/**
@@ -1387,7 +1470,7 @@ class Builder {
 	 * @param  callable  $callback
 	 * @return void
 	 */
-	public function chunk($count, $callback)
+	public function chunk($count, callable $callback)
 	{
 		$results = $this->forPage($page = 1, $count)->get();
 
@@ -1396,7 +1479,10 @@ class Builder {
 			// On each chunk result set, we will pass them to the callback and then let the
 			// developer take care of everything within the callback, which allows us to
 			// keep the memory low for spinning through large result sets for working.
-			call_user_func($callback, $results);
+			if (call_user_func($callback, $results) === false)
+			{
+				break;
+			}
 
 			$page++;
 
@@ -1415,24 +1501,9 @@ class Builder {
 	{
 		$columns = $this->getListSelect($column, $key);
 
-		// First we will just get all of the column values for the record result set
-		// then we can associate those values with the column if it was specified
-		// otherwise we can just give these values back without a specific key.
 		$results = new Collection($this->get($columns));
 
-		$values = $results->fetch($columns[0])->all();
-
-		// If a key was specified and we have results, we will go ahead and combine
-		// the values with the keys of all of the records so that the values can
-		// be accessed by the key of the rows instead of simply being numeric.
-		if ( ! is_null($key) && count($results) > 0)
-		{
-			$keys = $results->fetch($key)->all();
-
-			return array_combine($keys, $values);
-		}
-
-		return $values;
+		return $results->lists($columns[0], array_get($columns, 1));
 	}
 
 	/**
@@ -1449,12 +1520,12 @@ class Builder {
 		// If the selected column contains a "dot", we will remove it so that the list
 		// operation can run normally. Specifying the table is not needed, since we
 		// really want the names of the columns as it is in this resulting array.
-		if (($dot = strpos($select[0], '.')) !== false)
+		return array_map(function($column)
 		{
-			$select[0] = substr($select[0], $dot + 1);
-		}
+			$dot = strpos($column, '.');
 
-		return $select;
+			return $dot === false ? $column : substr($column, $dot + 1);
+		}, $select);
 	}
 
 	/**
@@ -1472,141 +1543,19 @@ class Builder {
 	}
 
 	/**
-	 * Get a paginator for the "select" statement.
-	 *
-	 * @param  int    $perPage
-	 * @param  array  $columns
-	 * @return \Illuminate\Pagination\Paginator
-	 */
-	public function paginate($perPage = 15, $columns = array('*'))
-	{
-		$paginator = $this->connection->getPaginator();
-
-		if (isset($this->groups))
-		{
-			return $this->groupedPaginate($paginator, $perPage, $columns);
-		}
-		else
-		{
-			return $this->ungroupedPaginate($paginator, $perPage, $columns);
-		}
-	}
-
-	/**
-	 * Create a paginator for a grouped pagination statement.
-	 *
-	 * @param  \Illuminate\Pagination\Environment  $paginator
-	 * @param  int    $perPage
-	 * @param  array  $columns
-	 * @return \Illuminate\Pagination\Paginator
-	 */
-	protected function groupedPaginate($paginator, $perPage, $columns)
-	{
-		$results = $this->get($columns);
-
-		return $this->buildRawPaginator($paginator, $results, $perPage);
-	}
-
-	/**
-	 * Build a paginator instance from a raw result array.
-	 *
-	 * @param  \Illuminate\Pagination\Environment  $paginator
-	 * @param  array  $results
-	 * @param  int    $perPage
-	 * @return \Illuminate\Pagination\Paginator
-	 */
-	public function buildRawPaginator($paginator, $results, $perPage)
-	{
-		// For queries which have a group by, we will actually retrieve the entire set
-		// of rows from the table and "slice" them via PHP. This is inefficient and
-		// the developer must be aware of this behavior; however, it's an option.
-		$start = ($paginator->getCurrentPage() - 1) * $perPage;
-
-		$sliced = array_slice($results, $start, $perPage);
-
-		return $paginator->make($sliced, count($results), $perPage);
-	}
-
-	/**
-	 * Create a paginator for an un-grouped pagination statement.
-	 *
-	 * @param  \Illuminate\Pagination\Environment  $paginator
-	 * @param  int    $perPage
-	 * @param  array  $columns
-	 * @return \Illuminate\Pagination\Paginator
-	 */
-	protected function ungroupedPaginate($paginator, $perPage, $columns)
-	{
-		$total = $this->getPaginationCount();
-
-		// Once we have the total number of records to be paginated, we can grab the
-		// current page and the result array. Then we are ready to create a brand
-		// new Paginator instances for the results which will create the links.
-		$page = $paginator->getCurrentPage($total);
-
-		$results = $this->forPage($page, $perPage)->get($columns);
-
-		return $paginator->make($results, $total, $perPage);
-	}
-
-	/**
-	 * Get the count of the total records for pagination.
-	 *
-	 * @return int
-	 */
-	public function getPaginationCount()
-	{
-		$this->backupFieldsForCount();
-
-		// Because some database engines may throw errors if we leave the ordering
-		// statements on the query, we will "back them up" and remove them from
-		// the query. Once we have the count we will put them back onto this.
-		$total = $this->count();
-
-		$this->restoreFieldsForCount();
-
-		return $total;
-	}
-
-	/**
-	 * Backup certain fields for a pagination count.
-	 *
-	 * @return void
-	 */
-	protected function backupFieldsForCount()
-	{
-		foreach (array('orders', 'limit', 'offset') as $field)
-		{
-			$this->backups[$field] = $this->{$field};
-
-			$this->{$field} = null;
-		}
-
-	}
-
-	/**
-	 * Restore certain fields for a pagination count.
-	 *
-	 * @return void
-	 */
-	protected function restoreFieldsForCount()
-	{
-		foreach (array('orders', 'limit', 'offset') as $field)
-		{
-			$this->{$field} = $this->backups[$field];
-		}
-
-		$this->backups = array();
-	}
-
-	/**
 	 * Determine if any rows exist for the current query.
 	 *
 	 * @return bool
 	 */
 	public function exists()
 	{
-		return $this->count() > 0;
+		$limit = $this->limit;
+
+		$result = $this->limit(1)->count() > 0;
+
+		$this->limit($limit);
+
+		return $result;
 	}
 
 	/**
@@ -1709,6 +1658,8 @@ class Builder {
 	 */
 	public function insert(array $values)
 	{
+		if (empty($values)) return true;
+
 		// Since every insert gets treated like a batch insert, we will make sure the
 		// bindings are structured in a way that is convenient for building these
 		// inserts statements by verifying the elements are actually an array.
@@ -1735,7 +1686,10 @@ class Builder {
 
 		foreach ($values as $record)
 		{
-			$bindings = array_merge($bindings, array_values($record));
+			foreach ($record as $value)
+			{
+				$bindings[] = $value;
+			}
 		}
 
 		$sql = $this->grammar->compileInsert($this, $values);
@@ -1772,7 +1726,7 @@ class Builder {
 	 */
 	public function update(array $values)
 	{
-		$bindings = array_values(array_merge($values, $this->bindings));
+		$bindings = array_values(array_merge($values, $this->getBindings()));
 
 		$sql = $this->grammar->compileUpdate($this, $values);
 
@@ -1828,7 +1782,7 @@ class Builder {
 
 		$sql = $this->grammar->compileDelete($this);
 
-		return $this->connection->delete($sql, $this->bindings);
+		return $this->connection->delete($sql, $this->getBindings());
 	}
 
 	/**
@@ -1865,7 +1819,7 @@ class Builder {
 	{
 		$this->wheres = array_merge((array) $this->wheres, (array) $wheres);
 
-		$this->bindings = array_values(array_merge($this->bindings, (array) $bindings));
+		$this->bindings['where'] = array_values(array_merge($this->bindings['where'], (array) $bindings));
 	}
 
 	/**
@@ -1894,11 +1848,21 @@ class Builder {
 	}
 
 	/**
-	 * Get the current query value bindings.
+	 * Get the current query value bindings in a flattened array.
 	 *
 	 * @return array
 	 */
 	public function getBindings()
+	{
+		return array_flatten($this->bindings);
+	}
+
+	/**
+	 * Get the raw array of bindings.
+	 *
+	 * @return array
+	 */
+	public function getRawBindings()
 	{
 		return $this->bindings;
 	}
@@ -1906,12 +1870,20 @@ class Builder {
 	/**
 	 * Set the bindings on the query builder.
 	 *
-	 * @param  array  $bindings
-	 * @return \Illuminate\Database\Query\Builder
+	 * @param  array   $bindings
+	 * @param  string  $type
+	 * @return $this
+	 *
+	 * @throws \InvalidArgumentException
 	 */
-	public function setBindings(array $bindings)
+	public function setBindings(array $bindings, $type = 'where')
 	{
-		$this->bindings = $bindings;
+		if ( ! array_key_exists($type, $this->bindings))
+		{
+			throw new InvalidArgumentException("Invalid binding type: {$type}.");
+		}
+
+		$this->bindings[$type] = $bindings;
 
 		return $this;
 	}
@@ -1919,12 +1891,27 @@ class Builder {
 	/**
 	 * Add a binding to the query.
 	 *
-	 * @param  mixed  $value
-	 * @return \Illuminate\Database\Query\Builder
+	 * @param  mixed   $value
+	 * @param  string  $type
+	 * @return $this
+	 *
+	 * @throws \InvalidArgumentException
 	 */
-	public function addBinding($value)
+	public function addBinding($value, $type = 'where')
 	{
-		$this->bindings[] = $value;
+		if ( ! array_key_exists($type, $this->bindings))
+		{
+			throw new InvalidArgumentException("Invalid binding type: {$type}.");
+		}
+
+		if (is_array($value))
+		{
+			$this->bindings[$type] = array_values(array_merge($this->bindings[$type], $value));
+		}
+		else
+		{
+			$this->bindings[$type][] = $value;
+		}
 
 		return $this;
 	}
@@ -1933,11 +1920,11 @@ class Builder {
 	 * Merge an array of bindings into our bindings.
 	 *
 	 * @param  \Illuminate\Database\Query\Builder  $query
-	 * @return \Illuminate\Database\Query\Builder
+	 * @return $this
 	 */
 	public function mergeBindings(Builder $query)
 	{
-		$this->bindings = array_values(array_merge($this->bindings, $query->bindings));
+		$this->bindings = array_merge_recursive($this->bindings, $query->bindings);
 
 		return $this;
 	}
@@ -1973,6 +1960,18 @@ class Builder {
 	}
 
 	/**
+	 * Use the write pdo for query.
+	 *
+	 * @return $this
+	 */
+	public function useWritePdo()
+	{
+		$this->useWritePdo = true;
+
+		return $this;
+	}
+
+	/**
 	 * Handle dynamic method calls into the method.
 	 *
 	 * @param  string  $method
@@ -1990,7 +1989,7 @@ class Builder {
 
 		$className = get_class($this);
 
-		throw new \BadMethodCallException("Call to undefined method {$className}::{$method}()");
+		throw new BadMethodCallException("Call to undefined method {$className}::{$method}()");
 	}
 
 }

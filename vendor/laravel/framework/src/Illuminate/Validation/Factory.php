@@ -1,10 +1,11 @@
 <?php namespace Illuminate\Validation;
 
 use Closure;
-use Illuminate\Container\Container;
+use Illuminate\Contracts\Container\Container;
 use Symfony\Component\Translation\TranslatorInterface;
+use Illuminate\Contracts\Validation\Factory as FactoryContract;
 
-class Factory {
+class Factory implements FactoryContract {
 
 	/**
 	 * The Translator implementation.
@@ -23,7 +24,7 @@ class Factory {
 	/**
 	 * The IoC container instance.
 	 *
-	 * @var \Illuminate\Container\Container
+	 * @var \Illuminate\Contracts\Container\Container
 	 */
 	protected $container;
 
@@ -66,7 +67,7 @@ class Factory {
 	 * Create a new Validator factory instance.
 	 *
 	 * @param  \Symfony\Component\Translation\TranslatorInterface  $translator
-	 * @param  \Illuminate\Container\Container  $container
+	 * @param  \Illuminate\Contracts\Container\Container  $container
 	 * @return void
 	 */
 	public function __construct(TranslatorInterface $translator, Container $container = null)
@@ -146,10 +147,8 @@ class Factory {
 		{
 			return new Validator($this->translator, $data, $rules, $messages, $customAttributes);
 		}
-		else
-		{
-			return call_user_func($this->resolver, $this->translator, $data, $rules, $messages, $customAttributes);
-		}
+
+		return call_user_func($this->resolver, $this->translator, $data, $rules, $messages, $customAttributes);
 	}
 
 	/**
@@ -197,7 +196,7 @@ class Factory {
 	/**
 	 * Set the Validator instance resolver.
 	 *
-	 * @param  Closure  $resolver
+	 * @param  \Closure  $resolver
 	 * @return void
 	 */
 	public function resolver(Closure $resolver)

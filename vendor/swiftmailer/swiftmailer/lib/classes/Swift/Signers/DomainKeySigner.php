@@ -60,7 +60,7 @@ class Swift_Signers_DomainKeySigner implements Swift_Signers_HeaderSigner
     /**
      * Signer identity
      *
-     * @var unknown_type
+     * @var string
      */
     protected $_signerIdentity;
 
@@ -80,13 +80,6 @@ class Swift_Signers_DomainKeySigner implements Swift_Signers_HeaderSigner
     private $_signedHeaders = array();
 
     /**
-     * If debugHeaders is set store debugDatas here
-     *
-     * @var string
-     */
-    private $_debugHeadersData = '';
-
-    /**
      * Stores the signature header
      *
      * @var Swift_Mime_Headers_ParameterizedHeader
@@ -96,7 +89,7 @@ class Swift_Signers_DomainKeySigner implements Swift_Signers_HeaderSigner
     /**
      * Hash Handler
      *
-     * @var hash_ressource
+     * @var resource|null
      */
     private $_hashHandler;
 
@@ -127,7 +120,7 @@ class Swift_Signers_DomainKeySigner implements Swift_Signers_HeaderSigner
     {
         $this->_privateKey = $privateKey;
         $this->_domainName = $domainName;
-        $this->_signerIdentity = '@' . $domainName;
+        $this->_signerIdentity = '@'.$domainName;
         $this->_selector = $selector;
     }
 
@@ -395,7 +388,7 @@ class Swift_Signers_DomainKeySigner implements Swift_Signers_HeaderSigner
         $params = array('a' => $this->_hashAlgorithm, 'b' => chunk_split(base64_encode($this->_getEncryptedHash()), 73, " "), 'c' => $this->_canon, 'd' => $this->_domainName, 'h' => implode(': ', $this->_signedHeaders), 'q' => 'dns', 's' => $this->_selector);
         $string = '';
         foreach ($params as $k => $v) {
-            $string .= $k . '=' . $v . '; ';
+            $string .= $k.'='.$v.'; ';
         }
         $string = trim($string);
         $headers->addTextHeader('DomainKey-Signature', $string);
@@ -414,7 +407,7 @@ class Swift_Signers_DomainKeySigner implements Swift_Signers_HeaderSigner
                 $name = strtolower(trim($exploded[0]));
                 $value = str_replace("\r\n", "", $exploded[1]);
                 $value = preg_replace("/[ \t][ \t]+/", " ", $value);
-                $header = $name . ":" . trim($value) . "\r\n";
+                $header = $name.":".trim($value)."\r\n";
             case 'simple' :
                 // Nothing to do
         }
@@ -507,7 +500,7 @@ class Swift_Signers_DomainKeySigner implements Swift_Signers_HeaderSigner
     private function _getEncryptedHash()
     {
         $signature = '';
-        $pkeyId=openssl_get_privatekey($this->_privateKey);
+        $pkeyId = openssl_get_privatekey($this->_privateKey);
         if (!$pkeyId) {
             throw new Swift_SwiftException('Unable to load DomainKey Private Key ['.openssl_error_string().']');
         }

@@ -24,7 +24,7 @@ class MemoryDataCollector extends DataCollector implements LateDataCollectorInte
     public function __construct()
     {
         $this->data = array(
-            'memory'       => 0,
+            'memory' => 0,
             'memory_limit' => $this->convertToBytes(ini_get('memory_limit')),
         );
     }
@@ -48,7 +48,7 @@ class MemoryDataCollector extends DataCollector implements LateDataCollectorInte
     /**
      * Gets the memory.
      *
-     * @return int     The memory
+     * @return int The memory
      */
     public function getMemory()
     {
@@ -58,7 +58,7 @@ class MemoryDataCollector extends DataCollector implements LateDataCollectorInte
     /**
      * Gets the PHP memory limit.
      *
-     * @return int     The memory limit
+     * @return int The memory limit
      */
     public function getMemoryLimit()
     {
