@@ -1,11 +1,11 @@
-{{ $discounted_price = round($product->price - ($product->price * $product->discount / 100), 3 )}}
+{!! $discounted_price = round($product->price - ($product->price * $product->discount / 100), 3 )!!}
 
 <div>
     <h2 class='divide-section' >
-        {{$product->name}} 
-        <small class='text-small'>(#{{$product->code}})</small> 
-        <button class='button success add-to-cart-button float-right' product-code='{{$product->code}}'> 
-            <i class='i-rupee size-24'></i> {{$discounted_price}}  
+        {!!$product->name!!} 
+        <small class='text-small'>(#{!!$product->code!!})</small> 
+        <button class='button success add-to-cart-button float-right' product-code='{!!$product->code!!}'> 
+            <i class='i-rupee size-24'></i> {!!$discounted_price!!}  
             <i class='i-shopping-cart size-24'></i> ADD TO CART
         </button>
     </h2>
@@ -13,13 +13,13 @@
     <div class='row section'> 
         <div class='desktop-7'>
 
-            <img data-src='holder.js/400x300' src='{{$product->image}}' />
+            <img data-src='holder.js/400x300' src='{!!$product->image!!}' />
 
             <div>
-                <img class='item-box' data-src='holder.js/170x120' src='{{$product->image}}' />
-                <img class='item-box' data-src='holder.js/170x120' src='{{$product->image}}' />
-                <img class='item-box' data-src='holder.js/170x120' src='{{$product->image}}' />
-                <img class='item-box' data-src='holder.js/170x120' src='{{$product->image}}' />
+                <img class='item-box' data-src='holder.js/170x120' src='{!!$product->image!!}' />
+                <img class='item-box' data-src='holder.js/170x120' src='{!!$product->image!!}' />
+                <img class='item-box' data-src='holder.js/170x120' src='{!!$product->image!!}' />
+                <img class='item-box' data-src='holder.js/170x120' src='{!!$product->image!!}' />
 
 
 
@@ -34,22 +34,22 @@
                 </tr>
                 <tr>
                     <td>MRP</td>
-                    <td>{{ round($product->mrp,3) }}</td>
+                    <td>{!! round($product->mrp,3) !!}</td>
                 </tr>
                 <tr>
                     <td>Selling Price</td>
-                    <td>{{ round($product->price,3) }}</td>
+                    <td>{!! round($product->price,3) !!}</td>
                 </tr>
                 <tr>
                     <td>OFFER PRICE </td>
                     <td>
-                        {{$discounted_price}} 
-                        <span class="badge badge-danger badge-inside-table"> {{$product->discount}}% </span>
+                        {!!$discounted_price!!} 
+                        <span class="badge badge-danger badge-inside-table"> {!!$product->discount!!}% </span>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        {{link_to_action('WishlistController@create','Add to Wishlist ',['product_code'=> $product->code ],['class'=>'button'])}}
+                        {!!link_to_action('WishlistController@create','Add to Wishlist ',['product_code'=> $product->code ],['class'=>'button'])!!}
                         <!--<a class="button" href="http://cart.po/wishlist/create">Add to Wishlist <span class="spinner"></span></a>-->
                     </td>
                 </tr>
@@ -113,7 +113,7 @@
 
     </div>
 
-    <p>Category : {{$product->category->name}}  #Product Code :{{$product->code}}</p>
+    <p>Category : {!!$product->category->name!!}  #Product Code :{!!$product->code!!}</p>
 
     <div class="info section">
         
@@ -140,6 +140,6 @@
             The Galaxy Young is powered by a <strong>Li-Ion 1300 mAh battery </strong>that can give you up to 6 hours on a 3G network. The phone has an inbuilt memory of 2 GB to store all your media and files and it can be <strong>extended up to 64 GB</strong> through a microSD card.</p>        
 
 
-        Price: {{$product->long_desc}}
-        Stock: {{$product->stock}} </div>
+        Price: {!!$product->long_desc!!}
+        Stock: {!!$product->stock!!} </div>
 </div>

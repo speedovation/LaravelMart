@@ -146,6 +146,7 @@ return [
 		'App\Providers\RouteServiceProvider',
 		
 		'Illuminate\Html\HtmlServiceProvider',
+		'Gloudemans\Shoppingcart\ShoppingcartServiceProvider',
 
 	],
 
@@ -197,6 +198,7 @@ return [
 		
 		'Html'      => 'Illuminate\Html\HtmlFacade',
         'Form'      => 'Illuminate\Html\FormFacade',
+		'Cart'      => 'Gloudemans\Shoppingcart\Facades\Cart',
 
 	],
 

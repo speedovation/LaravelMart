@@ -11,7 +11,7 @@ class CartController extends CoreController {
      * @var boolean
      */
     public $restful = true;
-    protected $layout = "layouts.main";
+
 
     /**
      * Shows the cart contents.
@@ -20,11 +20,11 @@ class CartController extends CoreController {
      * @return void
      */
     public function getIndex() {
-        $this->layout->content = View::make('cart.basket');
+        return view('cart.basket');
     }
 
     public function getBasket() {
-        return View::make('cart.basket');
+        return view('cart.basket');
     }
 
     public function getRemoveitem() {

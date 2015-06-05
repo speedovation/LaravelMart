@@ -1,4 +1,10 @@
+@extends('layouts.main')
 
+@section('title', 'Product Title')
+
+
+
+@section('content')
 <div class="row">
     <div class='desktop-3'>
         
@@ -13,13 +19,13 @@
             <li><h3>Categories</h3></li>
             
             <li> 
-                {{ link_to_action('ProductsController@getIndex', 'All Products',[],['class'=> Request::segment(2) != 'category' ? 'active' : '']) }} 
+                {!! link_to_action('ProductsController@getIndex', 'All Products',[],['class'=> Request::segment(2) != 'category' ? 'active' : '']) !!} 
             </li>
             @foreach( Category::all() as $category)
 
             <?php $active = (Request::segment(2) == 'category' && explode("--",Request::segment(3))[1] == $category->id ) ? 'active' : ''?> 
             <li>
-                {{ link_to_action('ProductsController@getCategory', $category->name , [snake_case($category->name).'--'.$category->id],['class'=>$active]); }} 
+                {!! link_to_action('ProductsController@getCategory', $category->name , [snake_case($category->name).'--'.$category->id],['class'=>$active]); !!} 
             </li>
             @endforeach
            
@@ -53,26 +59,26 @@
                     <tr>
                         <td class='text-center'>                 
                             <h4>
-                                {{ link_to_action('ProductsController@getProduct', $product->name , [snake_case($product->name).'--'.$product->code]); }}
+                                    {!! link_to_action('ProductsController@getProduct', $product->name , [snake_case($product->name).'--'.$product->code]); !!}
 
 
                                  </h4>
-                            <h5> #Product Code :{{$product->code}}</h5>
+                            <h5> #Product Code :{!!$product->code!!}</h5>
                         </td>
                     </tr>
                     <tr>
-                        <td class='text-center'><img data-src='holder.js/260x200' src='{{$product->image}}' /></td>
+                        <td class='text-center'><img data-src='holder.js/260x200' src='{!!$product->image!!}' /></td>
                     </tr>
 
                     <tr>
-                        <td>{{$product->short_desc}}</td>
+                        <td>{!!$product->short_desc!!}</td>
                     </tr>
 
             <!--            <tr>
-                 <td>Category : { {$product->category->name}} Stock: { {$product->stock}}</td>
+                 <td>Category : { {$product->category->name!!} Stock: { {$product->stock!!}</td>
              </tr>-->
                     <tr>
-                        <td><button class="button primary large"> <i class="i-rupee"></i> <span class="rupee">{{round($product->price,3)}}</span> <span><i class="i-plus"></i> Add to cart</span></button></td>
+                        <td><button class="button primary large"> <i class="i-rupee"></i> <span class="rupee">{!!round($product->price,3)!!}</span> <span><i class="i-plus"></i> Add to cart</span></button></td>
                     </tr>
                 </table>
 
@@ -93,7 +99,7 @@
         ?>
         <div class='row'>
 
-            {{$products->links()}} 
+            $products->links()
 
         </div>
 
@@ -120,9 +126,9 @@
 //  
 //  
 //  // http://192.168.1.131:8989/admin/post/1
-// //  HTML::link(URL::action('PostController@show', array($post->id) ), 'Show post'); }} 
+// //  HTML::link(URL::action('PostController@show', array($post->id) ), 'Show post'); !!} 
 // 
-//          var url = { { URL::action('ProductController@indexAction')  }};  
+//          var url = { { URL::action('ProductController@indexAction')  !!};  
 //    
 //          function loadArticle(pageNumber){      
 //                  $('a#inifiniteLoader').show('fast');  
@@ -143,3 +149,5 @@
 //	});
 
 </script>
+
+@endsection
