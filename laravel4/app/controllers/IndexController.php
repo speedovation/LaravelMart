@@ -1,11 +1,11 @@
-<?php
+<?php namespace App\Http\Controllers;
 
-class IndexController extends BaseController {
+class IndexController extends CoreController {
 
     protected $layout = "layouts.main";
     
     public function indexAction() {
-        $this->layout->content =  View::make("cart.index");
+        $this->layout->content =  view("cart.index");
     }
 
 }

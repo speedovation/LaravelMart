@@ -1,6 +1,6 @@
-<?php
+<?php  namespace App\Http\Controllers;
 
-class CartController extends BaseController {
+class CartController extends CoreController {
 
     /**
      * Flag for whether the controller is RESTful.

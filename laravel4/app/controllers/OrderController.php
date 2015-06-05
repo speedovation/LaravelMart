@@ -1,10 +1,10 @@
-<?php
+<?php namespace App\Http\Controllers;
 
 use Formativ\Billing\GatewayInterface;
 use Formativ\Billing\DocumentInterface;
 use Formativ\Billing\MessengerInterface;
 
-class OrderController extends BaseController {
+class OrderController extends CoreController {
 
     protected $gateway;
     protected $document;

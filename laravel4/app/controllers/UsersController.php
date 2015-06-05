@@ -1,16 +1,16 @@
-<?php
+<?php namespace App\Http\Controllers;
 
-class UsersController extends BaseController {
+class UsersController extends CoreController {
 
 	protected $layout = "layouts.main";
 
 	public function __construct() {
-		$this->beforeFilter('csrf', array('on'=>'post'));
-		$this->beforeFilter('auth', array('only'=>array('getDashboard')));
+		$this->middleware('csrf', array('on'=>'post'));
+		$this->middleware('auth', array('only'=>array('getDashboard')));
 	}
 
 	public function getRegister() {
-		$this->layout->content = View::make('users.register');
+		$this->layout->content = view('users.register');
 	}
 
 	public function postCreate() {
@@ -47,11 +47,11 @@ class UsersController extends BaseController {
 	}
 
 	public function getDashboard() {
-		$this->layout->content = View::make('users.dashboard');
+		$this->layout->content = view('users.dashboard');
 	}
     
     public function getProfile() {
-        $this->layout->content = View::make("users.profile");
+        $this->layout->content = view("users.profile");
     }
 
 	public function getLogout() {
