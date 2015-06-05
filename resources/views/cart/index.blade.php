@@ -1,4 +1,10 @@
+@extends('layouts.main')
 
+@section('title', 'Page Title')
+
+
+
+@section('content')
 <div class="row">
     <div class="col-md-12">
         <h1>
@@ -15,7 +21,7 @@
     </ul>
 </div>
 
-{{ HTML::style('assets/css/sliders.css') }}
+
 <!--<link rel="stylesheet" href="dist/css/components/sliders.css">-->
 <style>
 
@@ -227,7 +233,7 @@ h3 {
 
 
 </style>
-{{ HTML::script('assets/js/sliders.js') }}
+
 <script>
     // You can also use "$(window).load(function() {"
     $(function () {
@@ -239,3 +245,5 @@ h3 {
         });
     });
 </script>
+
+@endsection

@@ -147,7 +147,7 @@
 </li>
 
 
-<li>{{ link_to_action('ProductsController@getIndex', 'Products',[],['class'=> 'menuitem_drop'] ) }}
+<li>{!! link_to_action('ProductsController@getIndex', 'Products',[],['class'=> 'menuitem_drop'] ) !!}
     <!-- Begin Elements Item -->
 
 
@@ -161,13 +161,13 @@
             <div class="w-50">
 
                 <ul class="link-list">
-                    <li> {{ link_to_action('ProductsController@getIndex', 'All Products' ) }}</li>
+                    <li> {!! link_to_action('ProductsController@getIndex', 'All Products' ) !!}</li>
 
                     @foreach( Category::all() as $category)
                     <?php $active = (Request::segment(2) == 'category' && explode("--", Request::segment(3))[1] == $category->id) ? 'active' : '' ?>
                     <li>
-                        {{ link_to_action('ProductsController@getCategory', $category->name ,
-                        [snake_case($category->name).'--'.$category->id],['class'=>$active]); }}
+                        {!! link_to_action('ProductsController@getCategory', $category->name ,
+                        [snake_case($category->name).'--'.$category->id],['class'=>$active]); !!}
                     </li>
                     @endforeach
                 </ul>
@@ -220,7 +220,7 @@
 
 
 <li class="menuitem_nodrop">
-    <a href="{{ url('/cart') }}"><i class="i-shoping-cart"></i> Cart </a>
+    <a href="{!! url('/cart') !!}"><i class="i-shoping-cart"></i> Cart </a>
 </li>
 <!-- No Drop Down Item -->
 
@@ -309,12 +309,12 @@
             <h3>Accounts</h3>
             <ul>
                 @if(!Auth::check())
-                <li>{{ HTML::link('users/register', 'Register') }}</li>
-                <li>{{ HTML::link('users/login', 'Login') }}</li>
+                <li>{!! Html::link('users/register', 'Register') !!}</li>
+                <li>{!! Html::link('users/login', 'Login') !!}</li>
                 @else
-                <li>{{ HTML::link('users/dashboard', 'Dashboard') }}</li>
-                <li>{{ HTML::link('users/profile', 'Profile') }}</li>
-                <li>{{ HTML::link('users/logout', 'logout') }}</li>
+                <li>{!! Html::link('users/dashboard', 'Dashboard') !!}</li>
+                <li>{!! Html::link('users/profile', 'Profile') !!}</li>
+                <li>{!! Html::link('users/logout', 'logout') !!}</li>
                 @endif
             </ul>
         </div>
