@@ -1,11 +1,3 @@
-@extends('layouts.main')
-
-@section('title', 'Shopping Cart')
-
-
-
-@section('content')
-
 <div class='grid cart-container'>
 
     <div class='row'>
@@ -84,5 +76,3 @@
     </div>
 
 </div>
-
-@endsection

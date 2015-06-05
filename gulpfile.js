@@ -13,7 +13,25 @@ var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
     mix
-    .styles(['base.css', 'market.css','megamenu.css'], 'public/assets/css')
-    .scripts(['holder.min.js'], 'public/assets/js')
+    .styles([
+        'base.css', 
+        'market.css',
+        'megamenu.css',
+        '../bower_components/css-modal/dist/modal.css',
+        '../bower_components/raty/lib/jquery.raty.css',
+        '../bower_components/fancybox/source/jquery.fancybox.css'
+        
+        ], 
+        'public/assets/css')
+    .scripts([
+        'holder.min.js',
+        'jquery.js',
+        'app.js',
+        '../bower_components/fancybox/source/jquery.fancybox.js',
+        '../bower_components/css-modal/dist/modal.js',
+        '../bower_components/raty/lib/jquery.raty.js'
+
+        
+        ], 'public/assets/js')
     .version(['public/assets/css/all.css','public/assets/js/all.js']);
 });

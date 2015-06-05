@@ -20,7 +20,7 @@ class CartController extends CoreController {
      * @return void
      */
     public function getIndex() {
-        return view('cart.basket');
+        return view('cart.index');
     }
 
     public function getBasket() {
@@ -32,11 +32,11 @@ class CartController extends CoreController {
         $message = 'Item Removed Successfuly';
         try {
             //get rowid
-            $row_id = Input::get('row_id');
+            $row_id = \Input::get('row_id');
 
             //remove            
             Cart::remove($row_id);
-        } catch (ShoppingcartInvalidRowIDException $e) {
+        } catch (\ShoppingcartInvalidRowIDException $e) {
             $message = "Failed to remove item";
         }
 
@@ -57,12 +57,12 @@ class CartController extends CoreController {
 
         try {
             //get product code
-            $product_code = Input::get('product_code');
+            $product_code = \Input::get('product_code');
 
             //get product info
-            $product = Product::where('code', '=', $product_code)->first();
+            $product = \Product::where('code', '=', $product_code)->first();
 
-            Cart::add(
+            \Cart::add(
                     [
                         'id' => $product->id,
                         'name' => $product->name,
@@ -71,7 +71,7 @@ class CartController extends CoreController {
                         'options' => ['img' => $product->image, 'code' => $product->code]
                     ]
             );
-        } catch (ShoppingcartInvalidRowIDException $e) {
+        } catch (\ShoppingcartInvalidRowIDException $e) {
             $message = "Failed to add item";
         }
 
@@ -84,13 +84,13 @@ class CartController extends CoreController {
     public function getUpdateqtyitem() {
 
         //get product code
-        $row_id = Input::get('row_id');
-        $qty = Input::get('qty');
+        $row_id = \Input::get('row_id');
+        $qty = \Input::get('qty');
         $message = "Item Updated Successfuly";
 
         try {
-            Cart::update($row_id, $qty);
-        } catch (ShoppingcartInvalidRowIDException $e) {
+            \Cart::update($row_id, $qty);
+        } catch (\ShoppingcartInvalidRowIDException $e) {
             $message = "Failed to update item";
         }
 
@@ -98,10 +98,10 @@ class CartController extends CoreController {
         return json_encode([
             'result' => true,
             'message' => $message,
-            'subtotal' => Cart::get($row_id)['subtotal'],
-            'items_count' => Cart::count(),
-            'rows_count' => Cart::count(false),
-            'total_amount' => Cart::total()
+            'subtotal' => \Cart::get($row_id)['subtotal'],
+            'items_count' => \Cart::count(),
+            'rows_count' => \Cart::count(false),
+            'total_amount' => \Cart::total()
         ]);
     }
 
