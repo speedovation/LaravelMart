@@ -4,7 +4,7 @@ use App\Http\Controllers\Controller;
 
 class AboutController extends CoreController {
 
-	protected $layout = "layouts.main";
+
     
     /**
 	 * Display a listing of the resource.
@@ -13,7 +13,7 @@ class AboutController extends CoreController {
 	 */
 	public function getIndex()
 	{
-        return View::make('abouts.about');
+        return view('abouts.about');
 	}
 
 	/**
@@ -23,7 +23,7 @@ class AboutController extends CoreController {
 	 */
 	public function getSupport()
 	{
-         $this->layout->content = View::make('abouts.support');
+         return view('abouts.support');
 	}
 
 	/**
@@ -44,7 +44,7 @@ class AboutController extends CoreController {
 	 */
 	public function show($id)
 	{
-        return View::make('abouts.show');
+        return view('abouts.show');
 	}
 
 	/**
@@ -55,7 +55,7 @@ class AboutController extends CoreController {
 	 */
 	public function edit($id)
 	{
-        return View::make('abouts.edit');
+        return view('abouts.edit');
 	}
 
 	/**

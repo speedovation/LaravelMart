@@ -1,9 +1,15 @@
-<?php
+<?php namespace App\Models;
 
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableInterface;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class Account extends Eloquent implements UserInterface, RemindableInterface {
+
+class Account extends Model implements AuthenticatableContract, CanResetPasswordContract {
+
+	 use Authenticatable, CanResetPassword;
 
     protected $table = "account";
     protected $hidden = ["password"];
@@ -38,7 +44,7 @@ class Account extends Eloquent implements UserInterface, RemindableInterface {
     public function orders() {
         return $this->hasMany("Order");
     }
-    public function getRememberToken()
+   /* public function getRememberToken()
 {
     return $this->remember_token;
 }
@@ -51,6 +57,6 @@ public function setRememberToken($value)
 public function getRememberTokenName()
 {
     return 'remember_token';
-}
+}*/
 
 }
