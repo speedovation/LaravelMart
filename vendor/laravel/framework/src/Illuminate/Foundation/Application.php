@@ -20,7 +20,7 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
 	 *
 	 * @var string
 	 */
-	const VERSION = '5.0.16';
+	const VERSION = '5.0.32';
 
 	/**
 	 * The base path for the Laravel installation.
@@ -86,11 +86,25 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
 	protected $deferredServices = array();
 
 	/**
+	 * The custom database path defined by the developer.
+	 *
+	 * @var string
+	 */
+	protected $databasePath;
+
+	/**
 	 * The custom storage path defined by the developer.
 	 *
 	 * @var string
 	 */
 	protected $storagePath;
+
+	/**
+	 * Indicates if the storage directory should be used for optimizations.
+	 *
+	 * @var bool
+	 */
+	protected $useStoragePathForOptimizations = false;
 
 	/**
 	 * The environment file to load during bootstrapping.
@@ -160,6 +174,8 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
 	 */
 	public function bootstrapWith(array $bootstrappers)
 	{
+		$this->hasBeenBootstrapped = true;
+
 		foreach ($bootstrappers as $bootstrapper)
 		{
 			$this['events']->fire('bootstrapping: '.$bootstrapper, [$this]);
@@ -168,8 +184,6 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
 
 			$this['events']->fire('bootstrapped: '.$bootstrapper, [$this]);
 		}
-
-		$this->hasBeenBootstrapped = true;
 	}
 
 	/**
@@ -286,7 +300,22 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
 	 */
 	public function databasePath()
 	{
-		return $this->basePath.DIRECTORY_SEPARATOR.'database';
+		return $this->databasePath ?: $this->basePath.DIRECTORY_SEPARATOR.'database';
+	}
+
+	/**
+	 * Set the database directory.
+	 *
+	 * @param  string  $path
+	 * @return $this
+	 */
+	public function useDatabasePath($path)
+	{
+		$this->databasePath = $path;
+
+		$this->instance('path.database', $path);
+
+		return $this;
 	}
 
 	/**
@@ -433,10 +462,10 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
 	 */
 	public function registerConfiguredProviders()
 	{
-		$manifestPath = $this->basePath().'/vendor/services.json';
+		$manifestPath = $this->getCachedServicesPath();
 
 		(new ProviderRepository($this, new Filesystem, $manifestPath))
-		            ->load($this->config['app.providers']);
+					->load($this->config['app.providers']);
 	}
 
 	/**
@@ -450,7 +479,9 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
 	public function register($provider, $options = array(), $force = false)
 	{
 		if ($registered = $this->getProvider($provider) && ! $force)
-                                     return $registered;
+		{
+			return $registered;
+		}
 
 		// If the given "provider" is a string, we will resolve it, passing in the
 		// application instance automatically for the developer. This is simply
@@ -722,7 +753,14 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
 	 */
 	public function getCachedConfigPath()
 	{
-		return $this['path.storage'].DIRECTORY_SEPARATOR.'framework'.DIRECTORY_SEPARATOR.'config.php';
+		if ($this->vendorIsWritableForOptimizations())
+		{
+			return $this->basePath().'/vendor/config.php';
+		}
+		else
+		{
+			return $this['path.storage'].'/framework/config.php';
+		}
 	}
 
 	/**
@@ -742,7 +780,73 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
 	 */
 	public function getCachedRoutesPath()
 	{
-		return $this->basePath().'/vendor/routes.php';
+		if ($this->vendorIsWritableForOptimizations())
+		{
+			return $this->basePath().'/vendor/routes.php';
+		}
+		else
+		{
+			return $this['path.storage'].'/framework/routes.php';
+		}
+	}
+
+	/**
+	 * Get the path to the cached "compiled.php" file.
+	 *
+	 * @return string
+	 */
+	public function getCachedCompilePath()
+	{
+		if ($this->vendorIsWritableForOptimizations())
+		{
+			return $this->basePath().'/vendor/compiled.php';
+		}
+		else
+		{
+			return $this->storagePath().'/framework/compiled.php';
+		}
+	}
+
+	/**
+	 * Get the path to the cached services.json file.
+	 *
+	 * @return string
+	 */
+	public function getCachedServicesPath()
+	{
+		if ($this->vendorIsWritableForOptimizations())
+		{
+			return $this->basePath().'/vendor/services.json';
+		}
+		else
+		{
+			return $this->storagePath().'/framework/services.json';
+		}
+	}
+
+	/**
+	 * Determine if vendor path is writable.
+	 *
+	 * @return bool
+	 */
+	public function vendorIsWritableForOptimizations()
+	{
+		if ($this->useStoragePathForOptimizations) return false;
+
+		return is_writable($this->basePath().'/vendor');
+	}
+
+	/**
+	 * Determines if storage directory should be used for optimizations.
+	 *
+	 * @param  bool  $value
+	 * @return $this
+	 */
+	public function useStoragePathForOptimizations($value = true)
+	{
+		$this->useStoragePathForOptimizations = $value;
+
+		return $this;
 	}
 
 	/**
@@ -837,6 +941,16 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
 	}
 
 	/**
+	 * Get the application's deferred services.
+	 *
+	 * @return array
+	 */
+	public function getDeferredServices()
+	{
+		return $this->deferredServices;
+	}
+
+	/**
 	 * Set the application's deferred services.
 	 *
 	 * @param  array  $services
@@ -845,6 +959,17 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
 	public function setDeferredServices(array $services)
 	{
 		$this->deferredServices = $services;
+	}
+
+	/**
+	 * Add an array of services to the application's deferred services.
+	 *
+	 * @param  array  $services
+	 * @return void
+	 */
+	public function addDeferredServices(array $services)
+	{
+		$this->deferredServices = array_merge($this->deferredServices, $services);
 	}
 
 	/**
@@ -905,7 +1030,7 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
 			'db'                   => 'Illuminate\Database\DatabaseManager',
 			'events'               => ['Illuminate\Events\Dispatcher', 'Illuminate\Contracts\Events\Dispatcher'],
 			'files'                => 'Illuminate\Filesystem\Filesystem',
-			'filesystem'           => 'Illuminate\Contracts\Filesystem\Factory',
+			'filesystem'           => ['Illuminate\Filesystem\FilesystemManager', 'Illuminate\Contracts\Filesystem\Factory'],
 			'filesystem.disk'      => 'Illuminate\Contracts\Filesystem\Filesystem',
 			'filesystem.cloud'     => 'Illuminate\Contracts\Filesystem\Cloud',
 			'hash'                 => 'Illuminate\Contracts\Hashing\Hasher',

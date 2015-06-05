@@ -70,7 +70,7 @@ class Builder {
 	 *
 	 * @param  mixed  $id
 	 * @param  array  $columns
-	 * @return \Illuminate\Database\Eloquent\Model|static|null
+	 * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|null
 	 */
 	public function find($id, $columns = array('*'))
 	{
@@ -87,15 +87,15 @@ class Builder {
 	/**
 	 * Find a model by its primary key.
 	 *
-	 * @param  array  $id
+	 * @param  array  $ids
 	 * @param  array  $columns
-	 * @return \Illuminate\Database\Eloquent\Model|Collection|static
+	 * @return \Illuminate\Database\Eloquent\Collection
 	 */
-	public function findMany($id, $columns = array('*'))
+	public function findMany($ids, $columns = array('*'))
 	{
-		if (empty($id)) return $this->model->newCollection();
+		if (empty($ids)) return $this->model->newCollection();
 
-		$this->query->whereIn($this->model->getQualifiedKeyName(), $id);
+		$this->query->whereIn($this->model->getQualifiedKeyName(), $ids);
 
 		return $this->get($columns);
 	}
@@ -253,7 +253,7 @@ class Builder {
 		);
 
 		return new LengthAwarePaginator($this->get($columns), $total, $perPage, $page, [
-			'path' => Paginator::resolveCurrentPath()
+			'path' => Paginator::resolveCurrentPath(),
 		]);
 	}
 
@@ -273,7 +273,7 @@ class Builder {
 		$this->skip(($page - 1) * $perPage)->take($perPage + 1);
 
 		return new Paginator($this->get($columns), $perPage, $page, [
-			'path' => Paginator::resolveCurrentPath()
+			'path' => Paginator::resolveCurrentPath(),
 		]);
 	}
 
@@ -593,11 +593,11 @@ class Builder {
 			}
 			else
 			{
-				$q->has(array_shift($relations), $operator, $count, $boolean, $callback);
+				$q->has(array_shift($relations), $operator, $count, 'and', $callback);
 			}
 		};
 
-		return $this->whereHas(array_shift($relations), $closure);
+		return $this->has(array_shift($relations), '>=', 1, $boolean, $closure);
 	}
 
 	/**
