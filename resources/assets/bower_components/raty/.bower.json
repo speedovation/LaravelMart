@@ -1,0 +1,15 @@
+{
+  "name": "raty",
+  "homepage": "https://github.com/wbotelhos/raty",
+  "version": "2.7.0",
+  "_release": "2.7.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.7.0",
+    "commit": "3da2be01c9f4bc48cf021a4e122e10415c3ee37b"
+  },
+  "_source": "git://github.com/wbotelhos/raty.git",
+  "_target": "~2.7.0",
+  "_originalSource": "raty",
+  "_direct": true
+}
