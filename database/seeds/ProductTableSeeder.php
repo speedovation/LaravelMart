@@ -1,5 +1,11 @@
 <?php
 
+
+use Illuminate\Database\Seeder;
+use App\Models\Account as Account;
+use App\Models\Category as Category;
+use App\Models\Product as Product;
+
 class ProductTableSeeder extends DatabaseSeeder {
 
     public function run() {

@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Database\Seeder;
+use App\Models\Account as Account;
+use App\Models\Order as Order;
+
 class OrderTableSeeder extends DatabaseSeeder {
 
     public function run() {

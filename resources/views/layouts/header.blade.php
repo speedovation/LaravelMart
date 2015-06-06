@@ -163,7 +163,7 @@
                 <ul class="link-list">
                     <li> {!! link_to_action('ProductsController@getIndex', 'All Products' ) !!}</li>
 
-                    @foreach( Category::all() as $category)
+                    @foreach( App\Models\Category::all() as $category)
                     <?php $active = (Request::segment(2) == 'category' && explode("--", Request::segment(3))[1] == $category->id) ? 'active' : '' ?>
                     <li>
                         {!! link_to_action('ProductsController@getCategory', $category->name ,

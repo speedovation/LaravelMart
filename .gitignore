@@ -5,3 +5,4 @@
 /laravel4/vendor/bin/boris
 /laravel4/vendor/bin/classpreloader.php
 /laravel4/vendor/bin/pscss
+/laravel4/test/*

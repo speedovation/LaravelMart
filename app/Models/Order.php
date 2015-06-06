@@ -1,6 +1,9 @@
-<?php
+<?php namespace App\Models;
 
-class Order extends Eloquent {
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Model as Model;
+
+class Order extends Model {
 
     protected $table = "order";
     protected $guarded = ["id"];

@@ -1,6 +1,8 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models;
+use App\Models\Account ;
 
 class UsersController extends CoreController {
 
@@ -15,10 +17,10 @@ class UsersController extends CoreController {
 	}
 
 	public function postCreate() {
-		$validator = \Validator::make(\Input::all(), \Account::$rules);
+		$validator = \Validator::make(\Input::all(), Account::$rules);
 
 		if ($validator->passes()) {
-			$user = new \Account;
+			$user = new Account;
 			$user->username = \Input::get('username');
 			$user->email = \Input::get('email');
 			$user->password = \Hash::make(\Input::get('password'));

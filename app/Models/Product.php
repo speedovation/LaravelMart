@@ -1,6 +1,11 @@
 <?php
 
-class Product extends Eloquent {
+namespace App\Models;
+
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+
+class Product extends Model {
 
     protected $table = "product";
     protected $guarded = ["id"];

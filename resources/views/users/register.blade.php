@@ -4,46 +4,47 @@
 
 @section('content')
 
-<div class="row">
 
-    <div class="col-md-7">
 
+        {!! Form::open(array('url'=>'users/create', 'class'=>'row', 'role'=>'form')) !!}
         
-         @if(Session::has('message'))
-            <p class="alert">{!! Session::get('message') !!}</p>
-            @endif
-            
-        {!! Form::open(array('url'=>'users/create', 'class'=>'form-signup', 'role'=>'form')) !!}
         <h2 class="form-signup-heading">Sign up</h2>
 
-        <ul>
+         
+            
+        @if(Session::has('message'))
+        <ul class="message message-danger large">
+            
+            
+            <span class="strong">{!! Session::get('message') !!}:</span>
+         
+            
             @foreach($errors->all() as $error)
             <li>{!! $error !!}</li>
             @endforeach
         </ul>
+           @endif
         <!--<div class="form-group">
             {!! Form::text('firstname', null, array('class'=>'form-control', 'placeholder'=>'First Name')) !!}
         </div>
         -->
         <div class="form-group"> 
-            {!! Form::text('username', null, array('class'=>'form-control', 'placeholder'=>'Username')) !!}
+            {!! Form::text('username', null, array('class'=>'input col-12', 'placeholder'=>'Username')) !!}
         </div>
         <div class="form-group">
-            {!! Form::text('email', null, array('class'=>'form-control', 'placeholder'=>'Email Address')) !!}
+            {!! Form::text('email', null, array('class'=>'input col-12', 'placeholder'=>'Email Address')) !!}
         </div>
         <div class="form-group">
-            {!! Form::password('password', array('class'=>'form-control', 'placeholder'=>'Password')) !!}
+            {!! Form::password('password', array('class'=>'input col-12', 'placeholder'=>'Password')) !!}
         </div>   
         <div class="form-group">
-            {!! Form::password('password_confirmation', array('class'=>'form-control', 'placeholder'=>'Confirm Password')) !!}
+            {!! Form::password('password_confirmation', array('class'=>'input col-12', 'placeholder'=>'Confirm Password')) !!}
         </div>
         <div class="form-group">
-            {!! Form::submit('Sign up', array('class'=>'btn btn-lg btn-primary'))!!}
+            {!! Form::submit('Sign up', array('class'=>'button positive'))!!}
             {!! Form::close() !!}
         </div>
 
-    </div>
-
-</div>
+  
 
 @endsection

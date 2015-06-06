@@ -1,6 +1,11 @@
 <?php
 
-class Category extends Eloquent {
+namespace App\Models;
+
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Model as Model;
+
+class Category extends Model {
 
     protected $table = "category";
     protected $guarded = ["id"];
