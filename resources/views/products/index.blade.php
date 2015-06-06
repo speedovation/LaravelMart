@@ -21,7 +21,7 @@
             <li> 
                 {!! link_to_action('ProductsController@getIndex', 'All Products',[],['class'=> Request::segment(2) != 'category' ? 'active' : '']) !!} 
             </li>
-            @foreach( Category::all() as $category)
+            @foreach( App\Models\Category::all() as $category)
 
             <?php $active = (Request::segment(2) == 'category' && explode("--",Request::segment(3))[1] == $category->id ) ? 'active' : ''?> 
             <li>

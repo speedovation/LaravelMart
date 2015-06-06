@@ -12,15 +12,15 @@ html, body {
 }
 
 body {
-    background: url(img/bg.jpg) repeat 0 0 #eee;
-    /*    background: url(img/bg/tweed.png) repeat 0 0 #eee;*/
-    /*    background: url(img/bg/felt.png) repeat 0 0 #eee;*/
-    background: url(img/bg/furley_bg.png) repeat 0 0 #eee;
-    background: url(img/bg/dust.png) repeat 0 0 #eee;
-    background: url(img/bg/grains.jpg) repeat 0 0 #eee;
-    background: url(img/bg/body_bg.jpg) repeat 0 0 #eee;
+/*    background: url(/assets/img/bg.jpg) repeat 0 0 #eee;*/
+    /*    background: url(/assets/img/bg/tweed.png) repeat 0 0 #eee;*/
+    /*    background: url(/assets/img/bg/felt.png) repeat 0 0 #eee;*/
+/*    background: url(/assets/img/bg/furley_bg.png) repeat 0 0 #eee;
+    background: url(/assets/img/bg/dust.png) repeat 0 0 #eee;
+    background: url(/assets/img/bg/grains.jpg) repeat 0 0 #eee;
+    background: url(/assets/img/bg/body_bg.jpg) repeat 0 0 #eee;*/
 
-    background: url('img/bg/light/cream_dust.png') repeat 0 0 #eee;
+    background: url('/assets/img/bg/light/cream_dust.png') repeat 0 0 #eee;
 
     /*font: 16px/26px 'Open Sans',sans-serif;*/
     /*height: 100%;*/
@@ -73,13 +73,13 @@ h3{
 }
 
 .jumbotron {
-    /*background: url(img/bg/tweged.png) repeat 0 0 #69D2E7;*/
+    /*background: url(/assets/img/bg/tweged.png) repeat 0 0 #69D2E7;*/
     /*     1693A5*/
     /*background-image: linear-gradient(to bottom, #69D2E7 0%, #6CDFEA5 100%);*/
     /*background-image: linear-gradient(to bottom, #5EDEF8 0%, #69D2E7  100%);*/
-    /*     background: url(img/bg/circle.png) repeat 0 0 #eee;*/
+    /*     background: url(/assets/img/bg/circle.png) repeat 0 0 #eee;*/
     /*color: #1693A5;*/
-    background: url("img/bg/noise.png") repeat scroll 0 0 #5EDEF8;
+    background: url("/assets/img/bg/noise.png") repeat scroll 0 0 #5EDEF8;
     color: #04515E;
     /*padding-top: 120px;*/
     padding-bottom: 78px;
@@ -312,7 +312,7 @@ h3{
 }
 
 #login-user, #create-user {
-    /*    background: url("img/bg/noise.png") repeat scroll 0 0 #5EDEF8;*/
+    /*    background: url("/assets/img/bg/noise.png") repeat scroll 0 0 #5EDEF8;*/
     /*    background-color: #000000;*/
     /*    border: 1px solid #AAAAAA;*/
     /*    box-shadow: 0 0 6px #BBBBBB;*/
@@ -354,8 +354,8 @@ h3{
 }
 
 #footer {
-    /*background: url("img/bg/noise.png") repeat scroll 0 0 #EBF3FF;*/
-    background: url("img/bg/noise.png") repeat scroll 0 0 #333;
+    /*background: url("/assets/img/bg/noise.png") repeat scroll 0 0 #EBF3FF;*/
+    background: url("/assets/img/bg/noise.png") repeat scroll 0 0 #333;
     border-top: 1px solid #111;
     color: #9B97BD;
     color: #aaa;
@@ -645,7 +645,7 @@ a.remove-cart-item:hover {
 }
 
 .spinner {
-    background: url("img/loader/28.gif") no-repeat scroll 3px -2px rgba(0, 0, 0, 0);
+    background: url("/assets/img/loader/28.gif") no-repeat scroll 3px -2px rgba(0, 0, 0, 0);
     float: right;
     height: 21px;
     margin-left: 5px;
@@ -653,7 +653,7 @@ a.remove-cart-item:hover {
 }
 
 .spinner-big {
-    background: url("img/loader/28.gif") no-repeat scroll 4px 9px rgba(0, 0, 0, 0);
+    background: url("/assets/img/loader/28.gif") no-repeat scroll 4px 9px rgba(0, 0, 0, 0);
     float: right;
     height: 31px;
     margin-left: 5px;

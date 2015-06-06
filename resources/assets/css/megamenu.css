@@ -217,7 +217,8 @@
 }
 .megamenu_light_theme ul li .menuitem_drop,
 .megamenu_light_theme .megamenu li.noactive .menuitem_drop {
-    background-image:url("../img/arrow_down1.png");
+/*    background-image:url("/assets/img/arrow_down1.png");*/
+
     background-repeat:no-repeat;
     background-position: right 17px;
 }
@@ -233,9 +234,10 @@
 }
 .megamenu_light_theme .megamenu > li > div,
 .megamenu_light_theme ul .levels li ul {
-    background:#eee;
+    background:#fefefe;
     border:1px solid #888;
-    border-top: none;
+    border-top: 3px solid #888;
+    
     /*background-image: -webkit-gradient(linear, left top, left bottom, from(#EEEEEE), to(#BBBBBB));*/
     /*background: -webkit-linear-gradient(top, #EEEEEE, #BBBBBB);*/
     /*background: -moz-linear-gradient(top, #EEEEEE, #ddd);*/
