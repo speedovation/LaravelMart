@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 
 class CartController extends CoreController {
 
@@ -60,7 +61,7 @@ class CartController extends CoreController {
             $product_code = \Input::get('product_code');
 
             //get product info
-            $product = \Product::where('code', '=', $product_code)->first();
+            $product = Product::where('code', '=', $product_code)->first();
 
             \Cart::add(
                     [

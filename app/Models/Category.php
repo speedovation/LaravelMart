@@ -3,7 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model as Model;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\Product;
 
 class Category extends Model {
 
