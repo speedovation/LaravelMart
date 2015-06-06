@@ -1,5 +1,5 @@
 /*@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,500,700,800,300,600);
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500,700);*/
+/*@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500,700);*/
 
 /*@import "http://fonts.googleapis.com/css?family=Lato:300,400,700";*/
 
@@ -49,6 +49,7 @@ a:hover {
 h1, h2, h3, h4, h5, h6 {
     font-family: Roboto, sans-serif;
 }
+
 
 h1, .h1, .alpha {
     font-size: 2.1rem;
@@ -475,14 +476,16 @@ h3{
 }
 
 /* Wrapper for page content to push down footer */
-#wrap {
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
+.wrap {
+    /*min-height: 100%;*/
+    /*height: auto !important;*/
+    /*height: 100%;*/
     /* Negative indent footer by its height */
-    margin: 0 auto -355px;
+    /*margin: 0 auto -355px;*/
     /* Pad bottom by footer height */
-    padding: 0 0 355px;
+    /*padding: 0 0 355px;*/
+
+    padding: 0px 0 100px 0;
 }
 
 /* Set the fixed height of the footer here */
@@ -619,7 +622,7 @@ a.remove-cart-item:hover {
 }
 
 .add-to-cart-button {
-    padding: 0rem 0.9rem 0.58rem;
+    padding: 0.7rem 0.9rem 0.58rem;
     font-size: 1.4rem;
 }
 
@@ -676,4 +679,10 @@ a.remove-cart-item:hover {
 .top-header
 {
     margin-top: 1rem;
+}
+
+
+.megamenu .row
+{
+    width: 400px;
 }
