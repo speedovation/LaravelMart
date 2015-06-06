@@ -8,11 +8,14 @@ $baseDir = dirname($vendorDir);
 return array(
     $vendorDir . '/symfony/var-dumper/Symfony/Component/VarDumper/Resources/functions/dump.php',
     $vendorDir . '/nikic/php-parser/lib/bootstrap.php',
-    $vendorDir . '/swiftmailer/swiftmailer/lib/swift_required.php',
     $vendorDir . '/ircmaxell/password-compat/lib/password.php',
+    $vendorDir . '/swiftmailer/swiftmailer/lib/swift_required.php',
     $vendorDir . '/psy/psysh/src/Psy/functions.php',
     $vendorDir . '/danielstjules/stringy/src/Create.php',
+    $vendorDir . '/laracasts/flash/src/Laracasts/Flash/functions.php',
+    $vendorDir . '/illuminate/html/helpers.php',
     $vendorDir . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
     $vendorDir . '/laravel/framework/src/Illuminate/Support/helpers.php',
-    $vendorDir . '/illuminate/html/helpers.php',
+    $vendorDir . '/laravelcollective/html/src/helpers.php',
+    $vendorDir . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/Constants/Constants.php',
 );
