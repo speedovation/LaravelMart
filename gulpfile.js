@@ -17,6 +17,7 @@ elixir(function(mix) {
         'base.css', 
         'market.css',
         'megamenu.css',
+        'rudra.css',
         '../bower_components/fancybox/source/jquery.fancybox.css',
         '../bower_components/raty/lib/jquery.raty.css'
         //'../bower_components/css-modal/dist/modal.css',

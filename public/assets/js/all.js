@@ -86,11 +86,9 @@ $(function() {
 
         e.preventDefault();
 
-
         var url = '/cart/removeitem';
         var row_id = $(this).attr('row-id');
         var a = $(this);
-
 
         $.getJSON(url, {row_id: row_id})
                 .done(function(data) {
@@ -176,6 +174,7 @@ $(function() {
 
 
 });
+
 /*!
  * fancyBox - jQuery Plugin
  * version: 2.1.5 (Fri, 14 Jun 2013)

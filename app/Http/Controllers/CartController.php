@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use \Cart;
 
 class CartController extends CoreController {
 
@@ -63,7 +64,7 @@ class CartController extends CoreController {
             //get product info
             $product = Product::where('code', '=', $product_code)->first();
 
-            \Cart::add(
+            Cart::add(
                     [
                         'id' => $product->id,
                         'name' => $product->name,
@@ -90,7 +91,7 @@ class CartController extends CoreController {
         $message = "Item Updated Successfuly";
 
         try {
-            \Cart::update($row_id, $qty);
+            Cart::update($row_id, $qty);
         } catch (\ShoppingcartInvalidRowIDException $e) {
             $message = "Failed to update item";
         }
@@ -99,10 +100,10 @@ class CartController extends CoreController {
         return json_encode([
             'result' => true,
             'message' => $message,
-            'subtotal' => \Cart::get($row_id)['subtotal'],
-            'items_count' => \Cart::count(),
-            'rows_count' => \Cart::count(false),
-            'total_amount' => \Cart::total()
+            'subtotal' => Cart::get($row_id)['subtotal'],
+            'items_count' => Cart::count(),
+            'rows_count' => Cart::count(false),
+            'total_amount' => Cart::total()
         ]);
     }
 

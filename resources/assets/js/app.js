@@ -67,11 +67,9 @@ $(function() {
 
         e.preventDefault();
 
-
         var url = '/cart/removeitem';
         var row_id = $(this).attr('row-id');
         var a = $(this);
-
 
         $.getJSON(url, {row_id: row_id})
                 .done(function(data) {
