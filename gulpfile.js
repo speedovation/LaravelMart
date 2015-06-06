@@ -18,6 +18,8 @@ elixir(function(mix) {
         'market.css',
         'megamenu.css',
         'rudra.css',
+        'sliders.css',
+        'sliders-theme.css',
         '../bower_components/fancybox/source/jquery.fancybox.css',
         '../bower_components/raty/lib/jquery.raty.css'
         //'../bower_components/css-modal/dist/modal.css',
@@ -28,6 +30,7 @@ elixir(function(mix) {
         'holder.min.js',
         'jquery.js',
         'app.js',
+        'sliders.js',
         '../bower_components/fancybox/source/jquery.fancybox.js',
         '../bower_components/raty/lib/jquery.raty.js'
        // '../bower_components/css-modal/dist/modal.js',

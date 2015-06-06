@@ -6,7 +6,7 @@ class IndexController extends CoreController {
 
     
     public function indexAction() {
-        return view("cart.index");
+        return view("home.index");
     }
 
 }
