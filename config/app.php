@@ -147,6 +147,7 @@ return [
 		
 		'Collective\Html\HtmlServiceProvider',
 		'Gloudemans\Shoppingcart\ShoppingcartServiceProvider',
+		'Laracasts\Flash\FlashServiceProvider',
 
 	],
 
@@ -199,6 +200,8 @@ return [
 		'Html'      => 'Collective\Html\HtmlFacade',
         'Form'      => 'Collective\Html\FormFacade',
 		'Cart'      => 'Gloudemans\Shoppingcart\Facades\Cart',
+        'Flash'     => 'Laracasts\Flash\Flash',
+		
 
 	],
 

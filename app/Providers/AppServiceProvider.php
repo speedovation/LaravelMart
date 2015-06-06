@@ -31,7 +31,11 @@ class AppServiceProvider extends ServiceProvider {
 		);
 		
 		if ($this->app->environment() == 'local') {
-        $this->app->register('Laracasts\Generators\GeneratorsServiceProvider');
+        $this->app->register(
+		'Mitul\Generator\GeneratorServiceProvider'
+		);
+		
+		//[		'Laracasts\Generators\GeneratorsServiceProvider',
     }
 	}
 

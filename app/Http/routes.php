@@ -84,3 +84,11 @@ Route::resource('wishlist', 'WishlistController');
 //    ]);
 //});
 
+
+
+Route::resource('billings', 'BillingController');
+
+Route::get('billings/{id}/delete', [
+    'as' => 'billings.delete',
+    'uses' => 'BillingController@destroy',
+]);
