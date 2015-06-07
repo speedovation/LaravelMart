@@ -1,21 +1,23 @@
-<?php
+<?php  namespace App\Http\Controllers;
 
-use Formativ\Billing\GatewayInterface;
+use App\Http\Controllers\Controller;
+
+/*use Formativ\Billing\GatewayInterface;
 use Formativ\Billing\DocumentInterface;
-use Formativ\Billing\MessengerInterface;
+use Formativ\Billing\MessengerInterface;*/
 
-class OrderController extends BaseController {
+class OrderController extends CoreController {
 
     protected $gateway;
     protected $document;
     protected $messenger;
 
     public function __construct(
-    GatewayInterface $gateway, DocumentInterface $document, MessengerInterface $messenger
+    //GatewayInterface $gateway, DocumentInterface $document, MessengerInterface $messenger
     ) {
-        $this->gateway = $gateway;
+       /* $this->gateway = $gateway;
         $this->document = $document;
-        $this->messenger = $messenger;
+        $this->messenger = $messenger;*/
     }
 
     public function indexAction() {

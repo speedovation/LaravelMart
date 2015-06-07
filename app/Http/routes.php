@@ -92,3 +92,15 @@ Route::get('billings/{id}/delete', [
     'as' => 'billings.delete',
     'uses' => 'BillingController@destroy',
 ]);
+
+
+Route::group(['namespace' => 'Backend'], function(){
+
+Route::resource('manageproducts', 'ProductController');
+
+Route::get('manageproducts/{id}/delete', [
+    'as' => 'manageproducts.delete',
+    'uses' => 'ProductController@destroy',
+]);
+
+} );

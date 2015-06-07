@@ -74,7 +74,8 @@ class FormBuilder extends \Collective\Html\FormBuilder {
     return '';
 });*/
 
-	public function textfield($name, $label, $options = array())
+
+public function selectfield($name, $value,$label,$selected,$options = array())
     {
         
 		$errors = \Session::get('errors'); //print_r($errors); 
@@ -86,7 +87,35 @@ class FormBuilder extends \Collective\Html\FormBuilder {
 		
 		return sprintf('<div class="field"> %s %s %s</div>',
            parent::label($name, $label,  array_merge([ 'class' => 'desktop-3' ], $options) ),
-           parent::text($name, null,   array_merge([ 'class' => 'input desktop-6' ], $options) ),
+           parent::select($name, $value, $selected,  array_merge([ 'class' => 'input desktop-6' ], $options) ),
+		   $error
+		);
+		
+
+       /* return sprintf(
+            '<div class="form-group">%s<div%s>%s%s</div></div><!-- end form-group -->',
+            parent::label($name, $label, $labelOptions),
+            $errors->has($name) ? ' class="error-control"' : '',
+            parent::text($name, null, $inputOptions),
+            $errors->has($name) ? '<span class="error"><label class="error" for="' . $name . '">' . $errors->first($name) . '</label></span>' : ''
+        );
+		*/
+		
+    }
+
+	public function textfield($name, $label,$type, $options = array())
+    {
+        
+		$errors = \Session::get('errors'); //print_r($errors); 
+		$error = '';
+		if( !empty($errors)  && $errors->has($name))
+		{ 
+			$error = '<div class="text-danger desktop-3"><label class="error" for="' . $name . '">' . $errors->first($name) . '</label></div>' ;       
+		}
+		
+		return sprintf('<div class="field"> %s %s %s</div>',
+           parent::label($name, $label,  array_merge([ 'class' => 'desktop-3' ], $options) ),
+           parent::$type($name, null,   array_merge([ 'class' => 'input desktop-6' ], $options) ),
 		   $error
 		);
 		
@@ -108,7 +137,7 @@ class FormBuilder extends \Collective\Html\FormBuilder {
 		
 		foreach($fields as $field)
 		{
-			$output .= $this->textfield( $field[0] , $field[1] , $field[2]);
+			$output .= $this->textfield( $field[0] , $field[1] , $field[2], $field[3]);
 		}
 		
 		return $output;

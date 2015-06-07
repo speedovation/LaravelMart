@@ -1,6 +1,8 @@
-<?php
+<?php namespace App\Http\Controllers;
 
-class WishlistController extends BaseController {
+use App\Http\Controllers\Controller;
+
+class WishlistController extends CoreController {
 
     public function __construct() {
         $this->beforeFilter('auth');

@@ -4,16 +4,23 @@
         
     <?php
     
+    $salutations_arr = [ 
+               'Dr' => 'Dr', 
+               'Mr' => 'Mr',
+               'Mrs' => 'Mrs',
+               'Miss' => 'Miss',
+           ];
+    
     $fields = [
-        ['salutation','Salutation:', [] ],
-        ['first_name','First Name:', [] ],  
-        ['last_name','Last Name:', [] ],  
-        ['company','Company:', [] ],  
+       
+        ['first_name','First Name:', 'text',[] ],  
+        ['last_name','Last Name:','text', [] ],  
+        ['company','Company:','text', [] ],  
     ];
       
  ?>
     
-    
+   {!! Form::selectfield('salutation', $salutations_arr , 'Salutation', 'Mr') !!} 
    {!! Form::createform($fields)!!} 
     
         
@@ -25,10 +32,10 @@
      <?php
     
     $fields = [
-        ['address','address:', [] ],  
-        ['city','City:', [] ],
-        ['state','State:', [] ],  
-        ['zip','Zip:', [] ],  
+        ['address','address:','textarea', [] ],  
+        ['city','City:','text', [] ],
+        ['state','State:', 'text',[] ],  
+        ['zip','Zip:', 'text',[] ],  
     ];
       
  ?>

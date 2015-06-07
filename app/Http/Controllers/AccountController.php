@@ -1,7 +1,8 @@
 <?php namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 
-class AccountController extends BaseController {
+class AccountController extends CoreController {
 
     public function authenticateAction() {
         $credentials = [
