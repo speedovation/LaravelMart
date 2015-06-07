@@ -16,6 +16,7 @@ class BillingController extends AppBaseController
 
 	function __construct(BillingRepository $billingRepo)
 	{
+		$this->middleware('auth');
 		$this->billingRepository = $billingRepo;
 	}
 

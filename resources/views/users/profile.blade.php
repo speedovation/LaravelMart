@@ -8,7 +8,7 @@
 
 <div class="row">
 
-<h2>Hello {!!Auth::user()->username !!}</h2>
+<h2>Hello {!!Auth::user()->username !!} {!!Auth::user()->id !!}</h2>
     <p>Welcome to your sparse profile page.</p>
 
 </div>

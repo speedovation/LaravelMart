@@ -2,18 +2,19 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="row">
 
         @include('flash::message')
 
-        <div class="row">
-            <h1 class="pull-left">Billings</h1>
-            <a class="btn btn-primary pull-right" style="margin-top: 25px" href="{!! route('billings.create') !!}">Add New</a>
-        </div>
+            <h1 class="float-left">Billings Addresses</h1>
+<!--            <i class="float-left">Last created will be default address. Last used will be given priority.</i>-->
+            
+            <a class="button primary float-right" style="margin-top: 25px" href="{!! route('billings.create') !!}">Add New</a>
 
-        <div class="row">
+            
+            
             @if($billings->isEmpty())
-                <div class="well text-center">No Billings found.</div>
+                <div class="well text-center">No billing address added yet.</div>
             @else
                 <table class="table">
                     <thead>
@@ -42,14 +43,15 @@
 					<td>{!! $billing->zip !!}</td>
 					<td>{!! $billing->address !!}</td>
                             <td>
-                                <a href="{!! route('billings.edit', [$billing->id]) !!}"><i class="glyphicon glyphicon-edit"></i></a>
-                                <a href="{!! route('billings.delete', [$billing->id]) !!}" onclick="return confirm('Are you sure wants to delete this Billing?')"><i class="glyphicon glyphicon-remove"></i></a>
+                                <a href="{!! route('billings.edit', [$billing->id]) !!}"><i class="i-edit"></i></a>
+                                <a href="{!! route('billings.delete', [$billing->id]) !!}" 
+                                onclick="return confirm('Are you sure wants to delete this Billing?')">
+                                <i class="i-close"></i></a>
                             </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
             @endif
-        </div>
     </div>
 @endsection

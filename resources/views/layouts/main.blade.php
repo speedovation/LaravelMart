@@ -21,13 +21,9 @@
     
     @include("layouts/header")
     
-    <div class="container grid">
-        @yield('content')
+    @yield('content')
         
-        @include("layouts/footer")
-        
-    </div>
-    
+    @include("layouts/footer")
     
 </body>
 </html>

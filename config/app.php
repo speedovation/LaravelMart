@@ -145,7 +145,8 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 		
-		'Collective\Html\HtmlServiceProvider',
+/*		'Collective\Html\HtmlServiceProvider',*/
+		'App\Services\Html\HtmlServiceProvider',
 		'Gloudemans\Shoppingcart\ShoppingcartServiceProvider',
 		'Laracasts\Flash\FlashServiceProvider',
 
