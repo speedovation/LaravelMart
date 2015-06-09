@@ -14,7 +14,23 @@ class AdminController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		$input = $request->all();
+		 echo Request::segment(1);
+		
+		$fields = Config::get('laravelmart.products.index');
+
+		//$result = $this->productRepository->search($input);
+
+		$products = \DB::table('products')->paginate(10);
+
+		//$products =  $result[0];
+
+		$attributes =  ""; //$result[1];
+
+		return view('admin.products.index')
+		    ->with('products', $products)
+		    ->with('attributes', $attributes)
+			->with('fields',$fields);
 	}
 
 	/**

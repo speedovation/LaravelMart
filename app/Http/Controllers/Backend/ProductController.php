@@ -33,6 +33,8 @@ class ProductController extends AppBaseController
 	public function index(Request $request)
 	{
 	    $input = $request->all();
+		
+		$fields = Config::get('laravelmart.products.index');
 
 		//$result = $this->productRepository->search($input);
 
@@ -44,7 +46,8 @@ class ProductController extends AppBaseController
 
 		return view('admin.products.index')
 		    ->with('products', $products)
-		    ->with('attributes', $attributes);;
+		    ->with('attributes', $attributes)
+			->with('fields',$fields);
 	}
 
 	/**
@@ -54,7 +57,10 @@ class ProductController extends AppBaseController
 	 */
 	public function create()
 	{
-		return view('admin.products.create');
+		$fields = Config::get('laravelmart.products.fields');
+
+		return  view('admin.products.create')
+				->with('fields',$fields);
 	}
 
 	/**
@@ -104,6 +110,7 @@ class ProductController extends AppBaseController
 	public function edit($id)
 	{
 		$product = $this->productRepository->findProductById($id);
+		$fields = Config::get('laravelmart.products.fields');
 
 		if(empty($product))
 		{
@@ -111,7 +118,9 @@ class ProductController extends AppBaseController
 			return redirect(route('admin.products.index'));
 		}
 
-		return view('admin.products.edit')->with('product', $product);
+		return view('admin.products.edit')
+				->with('product', $product)
+				->with('fields',$fields);
 	}
 
 	/**

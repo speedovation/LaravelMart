@@ -17,14 +17,11 @@
             @else
                 <table class="table zebra bordered rounded">
                     <thead>
-                    <th>Code</th>
-			<th>Name</th>
-			<th>Stock</th>
-			<th>Mrp</th>
-			<th>Price</th>
-			<th>Discount</th>
-			<th>Category Id</th>
-			<th>Image</th>
+                    
+                    @foreach($fields as $field)
+                        <th>{!! $field !!}</th>
+                    @endforeach
+                    
 	
                     <th width="50px">Action</th>
                     </thead>
@@ -32,20 +29,19 @@
                   
                     @foreach($products as $product)
                         <tr>
-                            <td>{!! $product->code !!}</td>
-					<td>{!! $product->name !!}</td>
-					<td>{!! $product->stock !!}</td>
-					<td>{!! $product->mrp !!}</td>
-					<td>{!! $product->price !!}</td>
-					<td>{!! $product->discount !!}</td>
-					<td>{!! $product->category_id !!}</td>
-					<td>{!! $product->image !!}</td>
-					               <td>
+                        
+                           @foreach($fields as $field)
+                                <td>{!! $product->$field !!}</td>
+					              @endforeach
+                              
+                           <td>
                                 <a href="{!! route('admin.products.edit', [$product->id]) !!}"><i class="i-edit"></i></a>
                                 <a href="{!! route('admin.products.delete', [$product->id]) !!}" 
                                 onclick="return confirm('Are you sure wants to delete this Product?')">
                                 <i class="i-close"></i></a>
                             </td>
+                        
+                            
                         </tr>
                     @endforeach
                     </tbody>
@@ -56,4 +52,6 @@
             @endif
         </div>
     </div>
+    
+
 @endsection

@@ -104,3 +104,14 @@ Route::get('products/{id}/delete', [
 ]);
 
 } );
+
+Route::group( ['namespace' => 'Backend'], function(){
+
+Route::resource('admin', 'AdminController');
+
+/*Route::get('products/{id}/delete', [
+    'as' => 'admin.products.delete',
+    'uses' => 'ProductController@destroy',
+]);
+*/
+} );
