@@ -94,12 +94,12 @@ Route::get('billings/{id}/delete', [
 ]);
 
 
-Route::group(['namespace' => 'Backend'], function(){
+Route::group( ['namespace' => 'Backend', 'prefix' => 'admin'], function(){
 
-Route::resource('manageproducts', 'ProductController');
+Route::resource('products', 'ProductController');
 
-Route::get('manageproducts/{id}/delete', [
-    'as' => 'manageproducts.delete',
+Route::get('products/{id}/delete', [
+    'as' => 'admin.products.delete',
     'uses' => 'ProductController@destroy',
 ]);
 

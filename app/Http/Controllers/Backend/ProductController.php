@@ -9,6 +9,7 @@ use Response;
 use Flash;
 
 use App\Models\Product;
+use Illuminate\Support\Facades\Config;
 
 
 class ProductController extends AppBaseController
@@ -41,7 +42,7 @@ class ProductController extends AppBaseController
 
 		$attributes =  ""; //$result[1];
 
-		return view('backend.products.index')
+		return view('admin.products.index')
 		    ->with('products', $products)
 		    ->with('attributes', $attributes);;
 	}
@@ -53,7 +54,7 @@ class ProductController extends AppBaseController
 	 */
 	public function create()
 	{
-		return view('backend.products.create');
+		return view('admin.products.create');
 	}
 
 	/**
@@ -71,7 +72,7 @@ class ProductController extends AppBaseController
 
 		Flash::message('Product saved successfully.');
 
-		return redirect(route('manageproducts.index'));
+		return redirect(route('admin.products.index'));
 	}
 
 	/**
@@ -88,10 +89,10 @@ class ProductController extends AppBaseController
 		if(empty($product))
 		{
 			Flash::error('Product not found');
-			return redirect(route('manageproducts.index'));
+			return redirect(route('admin.products.index'));
 		}
 
-		return view('backend.products.show')->with('product', $product);
+		return view('admin.products.show')->with('product', $product);
 	}
 
 	/**
@@ -107,10 +108,10 @@ class ProductController extends AppBaseController
 		if(empty($product))
 		{
 			Flash::error('Product not found');
-			return redirect(route('manageproducts.index'));
+			return redirect(route('admin.products.index'));
 		}
 
-		return view('backend.products.edit')->with('product', $product);
+		return view('admin.products.edit')->with('product', $product);
 	}
 
 	/**
@@ -128,14 +129,14 @@ class ProductController extends AppBaseController
 		if(empty($product))
 		{
 			Flash::error('Product not found');
-			return redirect(route('manageproducts.index'));
+			return redirect(route('admin.products.index'));
 		}
 
 		$product = $this->productRepository->update($product, $request->all());
 
 		Flash::message('Product updated successfully.');
 
-		return redirect(route('manageproducts.index'));
+		return redirect(route('admin.products.index'));
 	}
 
 	/**
@@ -152,14 +153,14 @@ class ProductController extends AppBaseController
 		if(empty($product))
 		{
 			Flash::error('Product not found');
-			return redirect(route('manageproducts.index'));
+			return redirect(route('admin.products.index'));
 		}
 
 		$product->delete();
 
 		Flash::message('Product deleted successfully.');
 
-		return redirect(route('manageproducts.index'));
+		return redirect(route('admin.products.index'));
 	}
 
 }

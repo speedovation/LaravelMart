@@ -149,6 +149,7 @@ return [
 		'App\Services\Html\HtmlServiceProvider',
 		'Gloudemans\Shoppingcart\ShoppingcartServiceProvider',
 		'Laracasts\Flash\FlashServiceProvider',
+		'Zizaco\Entrust\EntrustServiceProvider'
 
 	],
 
@@ -202,6 +203,8 @@ return [
         'Form'      => 'Collective\Html\FormFacade',
 		'Cart'      => 'Gloudemans\Shoppingcart\Facades\Cart',
         'Flash'     => 'Laracasts\Flash\Flash',
+		
+		'Entrust' => 'Zizaco\Entrust\EntrustFacade'
 		
 
 	],

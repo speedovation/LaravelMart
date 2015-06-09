@@ -8,7 +8,7 @@
 
         <div class="row">
             <h1 class="desktop-4">Products</h1>
-            <a class="desktop-8 button primary" style="margin-top: 10px" href="{!! route('manageproducts.create') !!}">Add New</a>
+            <a class="desktop-8 button primary" style="margin-top: 10px" href="{!! route('admin.products.create') !!}">Add New</a>
         </div>
 
         <div class="row">
@@ -41,8 +41,8 @@
 					<td>{!! $product->category_id !!}</td>
 					<td>{!! $product->image !!}</td>
 					               <td>
-                                <a href="{!! route('manageproducts.edit', [$product->id]) !!}"><i class="i-edit"></i></a>
-                                <a href="{!! route('manageproducts.delete', [$product->id]) !!}" 
+                                <a href="{!! route('admin.products.edit', [$product->id]) !!}"><i class="i-edit"></i></a>
+                                <a href="{!! route('admin.products.delete', [$product->id]) !!}" 
                                 onclick="return confirm('Are you sure wants to delete this Product?')">
                                 <i class="i-close"></i></a>
                             </td>

@@ -7,9 +7,9 @@
 
     @include('common.errors')
 
-    {!! Form::model($product, ['route' => ['products.update', $product->id], 'method' => 'patch']) !!}
+    {!! Form::model($product, ['route' => ['admin.products.update', $product->id], 'method' => 'patch']) !!}
 
-        @include('products.fields')
+        @include('admin.products.fields')
 
     {!! Form::close() !!}
 </div>
