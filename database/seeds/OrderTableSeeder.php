@@ -1,20 +1,20 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Account as Account;
-use App\Models\Order as Order;
+use App\Models\User;
+use App\Models\Order;
 
 class OrderTableSeeder extends DatabaseSeeder {
 
     public function run() {
         $faker = $this->getFaker();
 
-        $accounts = Account::all();
+        $accounts = User::all();
 
         foreach ($accounts as $account) {
             for ($i = 0; $i < rand(-1, 5); $i++) {
                 Order::create([
-                    "account_id" => $account->id
+                    "user_id" => $account->id
                 ]);
             }
         }

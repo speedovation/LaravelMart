@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateOrderItemTable extends Migration {
 
     public function up() {
-        Schema::create("order_item", function($table) {
+        Schema::create("orderitems", function($table) {
                     $table->engine = "InnoDB";
 
                     $table->increments("id");
@@ -20,7 +20,7 @@ class CreateOrderItemTable extends Migration {
     }
 
     public function down() {
-        Schema::dropIfExists("order_item");
+        Schema::dropIfExists("orderitems");
     }
 
 }

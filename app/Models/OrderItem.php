@@ -2,7 +2,7 @@
 
 class OrderItem extends Eloquent {
 
-    protected $table = "order_item";
+    protected $table = "orderitems";
     protected $guarded = ["id"];
     protected $softDelete = true;
 

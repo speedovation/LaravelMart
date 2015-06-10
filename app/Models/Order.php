@@ -5,12 +5,12 @@ use Illuminate\Database\Eloquent\Model as Model;
 
 class Order extends Model {
 
-    protected $table = "order";
+    protected $table = "orders";
     protected $guarded = ["id"];
     protected $softDelete = true;
 
     public function account() {
-        return $this->belongsTo("Account");
+        return $this->belongsTo("User");
     }
 
     public function orderItems() {

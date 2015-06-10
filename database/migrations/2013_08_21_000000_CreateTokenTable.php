@@ -7,7 +7,7 @@ class CreateTokenTable extends Migration
 {
     public function up()
     {
-        Schema::create("token", function(Blueprint $table)
+        Schema::create("tokens", function(Blueprint $table)
         {
             $table
                 ->string("email")
@@ -28,6 +28,6 @@ class CreateTokenTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists("token");
+        Schema::dropIfExists("tokens");
     }
 }

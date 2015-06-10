@@ -109,9 +109,22 @@ Route::group( ['namespace' => 'Backend'], function(){
 
 Route::resource('admin', 'AdminController');
 
-/*Route::get('products/{id}/delete', [
-    'as' => 'admin.products.delete',
-    'uses' => 'ProductController@destroy',
-]);
-*/
+    Route::get('admin/manage/{item}', [
+        'as' => 'admin.manage.index',
+        'uses' => 'AdminController@index',
+    ]);
+    
+    
+    Route::get('admin/create/{item}', [
+        'as' => 'admin.manage.create',
+        'uses' => 'AdminController@create',
+    ]);
+    
+    Route::post('admin/store/{item}', [
+        'as' => 'admin.manage.store',
+        'uses' => 'AdminController@store',
+    ]);
+    
+    
+
 } );

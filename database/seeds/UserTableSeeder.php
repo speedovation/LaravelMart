@@ -1,19 +1,21 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Account as Account;
+use App\Models\User;
 
-class AccountTableSeeder extends DatabaseSeeder {
+use Faker\Provider\en_US\Person;
+
+class UserTableSeeder extends DatabaseSeeder {
 
     public function run() {
         $faker = $this->getFaker();
 
         for ($i = 0; $i < 10; $i++) {
 
-            Account::create([
+            User::create([
+                "name" => $faker->name,
                 "email" => $faker->email,
-                "password" => Hash::make("password"),
-                "username" => $faker->username
+                "password" => Hash::make("password")
             ]);
         }
     }

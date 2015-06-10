@@ -7,7 +7,7 @@
         @include('flash::message')
 
         <div class="row">
-            <h1 class="desktop-4">Products</h1>
+            <h1 class="desktop-4">{!! ucfirst( str_singular($table) )  !!}</h1>
             <a class="desktop-8 button primary" style="margin-top: 10px" href="{!! route('admin.products.create') !!}">Add New</a>
         </div>
 

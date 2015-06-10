@@ -9,8 +9,9 @@ class DatabaseSeeder extends Seeder {
     public function getFaker() {
         if (empty($this->faker)) {
             $faker = \Faker\Factory::create();
-            $faker->addProvider(new Faker\Provider\Base($faker));
-            $faker->addProvider(new Faker\Provider\Lorem($faker));
+            $faker->addProvider(new \Faker\Provider\Base($faker));
+            $faker->addProvider(new \Faker\Provider\Lorem($faker));
+            $faker->addProvider(new \Faker\Provider\en_US\Person($faker));
         }
 
         return $this->faker = $faker;
@@ -18,11 +19,11 @@ class DatabaseSeeder extends Seeder {
 
     public function run() {
 
-        $this->call("AccountTableSeeder");
+        $this->call("UserTableSeeder");
         $this->call("CategoryTableSeeder");
         $this->call("ProductTableSeeder");
         $this->call("OrderTableSeeder");
-    	$this->call('WishlistsTableSeeder');
+    	   $this->call('WishlistsTableSeeder');
         $this->call("OrderItemTableSeeder");
 	}
 

@@ -19,11 +19,16 @@ class ProductRepository
 		return Product::all();
 	}
 
-	public function search($input)
-    {
-        $query = Product::query();
+	public function search($input,$table)
+   {
+        
+        $Model = "\\App\\Models\\".ucfirst(str_singular($table));
+        
+        echo $Model. "SSSS";
+        
+        $query = $Model::query();
 
-        $columns = Schema::getColumnListing('products');
+        $columns = Schema::getColumnListing($table);
         $attributes = array();
 
         foreach($columns as $attribute){
@@ -47,9 +52,12 @@ class ProductRepository
 	 *
 	 * @return Product
 	 */
-	public function store($input)
+	public function store($input,$table)
 	{
-		return Product::create($input);
+		
+         $Model = "\\App\\Models\\".ucfirst(str_singular($table));
+        
+        return $Model::create($input);
 	}
 
 	/**

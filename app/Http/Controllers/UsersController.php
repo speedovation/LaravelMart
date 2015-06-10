@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Models;
-use App\Models\Account ;
+use App\Models\User ;
 
 class UsersController extends CoreController {
 
@@ -17,10 +17,10 @@ class UsersController extends CoreController {
 	}
 
 	public function postCreate() {
-		$validator = \Validator::make(\Input::all(), Account::$rules);
+		$validator = \Validator::make(\Input::all(), User::$rules);
 
 		if ($validator->passes()) {
-			$user = new Account;
+			$user = new User;
 			$user->username = \Input::get('username');
 			$user->email = \Input::get('email');
 			$user->password = \Hash::make(\Input::get('password'));

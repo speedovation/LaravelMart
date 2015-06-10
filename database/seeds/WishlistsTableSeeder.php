@@ -2,7 +2,7 @@
 
 
 use Illuminate\Database\Seeder;
-use App\Models\Account as Account;
+use App\Models\User;
 
 class WishlistsTableSeeder extends Seeder {
 

@@ -19,7 +19,7 @@ class CreateBillingsTable extends Migration
 			$table->string('salutation');
 			$table->string('first_name',50);
 			$table->string('last_name',50);
-			$table->integer('account_id');
+			$table->integer('user_id');
 			$table->string('company');
 			$table->string('city');
 			$table->string('state');

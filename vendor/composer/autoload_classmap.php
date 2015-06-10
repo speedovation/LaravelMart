@@ -6,13 +6,11 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'AccountTableSeeder' => $baseDir . '/database/seeds/AccountTableSeeder.php',
-    'App\\Models\\Account' => $baseDir . '/app/Models/Account.php',
     'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',
     'App\\Models\\Order' => $baseDir . '/app/Models/Order.php',
     'App\\Models\\Product' => $baseDir . '/app/Models/Product.php',
+    'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'CategoryTableSeeder' => $baseDir . '/database/seeds/CategoryTableSeeder.php',
-    'CreateAccountTable' => $baseDir . '/database/migrations/2013_12_03_000000_CreateAccountTable.php',
     'CreateBillingsTable' => $baseDir . '/database/migrations/2015_06_06_194542_create_billings_table.php',
     'CreateCategoryTable' => $baseDir . '/database/migrations/2013_12_03_000000_CreateCategoryTable.php',
     'CreateOrderItemTable' => $baseDir . '/database/migrations/2013_12_03_000000_CreateOrderItemTable.php',
@@ -446,7 +444,7 @@ return array(
     'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Symfony/Component/HttpFoundation/Resources/stubs/SessionHandlerInterface.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/Text/Template.php',
-    'User' => $baseDir . '/app/Models/User.php',
+    'UserTableSeeder' => $baseDir . '/database/seeds/UserTableSeeder.php',
     'Whoops\\Module' => $vendorDir . '/filp/whoops/src/deprecated/Zend/Module.php',
     'Whoops\\Provider\\Zend\\ExceptionStrategy' => $vendorDir . '/filp/whoops/src/deprecated/Zend/ExceptionStrategy.php',
     'Whoops\\Provider\\Zend\\RouteNotFoundStrategy' => $vendorDir . '/filp/whoops/src/deprecated/Zend/RouteNotFoundStrategy.php',

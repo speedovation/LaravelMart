@@ -7,7 +7,7 @@
 
     @include('common.errors')
 
-    {!! Form::open(['route' => 'admin.products.store']) !!}
+    {!! Form::open(['url' => $url]) !!}
 
         @include('admin.products.fields')
 

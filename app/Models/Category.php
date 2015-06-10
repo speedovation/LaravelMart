@@ -8,7 +8,7 @@ use App\Models\Product;
 
 class Category extends Model {
 
-    protected $table = "category";
+    protected $table = "categories";
     protected $guarded = ["id"];
     protected $softDelete = true;
 

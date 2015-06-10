@@ -2,9 +2,9 @@
 
 
 use Illuminate\Database\Seeder;
-use App\Models\Account as Account;
-use App\Models\Category as Category;
-use App\Models\Product as Product;
+use App\Models\User;
+use App\Models\Category;
+use App\Models\Product;
 
 class ProductTableSeeder extends DatabaseSeeder {
 

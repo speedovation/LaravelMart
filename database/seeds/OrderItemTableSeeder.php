@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Product as Product;
-use App\Models\Order as Order;
+use App\Models\Product;
+use App\Models\Order;
 
 class OrderItemTableSeeder extends DatabaseSeeder {
 

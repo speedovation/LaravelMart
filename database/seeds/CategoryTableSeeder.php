@@ -14,7 +14,7 @@ class CategoryTableSeeder extends DatabaseSeeder {
               [ "name" =>  'Gifts' ,'created_at'=> new DateTime,'updated_at'=> new DateTime],
               [ "name" =>  'Flowers' ,'created_at'=> new DateTime,'updated_at'=> new DateTime]     
                       ];
-           DB::table('category')->insert($cats);
+           DB::table('categories')->insert($cats);
         
 //                for ($i = 0; $i < 10; $i++) {
 //            $name = ucwords($faker->word);
