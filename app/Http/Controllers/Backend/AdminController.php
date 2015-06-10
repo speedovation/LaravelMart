@@ -10,12 +10,19 @@ class AdminController extends Controller {
 
     
     /** @var  ProductRepository */
-	private $productRepository;
+    private $productRepository;
 
-	function __construct(ProductRepository $productRepo)
-	{
-		$this->productRepository = $productRepo;
-	}
+    function __construct(ProductRepository $productRepo)
+    {
+        $this->productRepository = $productRepo;
+    }
+    
+    
+    public function dashboard()
+    {
+    	echo "Dashboard";
+    }
+    
     
     /**
      * Display a listing of the resource.
@@ -25,8 +32,7 @@ class AdminController extends Controller {
     public function index(Request $request)
     {
         $input = $request->all();
-        $table = $request->segment(3);
-    	
+        $table = $request->segment(2);
     	
     	
         ///TODO if item is empty then 404
@@ -42,10 +48,10 @@ class AdminController extends Controller {
         $attributes =  ""; //$result[1];
 
         return view('admin.products.index')
-            ->with('products', $products)
-            ->with('attributes', $attributes)
-            ->with('fields',$fields)
-            ->with('table',$table);
+                ->with('products', $products)
+                ->with('attributes', $attributes)
+                ->with('fields',$fields)
+                ->with('table',$table);
     }
 
     /**
@@ -55,8 +61,8 @@ class AdminController extends Controller {
      */
     public function create(Request $request)
     {
-        $$table = $request->segment(3);
-        $fields = \Config::get("laravelmart.$item.fields");
+        $table = $request->segment(2);
+        $fields = \Config::get("laravelmart.$table.fields");
         $url = action('Backend\AdminController@store', [$table]);
         
         $product = $this->productRepository->search([],$table);
@@ -75,13 +81,13 @@ class AdminController extends Controller {
     public function store(Request $request)
     {
         $input = $request->all();
-        $item = $request->segment(3);
+        $item = $request->segment(2);
 
-		$product = $this->productRepository->store($input, $item);
+        $product = $this->productRepository->store($input, $item);
 
-		\Flash::message( ucfirst(str_singular($item)). ' saved successfully.');
+        \Flash::message( ucfirst(str_singular($item)). ' saved successfully.');
 
-		return redirect(route("admin.manage.index",[$item]));
+        return redirect(route("admin.index",[$item]));
     }
 
     /**
@@ -101,9 +107,28 @@ class AdminController extends Controller {
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        
+        $table = $request->segment(2);
+        $id = $request->segment(4);
+        
+        $fields = \Config::get("laravelmart.$table.fields");
+        
+        $data = $this->productRepository->findProductById($id,$table);
+        $url = route('admin.update', [$table, $id ]);
+
+        if(empty($data))
+        {
+            \Flash::error( ucfirst(str_singular($table)). ' not found');
+            return redirect(route('admin.index',[$table]));
+        }
+
+        return view('admin.products.edit')
+                ->with('data', $data)
+                ->with('fields',$fields)
+               ->with('url',$url)
+               ->with('table',$table);
     }
 
     /**
@@ -112,9 +137,24 @@ class AdminController extends Controller {
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update(Request $request)
     {
-        //
+        $table = $request->segment(2);
+        $id = $request->segment(4);
+        
+		$data = $this->productRepository->findProductById($id,$table);
+
+		if(empty($data))
+		{
+			\Flash::error(ucfirst(str_singular($table)).' not found');
+			return redirect(route('admin.index',[$table]));
+		}
+
+		$data = $this->productRepository->update($data, $request->all());
+
+		\Flash::message(ucfirst(str_singular($table)).' updated successfully.');
+
+		return redirect(route('admin.index',[$table]));
     }
 
     /**
@@ -123,9 +163,26 @@ class AdminController extends Controller {
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $table = $request->segment(2);
+        $id = $request->segment(4);
+        
+        $data = $this->productRepository->findProductById($id,$table);
+
+		if(empty($data))
+		{
+			\Flash::error(ucfirst(str_singular($table)).' not found');
+			return redirect(route('admin.index',[$table]));
+		}
+
+		$data->delete();
+
+		\Flash::message(ucfirst(str_singular($table)).' updated successfully.');
+
+		return redirect(route('admin.index',[$table]));
     }
 
 }
+
+

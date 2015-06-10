@@ -93,7 +93,7 @@ Route::get('billings/{id}/delete', [
     'uses' => 'BillingController@destroy',
 ]);
 
-
+/*
 Route::group( ['namespace' => 'Backend', 'prefix' => 'admin'], function(){
 
 Route::resource('products', 'ProductController');
@@ -103,26 +103,49 @@ Route::get('products/{id}/delete', [
     'uses' => 'ProductController@destroy',
 ]);
 
-} );
+} );*/
 
 Route::group( ['namespace' => 'Backend'], function(){
 
-Route::resource('admin', 'AdminController');
+//Route::resource('admin', 'AdminController');
 
-    Route::get('admin/manage/{item}', [
-        'as' => 'admin.manage.index',
+    Route::get('admin', [
+        'as' => 'admin.dashboard',
+        'uses' => 'AdminController@dashboard',
+    ]);
+    
+    Route::get('admin/{item}', [
+        'as' => 'admin.index',
         'uses' => 'AdminController@index',
     ]);
     
     
-    Route::get('admin/create/{item}', [
-        'as' => 'admin.manage.create',
+    Route::get('admin/{item}/create', [
+        'as' => 'admin.create',
         'uses' => 'AdminController@create',
     ]);
     
-    Route::post('admin/store/{item}', [
-        'as' => 'admin.manage.store',
+    Route::post('admin/{item}/store', [
+        'as' => 'admin.store',
         'uses' => 'AdminController@store',
+    ]);
+    
+    
+    Route::get('admin/{item}/edit/{id}', [
+        'as' => 'admin.edit',
+        'uses' => 'AdminController@edit',
+    ]);
+    
+    Route::patch('admin/{item}/update/{id}', [
+        'as' => 'admin.update',
+        'uses' => 'AdminController@update',
+    ]);
+    
+    
+    
+    Route::get('admin/{item}/delete/{id}', [
+        'as' => 'admin.delete',
+        'uses' => 'AdminController@destroy',
     ]);
     
     

@@ -1,7 +1,7 @@
 <?php namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
-use App\Billing;
+use App\Models\Billing;
 
 class CreateBillingRequest extends Request {
 

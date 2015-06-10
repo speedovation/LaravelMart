@@ -3,7 +3,7 @@
 namespace App\Libraries\Repositories;
 
 
-use App\Billing;
+use App\Models\Billing;
 use Illuminate\Support\Facades\Schema;
 
 class BillingRepository

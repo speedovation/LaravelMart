@@ -8,7 +8,7 @@
 
         <div class="row">
             <h1 class="desktop-4">{!! ucfirst( str_singular($table) )  !!}</h1>
-            <a class="desktop-8 button primary" style="margin-top: 10px" href="{!! route('admin.products.create') !!}">Add New</a>
+            <a class="desktop-8 button primary" style="margin-top: 10px" href="{!! route('admin.create',[$table]) !!}">Add New</a>
         </div>
 
         <div class="row">
@@ -35,8 +35,8 @@
 					              @endforeach
                               
                            <td>
-                                <a href="{!! route('admin.products.edit', [$product->id]) !!}"><i class="i-edit"></i></a>
-                                <a href="{!! route('admin.products.delete', [$product->id]) !!}" 
+                                <a href="{!! route('admin.edit', [$table, $product->id]) !!}"><i class="i-edit"></i></a>
+                                <a href="{!! route('admin.delete', [$table, $product->id]) !!}" 
                                 onclick="return confirm('Are you sure wants to delete this Product?')">
                                 <i class="i-close"></i></a>
                             </td>

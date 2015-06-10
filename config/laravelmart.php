@@ -52,5 +52,20 @@
                     ],
                     "index" => [ 'name', 'email' ]
                 ],
+'billings' => [
+                    "fields" => [
+                         ['salutation','Salutation:', 'text',[] ], 
+                         ['first_name','First name:', 'text',[] ], 
+                         ['last_name','Last name:', 'text',[] ], 
+                         ['user_id','User id:', 'text',[] ], 
+                         ['company','Company:', 'text',[] ], 
+                         ['city','City:', 'text',[] ], 
+                         ['state','State:', 'text',[] ], 
+                         ['zip','Zip:', 'text',[] ], 
+                         ['address','Address:', 'text',[] ], 
+
+                    ],
+                    "index" => ['salutation','first_name','last_name','user_id','company','city','state','zip','address']
+                ],
 
 ];
