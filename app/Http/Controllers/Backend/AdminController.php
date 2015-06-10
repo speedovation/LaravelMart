@@ -20,7 +20,7 @@ class AdminController extends Controller {
     
     public function dashboard()
     {
-    	echo "Dashboard";
+    	 return view('admin.products.dashboard');
     }
     
     

@@ -43,6 +43,14 @@
                     ],
                     "index" => ['name','parent_id']
                 ],
+'wishlists' => [
+                    "fields" => [
+                        ['product_code','Product Code:', 'text',[] ], 
+                        ['user_id','User Id:', 'text',[] ],
+                    ],
+                    "index" => ['product_code','user_id']
+                ],
+
 'users' => [
                     "fields" => [
                         ['name','Name:', 'text',[] ], 

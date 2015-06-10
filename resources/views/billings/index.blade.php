@@ -6,7 +6,7 @@
 
         @include('flash::message')
 
-            <h1 class="float-left">Billings Addresses</h1>
+            <h1>Billings Addresses</h1>
 <!--            <i class="float-left">Last created will be default address. Last used will be given priority.</i>-->
             
             <a class="button primary float-right" style="margin-top: 25px" href="{!! route('billings.create') !!}">Add New</a>
