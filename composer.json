@@ -1,7 +1,7 @@
 {
 	"name": "speedovation/laravelmart",
 	"description": "LaravelMart - eCommerce platform.",
-	"keywords": ["ecommerce","platform", "LaravelMart"],
+	"keywords": ["ecommerce","platform", "laravelmart","laravel e-commerce","admin dashboard","shop package"],
 	"license": "MIT",
 	"type": "project",
 	"require": {
