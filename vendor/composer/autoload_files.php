@@ -17,8 +17,8 @@ return array(
     $vendorDir . '/laracasts/flash/src/Laracasts/Flash/functions.php',
     $vendorDir . '/illuminate/html/helpers.php',
     $vendorDir . '/guzzlehttp/guzzle/src/functions.php',
-    $vendorDir . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
-    $vendorDir . '/laravel/framework/src/Illuminate/Support/helpers.php',
     $vendorDir . '/laravelcollective/html/src/helpers.php',
     $vendorDir . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/Constants/Constants.php',
+    $vendorDir . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
+    $vendorDir . '/laravel/framework/src/Illuminate/Support/helpers.php',
 );
