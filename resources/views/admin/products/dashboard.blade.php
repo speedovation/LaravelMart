@@ -1,8 +1,8 @@
-@extends('layouts.main')
+@extends('admin.admin')
 
 @section('content')
 
-    <div class="row">
+    <div class="row dashboard">
 
 
             <h1>Dashboard</h1>

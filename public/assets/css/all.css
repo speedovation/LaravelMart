@@ -3710,6 +3710,13 @@ a.remove-cart-item:hover {
     width: 400px;
 }
 
+.dashboard .button.primary, .dashboard button.primary, .dashboard a.button.primary {
+    
+    margin-right: 250px;
+    min-width: 200px;
+    text-align: center; 
+}
+
 .megamenu_wrapper {
     margin:0 auto 10px ;
     display:block;

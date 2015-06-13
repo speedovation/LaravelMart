@@ -38,10 +38,10 @@
 
 'orders' => [
                     "fields" => [
-                        ['name','Name:', 'text',[] ], 
-                        ['parent_id','Parent Id:', 'text',[] ],
+                        ['user_id','User id:', 'text',[] ], 
+                        
                     ],
-                    "index" => ['name','parent_id']
+                    "index" => ['user_id']
                 ],
 'wishlists' => [
                     "fields" => [
