@@ -19,7 +19,7 @@
 		"phpspec/phpspec": "~2.1",
 		"mockery/mockery": "0.9.*",
 		"laracasts/generators": "^1.1",
-		"mitulgolakiya/laravel-api-generator": "1.3.*"
+		"mitulgolakiya/laravel-api-generator": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

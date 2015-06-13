@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "74ef9490c8d3ec3a48c404b3216e2d7c",
+    "hash": "60837fa219612e7c03584b08d4a57d25",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -971,7 +971,7 @@
         },
         {
             "name": "laravelcollective/html",
-            "version": "v5.0.5",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LaravelCollective/html.git",
@@ -2459,6 +2459,53 @@
     ],
     "packages-dev": [
         {
+            "name": "bosnadev/repositories",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Bosnadev/Repositories.git",
+                "reference": "f86847a2626193e60f8707da2a4db0cb02205dfe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Bosnadev/Repositories/zipball/f86847a2626193e60f8707da2a4db0cb02205dfe",
+                "reference": "f86847a2626193e60f8707da2a4db0cb02205dfe",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "5.*",
+                "illuminate/support": "5.*",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bosnadev\\Repositories\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Mirza Pasic",
+                    "email": "mirza.pasic@edu.fit.ba"
+                }
+            ],
+            "description": "Laravel Repositories",
+            "keywords": [
+                "database",
+                "eloquent",
+                "laravel",
+                "repositories",
+                "repository"
+            ],
+            "time": "2015-05-26 17:17:39"
+        },
+        {
             "name": "doctrine/instantiator",
             "version": "1.0.4",
             "source": {
@@ -2558,63 +2605,17 @@
             "time": "2015-05-11 14:41:42"
         },
         {
-            "name": "illuminate/html",
-            "version": "v5.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/illuminate/html.git",
-                "reference": "3d1009bb8e0f25720c914af5c1f4015dd373c9ef"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/html/zipball/3d1009bb8e0f25720c914af5c1f4015dd373c9ef",
-                "reference": "3d1009bb8e0f25720c914af5c1f4015dd373c9ef",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/http": "~5.0",
-                "illuminate/session": "~5.0",
-                "illuminate/support": "~5.0",
-                "php": ">=5.4.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Illuminate\\Html\\": ""
-                },
-                "files": [
-                    "helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylorotwell@gmail.com"
-                }
-            ],
-            "time": "2015-01-01 16:31:18"
-        },
-        {
             "name": "laracasts/flash",
-            "version": "1.3.3",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laracasts/flash.git",
-                "reference": "a2e237ae34fcc73c4b0755fe51d1ac2063be781e"
+                "reference": "a042e8126c5d986ec435f1c618cc320cca8eec66"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laracasts/flash/zipball/a2e237ae34fcc73c4b0755fe51d1ac2063be781e",
-                "reference": "a2e237ae34fcc73c4b0755fe51d1ac2063be781e",
+                "url": "https://api.github.com/repos/laracasts/flash/zipball/a042e8126c5d986ec435f1c618cc320cca8eec66",
+                "reference": "a042e8126c5d986ec435f1c618cc320cca8eec66",
                 "shasum": ""
             },
             "require": {
@@ -2644,7 +2645,7 @@
                 }
             ],
             "description": "Easy flash notifications",
-            "time": "2015-02-01 20:07:15"
+            "time": "2015-03-02 16:02:14"
         },
         {
             "name": "laracasts/generators",
@@ -2692,28 +2693,30 @@
         },
         {
             "name": "mitulgolakiya/laravel-api-generator",
-            "version": "v1.3.3",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mitulgolakiya/laravel-api-generator.git",
-                "reference": "7b6fc43e17efca88dfd3e73c256277985d420db9"
+                "reference": "020ece620586dc60d462fedbf1a41dd1fe2ac7d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mitulgolakiya/laravel-api-generator/zipball/7b6fc43e17efca88dfd3e73c256277985d420db9",
-                "reference": "7b6fc43e17efca88dfd3e73c256277985d420db9",
+                "url": "https://api.github.com/repos/mitulgolakiya/laravel-api-generator/zipball/020ece620586dc60d462fedbf1a41dd1fe2ac7d0",
+                "reference": "020ece620586dc60d462fedbf1a41dd1fe2ac7d0",
                 "shasum": ""
             },
             "require": {
-                "illuminate/html": "~5.0",
-                "laracasts/flash": "~1.3",
-                "php": ">=5.4.0"
+                "bosnadev/repositories": "dev-master",
+                "illuminate/support": "5.1.*",
+                "laracasts/flash": "dev-master",
+                "laravelcollective/html": "5.1.*@dev",
+                "php": ">=5.5.9"
+            },
+            "suggest": {
+                "doctrine/dbal": "Required to use generator from existing table."
             },
             "type": "library",
             "autoload": {
-                "files": [
-                    "src/Mitul/Generator/Constants/Constants.php"
-                ],
                 "psr-4": {
                     "Mitul\\": "src/Mitul/"
                 }
@@ -2738,7 +2741,7 @@
                 "model",
                 "scaffold"
             ],
-            "time": "2015-05-23 19:08:51"
+            "time": "2015-06-13 08:38:41"
         },
         {
             "name": "mockery/mockery",
@@ -3820,7 +3823,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "zizaco/entrust": 20
+        "zizaco/entrust": 20,
+        "mitulgolakiya/laravel-api-generator": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

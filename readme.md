@@ -25,5 +25,9 @@ No release yet. Stay tuned.
 
 Created a dynamic CRUD for table operations. Just add fields in config and we are done. Do all types of CRUD operations. Working to bring foreign key support.
 
+###Coupons - Important feature
+[Coupons](https://github.com/speedovation/LaravelMart/wiki/Coupons)
+
+
 ### License
 The LaravelMart is open-sourced software licensed under the [Apache 2.0 license](http://opensource.org/licenses/Apache-2.0)

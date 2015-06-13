@@ -14,11 +14,9 @@ return array(
     $vendorDir . '/guzzlehttp/psr7/src/functions.php',
     $vendorDir . '/psy/psysh/src/Psy/functions.php',
     $vendorDir . '/danielstjules/stringy/src/Create.php',
-    $vendorDir . '/laracasts/flash/src/Laracasts/Flash/functions.php',
-    $vendorDir . '/illuminate/html/helpers.php',
     $vendorDir . '/guzzlehttp/guzzle/src/functions.php',
-    $vendorDir . '/mitulgolakiya/laravel-api-generator/src/Mitul/Generator/Constants/Constants.php',
+    $vendorDir . '/laravelcollective/html/src/helpers.php',
+    $vendorDir . '/laracasts/flash/src/Laracasts/Flash/functions.php',
     $vendorDir . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
     $vendorDir . '/laravel/framework/src/Illuminate/Support/helpers.php',
-    $vendorDir . '/laravelcollective/html/src/helpers.php',
 );
