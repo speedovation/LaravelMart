@@ -26,18 +26,18 @@ Manage Coupons
 Created a dynamic CRUD for table operations. Just add fields in config and we are done. Do all types of CRUD operations. Working to bring foreign key support.
 
 ###Under Dev
-[Home](https://github.com/speedovation/LaravelMart/wiki/Home)
-Manage menu (nested)
-Manage page
-[Coupons](https://github.com/speedovation/LaravelMart/wiki/Coupons)
-[Email templates](https://github.com/speedovation/LaravelMart/wiki/Email-templates)
-[ Images croping](https://github.com/speedovation/LaravelMart/wiki/ Images-croping)
-[Packages](https://github.com/speedovation/LaravelMart/wiki/Packages)
-[Pages](https://github.com/speedovation/LaravelMart/wiki/Pages)
-[Products and Inventory](https://github.com/speedovation/LaravelMart/wiki/Products-and-Inventory)
-[Settings](https://github.com/speedovation/LaravelMart/wiki/Settings)
-[Shipping](https://github.com/speedovation/LaravelMart/wiki/Shipping)
-[Tax](https://github.com/speedovation/LaravelMart/wiki/Tax)
+[Home](https://github.com/speedovation/LaravelMart/wiki/Home)  
+Manage menu (nested)  
+Manage page  
+[Coupons](https://github.com/speedovation/LaravelMart/wiki/Coupons)  
+[Email templates](https://github.com/speedovation/LaravelMart/wiki/Email-templates)  
+[ Images croping](https://github.com/speedovation/LaravelMart/wiki/ Images-croping)  
+[Packages](https://github.com/speedovation/LaravelMart/wiki/Packages)  
+[Pages](https://github.com/speedovation/LaravelMart/wiki/Pages)  
+[Products and Inventory](https://github.com/speedovation/LaravelMart/wiki/Products-and-Inventory)  
+[Settings](https://github.com/speedovation/LaravelMart/wiki/Settings)  
+[Shipping](https://github.com/speedovation/LaravelMart/wiki/Shipping)  
+[Tax](https://github.com/speedovation/LaravelMart/wiki/Tax)  
 
 ## In Future 
 Manage article (category, tag)  
