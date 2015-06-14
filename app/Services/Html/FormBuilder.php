@@ -108,12 +108,16 @@ public function selectfield($name, $value,$label,$selected,$options = array())
         
 		$errors = \Session::get('errors'); //print_r($errors); 
 		$error = '';
+		$class = '';
 		if( !empty($errors)  && $errors->has($name))
 		{ 
 			$error = '<div class="text-danger desktop-3"><label class="error" for="' . $name . '">' . $errors->first($name) . '</label></div>' ;       
+			
+			$class = ' message message-danger';
 		}
 		
-		return sprintf('<div class="field"> %s %s %s</div>',
+		return sprintf('<div class="field%s"> %s %s %s</div>',
+		   $class,
            parent::label($name, $label,  array_merge([ 'class' => 'desktop-3' ], $options) ),
            parent::$type($name, null,   array_merge([ 'class' => 'input desktop-6' ], $options) ),
 		   $error
