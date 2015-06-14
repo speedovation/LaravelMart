@@ -9,41 +9,41 @@ No release yet. Stay tuned.
 ## FrontEnd - User area
 
 ### Users
-Easily render forms for login, signup and password reset.  
-Account confirmation (through confirmation link).  
-Password reset (sending email with a change password link).  
-Generate routes for login, signup, password reset, confirmation, etc.  
-Generate a customizable controller that handles the basic user account actions.  
-Contains a set of methods to help with basic user features.  
-Integrated with the Laravel Auth and Reminders component/configs.  
-User validation.  
-Login throttling.  
-Redirecting to previous route after authentication.  
-Checks for unique email and username in signup  
+![](http://bit.ly/1IcxtKo) Easily render forms for login, signup and password reset.  
+![](http://bit.ly/1IcxtKo) Account confirmation (through confirmation link).  
+![](http://bit.ly/1IcxtKo) Password reset (sending email with a change password link).  
+![](http://bit.ly/1IcxtKo) Generate routes for login, signup, password reset, confirmation, etc.  
+![](http://bit.ly/1IcxtKo) Generate a customizable controller that handles the basic user account actions.  
+![](http://bit.ly/1IcxtKo) Contains a set of methods to help with basic user features.  
+![](http://bit.ly/1IcxtKo) Integrated with the Laravel Auth and Reminders component/configs.  
+![](http://bit.ly/1IcxtKo) User validation.  
+![](http://bit.ly/1IcxtKo) Login throttling.  
+![](http://bit.ly/1IcxtKo) Redirecting to previous route after authentication.  
+![](http://bit.ly/1IcxtKo) Checks for unique email and username in signup  
 
 ### e Commerce 
-Billing - Address, Payment type, Delivery type
-Wishlist  
+Billing - Address, Payment type, Delivery type  
+![](http://bit.ly/1IcxtKo) Wishlist  
 Apply coupon  
-Cart - add, remove, edit products  
-View products  
-View product  
+![](http://bit.ly/1IcxtKo) Cart - add, remove, edit products  
+![](http://bit.ly/1IcxtKo) View products  
+![](http://bit.ly/1IcxtKo) View single product  
 
 ### General
 Custom Error Pages
  * 403 for forbidden page accesses
  * 404 for not found pages
- * 500 for internal server errors
+ * ![](http://bit.ly/1IcxtKo) 500 for internal server errors
 
 ## Backend - Admin area
 Manage billings  
-Manage Categories  
-Manage Products  
+![](http://bit.ly/1IcxtKo) Manage Categories  
+![](http://bit.ly/1IcxtKo) Manage Products  
 Manage Orders  
-Manage Password Resets 
-Manage Wishlists  
-Manage Users  
-Manage User and Roles
+Manage Password Resets  
+![](http://bit.ly/1IcxtKo) Manage Wishlists  
+![](http://bit.ly/1IcxtKo) Manage Users  
+Manage User and Roles  
 Manage Payment types  
 Manage Coupons  
 
