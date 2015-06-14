@@ -28,6 +28,8 @@ Apply coupon
 ![](http://bit.ly/1IcxtKo) Cart - add, remove, edit products  
 ![](http://bit.ly/1IcxtKo) View products  
 ![](http://bit.ly/1IcxtKo) View single product  
+Menu Display
+Page Display
 
 ### General
 Custom Error Pages
@@ -36,13 +38,16 @@ Custom Error Pages
  * ![](http://bit.ly/1IcxtKo) 500 for internal server errors
 
 ## Backend - Admin area
-Manage billings  
+![](http://bit.ly/1IcxtKo) Manage billings  
 ![](http://bit.ly/1IcxtKo) Manage Categories  
 ![](http://bit.ly/1IcxtKo) Manage Products  
-Manage Orders  
-Manage Password Resets  
+![](http://bit.ly/1IcxtKo) Manage Orders  
+![](http://bit.ly/1IcxtKo) Manage Orders Items  
+![](http://bit.ly/1IcxtKo) Manage menus (nested)  
 ![](http://bit.ly/1IcxtKo) Manage Wishlists  
 ![](http://bit.ly/1IcxtKo) Manage Users  
+![](http://bit.ly/1IcxtKo) Manage pages  
+Manage Password Resets  
 Manage User and Roles  
 Manage Payment types  
 Manage Coupons  
@@ -54,10 +59,6 @@ Colorbox Lightbox jQuery modal popup.
 
 
 Created a dynamic CRUD for table operations. Just add fields in config and we are done. Do all types of CRUD operations. Working to bring foreign key support.
-
-### Under Dev
-Manage menus (nested)  
-Manage pages  
 
 ### Wiki
 [Home](https://github.com/speedovation/LaravelMart/wiki/Home)
