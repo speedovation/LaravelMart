@@ -1,18 +1,31 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models;
-use App\Models\User ;
 
 class UsersController extends CoreController {
 
-
 	public function __construct() {
 /*		$this->middleware('csrf', array('on'=>'post'));*/
-		$this->middleware('auth', array('only'=> ['getDashboard', 'getProfile']));
+		$this->middleware('auth');
 	}
+	
+	public function getDashboard() {
+		return view('users.dashboard');
+	}
+    
+    public function getProfile() {
+        return view("users.profile");
+    }
 
-	public function getRegister() {
+
+}
+
+
+/*
+
+TO BE removed soon even from comment
+
+public function getRegister() {
 		return view('users.register');
 	}
 
@@ -49,14 +62,11 @@ class UsersController extends CoreController {
 				->withInput();
 		}
 	}
-
-	public function getDashboard() {
-		return view('users.dashboard');
+	
+		public function getLogout() {
+		\Auth::logout();
+		return \Redirect::to('users/login')->with('message', 'Your are now logged out!');
 	}
-    
-    public function getProfile() {
-        return view("users.profile");
-    }
 	
 	public function getForget() {
 		return view('users.reset');
@@ -66,8 +76,4 @@ class UsersController extends CoreController {
 		return view('users.register');
 	}
 
-	public function getLogout() {
-		\Auth::logout();
-		return \Redirect::to('users/login')->with('message', 'Your are now logged out!');
-	}
-}
+*/

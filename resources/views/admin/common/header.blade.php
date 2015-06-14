@@ -278,12 +278,12 @@
             <h3>Accounts</h3>
             <ul>
                 @if(!Auth::check())
-                <li>{!! Html::link('users/register', 'Register') !!}</li>
-                <li>{!! Html::link('users/login', 'Login') !!}</li>
+                <li>{!! Html::link('auth/register', 'Register') !!}</li>
+                <li>{!! Html::link('auth/login', 'Login') !!}</li>
                 @else
                 <li>{!! Html::link('users/dashboard', 'Dashboard') !!}</li>
                 <li>{!! Html::link('users/profile', 'Profile') !!}</li>
-                <li>{!! Html::link('users/logout', 'logout') !!}</li>
+                <li>{!! Html::link('auth/logout', 'logout') !!}</li>
                 @endif
             </ul>
         </div>
