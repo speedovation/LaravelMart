@@ -88,14 +88,14 @@ return [
                 
 'pages' => [
                     "fields" => [
-                        ['title', 'title' , 'text' , [] ], 
-                        ['url', 'url' , 'text' , [] ], 
-                        ['status', 'status' , 'text' , [] ], 
-                        ['visibility', 'visibility' , 'text' , [] ], 
-                        ['type', 'type' , 'text' , [] ], 
-                        ['body', 'body' , 'text' , [] ], 
-                        ['header', 'header' , 'text' , [] ],
-                        ['parent_id','parent_id' , 'text' , [] ],
+                        ['title', 'Title' , 'text' , [] ], 
+                        ['url', 'Url' , 'text' , [] ], 
+                        ['status', 'Status' , 'text' , [] ], 
+                        ['visibility', 'Visibility' , 'text' , [] ], 
+                        ['type', 'Type' , 'select' , [ "options"=> [ 'html' => 'Html','md' => 'Markdown'] ,"selected" => 'Html' ] ], 
+                        ['body', 'Body' , 'text' , [] ], 
+                        ['header', 'Header' , 'text' , [] ],
+                        ['parent_id','Parent id' , 'text' , [] ],
                     ],
                     "index" => [ 'title', 'url' ,'status', 'visibility','type', 'body', 'header', 'parent_id' ]
                 ],

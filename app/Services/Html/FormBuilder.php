@@ -137,7 +137,17 @@ public function selectfield($name, $value,$label,$selected,$options = array())
 		
 		foreach($fields as $field)
 		{
-			$output .= $this->textfield( $field[0] , $field[1] , $field[2], $field[3]);
+			if($field[2] == "select")
+			{
+				//$name, $value,$label,$selected,$options = array()
+							
+				$value = $field[3]["options"]; 
+				print_r($value);
+				unset($field[3]["options"]);
+				$output .= $this->selectfield( $field[0] , $value , $field[1], $field[3]["selected"] , $field[3]);
+			}
+			else
+				$output .= $this->textfield( $field[0] , $field[1] , $field[2], $field[3]);
 		}
 		
 		return $output;

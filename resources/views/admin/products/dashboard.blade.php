@@ -27,6 +27,9 @@ billings        |
 
 
 -->
+ <a class="button primary" style="margin-top: 25px" href="{!! route('admin.index','menus') !!}">Manage Menus</a>
+ <a class="button primary" style="margin-top: 25px" href="{!! route('admin.index','pages') !!}">Manage Pages</a>
+
             
             <a class="button primary" style="margin-top: 25px" href="{!! route('admin.index','users') !!}">Manage users</a>
             <a class="button primary" style="margin-top: 25px" href="{!! route('admin.index','billings') !!}">Manage billings</a>
@@ -38,7 +41,7 @@ billings        |
             <a class="button primary" style="margin-top: 25px" href="{!! route('admin.index','password_resets') !!}">Manage password_resets</a>
             
             <a class="button primary" style="margin-top: 25px" href="{!! route('admin.index','wishlists') !!}">Manage wishlists</a>
-            <a class="button primary" style="margin-top: 25px" href="{!! route('admin.index','menus') !!}">Manage Menus</a>
+           
             <p>&nbsp;</p>
             
            
