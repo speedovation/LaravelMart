@@ -9,7 +9,11 @@ class CreateOrderTable extends Migration {
                     $table->engine = "InnoDB";
 
                     $table->increments("id");
+                    
                     $table->integer("user_id");
+                    $table->integer("order_id");
+                    $table->string("coupon");
+                    $table->string("discount");
                     $table->timestamps();
                     $table->softDeletes();
 

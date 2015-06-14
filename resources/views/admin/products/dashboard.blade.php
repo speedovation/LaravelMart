@@ -37,6 +37,7 @@ billings        |
             <a class="button primary" style="margin-top: 25px" href="{!! route('admin.index','categories') !!}">Manage categories</a>
             <a class="button primary" style="margin-top: 25px" href="{!! route('admin.index','products') !!}">Manage products</a>
             <a class="button primary" style="margin-top: 25px" href="{!! route('admin.index','orders') !!}">Manage orders</a>
+            <a class="button primary" style="margin-top: 25px" href="{!! route('admin.index','orderitems') !!}">Manage order Items</a>
             
             <a class="button primary" style="margin-top: 25px" href="{!! route('admin.index','password_resets') !!}">Manage password_resets</a>
             

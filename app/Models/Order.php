@@ -11,6 +11,7 @@ class Order extends Model {
     
      public static $rules = [
 	    "user_id" => "required",
+	    "order_id" => "required",
 		
 	];
 

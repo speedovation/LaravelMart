@@ -49,10 +49,26 @@ return [
 'orders' => [
                     "fields" => [
                         ['user_id','User id:', 'text',[] ], 
+                        ['order_id','Order id:', 'text',[] ], 
+                        ['coupon','Coupon:', 'text',[] ], 
+                        ['discount','Discount:', 'text',[] ], 
                         
                     ],
-                    "index" => ['user_id']
+                    "index" => ['user_id','order_id','coupon','discount']
                 ],
+
+
+'orderitems' => [
+                    "fields" => [
+                        ['order_id','Order id:', 'text',[] ], 
+                        ['product_id','Product id:', 'text',[] ], 
+                        ['quantity','quantity:', 'text',[] ], 
+                        ['price','Discount:', 'text',[] ], 
+                        
+                    ],
+                    "index" => ['order_id','product_id','quantity','price']
+                ],
+
 
 'menus' => [
                     "fields" => [
