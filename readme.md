@@ -56,9 +56,11 @@ Colorbox Lightbox jQuery modal popup.
 Created a dynamic CRUD for table operations. Just add fields in config and we are done. Do all types of CRUD operations. Working to bring foreign key support.
 
 ### Under Dev
-[Home](https://github.com/speedovation/LaravelMart/wiki/Home)  
-Manage menu (nested)  
-Manage page  
+Manage menus (nested)  
+Manage pages  
+
+### Wiki
+[Home](https://github.com/speedovation/LaravelMart/wiki/Home)
 [Coupons](https://github.com/speedovation/LaravelMart/wiki/Coupons)  
 [Email templates](https://github.com/speedovation/LaravelMart/wiki/Email-templates)  
 [Images croping](https://github.com/speedovation/LaravelMart/wiki/Images-croping)  

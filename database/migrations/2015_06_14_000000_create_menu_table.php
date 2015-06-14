@@ -10,6 +10,7 @@ class CreateMenuTable extends Migration {
                     $table->increments("id");
                     $table->integer("parent_id")->nullable();
                     $table->string("name");
+                    $table->string("url");
                     $table->timestamps();
                     $table->softDeletes();
                 });
