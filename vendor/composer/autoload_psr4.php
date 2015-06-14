@@ -28,6 +28,7 @@ return array(
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'Mitul\\' => array($vendorDir . '/mitulgolakiya/laravel-api-generator/src/Mitul'),
     'League\\OAuth1\\' => array($vendorDir . '/league/oauth1-client/src'),
+    'League\\Fractal\\' => array($vendorDir . '/league/fractal/src'),
     'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),
     'Laravel\\Socialite\\' => array($vendorDir . '/laravel/socialite/src'),
     'Laracasts\\Generators\\' => array($vendorDir . '/laracasts/generators/src'),

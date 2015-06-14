@@ -11,7 +11,9 @@
 		"laravelcollective/html": "~5.0",
 		"filp/whoops": "~1.0",
 		"laravel/socialite": "~2.0",
-		"zizaco/entrust": "dev-laravel-5"
+		"zizaco/entrust": "dev-laravel-5",
+		"yajra/laravel-datatables-oracle": "~5.0",
+		"league/fractal": "^0.13.0@dev"
 
 	},
 	"require-dev": {

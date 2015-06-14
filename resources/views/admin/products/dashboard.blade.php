@@ -42,6 +42,10 @@ billings        |
     <a class="button primary" href="{!! route('admin.index','password_resets') !!}">Manage Password Resets</a>
     
     <a class="button primary" href="{!! route('admin.index','wishlists') !!}">Manage Wishlists</a>
+
+    <a class="button primary" href="{!! route('admin.index','roles') !!}">Manage Roles</a>
+    <a class="button primary" href="{!! route('admin.index','permissions') !!}">Manage Permissions</a>
+    <a class="button primary" href="{!! route('admin.index','coupons') !!}">Manage Coupons</a>
     
     <p>&nbsp;</p>
     

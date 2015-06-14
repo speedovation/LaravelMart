@@ -8,8 +8,10 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Models\\Billing' => $baseDir . '/app/Models/Billing.php',
     'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',
+    'App\\Models\\Coupon' => $baseDir . '/app/Models/Coupon.php',
     'App\\Models\\Menu' => $baseDir . '/app/Models/Menu.php',
     'App\\Models\\Order' => $baseDir . '/app/Models/Order.php',
+    'App\\Models\\Page' => $baseDir . '/app/Models/Page.php',
     'App\\Models\\Permission' => $baseDir . '/app/Models/Permission.php',
     'App\\Models\\Product' => $baseDir . '/app/Models/Product.php',
     'App\\Models\\Role' => $baseDir . '/app/Models/Role.php',
@@ -18,6 +20,7 @@ return array(
     'CategoryTableSeeder' => $baseDir . '/database/seeds/CategoryTableSeeder.php',
     'CreateBillingsTable' => $baseDir . '/database/migrations/2015_06_06_194542_create_billings_table.php',
     'CreateCategoryTable' => $baseDir . '/database/migrations/2013_12_03_000000_CreateCategoryTable.php',
+    'CreateCouponTable' => $baseDir . '/database/migrations/2015_06_15_000000_create_coupon_table.php',
     'CreateMenuTable' => $baseDir . '/database/migrations/2015_06_14_000000_create_menu_table.php',
     'CreateOrderItemTable' => $baseDir . '/database/migrations/2013_12_03_000000_CreateOrderItemTable.php',
     'CreateOrderTable' => $baseDir . '/database/migrations/2013_12_03_000000_CreateOrderTable.php',

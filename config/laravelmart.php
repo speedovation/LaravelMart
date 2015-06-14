@@ -133,5 +133,49 @@ return [
                     ],
                     "index" => ['salutation','first_name','last_name','user_id','company','city','state','zip','address']
                 ],
+                
+                
+                
+'roles' => [
+                        "fields" => [
+                            ['name','Name:', 'text',[] ], 
+                            ['display_name','Display Name :', 'text',[] ],
+                            ['description','Description Name :', 'text',[] ],
+                        ],
+                        "index" => ['name','display_name','description']
+],
+
+'permissions' => [
+                        "fields" => [
+                            ['name','Name:', 'text',[] ], 
+                            ['display_name','Display Name :', 'text',[] ],
+                            ['description','Description :' , 'text',[] ],
+                        ],
+                        "index" => ['name','display_name','description']
+],
+
+
+'coupons' => [
+                        "fields" => [
+                            ['code','Code:', 'text',[] ], 
+                            ['type','Type :', 'text',[] ],
+                            ['amount','Amount :' , 'text',[] ],
+                            ['from','From :' , 'text',[] ],
+                            ['to','To :' , 'text',[] ],
+                            ['can_club','Can Club :' , 'text',[] ],
+                            ['usage','Usage :' , 'text',[] ],
+                            ['order_minimum','Order Minimum :' , 'text',[] ],
+                            ['order_maximum','Order Maximum :' , 'text',[] ],
+                            ['products_included','Products Included :' , 'text',[] ],
+                            ['categories_included','Categories Included :' , 'text',[] ],
+                            ['categories_excluded','Categories Excluded :' , 'text',[] ],
+                            ['payment_methods','Payment Methods :' , 'text',[] ],
+                ],
+                        "index" => ['code','type','amount','from','to','can_club','usage']
+                    // 'order_minimum','order_maximum','products_included','products_excluded',
+                    //    'categories_included', 'categories_excluded', 'payment_methods'      
+],
+
+
 
 ];
