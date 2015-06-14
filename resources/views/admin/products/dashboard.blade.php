@@ -2,10 +2,10 @@
 
 @section('content')
 
-    <div class="row dashboard">
-
-
-            <h1>Dashboard</h1>
+<div class="row dashboard">
+    
+    
+    <h1>Dashboard</h1>
 <!--            <i class="float-left">Last created will be default address. Last used will be given priority.</i>
 
 
@@ -26,25 +26,25 @@ billings        |
 | wishlists 
 
 
--->
- <a class="button primary" style="margin-top: 25px" href="{!! route('admin.index','menus') !!}">Manage Menus</a>
- <a class="button primary" style="margin-top: 25px" href="{!! route('admin.index','pages') !!}">Manage Pages</a>
-
-            
-            <a class="button primary" style="margin-top: 25px" href="{!! route('admin.index','users') !!}">Manage users</a>
-            <a class="button primary" style="margin-top: 25px" href="{!! route('admin.index','billings') !!}">Manage billings</a>
-
-            <a class="button primary" style="margin-top: 25px" href="{!! route('admin.index','categories') !!}">Manage categories</a>
-            <a class="button primary" style="margin-top: 25px" href="{!! route('admin.index','products') !!}">Manage products</a>
-            <a class="button primary" style="margin-top: 25px" href="{!! route('admin.index','orders') !!}">Manage orders</a>
-            <a class="button primary" style="margin-top: 25px" href="{!! route('admin.index','orderitems') !!}">Manage order Items</a>
-            
-            <a class="button primary" style="margin-top: 25px" href="{!! route('admin.index','password_resets') !!}">Manage password_resets</a>
-            
-            <a class="button primary" style="margin-top: 25px" href="{!! route('admin.index','wishlists') !!}">Manage wishlists</a>
-           
-            <p>&nbsp;</p>
-            
-           
-    </div>
+    -->
+    <a class="button primary"  href="{!! route('admin.index','menus') !!}">Manage Menus</a>
+    <a class="button primary"  href="{!! route('admin.index','pages') !!}">Manage Pages</a>
+    
+    
+    <a class="button primary" href="{!! route('admin.index','users') !!}">Manage Users</a>
+    <a class="button primary" href="{!! route('admin.index','billings') !!}">Manage Billings</a>
+    
+    <a class="button primary" href="{!! route('admin.index','categories') !!}">Manage Categories</a>
+    <a class="button primary" href="{!! route('admin.index','products') !!}">Manage Products</a>
+    <a class="button primary" href="{!! route('admin.index','orders') !!}">Manage Orders</a>
+    <a class="button primary" href="{!! route('admin.index','orderitems') !!}">Manage Order Items</a>
+    
+    <a class="button primary" href="{!! route('admin.index','password_resets') !!}">Manage Password Resets</a>
+    
+    <a class="button primary" href="{!! route('admin.index','wishlists') !!}">Manage Wishlists</a>
+    
+    <p>&nbsp;</p>
+    
+    
+</div>
 @endsection

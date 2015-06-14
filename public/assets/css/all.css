@@ -3717,8 +3717,9 @@ a.remove-cart-item:hover {
 
 .dashboard .button.primary, .dashboard button.primary, .dashboard a.button.primary {
     
-    margin-right: 250px;
-    min-width: 200px;
+    margin-right: 10px;
+    margin-top:  10px;
+    min-width: 180px;
     text-align: center; 
 }
 
