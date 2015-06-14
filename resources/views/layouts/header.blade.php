@@ -306,7 +306,7 @@
 
         <div class="width-per-50">
 
-            <h3>Accounts</h3>
+            <h3>Profile</h3>
             <ul>
                 @if(!Auth::check())
                 <li>{!! Html::link('users/register', 'Register') !!}</li>

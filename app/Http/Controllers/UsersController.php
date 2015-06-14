@@ -9,19 +9,20 @@ class UsersController extends CoreController {
 
 	public function __construct() {
 /*		$this->middleware('csrf', array('on'=>'post'));*/
-		$this->middleware('auth', array('only'=>array('getDashboard')));
+		$this->middleware('auth', array('only'=> ['getDashboard', 'getProfile']));
 	}
 
 	public function getRegister() {
 		return view('users.register');
 	}
 
+
 	public function postCreate() {
 		$validator = \Validator::make(\Input::all(), User::$rules);
 
 		if ($validator->passes()) {
 			$user = new User;
-			$user->username = \Input::get('username');
+
 			$user->email = \Input::get('email');
 			$user->password = \Hash::make(\Input::get('password'));
 			$user->save();
@@ -56,6 +57,14 @@ class UsersController extends CoreController {
     public function getProfile() {
         return view("users.profile");
     }
+	
+	public function getForget() {
+		return view('users.reset');
+	}
+	
+	public function postForget() {
+		return view('users.register');
+	}
 
 	public function getLogout() {
 		\Auth::logout();
