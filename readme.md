@@ -7,31 +7,61 @@ No release yet. Stay tuned.
 #Features list supported:
 
 ## FrontEnd - User area
-Login  
-Register  
-Billing - Address, Payment type, Delivery type  
+
+### Users
+Easily render forms for login, signup and password reset.  
+Account confirmation (through confirmation link).  
+Password reset (sending email with a change password link).  
+Generate routes for login, signup, password reset, confirmation, etc.  
+Generate a customizable controller that handles the basic user account actions.  
+Contains a set of methods to help with basic user features.  
+Integrated with the Laravel Auth and Reminders component/configs.  
+User validation.  
+Login throttling.  
+Redirecting to previous route after authentication.  
+Checks for unique email and username in signup  
+
+### e Commerce 
+Billing - Address, Payment type, Delivery type
 Wishlist  
 Apply coupon  
 Cart - add, remove, edit products  
 View products  
 View product  
 
+### General
+Custom Error Pages
+ * 403 for forbidden page accesses
+ * 404 for not found pages
+ * 500 for internal server errors
+
 ## Backend - Admin area
-Manage Users  
-Manage Payment types  
-Manage Products  
+Manage billings  
 Manage Categories  
+Manage Products  
+Manage Orders  
+Manage Password Resets 
+Manage Wishlists  
+Manage Users  
+Manage User and Roles
+Manage Payment types  
 Manage Coupons  
+
+### General
+WYSIWYG editor for post creation and editing.  
+DataTables dynamic table sorting and filtering.  
+Colorbox Lightbox jQuery modal popup.  
+
 
 Created a dynamic CRUD for table operations. Just add fields in config and we are done. Do all types of CRUD operations. Working to bring foreign key support.
 
-###Under Dev
+### Under Dev
 [Home](https://github.com/speedovation/LaravelMart/wiki/Home)  
 Manage menu (nested)  
 Manage page  
 [Coupons](https://github.com/speedovation/LaravelMart/wiki/Coupons)  
 [Email templates](https://github.com/speedovation/LaravelMart/wiki/Email-templates)  
-[ Images croping](https://github.com/speedovation/LaravelMart/wiki/ Images-croping)  
+[Images croping](https://github.com/speedovation/LaravelMart/wiki/Images-croping)  
 [Packages](https://github.com/speedovation/LaravelMart/wiki/Packages)  
 [Pages](https://github.com/speedovation/LaravelMart/wiki/Pages)  
 [Products and Inventory](https://github.com/speedovation/LaravelMart/wiki/Products-and-Inventory)  
@@ -39,12 +69,15 @@ Manage page
 [Shipping](https://github.com/speedovation/LaravelMart/wiki/Shipping)  
 [Tax](https://github.com/speedovation/LaravelMart/wiki/Tax)  
 
-## In Future 
-Manage article (category, tag)  
-Manage article category  
-Manage tag  
-Manage news  
+### In Future 
+Manage Article Category  
+Manage Tag  
+Manage News
+Manage Blog Post
 
+
+[Packages included](https://github.com/speedovation/LaravelMart/wiki/Packages) 
+    
 
 
 ### License
