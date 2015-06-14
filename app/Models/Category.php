@@ -15,5 +15,10 @@ class Category extends Model {
     public function products() {
         return $this->hasMany("Product");
     }
+    
+    public static $rules = [
+	    "name" => "required",
+		
+	];
 
 }

@@ -9,5 +9,9 @@ class Menu extends Model {
     protected $guarded = ["id"];
     protected $softDelete = true;
 
+    public static $rules = [
+	    "name" => "required",
+		  "url" => "required|unique:menus",
+	];
  
 }

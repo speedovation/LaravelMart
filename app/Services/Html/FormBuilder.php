@@ -142,9 +142,11 @@ public function selectfield($name, $value,$label,$selected,$options = array())
 				//$name, $value,$label,$selected,$options = array()
 							
 				$value = $field[3]["options"]; 
-				print_r($value);
+				$selected = $field[3]["selected"];
 				unset($field[3]["options"]);
-				$output .= $this->selectfield( $field[0] , $value , $field[1], $field[3]["selected"] , $field[3]);
+				unset($field[3]["selected"]);
+				
+				$output .= $this->selectfield( $field[0] , $value , $field[1], $selected , $field[3]);
 			}
 			else
 				$output .= $this->textfield( $field[0] , $field[1] , $field[2], $field[3]);

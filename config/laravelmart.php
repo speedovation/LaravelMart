@@ -88,13 +88,13 @@ return [
                 
 'pages' => [
                     "fields" => [
-                        ['title', 'Title' , 'text' , [] ], 
-                        ['url', 'Url' , 'text' , [] ], 
-                        ['status', 'Status' , 'text' , [] ], 
-                        ['visibility', 'Visibility' , 'text' , [] ], 
+                        ['title', 'Title' , 'text' , ['Placeholder' => 'Enter Title'] ], 
+                        ['url', 'Url' , 'text' , ['Placeholder' => 'Enter Url'] ], 
+                        ['status', 'Status' ,  'select' , [ "options"=> [ 'draft' => 'Draft','live' => 'Live'] ,"selected" => 'live' ] ],  
+                        ['visibility', 'Visibility' ,  'select' , [ "options"=> [ 'public' => 'Public','private' => 'Private'] ,"selected" => 'public' ] ], 
                         ['type', 'Type' , 'select' , [ "options"=> [ 'html' => 'Html','md' => 'Markdown'] ,"selected" => 'Html' ] ], 
-                        ['body', 'Body' , 'text' , [] ], 
-                        ['header', 'Header' , 'text' , [] ],
+                        ['body', 'Body' , 'textarea' , [] ], 
+                        ['header', 'Header' , 'textarea' , [] ],
                         ['parent_id','Parent id' , 'text' , [] ],
                     ],
                     "index" => [ 'title', 'url' ,'status', 'visibility','type', 'body', 'header', 'parent_id' ]

@@ -62,6 +62,8 @@ class AdminController extends Controller {
     public function create(Request $request)
     {
         $table = $request->segment(2);
+        
+             
         $fields = \Config::get("laravelmart.$table.fields");
         $url = action('Backend\AdminController@store', [$table]);
         
@@ -81,13 +83,18 @@ class AdminController extends Controller {
     public function store(Request $request)
     {
         $input = $request->all();
-        $item = $request->segment(2);
+        $table = $request->segment(2);
         
-        $product = $this->productRepository->store($input, $item);
+        $Model = "\\App\\Models\\".ucfirst(str_singular($table));
+       
+        $this->validate($request, $Model::$rules);
         
-        \Flash::message( ucfirst(str_singular($item)). ' saved successfully.');
         
-        return redirect(route("admin.index",[$item]));
+        $product = $this->productRepository->store($input, $table);
+        
+        \Flash::message( ucfirst(str_singular($table)). ' saved successfully.');
+        
+        return redirect(route("admin.index",[$table]));
     }
     
     /**

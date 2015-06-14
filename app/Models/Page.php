@@ -7,5 +7,14 @@ class Page extends Model {
     protected $table = "pages";
     protected $guarded = ["id"];
     protected $softDelete = true;
+	
+	public static $rules = [
+	    "title" => "required",
+		"url" => "required|unique:menus",
+		"status" => "required",
+		"visibility" => "required",
+		"type" => "required",
+		"body" => "required"
+	];
 
 }

@@ -8,6 +8,11 @@ class Order extends Model {
     protected $table = "orders";
     protected $guarded = ["id"];
     protected $softDelete = true;
+    
+     public static $rules = [
+	    "user_id" => "required",
+		
+	];
 
     public function user() {
         return $this->belongsTo("User");
