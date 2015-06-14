@@ -1,6 +1,16 @@
-<?php return [
-    'test' => 'testfun',
- 'tablename' => [
+<?php 
+
+///Needs to support 
+///   Fixed values in fields
+///   Foreign Key Support : Pick data from foreign table and insert here
+
+return [
+
+
+'test' => 'testcheckkey',
+
+
+'tablename' => [
 
     "index" => [
                 "fieldname" => [],
@@ -43,6 +53,18 @@
                     ],
                     "index" => ['user_id']
                 ],
+
+'menus' => [
+                    "fields" => [
+                        ['name','Name :', 'text',[] ], 
+                        ['url','Url :', 'text',[] ], 
+                        ['parent_id','Parent id:', 'text',[] ], 
+                        
+                    ],
+                    "index" => ['name','url','parent_id']
+                ],
+                
+                                                
 'wishlists' => [
                     "fields" => [
                         ['product_code','Product Code:', 'text',[] ], 
@@ -60,6 +82,26 @@
                     ],
                     "index" => [ 'name', 'email' ]
                 ],
+                
+                
+                
+                
+'pages' => [
+                    "fields" => [
+                        ['title', 'title' , 'text' , [] ], 
+                        ['url', 'url' , 'text' , [] ], 
+                        ['status', 'status' , 'text' , [] ], 
+                        ['visibility', 'visibility' , 'text' , [] ], 
+                        ['type', 'type' , 'text' , [] ], 
+                        ['body', 'body' , 'text' , [] ], 
+                        ['header', 'header' , 'text' , [] ],
+                        ['parent_id','parent_id' , 'text' , [] ],
+                    ],
+                    "index" => [ 'title', 'url' ,'status', 'visibility','type', 'body', 'header', 'parent_id' ]
+                ],
+                
+                
+                
 'billings' => [
                     "fields" => [
                          ['salutation','Salutation:', 'text',[] ], 
