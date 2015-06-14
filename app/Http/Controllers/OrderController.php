@@ -22,16 +22,16 @@ class OrderController extends CoreController {
 
     public function indexAction() {
         $query = Order::with([
-                    "account",
+                    "users",
                     "orderItems",
                     "orderItems.product",
                     "orderItems.product.category"
         ]);
 
-        $account = Input::get("account");
+        $account = Input::get("user");
 
         if ($account) {
-            $query->where("account_id", $account);
+            $query->where("user_id", $account);
         }
 
         return $query->get();
@@ -39,13 +39,13 @@ class OrderController extends CoreController {
 
     public function addAction() {
         $validator = Validator::make(Input::all(), [
-                    "account" => "required|exists:account,id",
+                    "account" => "required|exists:users,id",
                     "items" => "required"
         ]);
 
         if ($validator->passes()) {
             $order = Order::create([
-                        "account_id" => Input::get("account")
+                        "user_id" => Input::get("user")
             ]);
 
             try {
@@ -96,7 +96,7 @@ class OrderController extends CoreController {
                 ]);
             }
 
-            $account = $order->account;
+            $account = $order->user;
 
             $document = $this->document->create($order);
             $this->messenger->send($order, $document);

@@ -9,7 +9,7 @@ class Order extends Model {
     protected $guarded = ["id"];
     protected $softDelete = true;
 
-    public function account() {
+    public function user() {
         return $this->belongsTo("User");
     }
 

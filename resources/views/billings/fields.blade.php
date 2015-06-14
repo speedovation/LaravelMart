@@ -41,7 +41,7 @@
  ?>
     {!! Form::createform($fields)!!} 
     
-    {!! Form::hidden('account_id', Auth::user()->id )!!} 
+    {!! Form::hidden('user_id', Auth::user()->id )!!} 
     
     
 </fieldset>

@@ -298,7 +298,7 @@
 </li>
 <!-- End Contact Item -->
 
-<li class="menuitem_right"><a href="#_" class="menuitem_drop">Account</a><!-- Begin Lists Item -->
+<li class="menuitem_right"><a href="#_" class="menuitem_drop">Profile</a><!-- Begin Lists Item -->
 
 
     <div class="row dropdown_3columns dropdown_right"><!-- Begin columns container -->

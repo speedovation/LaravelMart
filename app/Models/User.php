@@ -20,7 +20,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public static $rules = array(
 		#'firstname'=>'required|alpha|min:2',
 		#'lastname'=>'required|alpha|min:2',
-		'email'=>'required|email|unique:account',
+		'email'=>'required|email|unique:users',
 		'password'=>'required|alpha_num|between:6,12|confirmed',
 		'password_confirmation'=>'required|alpha_num|between:6,12'
 	);

@@ -21,7 +21,7 @@
                     <th>Salutation</th>
 			<th>First Name</th>
 			<th>Last Name</th>
-			<th>Account Id</th>
+			<th>User Id</th>
 			<th>Company</th>
 			<th>City</th>
 			<th>State</th>
@@ -36,7 +36,7 @@
                             <td>{!! $billing->salutation !!}</td>
 					<td>{!! $billing->first_name !!}</td>
 					<td>{!! $billing->last_name !!}</td>
-					<td>{!! $billing->account_id !!}</td>
+					<td>{!! $billing->user_id !!}</td>
 					<td>{!! $billing->company !!}</td>
 					<td>{!! $billing->city !!}</td>
 					<td>{!! $billing->state !!}</td>

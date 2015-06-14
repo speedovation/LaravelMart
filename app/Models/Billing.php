@@ -15,7 +15,7 @@ class Billing extends Model
 	    "salutation",
 		"first_name",
 		"last_name",
-		"account_id",
+		"user_id",
 		"company",
 		"city",
 		"state",

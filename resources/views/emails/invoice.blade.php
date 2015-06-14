@@ -30,10 +30,10 @@
           <table>
             <tr>
               <td class="pull-right">
-                <strong>Account</strong>
+                <strong>Profile</strong>
               </td>
               <td>
-                {{ $order->account->email }}
+                {{ $order->users->email }}
               </td>
             </tr>
             <tr>

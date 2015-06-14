@@ -13,7 +13,7 @@ class AccountController extends CoreController {
         if (Auth::attempt($credentials)) {
             return Response::json([
                         "status" => "ok",
-                        "account" => Auth::user()->toArray()
+                        "users" => Auth::user()->toArray()
             ]);
         }
 
