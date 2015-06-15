@@ -13,6 +13,7 @@
     
     <script src="{{  elixir('assets/js/all.js') }}"></script>
     
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
     
     
 </head>
