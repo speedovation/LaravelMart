@@ -26,8 +26,8 @@ No release yet. Stay tuned.
 ![](http://bit.ly/1IcxtKo) Cart - add, remove, edit products  
 ![](http://bit.ly/1IcxtKo) View products  
 ![](http://bit.ly/1IcxtKo) View single product  
-![](http://bit.ly/1IcxtKo) Page Display
-Menu Display
+![](http://bit.ly/1IcxtKo) Page Display  
+Menu Display  
 Billing - Address, Payment type, Delivery type  
 Apply coupon  
 
@@ -63,7 +63,7 @@ Colorbox Lightbox jQuery modal popup.
 Created a dynamic CRUD for table operations. Just add fields in config and we are done. Do all types of CRUD operations. Working to bring foreign key support.
 
 ### Wiki
-[Home](https://github.com/speedovation/LaravelMart/wiki/Home)
+[Home](https://github.com/speedovation/LaravelMart/wiki/Home)  
 [Coupons](https://github.com/speedovation/LaravelMart/wiki/Coupons)  
 [Email templates](https://github.com/speedovation/LaravelMart/wiki/Email-templates)  
 [Images croping](https://github.com/speedovation/LaravelMart/wiki/Images-croping)  
