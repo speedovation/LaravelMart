@@ -12,14 +12,14 @@ class Coupon extends Model {
     
     
     public static $rules = [
-    "code" => "required",
+    "code" => "required|unique:coupons",
     "type" => "required",
     "amount" => "required",
     "from" => 'required|date_format:"d-m-Y"',
-    "to" => "required|date|after:from",
-    "can_club" => "require",
+    "to" => 'required|date_format:"d-m-Y"|after:from',
+    "can_club" => "required",
     "usage" => "required",
-		/*"order_minimum" => "required",
+		/*"order_minimum" => "required", 
 		"order_maximum" => "required",
 		"products_included" => "required",
 		"products_excluded" => "required",
@@ -30,4 +30,19 @@ class Coupon extends Model {
     
     
     ];
+	
+	
+	public function  setFromAttribute($date)
+    {
+    	
+		$this->attributes['from'] = \Carbon\Carbon::parse($date); 
+    }
+	
+	public function  setToAttribute($date)
+    {
+    	
+		$this->attributes['to'] = \Carbon\Carbon::parse($date); 
+
+    }
+    
 }

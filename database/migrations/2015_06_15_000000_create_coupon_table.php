@@ -12,8 +12,8 @@ class CreateCouponTable extends Migration {
                     $table->string("code")->unique();
                     $table->string("type");
                     $table->integer("amount");
-                    $table->dateTime('from');
-                    $table->dateTime('to');
+                    $table->timestamp('from');
+                    $table->timestamp('to');
                     $table->boolean("can_club");
                     $table->integer("usage");
                     

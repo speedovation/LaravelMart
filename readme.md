@@ -56,6 +56,8 @@ Manage Coupons
 WYSIWYG editor for post creation and editing.  
 DataTables dynamic table sorting and filtering.  
 Colorbox Lightbox jQuery modal popup.  
+Datepicker
+Select - http://harvesthq.github.io/chosen/
 
 
 Created a dynamic CRUD for table operations. Just add fields in config and we are done. Do all types of CRUD operations. Working to bring foreign key support.

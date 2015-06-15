@@ -6,12 +6,20 @@
 
         @include('flash::message')
 
-        <div class="row">
-            <h1 class="desktop-4">{!! ucfirst( str_singular($table) )  !!}</h1>
-            <a class="desktop-8 button primary" style="margin-top: 10px" href="{!! route('admin.create',[$table]) !!}">Add New</a>
+        <div class="row space-bottom">
+            
+            <div class="desktop-6">
+                <h1 class="">{!! ucfirst($table)  !!}</h1>
+            </div>
+            
+            <div class="desktop-6">
+                <a class="button primary" style="margin-top: 10px" href="{!! route('admin.create',[$table]) !!}">Add New {!! ucfirst( str_singular($table) )  !!}</a>
+                <a class="button primary" style="margin-top: 10px" href="{!! route('admin.dashboard') !!}">Back to Dashboard</a>
+            </div>
+        
         </div>
 
-        <div class="row">
+        <div class="row space-top">
             @if($products->isEmpty())
                 <div class="well text-center">No Products found.</div>
             @else
