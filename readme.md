@@ -22,19 +22,19 @@ No release yet. Stay tuned.
 ![](http://bit.ly/1IcxtKo) Checks for unique email and username in signup  
 
 ### e Commerce 
-Billing - Address, Payment type, Delivery type  
 ![](http://bit.ly/1IcxtKo) Wishlist  
-Apply coupon  
 ![](http://bit.ly/1IcxtKo) Cart - add, remove, edit products  
 ![](http://bit.ly/1IcxtKo) View products  
 ![](http://bit.ly/1IcxtKo) View single product  
+![](http://bit.ly/1IcxtKo) Page Display
 Menu Display
-Page Display
+Billing - Address, Payment type, Delivery type  
+Apply coupon  
 
 ### General
 Custom Error Pages
- * 403 for forbidden page accesses
- * 404 for not found pages
+ * ![](http://bit.ly/1IcxtKo) 403 for forbidden page accesses
+ * ![](http://bit.ly/1IcxtKo) 404 for not found pages
  * ![](http://bit.ly/1IcxtKo) 500 for internal server errors
 
 ## Backend - Admin area
@@ -47,17 +47,17 @@ Custom Error Pages
 ![](http://bit.ly/1IcxtKo) Manage Wishlists  
 ![](http://bit.ly/1IcxtKo) Manage Users  
 ![](http://bit.ly/1IcxtKo) Manage pages  
+![](http://bit.ly/1IcxtKo) Manage Coupons  
+![](http://bit.ly/1IcxtKo) Manage User and Roles  
 Manage Password Resets  
-Manage User and Roles  
 Manage Payment types  
-Manage Coupons  
 
 ### General
 WYSIWYG editor for post creation and editing.  
 DataTables dynamic table sorting and filtering.  
 Colorbox Lightbox jQuery modal popup.  
-Datepicker
-Select - http://harvesthq.github.io/chosen/
+[Datepicker](http://speedovation.org)  
+[Select] (http://harvesthq.github.io/chosen )
 
 
 Created a dynamic CRUD for table operations. Just add fields in config and we are done. Do all types of CRUD operations. Working to bring foreign key support.
