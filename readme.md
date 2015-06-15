@@ -88,3 +88,5 @@ Manage Blog Post
 ### License
 The LaravelMart is open-sourced software licensed under the [Apache 2.0 license](http://opensource.org/licenses/Apache-2.0)
 
+### Copyright
+[Yash, Speedovation](http://speedovation.com)

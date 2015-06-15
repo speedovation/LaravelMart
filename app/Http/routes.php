@@ -29,6 +29,7 @@ Route::any("category/index", [
     "uses" => "AccountController@authenticateAction"
 ]);*/
 
+Route::get('page/{url}', 'PageController@getIndex');
 
 //Authentication
 // Authentication routes...

@@ -113,7 +113,7 @@ return [
                         ['header', 'Header' , 'textarea' , [] ],
                         ['parent_id','Parent id' , 'text' , [] ],
                     ],
-                    "index" => [ 'title', 'url' ,'status', 'visibility','type', 'body', 'header', 'parent_id' ]
+                    "index" => [ 'title', 'url' ,'status', 'visibility','type', 'parent_id' ]
                 ],
                 
                 
