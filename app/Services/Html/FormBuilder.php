@@ -1,7 +1,7 @@
 <?php namespace App\Services\Html;
 
 class FormBuilder extends \Collective\Html\FormBuilder {
-
+    
 	/*public function submit($value = null, $options = [])
 	{
 		return sprintf('
@@ -61,9 +61,9 @@ class FormBuilder extends \Collective\Html\FormBuilder {
 			parent::select($nom, $list, $selected, ['class' => 'input desktop-9'])
 		);
 	}
-	*/
-	
-	
+    */
+    
+    
 /*Form::macro('errorMsg', function($field){//yay! we don't have to pass $errors anymore
     $errors = Session::get('errors');
 
@@ -72,26 +72,26 @@ class FormBuilder extends \Collective\Html\FormBuilder {
         return "<span class=\"error\">$msg</span>";
     }
     return '';
-});*/
-
-
-public function selectfield($name, $value,$label,$selected,$options = array())
+    });*/
+    
+    
+    public function selectfield($name, $value,$label,$selected,$options = array())
     {
         
-		$errors = \Session::get('errors'); //print_r($errors); 
-		$error = '';
-		if( !empty($errors)  && $errors->has($name))
-		{ 
-			$error = '<div class="text-danger desktop-3"><label class="error" for="' . $name . '">' . $errors->first($name) . '</label></div>' ;       
-		}
-		
-		return sprintf('<div class="field"> %s %s %s</div>',
-           parent::label($name, $label,  array_merge([ 'class' => 'desktop-3' ], $options) ),
-           parent::select($name, $value, $selected,  array_merge([ 'class' => 'input desktop-6' ], $options) ),
-		   $error
-		);
-		
-
+        $errors = \Session::get('errors'); //print_r($errors);
+        $error = '';
+        if( !empty($errors)  && $errors->has($name))
+        {
+            $error = '<div class="text-danger desktop-3"><label class="error" for="' . $name . '">' . $errors->first($name) . '</label></div>' ;
+        }
+        
+        return sprintf('<div class="field"> %s %s %s</div>',
+        parent::label($name, $label,  array_merge([ 'class' => 'desktop-3' ], $options) ),
+        parent::select($name, $value, $selected,  array_merge([ 'class' => 'input desktop-6' ], $options) ),
+        $error
+        );
+        
+        
        /* return sprintf(
             '<div class="form-group">%s<div%s>%s%s</div></div><!-- end form-group -->',
             parent::label($name, $label, $labelOptions),
@@ -99,31 +99,33 @@ public function selectfield($name, $value,$label,$selected,$options = array())
             parent::text($name, null, $inputOptions),
             $errors->has($name) ? '<span class="error"><label class="error" for="' . $name . '">' . $errors->first($name) . '</label></span>' : ''
         );
-		*/
-		
+        */
+        
     }
-
-	public function textfield($name, $label,$type, $options = array())
+    
+    public function textfield($name, $label,$type, $options = array())
     {
         
-		$errors = \Session::get('errors'); //print_r($errors); 
-		$error = '';
-		$class = '';
-		if( !empty($errors)  && $errors->has($name))
-		{ 
-			$error = '<div class="text-danger desktop-3"><label class="error" for="' . $name . '">' . $errors->first($name) . '</label></div>' ;       
-			
-			$class = ' message message-danger';
-		}
-		
-		return sprintf('<div class="field%s"> %s %s %s</div>',
-		   $class,
-           parent::label($name, $label,  array_merge([ 'class' => 'desktop-3' ], $options) ),
-           parent::$type($name, null,   array_merge([ 'class' => 'input desktop-6' ], $options) ),
-		   $error
-		);
-		
-
+        $errors = \Session::get('errors'); //print_r($errors);
+        $error = '';
+        $class = '';
+        if( !empty($errors)  && $errors->has($name))
+        {
+            $error = '<div class="text-danger desktop-3"><label class="error" for="' . $name . '">' . $errors->first($name) . '</label></div>' ;
+            
+            $class = ' message message-danger';
+        }
+        
+        
+        
+        return sprintf('<div class="field%s"> %s %s %s</div>',
+        $class,
+        parent::label($name, $label,  array_merge([ 'class' => 'desktop-3' ], $options) ),
+        parent::$type($name, null,   array_merge([ 'class' => 'input desktop-6' ], $options) ),
+        $error
+        );
+        
+        
        /* return sprintf(
             '<div class="form-group">%s<div%s>%s%s</div></div><!-- end form-group -->',
             parent::label($name, $label, $labelOptions),
@@ -131,35 +133,86 @@ public function selectfield($name, $value,$label,$selected,$options = array())
             parent::text($name, null, $inputOptions),
             $errors->has($name) ? '<span class="error"><label class="error" for="' . $name . '">' . $errors->first($name) . '</label></span>' : ''
         );
-		*/
-		
+        */
+        
     }
-	
-	public function createform($fields)
-	{
-		$output = '';
-		
-		foreach($fields as $field)
-		{
-			if($field[2] == "select")
-			{
-				//$name, $value,$label,$selected,$options = array()
-							
-				$value = $field[3]["options"]; 
-				$selected = $field[3]["selected"];
-				unset($field[3]["options"]);
-				unset($field[3]["selected"]);
-				
-				$output .= $this->selectfield( $field[0] , $value , $field[1], $selected , $field[3]);
-			}
-			else
-				$output .= $this->textfield( $field[0] , $field[1] , $field[2], $field[3]);
-		}
-		
-		return $output;
-	}
-	
-	
-	
+    
+    public function createform($fields)
+    {
+        $output = '';
+        
+        foreach($fields as $field)
+        {
+            if($field[2] == "select")
+            {
+                //$name, $value,$label,$selected,$options = array()
+                
+                $value = [];
+                $selected = "";
+				$data = "";
+                
+                if(!isset( $field[3]["options"]) && isset( $field[3]["dynamic"]) )
+                {
 
+                    
+                    $data ="
+                    <script> 
+					
+					$( document ).ready(function() {
+					
+						$('select').select2({
+                            placeholder: 'Search contacts',
+                            minimumInputLength: 1,
+							tags: true,
+                            ajax: {
+                                url: '/category/list',
+                                dataType: 'json',
+                                data: function (params) {
+                                  return {
+                                    q: params.term, // search term
+                                    page: params.page
+                                  };
+                                },
+                                processResults: function (data, page) {
+                                  // parse the results into the format expected by Select2.
+                                  // since we are using custom formatting functions we do not need to
+                                  // alter the remote JSON data
+                                  return {
+                                    results: data
+                                  };
+                                },
+                                cache: true
+                            }
+                            
+                        });	
+                    
+					
+					});
+					
+					</script>";
+                    
+                    
+                }
+                else
+                {
+                    
+                    $value = $field[3]["options"];
+                    $selected = $field[3]["selected"];
+                    unset($field[3]["options"]);
+                    unset($field[3]["selected"]);
+                    
+                }
+                
+                $output .= $this->selectfield( $field[0] , $value , $field[1], $selected , $field[3]).$data;
+            }
+            else
+            $output .= $this->textfield( $field[0] , $field[1] , $field[2], $field[3]);
+        }
+        
+        return $output;
+    }
+    
+    
+    
+    
 }

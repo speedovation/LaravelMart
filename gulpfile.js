@@ -21,7 +21,9 @@ elixir(function(mix) {
         'sliders.css',
         'sliders-theme.css',
         '../bower_components/fancybox/source/jquery.fancybox.css',
-        '../bower_components/raty/lib/jquery.raty.css'
+        '../bower_components/raty/lib/jquery.raty.css',
+        '../bower_components/select2/dist/css/select2.css'
+/*        '../bower_components/chosen/chosen.min.css'*/
         //'../bower_components/css-modal/dist/modal.css',
         
         ], 'public/assets/css')
@@ -32,7 +34,9 @@ elixir(function(mix) {
         'app.js',
         'sliders.js',
         '../bower_components/fancybox/source/jquery.fancybox.js',
-        '../bower_components/raty/lib/jquery.raty.js'
+        '../bower_components/raty/lib/jquery.raty.js',
+        '../bower_components/select2/dist/js/select2.js'
+/*        '../bower_components/chosen/chosen.jquery.min.js'*/
        // '../bower_components/css-modal/dist/modal.js',
 
         ], 'public/assets/js')

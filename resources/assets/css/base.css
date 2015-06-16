@@ -1222,7 +1222,8 @@ form.row {
   font-size: 1rem;
   margin-bottom: 10px;
   max-width: 100%;
-  overflow: hidden;
+/*  overflow: hidden;*/
+  clear: both;
   position: relative;
   vertical-align: middle;
 }
@@ -2497,8 +2498,7 @@ html:not(.touch) .nav-offcanvas ul a:hover {
   list-style: none;
 /* 2 */
   letter-spacing: -0.31em;
-}
-.subnav > li {
+}.subnav > li {
   position: relative;
 /* 1 */
   letter-spacing: normal;

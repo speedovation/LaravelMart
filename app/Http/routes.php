@@ -14,6 +14,8 @@ Route::any("category/index", [
     "uses" => "CategoryController@indexAction"
 ]);
 
+Route::get('category/list', 'CategoryController@getListAction');
+
 //Route::any("product/index", [
 //    "as" => "product/index",
 //    "uses" => "ProductController@indexAction"

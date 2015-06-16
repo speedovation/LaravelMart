@@ -18,4 +18,11 @@
 
     {!! Form::close() !!}
 </div>
+
+<script>
+$( document ).ready(function() {
+	//$("select").select2()
+    //console.log( "ready!" );
+});
+</script>
 @endsection

@@ -29,7 +29,7 @@ return [
                         ['mrp','MRP:', 'text',[] ], 
                         ['price','Price:', 'text',[] ], 
                         ['discount','Discount:', 'text',[] ],
-                        ['category_id','Category Id:', 'text',[] ],
+                        ['category_id','Category Id:', 'select' , [ "dynamic"=> "category/list","multiple"=>""] ], 
                         ['image','Image:', 'text',[] ],
                         ['short_desc','Short Desc:', 'text',[] ],
                         ['long_desc','Long Desc:', 'text',[] ]
@@ -107,7 +107,7 @@ return [
                         ['title', 'Title' , 'text' , ['Placeholder' => 'Enter Title'] ], 
                         ['url', 'Url' , 'text' , ['Placeholder' => 'Enter Url'] ], 
                         ['status', 'Status' ,  'select' , [ "options"=> [ 'draft' => 'Draft','live' => 'Live'] ,"selected" => 'live' ] ],  
-                        ['visibility', 'Visibility' ,  'select' , [ "options"=> [ 'public' => 'Public','private' => 'Private'] ,"selected" => 'public' ] ], 
+                        ['visibility', 'Visibility' ,  'select' , [ "options"=> [ 'public' => 'Public','private' => 'Private'] ,"selected" => 'public'] ], 
                         ['type', 'Type' , 'select' , [ "options"=> [ 'html' => 'Html','md' => 'Markdown'] ,"selected" => 'Html' ] ], 
                         ['body', 'Body' , 'textarea' , [] ], 
                         ['header', 'Header' , 'textarea' , [] ],
