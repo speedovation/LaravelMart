@@ -146,51 +146,16 @@ class FormBuilder extends \Collective\Html\FormBuilder {
             if($field[2] == "select")
             {
                 //$name, $value,$label,$selected,$options = array()
-                
                 $value = [];
                 $selected = "";
-				$data = "";
                 
                 if(!isset( $field[3]["options"]) && isset( $field[3]["dynamic"]) )
                 {
-
                     
-                    $data ="
-                    <script> 
-					
-					$( document ).ready(function() {
-					
-						$('select').select2({
-                            placeholder: 'Search contacts',
-                            minimumInputLength: 1,
-							tags: true,
-                            ajax: {
-                                url: '/category/list',
-                                dataType: 'json',
-                                data: function (params) {
-                                  return {
-                                    q: params.term, // search term
-                                    page: params.page
-                                  };
-                                },
-                                processResults: function (data, page) {
-                                  // parse the results into the format expected by Select2.
-                                  // since we are using custom formatting functions we do not need to
-                                  // alter the remote JSON data
-                                  return {
-                                    results: data
-                                  };
-                                },
-                                cache: true
-                            }
-                            
-                        });	
+                    $data['url'] = $field[3]["dynamic"];
+					$data['title'] = str_replace(":","",$field[1]);
                     
-					
-					});
-					
-					</script>";
-                    
+					$output.= \View::make('admin.common.select2',$data);
                     
                 }
                 else
@@ -203,10 +168,10 @@ class FormBuilder extends \Collective\Html\FormBuilder {
                     
                 }
                 
-                $output .= $this->selectfield( $field[0] , $value , $field[1], $selected , $field[3]).$data;
+                $output .= $this->selectfield( $field[0] , $value , $field[1], $selected , $field[3]);
             }
             else
-            $output .= $this->textfield( $field[0] , $field[1] , $field[2], $field[3]);
+            	$output .= $this->textfield( $field[0] , $field[1] , $field[2], $field[3]);
         }
         
         return $output;

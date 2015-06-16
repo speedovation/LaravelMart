@@ -29,7 +29,7 @@ return [
                         ['mrp','MRP:', 'text',[] ], 
                         ['price','Price:', 'text',[] ], 
                         ['discount','Discount:', 'text',[] ],
-                        ['category_id','Category Id:', 'select' , [ "dynamic"=> "category/list","multiple"=>""] ], 
+                        ['category_id','Categories:', 'select' , [ "dynamic"=> "/category/list","multiple"=>""] ], 
                         ['image','Image:', 'text',[] ],
                         ['short_desc','Short Desc:', 'text',[] ],
                         ['long_desc','Long Desc:', 'text',[] ]
