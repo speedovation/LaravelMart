@@ -41,37 +41,7 @@
     </h3>
 
     <article itemprop="mainContentOfPage" class="markdown-body entry-content"><h2><a aria-hidden="true" href="#laravelmart---complete-ecommerce-platform" class="anchor" id="user-content-laravelmart---complete-ecommerce-platform"><span class="octicon octicon-link"></span></a>LaravelMart - Complete eCommerce Platform</h2>
-
-<h1>Laravel 5 based eCommerce - Laravel shop package</h1>
-
-<h1><a aria-hidden="true" href="#features-list-supported" class="anchor" id="user-content-features-list-supported"><span class="octicon octicon-link"></span></a>Features list supported:</h1>
-
-<h2><a aria-hidden="true" href="#frontend---user-area" class="anchor" id="user-content-frontend---user-area"><span class="octicon octicon-link"></span></a>FrontEnd - User area</h2>
-
-<ul class="link-list">
-<li><span>Login</span></li>
-<li><span>Register</span></li>
-<li><span>Billing - Address, Payment type, Delivery type</span></li>
-<li><span>Wishlist</span></li>
-<li><span>Apply coupon</span></li>
-<li><span>Cart - add, remove, edit products</span></li>
-<li><span>View products</span></li>
-<li><span>View product</span></li>
-</ul>
-
-<h2><a aria-hidden="true" href="#backend---admin-area" class="anchor" id="user-content-backend---admin-area"><span class="octicon octicon-link"></span></a>Backend - Admin area</h2>
-
-<ul class="link-list">
-<li><span>Manage Users</span></li>
-<li><span>Manage Payment types</span></li>
-<li><span>Manage Products</span></li>
-<li><span>Manage Categories</span></li>
-<li><span>Manage Coupons</span></li>
-</ul>
-
-<h3><a aria-hidden="true" href="#license" class="anchor" id="user-content-license"><span class="octicon octicon-link"></span></a>License</h3>
-
-<p>The LaravelMart is open-sourced software licensed under the <a href="http://opensource.org/licenses/Apache-2.0">Apache 2.0 license</a></p>
+		<?php include('data.php') ?>
 </article>
   </div>
 
