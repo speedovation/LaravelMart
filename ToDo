@@ -1,0 +1,11 @@
+Factory (tablename)
+
+addText(name,label,options)
+addSelect(SelectClass var)
+
+SelectClass
+addValue(key,value)
+addOptions(Array)
+setSelected()
+addValuesFromTable(tablename,colnameForId,colnameForValue)
+
