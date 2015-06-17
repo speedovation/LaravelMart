@@ -10,15 +10,16 @@
                     preload: true,
                     options: [],
                      create: true,
- /*
+ 
                     render: {
                         option: function(item, escape) {
                           
-                            return '<div>' + '<span class="title">' + escape(item.text) + '</span>' +
-                                             '<span class="description">' + escape(item.id) + '</span>' +
+                            return '<div>' + '<span class="text-muted">' + escape(item.id) + '</span>' +
+                                             '<span class="text-tall"> ' + escape(item.text) + '</span>' +
+                                             
                             	       '</div>';
                         }
-                    },*/
+                    },
             /*		score: function(search) {
                         var score = this.getScoreFunction(search);
                         return function(item) {
@@ -39,6 +40,9 @@
                                 callback(res);
                             }
                         });
+                    },
+                    onLoad: function(data) {
+                       //Future
                     }
                 });
         

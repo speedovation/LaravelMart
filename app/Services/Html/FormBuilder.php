@@ -87,7 +87,7 @@ class FormBuilder extends \Collective\Html\FormBuilder {
         
         return sprintf('<div class="field"> %s %s %s</div>',
         parent::label($name, $label,  array_merge([ 'class' => 'desktop-3' ], $options) ),
-        parent::select($name, $value, $selected,  array_merge([ 'class' => 'input desktop-6' ], $options) ),
+        parent::select($name, $value, $selected,  array_merge([ 'class' => 'desktop-6' ], $options) ),
         $error
         );
         
