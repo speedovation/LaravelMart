@@ -8,7 +8,7 @@
 
      <h1>Edit {!! ucfirst( str_singular($table) ) !!}</h1>
     
-	
+
 	   @include('common.errors')
 	
 

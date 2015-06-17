@@ -2,7 +2,6 @@
     
     $( document ).ready(function() {
         
-        
         $('select').selectize({
                     valueField: 'id',
                     labelField: 'text',
@@ -42,7 +41,7 @@
                         });
                     },
                     onLoad: function(data) {
-                       //Future
+                       this.setValue({!! $value !!});
                     }
                 });
         

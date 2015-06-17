@@ -21,8 +21,8 @@
 
 <script>
 $( document ).ready(function() {
-	//$("select").select2()
-    //console.log( "ready!" );
+	$("select").selectize();
+	    //console.log( "ready!" );
 });
 </script>
 @endsection

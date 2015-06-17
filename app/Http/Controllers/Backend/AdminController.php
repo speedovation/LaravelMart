@@ -70,6 +70,7 @@ class AdminController extends Controller {
         $product = $this->productRepository->search([],$table);
         
         return  view('admin.products.create')
+        ->with('data', [])
         ->with('fields',$fields)
         ->with('url',$url)
         ->with('table',$table);

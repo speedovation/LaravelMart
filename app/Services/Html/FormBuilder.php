@@ -137,7 +137,7 @@ class FormBuilder extends \Collective\Html\FormBuilder {
         
     }
     
-    public function createform($fields)
+    public function createform($fields,$form_data=[])
     {
         $output = '';
         
@@ -152,9 +152,14 @@ class FormBuilder extends \Collective\Html\FormBuilder {
                 if(!isset( $field[3]["options"]) && isset( $field[3]["dynamic"]) )
                 {
                     
+					
+					
                     $data['url'] = $field[3]["dynamic"];
 					$data['title'] = str_replace(":","",$field[1]);
-                    
+					
+					
+					$data['value'] = empty($form_data) ? '' : $form_data->$field[0];
+                    //echo $field[0]." - ".parent::old($field[0]).parent::old('name');die;
 					$output.= \View::make('admin.common.select2',$data);
                     
                 }
