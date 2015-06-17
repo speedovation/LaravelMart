@@ -41,7 +41,7 @@ return [
 'categories' => [
                     "fields" => [
                         ['name','Name:', 'text',[] ], 
-                        ['parent_id','Parent Id:', 'text',[] ],
+                        ['parent_id','Parent Category:', 'select' , [ "dynamic"=> "/category/list"] ],
                     ],
                     "index" => ['name','parent_id']
                 ],
