@@ -182,7 +182,7 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
             return count($this->items) > 0 ? reset($this->items) : null;
         }
 
-        return array_first($this->items, $callback, $default);
+        return Arr::first($this->items, $callback, $default);
     }
 
     /**
@@ -406,6 +406,21 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
     }
 
     /**
+     * Get the max value of a given key.
+     *
+     * @param  string|null  $key
+     * @return mixed
+     */
+    public function max($key = null)
+    {
+        return $this->reduce(function ($result, $item) use ($key) {
+            $value = data_get($item, $key);
+
+            return is_null($result) || $value > $result ? $value : $result;
+        });
+    }
+
+    /**
      * Merge the collection with the given items.
      *
      * @param  mixed  $items
@@ -414,6 +429,21 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
     public function merge($items)
     {
         return new static(array_merge($this->items, $this->getArrayableItems($items)));
+    }
+
+    /**
+     * Get the min value of a given key.
+     *
+     * @param  string|null  $key
+     * @return mixed
+     */
+    public function min($key = null)
+    {
+        return $this->reduce(function ($result, $item) use ($key) {
+            $value = data_get($item, $key);
+
+            return is_null($result) || $value < $result ? $value : $result;
+        });
     }
 
     /**

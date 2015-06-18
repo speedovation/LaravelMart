@@ -5,7 +5,9 @@ namespace Illuminate\Routing;
 use Closure;
 use LogicException;
 use ReflectionFunction;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
+use UnexpectedValueException;
 use Illuminate\Container\Container;
 use Illuminate\Routing\Matching\UriValidator;
 use Illuminate\Routing\Matching\HostValidator;
@@ -598,6 +600,8 @@ class Route
      *
      * @param  callable|array  $action
      * @return array
+     *
+     * @throws \UnexpectedValueException
      */
     protected function parseAction($action)
     {
@@ -615,6 +619,12 @@ class Route
             $action['uses'] = $this->findCallable($action);
         }
 
+        if (is_string($action['uses']) && ! str_contains($action['uses'], '@')) {
+            throw new UnexpectedValueException(sprintf(
+                'Invalid route action: [%s]', $action['uses']
+            ));
+        }
+
         return $action;
     }
 
@@ -626,7 +636,7 @@ class Route
      */
     protected function findCallable(array $action)
     {
-        return array_first($action, function ($key, $value) {
+        return Arr::first($action, function ($key, $value) {
             return is_callable($value) && is_numeric($key);
         });
     }
@@ -766,7 +776,7 @@ class Route
     {
         $uri = rtrim($prefix, '/').'/'.ltrim($this->uri, '/');
 
-        $this->uri = trim($uri , '/');
+        $this->uri = trim($uri, '/');
 
         return $this;
     }

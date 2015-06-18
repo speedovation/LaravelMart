@@ -21,7 +21,6 @@ return array(
     'Guzzle' => array($vendorDir . '/guzzle/guzzle/src'),
     'Gloudemans\\Shoppingcart' => array($vendorDir . '/gloudemans/shoppingcart/src'),
     'Dotenv' => array($vendorDir . '/vlucas/phpdotenv/src'),
-    'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src'),
     'Doctrine\\Common\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib'),
     'Diff' => array($vendorDir . '/phpspec/php-diff/lib'),
     'Cron' => array($vendorDir . '/mtdowling/cron-expression/src'),

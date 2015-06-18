@@ -5477,6 +5477,7 @@ p,h3,h4,pre {
 .selectize-input input {
   color: #303030;
   font-family: inherit;
+  font-weight:  300;
 /*  font-size: 14px;*/
   line-height: 18px;
   -webkit-font-smoothing: inherit;

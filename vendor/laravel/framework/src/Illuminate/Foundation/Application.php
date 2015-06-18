@@ -4,6 +4,7 @@ namespace Illuminate\Foundation;
 
 use Closure;
 use RuntimeException;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Container\Container;
 use Illuminate\Filesystem\Filesystem;
@@ -23,7 +24,7 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
      *
      * @var string
      */
-    const VERSION = '5.1.1 (LTS)';
+    const VERSION = '5.1.2 (LTS)';
 
     /**
      * The base path for the Laravel installation.
@@ -252,7 +253,7 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
      */
     public function setBasePath($basePath)
     {
-        $this->basePath = $basePath;
+        $this->basePath = rtrim($basePath, '\/');
 
         $this->bindPathsInContainer();
 
@@ -527,7 +528,7 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
     {
         $name = is_string($provider) ? $provider : get_class($provider);
 
-        return array_first($this->serviceProviders, function ($key, $value) use ($name) {
+        return Arr::first($this->serviceProviders, function ($key, $value) use ($name) {
             return $value instanceof $name;
         });
     }
