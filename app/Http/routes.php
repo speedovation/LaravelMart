@@ -31,6 +31,7 @@ Route::get('category/list', 'CategoryController@getListAction');
     "uses" => "AccountController@authenticateAction"
 ]);*/
 
+Route::get('page/list', 'PageController@getList');
 Route::get('page/{url}', 'PageController@getIndex');
 
 //Authentication

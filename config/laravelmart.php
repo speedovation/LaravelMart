@@ -31,8 +31,8 @@ return [
                         ['discount','Discount:', 'text',[] ],
                         ['category_id','Categories:', 'select' , [ "dynamic"=> "/category/list","multiple"=>""] ], 
                         ['image','Image:', 'text',[] ],
-                        ['short_desc','Short Desc:', 'text',[] ],
-                        ['long_desc','Long Desc:', 'text',[] ]
+                        ['short_desc','Short Desc:', 'textarea',[] ],
+                        ['long_desc','Long Desc:', 'textarea',["rows" => "50","style" => " height: 200px;"] ]
                     ],
                     "index" => ['code','name','mrp','image']
                 ],
@@ -111,7 +111,7 @@ return [
                         ['type', 'Type' , 'select' , [ "options"=> [ 'html' => 'Html','md' => 'Markdown'] ,"selected" => 'Html' ] ], 
                         ['body', 'Body' , 'textarea' , [] ], 
                         ['header', 'Header' , 'textarea' , [] ],
-                        ['parent_id','Parent id' , 'text' , [] ],
+                        ['parent_id','Parent' , 'select' , [ "dynamic"=> "/page/list"] ], 
                     ],
                     "index" => [ 'title', 'url' ,'status', 'visibility','type', 'parent_id' ]
                 ],

@@ -85,7 +85,7 @@ class FormBuilder extends \Collective\Html\FormBuilder {
             $error = '<div class="text-danger desktop-3"><label class="error" for="' . $name . '">' . $errors->first($name) . '</label></div>' ;
         }
         
-        return sprintf('<div class="field"> %s %s %s</div>',
+        return sprintf('<div class="row field"> %s %s %s</div>',
         parent::label($name, $label,  array_merge([ 'class' => 'desktop-3' ], $options) ),
         parent::select($name, $value, $selected,  array_merge([ 'class' => 'desktop-6' ], $options) ),
         $error
@@ -118,7 +118,7 @@ class FormBuilder extends \Collective\Html\FormBuilder {
         
         
         
-        return sprintf('<div class="field%s"> %s %s %s</div>',
+        return sprintf('<div class="row field%s"> %s %s %s</div>',
         $class,
         parent::label($name, $label,  array_merge([ 'class' => 'desktop-3' ], $options) ),
         parent::$type($name, null,   array_merge([ 'class' => 'input desktop-6' ], $options) ),
