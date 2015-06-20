@@ -40,7 +40,7 @@ class AdminController extends Controller {
         $fields = \Config::get("laravelmart.$table.index");
         
         //$result = $this->productRepository->search($input);
-        $products = \DB::table($table)->paginate(10);
+        $products = \DB::table($table)->paginate(15);
         //echo "DDD $table";print_r($products); print_r($fields);
         
         //$products =  $result[0];

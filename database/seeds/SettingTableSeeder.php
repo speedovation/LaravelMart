@@ -57,7 +57,7 @@ class SettingTableSeeder extends DatabaseSeeder {
             
                 "Validate postal/zip codes" => [ "India", "Any country" ,"Provide valid country name"  ],
                 "Show verify information message" => [ "India", "Any country" ,"Provide valid country name"  ],
-                "Show EU VAT reduction message" => "This will only apply to EU Union based Shops.",
+                "Show EU VAT reduction message" => [ "", "" , "This will only apply to EU Union based Shops."  ],
                 "Allow guest purchases" => [ "India", "Any country" ,"Provide valid country name"  ],
                 "Show login form" => [ "India", "Any country" ,"Provide valid country name"  ],
                 "Allow registration" => [ "India", "Any country" ,"Provide valid country name"  ],
@@ -86,6 +86,17 @@ class SettingTableSeeder extends DatabaseSeeder {
                 "Thousand separator" => [ "India", "Any country" , "This sets the thousand separator of displayed prices."  ],
                 "Decimal separator" => [ "India", "Any country" , "This sets the decimal separator of displayed prices."  ],
                 "Number of decimals" => [ "India", "Any country" , "This sets the number of decimal points shown in displayed prices." ],
+            ],
+            
+            
+            "Product Options" => [
+                "Enable SKU- Stock keeping Unit field" => [ "Yes", "Yes|No", "Leave blank for No."],
+                "Enable weight field" => [ "No", "Yes|No", "Leave blank for none."],
+                "Weight Unit" => [ "", "Kilograms|Pounds", ""],
+                "Enable product dimensions" => [ "", "Yes|No", "Leave blank for No."],
+                "Dimensions Unit" => [ "", "centimeters|inches", ""],
+                "Product thumbnail images per row" =>[ "3", "", ""],
+                "Show related products" => [ "Yes", "Yes|No", "Leave blank for No."],
             ]
             
             
