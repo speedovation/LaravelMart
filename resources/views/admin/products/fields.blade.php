@@ -1,5 +1,7 @@
 
 {!! Form::createform($fields,$data)!!} 
+
+{!! Form::hidden('page',$page) !!}
 <!--- Submit Field --->
 
 <div class="row">

@@ -13,15 +13,7 @@ class PageTableSeeder extends DatabaseSeeder {
         
         $pages = [ "About us" => "about" , "Contact Us" => "contact" , "Support" => "support"];
         
-        
-        
-/*           $cats =  [
-              [ "name" => 'Cell Phones Accessories' ,'created_at'=> new DateTime,'updated_at'=> new DateTime ],
-              [ "name" =>  'Tablet Accessories' ,'created_at'=> new DateTime,'updated_at'=> new DateTime ],
-              [ "name" =>  'Gifts' ,'created_at'=> new DateTime,'updated_at'=> new DateTime],
-              [ "name" =>  'Flowers' ,'created_at'=> new DateTime,'updated_at'=> new DateTime]     
-                      ];
-           DB::table('categories')->insert($cats);*/
+
         foreach($pages as $title => $url )
         {
              Page::create([
@@ -33,13 +25,8 @@ class PageTableSeeder extends DatabaseSeeder {
                     "type"  => "html",
                     ]);
         }
-//                for ($i = 0; $i < 10; $i++) {
-//            $name = ucwords($faker->word);
-//
-//            Category::create([
-//                "name" => $name
-//            ]);
-//        }
+
+
     }
 
 }

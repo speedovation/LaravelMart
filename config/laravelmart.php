@@ -145,6 +145,18 @@ return [
                         "index" => ['name','display_name','description']
 ],
 
+
+'settings' => [
+                        "fields" => [
+                            ['module','Module Name:', 'text',[] ], 
+                            ['key','Setting Name :', 'text',[] ],
+                            ['value','Setting Value :', 'text',[] ],
+                            ['options','Default Values :', 'text',[] ],
+                            ['comments','Comment :', 'text',[] ],
+                        ],
+                        "index" => ['module','key','value','options','comment']
+],
+
 'permissions' => [
                         "fields" => [
                             ['name','Name:', 'text',[] ], 

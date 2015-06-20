@@ -40,16 +40,16 @@ class AdminController extends Controller {
         $fields = \Config::get("laravelmart.$table.index");
         
         //$result = $this->productRepository->search($input);
-        
         $products = \DB::table($table)->paginate(10);
+        //echo "DDD $table";print_r($products); print_r($fields);
         
         //$products =  $result[0];
         
         $attributes =  ""; //$result[1];
         
         return view('admin.products.index')
-        ->with('products', $products)
-        ->with('attributes', $attributes)
+        ->with('products',$products )
+        ->with('page', $request->input('page'))
         ->with('fields',$fields)
         ->with('table',$table);
     }
@@ -135,6 +135,7 @@ class AdminController extends Controller {
         return view('admin.products.edit')
         ->with('data', $data)
         ->with('fields',$fields)
+        ->with('page', $request->input('page'))
         ->with('url',$url)
         ->with('table',$table);
     }
@@ -155,14 +156,14 @@ class AdminController extends Controller {
         if(empty($data))
         {
             \Flash::error(ucfirst(str_singular($table)).' not found');
-            return redirect(route('admin.index',[$table]));
+            return redirect(route('admin.index',[$table,$request->input('page')]));
         }
         
-        $data = $this->productRepository->update($data, $request->all());
+        $data = $this->productRepository->update($data, $request->except('page'));
         
         \Flash::message(ucfirst(str_singular($table)).' updated successfully.');
         
-        return redirect(route('admin.index',[$table]));
+        return redirect(route('admin.index',[$table,"page={$request->input('page')}"]));
     }
     
     /**
