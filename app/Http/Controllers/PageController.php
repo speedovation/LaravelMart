@@ -39,8 +39,6 @@ class PageController extends Controller {
 		return view('home.page',$page);
 	}
 	
-	public function getList() {
-        return Page::select( ['id', \DB::raw('title as text') ] )->get();
-    }
+
 
 }

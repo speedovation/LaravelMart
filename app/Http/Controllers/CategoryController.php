@@ -9,9 +9,6 @@ class CategoryController extends Controller {
         return Category::with(["products"])->get();
     }
 
-    public function getListAction() {
-        return Category::select( ['id', \DB::raw('name as text') ] )->get();
-    }
     
     
 

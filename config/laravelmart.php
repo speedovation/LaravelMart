@@ -41,14 +41,14 @@ return [
 'categories' => [
                     "fields" => [
                         ['name','Name:', 'text',[] ], 
-                        ['parent_id','Parent Category:', 'select' , [ "dynamic"=> "/category/list"] ],
+                        ['parent_id','Parent Category:', 'select' , [ "dynamic"=> "/list/categories/name"] ],
                     ],
                     "index" => ['name','parent_id']
                 ],
 
 'orders' => [
                     "fields" => [
-                        ['user_id','User id:', 'text',[] ], 
+                        ['user_id','User id:', 'select' , [ "dynamic"=> "/list/users/name"] ], 
                         ['order_id','Order id:', 'text',[] ], 
                         ['coupon','Coupon:', 'text',[] ], 
                         ['discount','Discount:', 'text',[] ], 
@@ -60,8 +60,8 @@ return [
 
 'orderitems' => [
                     "fields" => [
-                        ['order_id','Order id:', 'text',[] ], 
-                        ['product_id','Product id:', 'text',[] ], 
+                        ['order_id','Order id:',  'select' , [ "dynamic"=> "/list/orders/order_id"] ], 
+                        ['product_id','Product id:', 'select' , [ "dynamic"=> "/list/products/name"] ], 
                         ['quantity','quantity:', 'text',[] ], 
                         ['price','Discount:', 'text',[] ], 
                         
@@ -74,7 +74,7 @@ return [
                     "fields" => [
                         ['name','Name :', 'text',[] ], 
                         ['url','Url :', 'text',[] ], 
-                        ['parent_id','Parent id:', 'text',[] ], 
+                        ['parent_id','Parent Menu:', 'select' , [ "dynamic"=> "/list/menus/name"] ], 
                         
                     ],
                     "index" => ['name','url','parent_id']
@@ -84,7 +84,7 @@ return [
 'wishlists' => [
                     "fields" => [
                         ['product_code','Product Code:', 'text',[] ], 
-                        ['user_id','User Id:', 'text',[] ],
+                        ['user_id','User Id:', 'select' , [ "dynamic"=> "/list/users/name"] ], 
                     ],
                     "index" => ['product_code','user_id']
                 ],
@@ -111,7 +111,7 @@ return [
                         ['type', 'Type' , 'select' , [ "options"=> [ 'html' => 'Html','md' => 'Markdown'] ,"selected" => 'Html' ] ], 
                         ['body', 'Body' , 'textarea' , [] ], 
                         ['header', 'Header' , 'textarea' , [] ],
-                        ['parent_id','Parent' , 'select' , [ "dynamic"=> "/page/list"] ], 
+                        ['parent_id','Parent' , 'select' , [ "dynamic"=> "/list/pages/title"] ], 
                     ],
                     "index" => [ 'title', 'url' ,'status', 'visibility','type', 'parent_id' ]
                 ],
@@ -123,7 +123,7 @@ return [
                          ['salutation','Salutation:', 'text',[] ], 
                          ['first_name','First name:', 'text',[] ], 
                          ['last_name','Last name:', 'text',[] ], 
-                         ['user_id','User id:', 'text',[] ], 
+                         ['user_id','User id:',  'select' , [ "dynamic"=> "/list/users/name"] ], 
                          ['company','Company:', 'text',[] ], 
                          ['city','City:', 'text',[] ], 
                          ['state','State:', 'text',[] ], 

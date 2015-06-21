@@ -5,33 +5,17 @@
 //App::bind("Formativ\Billing\MessengerInterface", "Formativ\Billing\EmailMessenger");
 
 Route::any("/", [
-    "as" => "index/index",
+    "as" => "index",
     "uses" => "IndexController@indexAction"
 ]);
 
 Route::any("category/index", [
-    "as" => "category/index",
+    "as" => "category.index",
     "uses" => "CategoryController@indexAction"
 ]);
 
-Route::get('category/list', 'CategoryController@getListAction');
 
-//Route::any("product/index", [
-//    "as" => "product/index",
-//    "uses" => "ProductController@indexAction"
-//]);
-//
-//Route::any("product/product/", [
-//    "as" => "product/index",
-//    "uses" => "ProductController@indexAction"
-//]);
 
-/*Route::any("user/authenticate", [
-    "as" => "user/authenticate",
-    "uses" => "AccountController@authenticateAction"
-]);*/
-
-Route::get('page/list', 'PageController@getList');
 Route::get('page/{url}', 'PageController@getIndex');
 
 //Authentication
@@ -55,17 +39,17 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 
 Route::any("order/index", [
-    "as" => "order/index",
+    "as" => "order.index",
     "uses" => "OrderController@indexAction"
 ]);
 
 Route::any("order/add", [
-    "as" => "order/add",
+    "as" => "order.add",
     "uses" => "OrderController@addAction"
 ]);
 
 Route::any("order/delete", [
-    "as" => "order/delete",
+    "as" => "order.delete",
     "uses" => "OrderController@deleteAction"
 ]);
 
@@ -77,6 +61,90 @@ Route::controller('cart', 'CartController');
 Route::controller('about', 'AboutController');
 
 Route::resource('wishlist', 'WishlistController');
+
+
+Route::resource('billings', 'BillingController');
+
+Route::get('billings/{id}/delete', [
+    'as' => 'billings.delete',
+    'uses' => 'BillingController@destroy',
+]);
+
+
+
+Route::group( ['namespace' => 'Backend', "prefix" => "admin", "as" => "admin."], function(){
+
+//Route::resource('admin', 'AdminController');
+
+    Route::get('', [
+        'as' => 'dashboard',
+        'uses' => 'AdminController@dashboard',
+    ]);
+    
+    Route::get('{item}', [
+        'as' => 'index',
+        'uses' => 'AdminController@index',
+    ]);
+    
+    
+    Route::get('{item}/create', [
+        'as' => 'create',
+        'uses' => 'AdminController@create',
+    ]);
+    
+    Route::post('{item}/store', [
+        'as' => 'store',
+        'uses' => 'AdminController@store',
+    ]);
+    
+    
+    Route::get('{item}/edit/{id}', [
+        'as' => 'edit',
+        'uses' => 'AdminController@edit',
+    ]);
+    
+    Route::patch('{item}/update/{id}', [
+        'as' => 'update',
+        'uses' => 'AdminController@update',
+    ]);
+    
+    
+    Route::get('admin/{item}/delete/{id}', [
+        'as' => 'delete',
+        'uses' => 'AdminController@destroy',
+    ]);
+    
+    
+
+} );
+
+
+Route::group( ['namespace' => 'Backend', "prefix" => "list" , "as" => "list."], function(){
+
+    Route::get('{type}/{field}', 'ListController@index');
+    
+});
+
+
+
+//Route::any("product/index", [
+//    "as" => "product/index",
+//    "uses" => "ProductController@indexAction"
+//]);
+//
+//Route::any("product/product/", [
+//    "as" => "product/index",
+//    "uses" => "ProductController@indexAction"
+//]);
+
+/*Route::any("user/authenticate", [
+    "as" => "user/authenticate",
+    "uses" => "AccountController@authenticateAction"
+]);*/
+
+//Route::get('category/list', 'CategoryController@getListAction');
+/*Route::get('page/list', 'PageController@getList');*/
+
 
 //Route::group(["before" => "guest"], function()
 //{
@@ -110,14 +178,6 @@ Route::resource('wishlist', 'WishlistController');
 //});
 
 
-
-Route::resource('billings', 'BillingController');
-
-Route::get('billings/{id}/delete', [
-    'as' => 'billings.delete',
-    'uses' => 'BillingController@destroy',
-]);
-
 /*
 Route::group( ['namespace' => 'Backend', 'prefix' => 'admin'], function(){
 
@@ -129,50 +189,3 @@ Route::get('products/{id}/delete', [
 ]);
 
 } );*/
-
-Route::group( ['namespace' => 'Backend'], function(){
-
-//Route::resource('admin', 'AdminController');
-
-    Route::get('admin', [
-        'as' => 'admin.dashboard',
-        'uses' => 'AdminController@dashboard',
-    ]);
-    
-    Route::get('admin/{item}', [
-        'as' => 'admin.index',
-        'uses' => 'AdminController@index',
-    ]);
-    
-    
-    Route::get('admin/{item}/create', [
-        'as' => 'admin.create',
-        'uses' => 'AdminController@create',
-    ]);
-    
-    Route::post('admin/{item}/store', [
-        'as' => 'admin.store',
-        'uses' => 'AdminController@store',
-    ]);
-    
-    
-    Route::get('admin/{item}/edit/{id}', [
-        'as' => 'admin.edit',
-        'uses' => 'AdminController@edit',
-    ]);
-    
-    Route::patch('admin/{item}/update/{id}', [
-        'as' => 'admin.update',
-        'uses' => 'AdminController@update',
-    ]);
-    
-    
-    
-    Route::get('admin/{item}/delete/{id}', [
-        'as' => 'admin.delete',
-        'uses' => 'AdminController@destroy',
-    ]);
-    
-    
-
-} );
