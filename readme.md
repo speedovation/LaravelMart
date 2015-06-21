@@ -8,6 +8,10 @@ No release yet. Stay tuned.
 
 ## FrontEnd - User area
 
+
+## Inventive - Responsive framework
+[Inventive - Responsive framework](http://github.com/speedovation/Inventive ) a simple, uncluttered, and powerful mobile first front-end framework for faster and easier web development.
+
 ### Users
 ![](http://bit.ly/1IcxtKo) Easily render forms for login, signup and password reset.  
 ![](http://bit.ly/1IcxtKo) Account confirmation (through confirmation link).  
@@ -48,9 +52,14 @@ Custom Error Pages
 ![](http://bit.ly/1IcxtKo) Manage Users  
 ![](http://bit.ly/1IcxtKo) Manage pages  
 ![](http://bit.ly/1IcxtKo) Manage Coupons  
-![](http://bit.ly/1IcxtKo) Manage User and Roles  
-Manage Password Resets  
+![](http://bit.ly/1IcxtKo) Manage Emails
+![](http://bit.ly/1IcxtKo) Manage Settings
+![](http://bit.ly/1IcxtKo) Manage User, Permissions and Roles  
+![](http://bit.ly/1IcxtKo) Manage Password Resets  
 Manage Payment types  
+
+
+
 
 ### General
 WYSIWYG editor for post creation and editing.  
