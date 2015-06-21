@@ -49,8 +49,8 @@ Custom Error Pages
 ![](http://bit.ly/1IcxtKo) Manage Users  
 ![](http://bit.ly/1IcxtKo) Manage pages  
 ![](http://bit.ly/1IcxtKo) Manage Coupons  
-![](http://bit.ly/1IcxtKo) Manage Emails
-![](http://bit.ly/1IcxtKo) Manage Settings
+![](http://bit.ly/1IcxtKo) Manage Emails  
+![](http://bit.ly/1IcxtKo) Manage Settings  
 ![](http://bit.ly/1IcxtKo) Manage User, Permissions and Roles  
 ![](http://bit.ly/1IcxtKo) Manage Password Resets  
 Manage Payment types  
