@@ -4,13 +4,10 @@
 ## LaravelMart - Complete eCommerce Platform
 No release yet. Stay tuned.
 
-#Features list supported:
+
+#Features - FrontEnd and Backend
 
 ## FrontEnd - User area
-
-
-## Inventive - Responsive framework
-[Inventive - Responsive framework](http://github.com/speedovation/Inventive ) a simple, uncluttered, and powerful mobile first front-end framework for faster and easier web development.
 
 ### Users
 ![](http://bit.ly/1IcxtKo) Easily render forms for login, signup and password reset.  
@@ -88,6 +85,10 @@ Manage Article Category
 Manage Tag  
 Manage News
 Manage Blog Post
+
+
+## Inventive - Responsive framework
+[Inventive - Responsive framework](http://github.com/speedovation/Inventive ) a simple, uncluttered, and powerful mobile first front-end framework for faster and easier web development.
 
 
 [Packages included](https://github.com/speedovation/LaravelMart/wiki/Packages) 
