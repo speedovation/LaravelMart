@@ -31,7 +31,7 @@
                        // alert(query);
                         this.clearOptions();
                         $.ajax({
-                            url: '{!! $url !!}?q=' + encodeURIComponent(query),
+                            url: '{!! $url !!}?q=' + encodeURIComponent(query) + "&id=" + encodeURIComponent('{!!$value!!}'),
                             type: 'GET',
                             dataType: 'json',
                             error: function() {

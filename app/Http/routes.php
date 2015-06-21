@@ -125,6 +125,16 @@ Route::group( ['namespace' => 'Backend', "prefix" => "list" , "as" => "list."], 
     
 });
 
+/*
+DB::listen(
+    function ($sql, $bindings, $time) {
+        echo $sql;
+        print_r($bindings);
+        //  $sql - select * from `ncv_users` where `ncv_users`.`id` = ? limit 1
+        //  $bindings - [5]
+        //  $time(in milliseconds) - 0.38 
+    }
+); */
 
 
 //Route::any("product/index", [
@@ -189,3 +199,6 @@ Route::get('products/{id}/delete', [
 ]);
 
 } );*/
+
+
+
