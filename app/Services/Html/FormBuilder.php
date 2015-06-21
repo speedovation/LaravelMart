@@ -48,11 +48,11 @@ class FormBuilder extends \Collective\Html\FormBuilder {
     public function createform($fields,$form_data=[])
     {
         $output = '';
-		
-		
-		$crud = new CrudFactory("TESTTable");
-		$crud->test();
-		
+        
+        
+        $crud = new CrudFactory("TESTTable");
+        $crud->test();
+        
         
         foreach($fields as $field)
         {
@@ -64,32 +64,39 @@ class FormBuilder extends \Collective\Html\FormBuilder {
                 
                 if(!isset( $field[3]["options"]) && isset( $field[3]["dynamic"]) )
                 {
+                    //TODO
+                    //Create array of these infos and later in the end of form run it
+                    //It will save document ready and unnesary calls of selectize
                     
-					
-					
+                    $data['id'] = $field[0];
                     $data['url'] = $field[3]["dynamic"];
-					$data['title'] = str_replace(":","",$field[1]);
-					
-					
-					$data['value'] = empty($form_data) ? '' : $form_data->$field[0];
+                    $data['title'] = str_replace(":","",$field[1]);
+                    
+                    
+                    $data['value'] = empty($form_data) ? '' : $form_data->$field[0];
                     //echo $field[0]." - ".parent::old($field[0]).parent::old('name');die;
-					$output.= \View::make('admin.common.select2',$data);
+                    $output.= \View::make('admin.components.select.select_dynamic',$data);
                     
                 }
                 else
                 {
-                    
+                    echo $field[0];
                     $value = $field[3]["options"];
                     $selected = $field[3]["selected"];
                     unset($field[3]["options"]);
                     unset($field[3]["selected"]);
+                    
+                    $data['id'] = $field[0];
+                    $data['value'] = empty($form_data) ? $selected : $form_data->$field[0];;
+                    //echo $field[0]." - ".parent::old($field[0]).parent::old('name');die;
+                    $output.= \View::make('admin.components.select.select_static',$data);
                     
                 }
                 
                 $output .= $this->selectfield( $field[0] , $value , $field[1], $selected , $field[3]);
             }
             else
-            	$output .= $this->textfield( $field[0] , $field[1] , $field[2], $field[3]);
+            $output .= $this->textfield( $field[0] , $field[1] , $field[2], $field[3]);
         }
         
         return $output;

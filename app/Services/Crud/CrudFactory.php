@@ -7,7 +7,7 @@ class CrudFactory  {
     private $tablename;
 	
     function __construct($tablename) {
-            $this->tablename = $tablename;	
+        $this->tablename = $tablename;	
     }
 	
 	
@@ -18,7 +18,7 @@ class CrudFactory  {
     
     function addText($name,$label,$options)
     {
-    	
+    	    
     }
     
     function addSelect(Select $select)

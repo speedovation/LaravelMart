@@ -2,7 +2,8 @@
     
     $( document ).ready(function() {
         
-        $('select').selectize({
+        
+     $('#{!! $id !!}').selectize({
                     valueField: 'id',
                     labelField: 'text',
                     searchField: 'text',
@@ -27,11 +28,14 @@
                     },*/
                     load: function(query, callback) {
                         //if (!query.length) return callback();
+                       // alert(query);
+                        this.clearOptions();
                         $.ajax({
-                            url: '{!! $url !!}',
+                            url: '{!! $url !!}?q=' + encodeURIComponent(query),
                             type: 'GET',
                             dataType: 'json',
                             error: function() {
+                                
                                 callback();
                             },
                             success: function(res) {
@@ -40,8 +44,26 @@
                             }
                         });
                     },
+                   /* onChange: function(value) {
+                        if (!value.length) return;
+                        this['{!!$id!!}'].disable();
+                        this['{!!$id!!}'].clearOptions();
+                        this['{!!$id!!}'].load(function(callback) {
+                            xhr && xhr.abort();
+                            xhr = $.ajax({
+                                url: '{!! $url !!}?q=' + value ,
+                                success: function(results) {
+                                    this['{!!$id!!}'].enable();
+                                    callback(results);
+                                },
+                                error: function() {
+                                    callback();
+                                }
+                            })
+                        });
+                    },*/
                     onLoad: function(data) {
-                       this.setValue({!! $value !!});
+                       this.setValue('{!! $value !!}');
                     }
                 });
         

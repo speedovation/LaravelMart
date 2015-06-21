@@ -18,7 +18,7 @@ class CreatePageTable extends Migration {
                     
                     //Default is for now HTML 
                     //Supports later : MD, Textile and son on 
-                    $table->integer("type")->nullable();
+                    $table->string("type")->nullable();
                     
                     $table->longtext("body");
                     $table->text("header")->nullable();
