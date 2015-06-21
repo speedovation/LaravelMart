@@ -97,11 +97,44 @@ class SettingTableSeeder extends DatabaseSeeder {
                 "Dimensions Unit" => [ "", "centimeters|inches", ""],
                 "Product thumbnail images per row" =>[ "3", "", ""],
                 "Show related products" => [ "Yes", "Yes|No", "Leave blank for No."],
-            ]
+            ],
+            
+            "Shipping Options" => [
+                "Enable Shipping" => [ "Yes", "Yes|No", "Only turn this off if you are not shipping items, or items have shipping costs included."],
+                "Enable shipping calculator on cart" => [ "Yes", "Yes|No", "" ],
+                "Only ship to billing address" => [ "Yes", "Yes|No", "" ],
+                "Checkout always shows Shipping fields" => [ "Yes", "Yes|No", "This will have no effect if 'Only ship to billing address' is activated."]
+            ],
+            
+            
+            "Cropping Options" => [
+
+                "Crop Tiny images"=> [ "Yes", "Yes|No", "" ],
+                "Crop Thumbnail images"=> [ "Yes", "Yes|No", "" ],
+                "Crop Catalog images"=> [ "Yes", "Yes|No", "" ],
+                "Crop Large images"=> [ "Yes", "Yes|No", "" ],
+            ],
+            
+            
+            "Image Sizes" => [
+            
+                "Tiny Image Width" => [ "36px", "", "Valid  size with unit like 36px, 2rem etc" ],
+                "Tiny Image Height" => [ "36px", "", "Valid  size with unit like 36px, 2rem etc" ],
+            
+                "Thumbnail Image Width" => [ "90px", "", "Valid  size with unit like 36px, 2rem etc" ],
+                "Thumbnail Image Height" => [ "90px", "", "Valid  size with unit like 36px, 2rem etc" ],
+            
+                "Catalog Image Width" => [ "150px", "", "Valid  size with unit like 36px, 2rem etc" ],
+                "Catalog Image Height" => [ "150px", "", "Valid  size with unit like 36px, 2rem etc" ],
+            
+                "Large Image Width" => [ "300px", "", "Valid  size with unit like 36px, 2rem etc" ],
+                "Large Image Height" => [ "300px", "", "Valid  size with unit like 36px, 2rem etc" ],
+            
+               ],
             
             
             
-       
+
        ];
         
 

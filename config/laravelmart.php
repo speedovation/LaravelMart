@@ -157,6 +157,15 @@ return [
                         "index" => ['module','key','value','options','comment']
 ],
 
+'emails' => [
+                        "fields" => [
+                            ['key','Email Name :', 'text',[] ],
+                            ['value','Email View Name :', 'text',[] ],
+                            ['comment','Comment :', 'text',[] ],
+                        ],
+                        "index" => ['key','value','comment']
+],
+
 'permissions' => [
                         "fields" => [
                             ['name','Name:', 'text',[] ], 

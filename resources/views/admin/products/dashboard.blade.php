@@ -27,27 +27,24 @@ billings        |
 
 
     -->
-    <a class="button primary"  href="{!! route('admin.index','menus') !!}">Manage Menus</a>
-    <a class="button primary"  href="{!! route('admin.index','pages') !!}">Manage Pages</a>
+	
+	
+	<?php
+	
+	$pages = [  'menus','pages','users','categories', 'products' ,
+				'orders' , 'orderitems' ,'password_resets',
+				'billings', 'wishlists' , 'roles' ,'permissions',
+				'coupons', 'emails', 'settings'
+				
+				 ];
+	
+	?>
+	
+	
+	@foreach($pages as $page)
+    <a class="button primary"  href="{!! route('admin.index',$page) !!}">Manage {!! ucfirst($page) !!}</a>
+    @endforeach
     
-    
-    <a class="button primary" href="{!! route('admin.index','users') !!}">Manage Users</a>
-    <a class="button primary" href="{!! route('admin.index','billings') !!}">Manage Billings</a>
-    
-    <a class="button primary" href="{!! route('admin.index','categories') !!}">Manage Categories</a>
-    <a class="button primary" href="{!! route('admin.index','products') !!}">Manage Products</a>
-    <a class="button primary" href="{!! route('admin.index','orders') !!}">Manage Orders</a>
-    <a class="button primary" href="{!! route('admin.index','orderitems') !!}">Manage Order Items</a>
-    
-    <a class="button primary" href="{!! route('admin.index','password_resets') !!}">Manage Password Resets</a>
-    
-    <a class="button primary" href="{!! route('admin.index','wishlists') !!}">Manage Wishlists</a>
-
-    <a class="button primary" href="{!! route('admin.index','roles') !!}">Manage Roles</a>
-    <a class="button primary" href="{!! route('admin.index','permissions') !!}">Manage Permissions</a>
-    <a class="button primary" href="{!! route('admin.index','coupons') !!}">Manage Coupons</a>
-
-    <a class="button primary" href="{!! route('admin.index','settings') !!}">Manage Settings</a>
     
     <p>&nbsp;</p>
     

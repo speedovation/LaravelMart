@@ -62,6 +62,7 @@ class AdminController extends Controller {
     public function create(Request $request)
     {
         $table = $request->segment(2);
+        $page = $request->input('page');
         
              
         $fields = \Config::get("laravelmart.$table.fields");
@@ -71,6 +72,7 @@ class AdminController extends Controller {
         
         return  view('admin.products.create')
         ->with('data', [])
+        ->with('page', $page)
         ->with('fields',$fields)
         ->with('url',$url)
         ->with('table',$table);
@@ -85,6 +87,7 @@ class AdminController extends Controller {
     {
         $input = $request->all();
         $table = $request->segment(2);
+        $page = $request->input('page');
         
         $Model = "\\App\\Models\\".ucfirst(str_singular($table));
        
@@ -95,7 +98,7 @@ class AdminController extends Controller {
         
         \Flash::message( ucfirst(str_singular($table)). ' saved successfully.');
         
-        return redirect(route("admin.index",[$table]));
+        return redirect(route("admin.index",[$table,"page={$page}"]));
     }
     
     /**
@@ -150,6 +153,7 @@ class AdminController extends Controller {
     {
         $table = $request->segment(2);
         $id = $request->segment(4);
+        $page = $request->input('page');
         
         $data = $this->productRepository->findProductById($id,$table);
         
@@ -163,7 +167,7 @@ class AdminController extends Controller {
         
         \Flash::message(ucfirst(str_singular($table)).' updated successfully.');
         
-        return redirect(route('admin.index',[$table,"page={$request->input('page')}"]));
+        return redirect(route('admin.index',[$table,"page={$page}"]));
     }
     
     /**
