@@ -48,19 +48,18 @@ return [
 
 'orders' => [
                     "fields" => [
-                        ['user_id','User id:', 'select' , [ "dynamic"=> "/list/users/name"] ], 
-                        ['order_id','Order id:', 'text',[] ], 
-                        ['coupon','Coupon:', 'text',[] ], 
+                        ['user_id','User Name:', 'select' , [ "dynamic"=> "/list/users/name"] ], 
+                        ['coupon_code','Coupon Code:', 'select',[ "dynamic"=> "/list/coupons/code"] ],  
                         ['discount','Discount:', 'text',[] ], 
                         
                     ],
-                    "index" => ['user_id','order_id','coupon','discount']
+                    "index" => ['user_id','coupon_code','discount']
                 ],
 
 
 'orderitems' => [
                     "fields" => [
-                        ['order_id','Order id:',  'select' , [ "dynamic"=> "/list/orders/order_id"] ], 
+                        ['order_id','Order id:',  'select' , [ "dynamic"=> "/list/orders/id"] ], 
                         ['product_id','Product id:', 'select' , [ "dynamic"=> "/list/products/name"] ], 
                         ['quantity','quantity:', 'text',[] ], 
                         ['price','Discount:', 'text',[] ], 
@@ -84,7 +83,7 @@ return [
 'wishlists' => [
                     "fields" => [
                         ['product_code','Product Code:', 'text',[] ], 
-                        ['user_id','User Id:', 'select' , [ "dynamic"=> "/list/users/name"] ], 
+                        ['user_id','User Name:', 'select' , [ "dynamic"=> "/list/users/name"] ], 
                     ],
                     "index" => ['product_code','user_id']
                 ],

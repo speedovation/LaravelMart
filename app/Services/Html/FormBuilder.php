@@ -50,8 +50,8 @@ class FormBuilder extends \Collective\Html\FormBuilder {
         $output = '';
         
         
-        $crud = new CrudFactory("TESTTable");
-        $crud->test();
+        //$crud = new CrudFactory("TESTTable");
+        //$crud->test();
         
         
         foreach($fields as $field)
@@ -80,7 +80,7 @@ class FormBuilder extends \Collective\Html\FormBuilder {
                 }
                 else
                 {
-                    echo $field[0];
+                    
                     $value = $field[3]["options"];
                     $selected = $field[3]["selected"];
                     unset($field[3]["options"]);

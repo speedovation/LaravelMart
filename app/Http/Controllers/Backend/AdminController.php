@@ -85,7 +85,7 @@ class AdminController extends Controller {
     */
     public function store(Request $request)
     {
-        $input = $request->all();
+        $input = $request->except('page');
         $table = $request->segment(2);
         $page = $request->input('page');
         

@@ -11,8 +11,7 @@ class CreateOrderTable extends Migration {
                     $table->increments("id");
                     
                     $table->integer("user_id");
-                    $table->integer("order_id");
-                    $table->string("coupon");
+                    $table->string("coupon_code");
                     $table->string("discount");
                     $table->timestamps();
                     $table->softDeletes();
