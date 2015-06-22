@@ -109,7 +109,7 @@ Route::group( ['namespace' => 'Backend', "prefix" => "admin", "as" => "admin."],
     ]);
     
     
-    Route::get('admin/{item}/delete/{id}', [
+    Route::get('{item}/delete/{id}', [
         'as' => 'delete',
         'uses' => 'AdminController@destroy',
     ]);

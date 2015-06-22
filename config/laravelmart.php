@@ -143,6 +143,13 @@ return [
                         ],
                         "index" => ['name','display_name','description']
 ],
+'role_user' => [
+                        "fields" => [
+                            ['user_id','User Name:','select' , [ "dynamic"=> "/list/users/name"] ], 
+                            ['role_id','Role Name :', 'select' , [ "dynamic"=> "/list/roles/name"] ], 
+                        ],
+                        "index" => ['user_id','role_id']
+],
 
 
 'settings' => [
