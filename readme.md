@@ -5,6 +5,24 @@
 No release yet. Stay tuned.
 
 
+##TODO
+* Admin dashboard responsive theme
+ * Link Menus
+ * Account management
+ * Widgets
+  * Reports
+  * Search
+  * Quick actions
+  * Quick look on stock
+  * Will add more
+* Manage Themes
+* Manage shipping ways and vendors
+* Manage Payment types
+ * Adding payment gateways
+ * Integrating into frontend
+* User fill billing address and buy stuff using payment gateways.
+* New attractive front-end theme
+
 #Features - FrontEnd and Backend
 
 ## FrontEnd - User area
@@ -53,7 +71,7 @@ Custom Error Pages
 ![](http://bit.ly/1IcxtKo) Manage Settings  
 ![](http://bit.ly/1IcxtKo) Manage User, Permissions and Roles  
 ![](http://bit.ly/1IcxtKo) Manage Password Resets  
-Manage Payment types  
+
 
 
 
