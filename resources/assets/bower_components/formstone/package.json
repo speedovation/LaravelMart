@@ -1,0 +1,104 @@
+{
+  "name": "formstone",
+  "id": "formstone",
+  "codename": "formstone",
+  "version": "0.6.12",
+  "description": "Library of modular front end components.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Formstone/Formstone/"
+  },
+  "homepage": "http://formstone.it/",
+  "homepage_short": "formstone.it",
+  "demo": "http://formstone.it/demo/",
+  "license": "MIT",
+  "author": {
+    "name": "Ben Plum",
+    "email": "mr@benplum.com",
+    "url": "http://www.benplum.com"
+  },
+  "dependencies": {
+    "jquery": ">=1.11.1"
+  },
+  "devDependencies": {
+    "bower": "^1.3.12",
+    "grunt": "~0.4.2",
+    "grunt-autoprefixer": "^1.0.1",
+    "grunt-banner": "^0.2.3",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-imagemin": "^0.9.4",
+    "grunt-contrib-jshint": "~0.7.2",
+    "grunt-contrib-less": "~1.0.0",
+    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-include-replace": "^3.0.0",
+    "grunt-modernizr": "^0.6.0",
+    "grunt-newer": "^0.8.0",
+    "grunt-npm2bower-sync": "~0.3.0",
+    "grunt-stripmq": "0.0.6",
+    "grunt-svgmin": "^2.0.0",
+    "grunt-zetzer": "^2.0.0",
+    "less-plugin-clean-css": "^1.5.0",
+    "load-grunt-tasks": "^1.0.0"
+  },
+  "scripts": {
+    "postinstall": "node ./node_modules/bower/bin/bower install"
+  },
+  "site": {
+    "css": {
+      "demo/css/site.css": "demo/css/src/site.less",
+      "demo/css/site-ie8.css": "demo/css/src/ie/ie8.less",
+      "demo/css/site-ie9.css": "demo/css/src/ie/ie9.less"
+    },
+    "js": {
+      "demo/js/site.js": [
+        "dist/js/lib/utils.js",
+        "demo/bower/jquery/dist/jquery.min.js",
+        "demo/bower/prism/prism.js",
+        "dist/js/core.js",
+        "dist/js/analytics.js",
+        "dist/js/asap.js",
+        "dist/js/background.js",
+        "dist/js/carousel.js",
+        "dist/js/checkbox.js",
+        "dist/js/cookie.js",
+        "dist/js/dropdown.js",
+        "dist/js/equalize.js",
+        "dist/js/lightbox.js",
+        "dist/js/mediaquery.js",
+        "dist/js/pagination.js",
+        "dist/js/navigation.js",
+        "dist/js/number.js",
+        "dist/js/range.js",
+        "dist/js/scrollbar.js",
+        "dist/js/swap.js",
+        "dist/js/tabs.js",
+        "dist/js/tooltip.js",
+        "dist/js/touch.js",
+        "dist/js/transition.js",
+        "dist/js/upload.js",
+        "demo/js/src/site.js"
+      ],
+      "demo/js/site-ie8.js": [
+        "demo/bower/html5shiv/dist/html5shiv.min.js",
+        "demo/bower/html5shiv/dist/html5shiv-printshiv.min.js",
+        "demo/js/src/ie/matchMedia.ie8.js"
+      ],
+      "demo/js/site-ie9.js": [
+        "demo/js/src/ie/matchMedia.ie9.js"
+      ]
+    },
+    "js_ignores": [
+      "demo/js/src/ie/*/",
+      "demo/js/src/lib/*/"
+    ],
+    "vars": {
+      "mq_min_xs": "320",
+      "mq_min_sm": "500",
+      "mq_min_md": "740",
+      "mq_min_lg": "980",
+      "mq_min_xl": "1220"
+    }
+  }
+}
