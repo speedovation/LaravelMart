@@ -34,6 +34,7 @@ billings        |
 	$pages = [  'menus','pages','users','categories', 'products' ,
 				'orders' , 'orderitems' ,'password_resets',
 				'billings', 'wishlists' , 'roles' ,'permissions',
+				'permission_role','role_user',
 				'coupons', 'emails', 'settings'
 				
 				 ];
@@ -42,7 +43,7 @@ billings        |
 	
 	
 	@foreach($pages as $page)
-    <a class="button primary"  href="{!! route('admin.index',$page) !!}">Manage {!! ucfirst($page) !!}</a>
+    <a class="button primary"  href="{!! route('admin.index',$page) !!}">MANAGE {!! str_replace( "_" ," ", strtoupper($page) ) !!}</a>
     @endforeach
     
     

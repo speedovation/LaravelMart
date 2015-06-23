@@ -6,16 +6,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 
-class Role_user extends Model {
+class Permission_role extends Model {
 
-    protected $table = "role_user";
+    protected $table = "permission_role";
     protected $guarded = ["id"];
     protected $softDelete = true;
 
     
     public static $rules = [
-		    "user_id" => "required",
-		    "role_id" => "required",
+		"role_id" => "required",
+		"permission_id" => "required",
 	];
 
 }

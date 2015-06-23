@@ -99,7 +99,7 @@
         ?>
         <div class='row'>
 
-            $products->links()
+            {!! $products->render() !!}
 
         </div>
 

@@ -135,21 +135,6 @@ return [
                 
                 
                 
-'roles' => [
-                        "fields" => [
-                            ['name','Name:', 'text',[] ], 
-                            ['display_name','Display Name :', 'text',[] ],
-                            ['description','Description Name :', 'text',[] ],
-                        ],
-                        "index" => ['name','display_name','description']
-],
-'role_user' => [
-                        "fields" => [
-                            ['user_id','User Name:','select' , [ "dynamic"=> "/list/users/name"] ], 
-                            ['role_id','Role Name :', 'select' , [ "dynamic"=> "/list/roles/name"] ], 
-                        ],
-                        "index" => ['user_id','role_id']
-],
 
 
 'settings' => [
@@ -179,6 +164,32 @@ return [
                             ['description','Description :' , 'text',[] ],
                         ],
                         "index" => ['name','display_name','description']
+],
+
+'permission_role' => [
+                        "fields" => [
+                            ['permission_id','User Name:','select' , [ "dynamic"=> "/list/permissions/display_name"] ], 
+                            ['role_id','Role Name :', 'select' , [ "dynamic"=> "/list/roles/name"] ], 
+                        ],
+                        "index" => ['user_id','role_id']
+],
+
+
+'roles' => [
+                        "fields" => [
+                            ['name','Name:', 'text',[] ], 
+                            ['display_name','Display Name :', 'text',[] ],
+                            ['description','Description Name :', 'text',[] ],
+                        ],
+                        "index" => ['name','display_name','description']
+],
+
+'role_user' => [
+                        "fields" => [
+                            ['user_id','User Name:','select' , [ "dynamic"=> "/list/users/name"] ], 
+                            ['role_id','Role Name :', 'select' , [ "dynamic"=> "/list/roles/display_name"] ], 
+                        ],
+                        "index" => ['user_id','role_id']
 ],
 
 

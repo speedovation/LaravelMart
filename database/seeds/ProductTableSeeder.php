@@ -15,7 +15,7 @@ class ProductTableSeeder extends DatabaseSeeder {
 
         foreach ($categories as $category) {
             for ($i = 0; $i < 40; $i++) {
-                $name = ucwords($faker->word);
+             
                 $stock = $faker->numberBetween(0, 100);
                 $price = $faker->numberBetween(2, 5, 100);
 
@@ -24,19 +24,19 @@ class ProductTableSeeder extends DatabaseSeeder {
                 //$code = substr(uniqid('hjmoe56d2hhuJteXZADuH' . mt_rand()), 0, 8);
                 $code = uniqid();
 
-
+                $name = ucwords(implode(" ",$faker->words(2))) ;
 
 
                 Product::create([
                     "code" => $code,
-                    "name" => $name." ".ucwords($faker->word)." ".ucwords($faker->word),
+                    "name" => $name,
                     "stock" => $stock,
                     "mrp" => $price,
                     "price" => $price,
                     "discount" => $faker->numberBetween(5, 30),
                     
                     "category_id" => $category->id,
-                    "image" => $name,
+                    "image" => $faker->word,
                     "short_desc" => '<ul>                    
                         <li><span class="text">Dual SIM (GSM + GSM)</span></li>
                         <li><span class="text">0.3 MP Primary Camera</span></li>
