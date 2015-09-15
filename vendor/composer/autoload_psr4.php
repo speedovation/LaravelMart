@@ -16,7 +16,6 @@ return array(
     'Symfony\\Component\\HttpKernel\\' => array($vendorDir . '/symfony/http-kernel'),
     'Symfony\\Component\\HttpFoundation\\' => array($vendorDir . '/symfony/http-foundation'),
     'Symfony\\Component\\Finder\\' => array($vendorDir . '/symfony/finder'),
-    'Symfony\\Component\\Filesystem\\' => array($vendorDir . '/symfony/filesystem'),
     'Symfony\\Component\\EventDispatcher\\' => array($vendorDir . '/symfony/event-dispatcher'),
     'Symfony\\Component\\DomCrawler\\' => array($vendorDir . '/symfony/dom-crawler'),
     'Symfony\\Component\\Debug\\' => array($vendorDir . '/symfony/debug'),
@@ -40,6 +39,5 @@ return array(
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'Collective\\Html\\' => array($vendorDir . '/laravelcollective/html/src'),
     'ClassPreloader\\' => array($vendorDir . '/classpreloader/classpreloader/src'),
-    'Bosnadev\\Repositories\\' => array($vendorDir . '/bosnadev/repositories/src'),
     'App\\' => array($baseDir . '/app'),
 );

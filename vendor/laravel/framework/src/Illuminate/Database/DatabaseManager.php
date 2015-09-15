@@ -2,6 +2,7 @@
 
 namespace Illuminate\Database;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Illuminate\Database\Connectors\ConnectionFactory;
@@ -62,7 +63,7 @@ class DatabaseManager implements ConnectionResolverInterface
         // If we haven't created this connection, we'll create it based on the config
         // provided in the application. Once we've created the connections we will
         // set the "fetch mode" for PDO which determines the query return types.
-        if (!isset($this->connections[$name])) {
+        if (! isset($this->connections[$name])) {
             $connection = $this->makeConnection($name);
 
             $this->setPdoForType($connection, $type);
@@ -123,7 +124,7 @@ class DatabaseManager implements ConnectionResolverInterface
     {
         $this->disconnect($name = $name ?: $this->getDefaultConnection());
 
-        if (!isset($this->connections[$name])) {
+        if (! isset($this->connections[$name])) {
             return $this->connection($name);
         }
 
@@ -233,7 +234,7 @@ class DatabaseManager implements ConnectionResolverInterface
         // If the configuration doesn't exist, we'll throw an exception and bail.
         $connections = $this->app['config']['database.connections'];
 
-        if (is_null($config = array_get($connections, $name))) {
+        if (is_null($config = Arr::get($connections, $name))) {
             throw new InvalidArgumentException("Database [$name] not configured.");
         }
 

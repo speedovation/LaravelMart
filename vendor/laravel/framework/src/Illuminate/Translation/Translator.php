@@ -2,6 +2,7 @@
 
 namespace Illuminate\Translation;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\NamespacedItemResolver;
 use Symfony\Component\Translation\MessageSelector;
@@ -84,7 +85,7 @@ class Translator extends NamespacedItemResolver implements TranslatorInterface
                 $namespace, $group, $locale, $item, $replace
             );
 
-            if (!is_null($line)) {
+            if (! is_null($line)) {
                 break;
             }
         }
@@ -92,7 +93,7 @@ class Translator extends NamespacedItemResolver implements TranslatorInterface
         // If the line doesn't exist, we will return back the key which was requested as
         // that will be quick to spot in the UI if language keys are wrong or missing
         // from the application's language files. Otherwise we can return the line.
-        if (!isset($line)) {
+        if (! isset($line)) {
             return $key;
         }
 
@@ -107,11 +108,11 @@ class Translator extends NamespacedItemResolver implements TranslatorInterface
      * @param  string  $locale
      * @param  string  $item
      * @param  array   $replace
-     * @return string|null
+     * @return string|array|null
      */
     protected function getLine($namespace, $group, $locale, $item, array $replace)
     {
-        $line = array_get($this->loaded[$namespace][$group][$locale], $item);
+        $line = Arr::get($this->loaded[$namespace][$group][$locale], $item);
 
         if (is_string($line)) {
             return $this->makeReplacements($line, $replace);
@@ -270,7 +271,7 @@ class Translator extends NamespacedItemResolver implements TranslatorInterface
      */
     protected function parseLocale($locale)
     {
-        if (!is_null($locale)) {
+        if (! is_null($locale)) {
             return array_filter([$locale, $this->fallback]);
         }
 
@@ -284,7 +285,7 @@ class Translator extends NamespacedItemResolver implements TranslatorInterface
      */
     public function getSelector()
     {
-        if (!isset($this->selector)) {
+        if (! isset($this->selector)) {
             $this->selector = new MessageSelector;
         }
 

@@ -94,7 +94,7 @@ class Collection extends BaseCollection
      */
     public function fetch($key)
     {
-        return new static(array_fetch($this->toArray(), $key));
+        return new static(Arr::fetch($this->toArray(), $key));
     }
 
     /**
@@ -137,7 +137,7 @@ class Collection extends BaseCollection
         $dictionary = $this->getDictionary($items);
 
         foreach ($this->items as $item) {
-            if (!isset($dictionary[$item->getKey()])) {
+            if (! isset($dictionary[$item->getKey()])) {
                 $diff->add($item);
             }
         }
@@ -174,7 +174,7 @@ class Collection extends BaseCollection
      */
     public function unique($key = null)
     {
-        if (!is_null($key)) {
+        if (! is_null($key)) {
             return parent::unique($key);
         }
 
@@ -189,7 +189,7 @@ class Collection extends BaseCollection
      */
     public function only($keys)
     {
-        $dictionary = array_only($this->getDictionary(), $keys);
+        $dictionary = Arr::only($this->getDictionary(), $keys);
 
         return new static(array_values($dictionary));
     }

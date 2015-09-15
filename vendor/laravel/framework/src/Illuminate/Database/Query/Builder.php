@@ -4,6 +4,8 @@ namespace Illuminate\Database\Query;
 
 use Closure;
 use BadMethodCallException;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\Paginator;
@@ -47,6 +49,7 @@ class Builder
         'where'  => [],
         'having' => [],
         'order'  => [],
+        'union'  => [],
     ];
 
     /**
@@ -169,6 +172,13 @@ class Builder
     protected $backups = [];
 
     /**
+     * The binding backups currently in use.
+     *
+     * @var array
+     */
+    protected $bindingBackups = [];
+
+    /**
      * All of the available clause operators.
      *
      * @var array
@@ -179,7 +189,7 @@ class Builder
         '&', '|', '^', '<<', '>>',
         'rlike', 'regexp', 'not regexp',
         '~', '~*', '!~', '!~*', 'similar to',
-                'not similar to',
+        'not similar to',
     ];
 
     /**
@@ -455,7 +465,7 @@ class Builder
         // If the given operator is not found in the list of valid operators we will
         // assume that the developer is just short-cutting the '=' operators and
         // we will set the operators to '=' and set the values appropriately.
-        if (!in_array(strtolower($operator), $this->operators, true)) {
+        if (! in_array(strtolower($operator), $this->operators, true)) {
             list($value, $operator) = [$operator, '='];
         }
 
@@ -480,7 +490,7 @@ class Builder
 
         $this->wheres[] = compact('type', 'column', 'operator', 'value', 'boolean');
 
-        if (!$value instanceof Expression) {
+        if (! $value instanceof Expression) {
             $this->addBinding($value, 'where');
         }
 
@@ -637,7 +647,7 @@ class Builder
 
             $this->wheres[] = compact('type', 'query', 'boolean');
 
-            $this->mergeBindings($query);
+            $this->addBinding($query->getBindings(), 'where');
         }
 
         return $this;
@@ -665,7 +675,7 @@ class Builder
 
         $this->wheres[] = compact('type', 'column', 'operator', 'query', 'boolean');
 
-        $this->mergeBindings($query);
+        $this->addBinding($query->getBindings(), 'where');
 
         return $this;
     }
@@ -691,7 +701,7 @@ class Builder
 
         $this->wheres[] = compact('type', 'operator', 'query', 'boolean');
 
-        $this->mergeBindings($query);
+        $this->addBinding($query->getBindings(), 'where');
 
         return $this;
     }
@@ -819,7 +829,7 @@ class Builder
 
         $this->wheres[] = compact('type', 'column', 'query', 'boolean');
 
-        $this->mergeBindings($query);
+        $this->addBinding($query->getBindings(), 'where');
 
         return $this;
     }
@@ -1007,7 +1017,7 @@ class Builder
         // clause on the query. Then we'll increment the parameter index values.
         $bool = strtolower($connector);
 
-        $this->where(snake_case($segment), '=', $parameters[$index], $bool);
+        $this->where(Str::snake($segment), '=', $parameters[$index], $bool);
     }
 
     /**
@@ -1040,7 +1050,7 @@ class Builder
 
         $this->havings[] = compact('type', 'column', 'operator', 'value', 'boolean');
 
-        if (!$value instanceof Expression) {
+        if (! $value instanceof Expression) {
             $this->addBinding($value, 'having');
         }
 
@@ -1231,7 +1241,9 @@ class Builder
 
         $this->unions[] = compact('query', 'all');
 
-        return $this->mergeBindings($query);
+        $this->addBinding($query->bindings, 'union');
+
+        return $this;
     }
 
     /**
@@ -1374,7 +1386,7 @@ class Builder
      */
     protected function runSelect()
     {
-        return $this->connection->select($this->toSql(), $this->getBindings(), !$this->useWritePdo);
+        return $this->connection->select($this->toSql(), $this->getBindings(), ! $this->useWritePdo);
     }
 
     /**
@@ -1383,11 +1395,12 @@ class Builder
      * @param  int  $perPage
      * @param  array  $columns
      * @param  string  $pageName
+     * @param  int|null  $page
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function paginate($perPage = 15, $columns = ['*'], $pageName = 'page')
+    public function paginate($perPage = 15, $columns = ['*'], $pageName = 'page', $page = null)
     {
-        $page = Paginator::resolveCurrentPage($pageName);
+        $page = $page ?: Paginator::resolveCurrentPage($pageName);
 
         $total = $this->getCountForPagination($columns);
 
@@ -1458,6 +1471,12 @@ class Builder
 
             $this->{$field} = null;
         }
+
+        foreach (['order', 'select'] as $key) {
+            $this->bindingBackups[$key] = $this->bindings[$key];
+
+            $this->bindings[$key] = [];
+        }
     }
 
     /**
@@ -1471,7 +1490,12 @@ class Builder
             $this->{$field} = $this->backups[$field];
         }
 
+        foreach (['order', 'select'] as $key) {
+            $this->bindings[$key] = $this->bindingBackups[$key];
+        }
+
         $this->backups = [];
+        $this->bindingBackups = [];
     }
 
     /**
@@ -1512,7 +1536,7 @@ class Builder
 
         $results = new Collection($this->get($columns));
 
-        return $results->pluck($columns[0], array_get($columns, 1))->all();
+        return $results->pluck($columns[0], Arr::get($columns, 1))->all();
     }
 
     /**
@@ -1576,7 +1600,7 @@ class Builder
      */
     public function count($columns = '*')
     {
-        if (!is_array($columns)) {
+        if (! is_array($columns)) {
             $columns = [$columns];
         }
 
@@ -1642,6 +1666,13 @@ class Builder
 
         $previousColumns = $this->columns;
 
+        // We will also back up the select bindings since the select clause will be
+        // removed when performing the aggregate function. Once the query is run
+        // we will add the bindings back onto this query so they can get used.
+        $previousSelectBindings = $this->bindings['select'];
+
+        $this->bindings['select'] = [];
+
         $results = $this->get($columns);
 
         // Once we have executed the query, we will reset the aggregate property so
@@ -1650,6 +1681,8 @@ class Builder
         $this->aggregate = null;
 
         $this->columns = $previousColumns;
+
+        $this->bindings['select'] = $previousSelectBindings;
 
         if (isset($results[0])) {
             $result = array_change_key_case((array) $results[0]);
@@ -1673,7 +1706,7 @@ class Builder
         // Since every insert gets treated like a batch insert, we will make sure the
         // bindings are structured in a way that is convenient for building these
         // inserts statements by verifying the elements are actually an array.
-        if (!is_array(reset($values))) {
+        if (! is_array(reset($values))) {
             $values = [$values];
         }
 
@@ -1784,7 +1817,7 @@ class Builder
         // If an ID is passed to the method, we will set the where clause to check
         // the ID to allow developers to simply and quickly remove a single row
         // from their database without manually specifying the where clauses.
-        if (!is_null($id)) {
+        if (! is_null($id)) {
             $this->where('id', '=', $id);
         }
 
@@ -1838,7 +1871,7 @@ class Builder
     protected function cleanBindings(array $bindings)
     {
         return array_values(array_filter($bindings, function ($binding) {
-            return !$binding instanceof Expression;
+            return ! $binding instanceof Expression;
         }));
     }
 
@@ -1860,7 +1893,7 @@ class Builder
      */
     public function getBindings()
     {
-        return array_flatten($this->bindings);
+        return Arr::flatten($this->bindings);
     }
 
     /**
@@ -1884,7 +1917,7 @@ class Builder
      */
     public function setBindings(array $bindings, $type = 'where')
     {
-        if (!array_key_exists($type, $this->bindings)) {
+        if (! array_key_exists($type, $this->bindings)) {
             throw new InvalidArgumentException("Invalid binding type: {$type}.");
         }
 
@@ -1904,7 +1937,7 @@ class Builder
      */
     public function addBinding($value, $type = 'where')
     {
-        if (!array_key_exists($type, $this->bindings)) {
+        if (! array_key_exists($type, $this->bindings)) {
             throw new InvalidArgumentException("Invalid binding type: {$type}.");
         }
 
@@ -1983,7 +2016,7 @@ class Builder
      */
     public function __call($method, $parameters)
     {
-        if (starts_with($method, 'where')) {
+        if (Str::startsWith($method, 'where')) {
             return $this->dynamicWhere($method, $parameters);
         }
 

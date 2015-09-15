@@ -2,6 +2,8 @@
 
 namespace Illuminate\Routing;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use InvalidArgumentException;
 use Illuminate\Contracts\Routing\UrlRoutable;
@@ -211,7 +213,7 @@ class UrlGenerator implements UrlGeneratorContract
     {
         $i = 'index.php';
 
-        return str_contains($root, $i) ? str_replace('/'.$i, '', $root) : $root;
+        return Str::contains($root, $i) ? str_replace('/'.$i, '', $root) : $root;
     }
 
     /**
@@ -269,7 +271,7 @@ class UrlGenerator implements UrlGeneratorContract
      */
     public function route($name, $parameters = [], $absolute = true)
     {
-        if (!is_null($route = $this->routes->getByName($name))) {
+        if (! is_null($route = $this->routes->getByName($name))) {
             return $this->toRoute($route, $parameters, $absolute);
         }
 
@@ -339,7 +341,7 @@ class UrlGenerator implements UrlGeneratorContract
     protected function replaceNamedParameters($path, &$parameters)
     {
         return preg_replace_callback('/\{(.*?)\??\}/', function ($m) use (&$parameters) {
-            return isset($parameters[$m[1]]) ? array_pull($parameters, $m[1]) : $m[0];
+            return isset($parameters[$m[1]]) ? Arr::pull($parameters, $m[1]) : $m[0];
 
         }, $path);
     }
@@ -356,7 +358,7 @@ class UrlGenerator implements UrlGeneratorContract
         // If the URI has a fragment, we will move it to the end of the URI since it will
         // need to come after any query string that may be added to the URL else it is
         // not going to be available. We will remove it then append it back on here.
-        if (!is_null($fragment = parse_url($uri, PHP_URL_FRAGMENT))) {
+        if (! is_null($fragment = parse_url($uri, PHP_URL_FRAGMENT))) {
             $uri = preg_replace('/#.*/', '', $uri);
         }
 
@@ -434,7 +436,7 @@ class UrlGenerator implements UrlGeneratorContract
      */
     protected function getStringParameters(array $parameters)
     {
-        return array_where($parameters, function ($k, $v) { return is_string($k); });
+        return Arr::where($parameters, function ($k, $v) { return is_string($k); });
     }
 
     /**
@@ -445,7 +447,7 @@ class UrlGenerator implements UrlGeneratorContract
      */
     protected function getNumericParameters(array $parameters)
     {
-        return array_where($parameters, function ($k, $v) { return is_numeric($k); });
+        return Arr::where($parameters, function ($k, $v) { return is_numeric($k); });
     }
 
     /**
@@ -493,9 +495,9 @@ class UrlGenerator implements UrlGeneratorContract
     {
         $secure = $this->request->isSecure();
 
-        $port = $this->request->getPort();
+        $port = (int) $this->request->getPort();
 
-        if (($secure && $port === 443) || (!$secure && $port === 80)) {
+        if (($secure && $port === 443) || (! $secure && $port === 80)) {
             return $domain;
         }
 
@@ -543,13 +545,13 @@ class UrlGenerator implements UrlGeneratorContract
      */
     public function action($action, $parameters = [], $absolute = true)
     {
-        if ($this->rootNamespace && !(strpos($action, '\\') === 0)) {
+        if ($this->rootNamespace && ! (strpos($action, '\\') === 0)) {
             $action = $this->rootNamespace.'\\'.$action;
         } else {
             $action = trim($action, '\\');
         }
 
-        if (!is_null($route = $this->routes->getByAction($action))) {
+        if (! is_null($route = $this->routes->getByAction($action))) {
             return $this->toRoute($route, $parameters, $absolute);
         }
 
@@ -573,7 +575,7 @@ class UrlGenerator implements UrlGeneratorContract
             $root = $this->cachedRoot;
         }
 
-        $start = starts_with($root, 'http://') ? 'http://' : 'https://';
+        $start = Str::startsWith($root, 'http://') ? 'http://' : 'https://';
 
         return preg_replace('~'.$start.'~', $scheme, $root, 1);
     }
@@ -598,7 +600,7 @@ class UrlGenerator implements UrlGeneratorContract
      */
     public function isValidUrl($path)
     {
-        if (starts_with($path, ['#', '//', 'mailto:', 'tel:', 'http://', 'https://'])) {
+        if (Str::startsWith($path, ['#', '//', 'mailto:', 'tel:', 'http://', 'https://'])) {
             return true;
         }
 
