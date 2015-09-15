@@ -7,3 +7,4 @@
 /laravel4/vendor/bin/pscss
 /laravel4/test/*
 /app/storage/*
+.idea/workspace.xml
