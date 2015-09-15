@@ -2,20 +2,33 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model as Model;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Orderitem extends Model {
+class OrderItem extends Model {
 
     protected $table = "orderitems";
     protected $guarded = ["id"];
     protected $softDelete = true;
-
-   
     
     public static $rules = [
-	    "name" => "required",
+	    "order_id" => "required",
+	    "product_id" => "required",
+	    "quantity" => "required",
+	    "price" => "required",
 		
 	];
+
+
+    public function product() {
+        return $this->belongsTo("Product");
+    }
+
+    public function order() {
+        return $this->belongsTo("Order");
+    }
+
+    public function getTotalAttribute() {
+        return $this->quantity * $this->price;
+    }
 
 }

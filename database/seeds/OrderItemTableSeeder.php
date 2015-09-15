@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Models\Product;
 use App\Models\Order;
+use App\Models\OrderItem;
 
 class OrderItemTableSeeder extends DatabaseSeeder {
 
