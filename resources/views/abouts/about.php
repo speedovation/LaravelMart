@@ -2,15 +2,11 @@
     <div class="desktop-12">
         <h2> Speedovation </h2>
 <p>
-Jabong.com is a young and vibrant company that aims to provide good quality branded products. Jabong.com caters to the fashion needs of men, women and kids across footwear, apparel, jewellery and accessories.
+We’re a small, young and energetic design studio based in Delhi, India. We don’t have any investors or enterprise loans so we take orders from no one and treasure our creative independence.
 </p>
 <p>
-At Jabong.com we strive to achieve the highest level of “Customer Satisfaction” possible. Our cutting edge E-commerce platform, highly experienced buying team, agile warehouse systems and state of the art customer care centre provides customer with:
-    
-    Broader selection of products
-    Superior buying experience
-    On-time delivery of products
-    Quick resolution of any concerns
+We’re interested in all things technology and design and take equal pride in building things well and making our work look beautiful. We do what we love and we love what we do. There’s not much more to it. Creativity aside, we mean business. We’re honest, professional and committed to delivering results.
+
 </p>
     </div>
 </div>

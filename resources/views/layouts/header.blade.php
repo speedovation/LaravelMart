@@ -4,7 +4,7 @@
     <div class="row">
         <div class="desktop-4">
             <a class="" href="/">
-                <img title="Masala Store | wowmasalas.com" alt="Wowmasalas : The Masalas Store"
+                <img title="Masala Store | laravel-mart.com" alt="Tasty Masalas : The Masalas Store"
                      src="" class="logo-img" data-src="holder.js/300x55/gray/text:Wow Masalas" />
 
 
