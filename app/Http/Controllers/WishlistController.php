@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 class WishlistController extends CoreController {
 
     public function __construct() {
-        $this->beforeFilter('auth');
+        $this->middleware('auth');
     }
 
     /**
