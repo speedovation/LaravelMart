@@ -2,7 +2,7 @@
     <div class="newsl-signup fl">
         <p class="fs12 mb5 pb5 f-bold b-bottom-d3">Newsletter Signup</p>
         <div class="signup-box mt5 bdr">
-            <p>Track the latest collections and offers at Jabong.</p>
+            <p>Track the latest collections and offers at Laravel-Mart.</p>
             <em class="d-block mt10 f-bold">Sign up for our newsletter and get a Rs. 1500 Voucher!</em>
             <form id="FooterNewsletter" class="mt10 mb10">
                 <input type="text" id="txtemail" class="form-text fs13" placeholder="Your e-mail address" value="">

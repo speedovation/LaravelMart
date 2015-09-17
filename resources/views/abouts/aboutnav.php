@@ -8,7 +8,7 @@
             <li> <a rel="nofollow" title="Privacy Policy" href="/privacy_policy">Privacy Policy</a> </li>
             <li> <a rel="nofollow" title="Affiliate Programme" href="/affiliate">Affiliate Program</a> </li>
             <li> <a rel="nofollow" title="Gift Cards" href="/customer/credits/gift_cards">Gift Cards</a> </li>
-            <li> <a rel="nofollow" title="Sell On Jabong" href="/sellonjabong">Sell On Jabong</a> </li>
+            <li> <a rel="nofollow" title="Sell On Laravel-Mart" href="/sellonLaravel-Mart">Sell On Laravel-Mart</a> </li>
         </ul>
     </div>
     <div class="w-33">
@@ -23,8 +23,8 @@
     <div class="w-33">
         <h3>Join us on</h3>
         <ul class="nav nav-side">
-            <li> <a rel="nofollow" title="Facebook" target="_blank" href="http://www.facebook.com/myjabong"><font class="facebook common-sprite"></font>Facebook</a>  </li>
-            <li> <a rel="nofollow" title="Twitter" target="_blank" href="http://twitter.com/jabongindia"><font class="twitter common-sprite"></font>Twitter</a>  </li>
+            <li> <a rel="nofollow" title="Facebook" target="_blank" href="http://www.facebook.com/myLaravel-Mart"><font class="facebook common-sprite"></font>Facebook</a>  </li>
+            <li> <a rel="nofollow" title="Twitter" target="_blank" href="http://twitter.com/Laravel-Martindia"><font class="twitter common-sprite"></font>Twitter</a>  </li>
             <li> <a rel="nofollow" title="Google+" target="_blank" href="https://plus.google.com/b/104086444878156182654"><font class="gplus common-sprite"></font>Google+</a>  </li>
             <li> <a rel="nofollow" title="Fashion &amp; Trends" target="_blank" href="/blog/"><font class="fashiontrends common-sprite"></font>Fashion &amp; Trends</a>  </li>
         </ul>

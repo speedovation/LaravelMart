@@ -116,4 +116,4 @@
             </div>
         </div>
 
-<div class="txt-center full-width fs11 mt10" id="qa-copuright-div">Copyright &copy; 2013 Jabong.com All Rights Reserved</div>
+<div class="txt-center full-width fs11 mt10" id="qa-copuright-div">Copyright &copy; 2013 Laravel-Mart.com All Rights Reserved</div>
