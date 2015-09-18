@@ -34,7 +34,11 @@ class PageController extends Controller {
 	public function getIndex($url)
 	{
 		
-		$page = Page::where('url', $url )->first();
+		$page = Page::where('url', $url )->where('status' , 'Live')->firstOrFail();
+		
+		if(empty($page))
+			
+		
 		
 		return view('home.page',$page);
 	}

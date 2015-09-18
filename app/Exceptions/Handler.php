@@ -2,6 +2,7 @@
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class Handler extends ExceptionHandler {
 
@@ -37,12 +38,22 @@ class Handler extends ExceptionHandler {
 	public function render($request, Exception $e)
 	{
 		
-		if (config('app.debug'))
+		   if ($this->isHttpException($e))
+        {
+            return $this->renderHttpException($e);
+        }
+        else if($e instanceof ModelNotFoundException)
+        {
+            return response()->view('errors.404', [], 404);
+        }
+        else if (config('app.debug'))
         {
             return $this->renderExceptionWithWhoops($e);
         }
-		
-		return parent::render($request, $e);
+        else
+        {
+            return parent::render($request, $e);
+        }
 	}
 	
 	 /**
@@ -62,5 +73,8 @@ class Handler extends ExceptionHandler {
             $e->getHeaders()
         );
     }
+    
+    
+   
 
 }
