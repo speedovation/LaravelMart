@@ -29,7 +29,7 @@ return [
                         ['mrp','MRP:', 'text',[] ], 
                         ['price','Price:', 'text',[] ], 
                         ['discount','Discount:', 'text',[] ],
-                        ['category_id','Categories:', 'select' , [ "dynamic"=> "/category/list","multiple"=>""] ], 
+                        ['category_id','Categories:', 'select' , [ "dynamic"=> "/list/categories/name","multiple"=>""] ], 
                         ['image','Image:', 'text',[] ],
                         ['short_desc','Short Desc:', 'textarea',[] ],
                         ['long_desc','Long Desc:', 'textarea',["rows" => "50","style" => " height: 200px;"] ]
@@ -107,7 +107,7 @@ return [
                         ['url', 'Url' , 'text' , ['Placeholder' => 'Enter Url'] ], 
                         ['status', 'Status' ,  'select' , [ "options"=> [ 'draft' => 'Draft','live' => 'Live'] ,"selected" => 'live' ] ],  
                         ['visibility', 'Visibility' ,  'select' , [ "options"=> [ 'public' => 'Public','private' => 'Private'] ,"selected" => 'public'] ], 
-                        ['type', 'Type' , 'select' , [ "options"=> [ 'html' => 'Html','md' => 'Markdown'] ,"selected" => 'Html' ] ], 
+                        ['type', 'Type' , 'select' , [ "options"=> [ 'html' => 'Html','md' => 'Markdown'] ,"selected" => 'html' ] ], 
                         ['body', 'Body' , 'textarea' , [] ], 
                         ['header', 'Header' , 'textarea' , [] ],
                         ['parent_id','Parent' , 'select' , [ "dynamic"=> "/list/pages/title"] ], 
@@ -121,18 +121,18 @@ return [
                         ['url', 'Url' , 'text' , ['Placeholder' => 'Enter Url'] ], 
                         ['status', 'Status' ,  'select' , [ "options"=> [ 'draft' => 'Draft','live' => 'Live'] ,"selected" => 'live' ] ],  
                         ['visibility', 'Visibility' ,  'select' , [ "options"=> [ 'public' => 'Public','private' => 'Private'] ,"selected" => 'public'] ], 
-                        ['type', 'Type' , 'select' , [ "options"=> [ 'html' => 'Html','md' => 'Markdown'] ,"selected" => 'Html' ] ], 
+                        ['type', 'Type' , 'select' , [ "options"=> [ 'html' => 'Html','md' => 'Markdown'] ,"selected" => 'html' ] ], 
                         ['body', 'Body' , 'textarea' , [] ], 
                         
-                        ['category_id','Categories:', 'select' , [ "dynamic"=> "/category/list","multiple"=>""] ],
+                        ['category_id','Categories:', 'select' , [ "dynamic"=> "/list/categories/name","multiple"=>""] ],
                         ['author', 'Author' , 'text' , ['Placeholder' => 'Enter author name'] ], 
-                        ['is_comments_allowed', 'Is Comments Allowed' , 'text' , ['Placeholder' => 'Enter 0 block comment'] ], 
+                        ['is_comments_allowed', 'Is Comments Allowed' , 'select' , [ "options"=> [ '0' => 'No','1' => 'Yes'] ,"selected" => '1' ] ], 
                         ['comments_days', 'Allowed Comments Days' , 'text' , ['Placeholder' => 'Enter 0 for unlimited days'] ], 
                         
                         ['header', 'Header' , 'textarea' , [] ]
                         , 
                     ],
-                    "index" => [ 'title', 'url' ,'status', 'visibility','type', 'parent_id' ]
+                    "index" => [ 'title', 'url' ,'status', 'visibility','type' ]
                 ],
                 
                 

@@ -13,8 +13,8 @@
             </div>
             
             <div class="desktop-6">
-                <a class="button primary" style="margin-top: 10px" href="{!! route('admin.create',[$table,"page=$page"]) !!}">Add New {!! ucfirst( str_singular($table) )  !!}</a>
-                <a class="button primary" style="margin-top: 10px" href="{!! route('admin.dashboard') !!}">Back to Dashboard</a>
+                <a class="button info" style="margin-top: 10px" href="{!! route('admin.create',[$table,"page=$page"]) !!}">Add New {!! ucfirst( str_singular($table) )  !!}</a>
+                <a class="button " style="margin-top: 10px" href="{!! route('admin.dashboard') !!}">Back to Dashboard</a>
             </div>
         
         </div>

@@ -4,17 +4,17 @@ use Illuminate\Database\Seeder;
 use App\Models\Blog;
 
 
-class PageTableSeeder extends DatabaseSeeder {
+class BlogTableSeeder extends DatabaseSeeder {
 
     public function run() {
         
         $faker = $this->getFaker();
         
         
-        $pages = [ "Sample Blog" => "sample-blog" ];
+        $blogs = [ "Sample Blog" => "sample-blog" ];
         
 
-        foreach($pages as $title => $url )
+        foreach($blogs as $title => $url )
         {
              Blog::create([
                     "title" => $title,

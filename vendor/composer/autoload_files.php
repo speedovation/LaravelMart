@@ -15,8 +15,8 @@ return array(
     $vendorDir . '/psy/psysh/src/Psy/functions.php',
     $vendorDir . '/danielstjules/stringy/src/Create.php',
     $vendorDir . '/guzzlehttp/guzzle/src/functions_include.php',
-    $vendorDir . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
-    $vendorDir . '/laravel/framework/src/Illuminate/Support/helpers.php',
     $vendorDir . '/laravelcollective/html/src/helpers.php',
     $vendorDir . '/laracasts/flash/src/Laracasts/Flash/functions.php',
+    $vendorDir . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
+    $vendorDir . '/laravel/framework/src/Illuminate/Support/helpers.php',
 );

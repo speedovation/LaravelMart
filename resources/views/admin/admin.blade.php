@@ -21,7 +21,17 @@
     
     @include("admin/common/header")
     
-    @yield('content')
+    <div class="row">
+    
+        <div class="desktop-2 left-dashboard">
+            @include('admin/products/dashboardinner')
+        </div>
+        
+        <div class="desktop-10">
+            @yield('content')
+        </div>
+    
+    </div>
         
     @include("admin/common/footer")
     

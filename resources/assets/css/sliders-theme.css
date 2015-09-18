@@ -2,11 +2,7 @@
     padding: 20px;
 }
 
-p,h3,h4,pre {
-    text-align: left;
-    max-width: 540px;
-    margin: 0 auto 20px;
-}
+
 
 .rslides {
     margin: 0 auto 40px;

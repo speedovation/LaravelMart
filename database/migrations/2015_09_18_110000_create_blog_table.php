@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePageTable extends Migration {
+class CreateBlogTable extends Migration {
 
     public function up() {
         Schema::create("blogs", function($table) {
@@ -24,10 +24,10 @@ class CreatePageTable extends Migration {
                     
                     $table->text("header")->nullable();
                     
-                    $table->integer('category_id');
-                    $table->text("author")->default('Kara Guru');
-                    $table->boolean('is_comments_allowed')->default(true);
-                    $table->integer('comments_days')->default(0); //0 is unlimited days
+                    $table->integer("category_id");
+                    $table->string("author")->default("Kara Guru");
+                    $table->boolean("is_comments_allowed")->default(true);
+                    $table->integer("comments_days")->default(0); //0 is unlimited days
                     
                     $table->timestamps();
                     $table->softDeletes();

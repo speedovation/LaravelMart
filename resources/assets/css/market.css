@@ -701,3 +701,15 @@ a.remove-cart-item:hover {
     min-width: 180px;
     text-align: center; 
 }
+
+.button, button, a.button {
+    padding: 0.5rem 0.8rem;
+    box-shadow: none;
+    border-radius: 0.1rem;
+}
+
+.left-dashboard
+{
+    margin-top: 80px;
+    padding-right: 20px;
+}

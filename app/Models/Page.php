@@ -10,7 +10,7 @@ class Page extends Model {
 	
 	public static $rules = [
 	    "title" => "required",
-		"url" => "required|unique:menus",
+		"url" => "required|unique:pages",
 		"status" => "required",
 		"visibility" => "required",
 		"type" => "required",

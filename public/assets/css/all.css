@@ -3725,6 +3725,18 @@ a.remove-cart-item:hover {
     text-align: center; 
 }
 
+.button, button, a.button {
+    padding: 0.5rem 0.8rem;
+    box-shadow: none;
+    border-radius: 0.1rem;
+}
+
+.left-dashboard
+{
+    margin-top: 80px;
+    padding-right: 20px;
+}
+
 .megamenu_wrapper {
     margin:0 auto 10px ;
     display:block;
@@ -4837,11 +4849,7 @@ a.remove-cart-item:hover {
     padding: 20px;
 }
 
-p,h3,h4,pre {
-    text-align: left;
-    max-width: 540px;
-    margin: 0 auto 20px;
-}
+
 
 .rslides {
     margin: 0 auto 40px;

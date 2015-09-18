@@ -10,7 +10,7 @@ class Blog extends Model {
 	
 	public static $rules = [
 	    "title" => "required",
-		"url" => "required|unique:menus",
+		"url" => "required|unique:blogs",
 		"status" => "required",
 		"visibility" => "required",
 		"type" => "required",
