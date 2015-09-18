@@ -8,7 +8,7 @@ class CreatePageTable extends Migration {
         Schema::create("blogs", function($table) {
                     $table->engine = "InnoDB";
                     $table->increments("id");
-                    $table->integer("parent_id")->nullable();
+                    
                     $table->string("title");
                     $table->string("url")->unique();
                     //Draft, Pending Review, Live
@@ -24,9 +24,10 @@ class CreatePageTable extends Migration {
                     
                     $table->text("header")->nullable();
                     
+                    $table->integer('category_id');
                     $table->text("author")->default('Kara Guru');
-                    $table->boolean('isCommentsAllowed')->default(true);
-                    $table->integer('CommentsDays')->default(0); //0 is unlimited days
+                    $table->boolean('is_comments_allowed')->default(true);
+                    $table->integer('comments_days')->default(0); //0 is unlimited days
                     
                     $table->timestamps();
                     $table->softDeletes();

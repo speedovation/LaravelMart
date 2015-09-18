@@ -114,6 +114,26 @@ return [
                     ],
                     "index" => [ 'title', 'url' ,'status', 'visibility','type', 'parent_id' ]
                 ],
+
+'blogs' => [
+                    "fields" => [
+                        ['title', 'Title' , 'text' , ['Placeholder' => 'Enter Title'] ], 
+                        ['url', 'Url' , 'text' , ['Placeholder' => 'Enter Url'] ], 
+                        ['status', 'Status' ,  'select' , [ "options"=> [ 'draft' => 'Draft','live' => 'Live'] ,"selected" => 'live' ] ],  
+                        ['visibility', 'Visibility' ,  'select' , [ "options"=> [ 'public' => 'Public','private' => 'Private'] ,"selected" => 'public'] ], 
+                        ['type', 'Type' , 'select' , [ "options"=> [ 'html' => 'Html','md' => 'Markdown'] ,"selected" => 'Html' ] ], 
+                        ['body', 'Body' , 'textarea' , [] ], 
+                        
+                        ['category_id','Categories:', 'select' , [ "dynamic"=> "/category/list","multiple"=>""] ],
+                        ['author', 'Author' , 'text' , ['Placeholder' => 'Enter author name'] ], 
+                        ['is_comments_allowed', 'Is Comments Allowed' , 'text' , ['Placeholder' => 'Enter 0 block comment'] ], 
+                        ['comments_days', 'Allowed Comments Days' , 'text' , ['Placeholder' => 'Enter 0 for unlimited days'] ], 
+                        
+                        ['header', 'Header' , 'textarea' , [] ]
+                        , 
+                    ],
+                    "index" => [ 'title', 'url' ,'status', 'visibility','type', 'parent_id' ]
+                ],
                 
                 
                 

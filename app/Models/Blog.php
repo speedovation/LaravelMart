@@ -15,9 +15,11 @@ class Blog extends Model {
 		"visibility" => "required",
 		"type" => "required",
 		"body" => "required",
+		
+		"category_id" => "required",
 		"author" => "required",
-		"isCommentsAllowed" => "required",
-		"CommentsDays" => "required",
+		"is_comments_allowed" => "required",
+		"comments_days" => "required",
 		
 	];
 
