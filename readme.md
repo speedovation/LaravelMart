@@ -2,7 +2,7 @@
 
 
 ## LaravelMart - Complete eCommerce Platform
-Pre Alpha release yet. Stay tuned.
+Pre Alpha release. Stay tuned for stable release.
 
 
 ##TODO
