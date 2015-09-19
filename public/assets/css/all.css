@@ -11220,8 +11220,7 @@ border-radius: 4px;
     padding: 55px 0;
 }
 
-#footer .wrap .i{
-    margin-top: 20px;
+#footer .wrap .i{    margin-top: 20px;
     margin-bottom: 20px;
 }
 
@@ -11908,6 +11907,17 @@ margin-left: 8%;
   padding: 8px 25px;
   font-size: 18px;
   color: #8531c6;
+}
+
+input.search-term {
+    font-size: 14px;
+    height: 24px;
+    line-height: 24px;
+    padding: 12px;
+    width: 72%;
+    color: #858c91;
+    margin-right: 10px;
+    margin-bottom: 0;
 }
 
 /*# sourceMappingURL=all.css.map */

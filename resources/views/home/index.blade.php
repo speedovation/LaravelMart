@@ -17,7 +17,7 @@
             
             <div class="large-4 desktop-4" role="navigation">
                 
-                <a href="/" title="Home" class="kilo" ><span class="sprite icon"></span> Sara<strong>Cloud</strong></a>
+                <a href="/" title="Home" class="kilo" ><span class="sprite icon"></span> Kara<strong>.Guru</strong></a>
                 
             </div>
             
@@ -38,9 +38,17 @@
         </div>
         <div class="row text-center info">
 		
-            <h2><strong>Sara  Cloud</strong> for you</h2>
-            <h3>Fast &amp; robust cloud online service</h3>
-            <h3>Professional Cloud Storage</h3>
+            <h2><strong>Kara<strong>.Guru</strong></strong> for you</h2>
+          
+            <h3 class="search-header">Have a Question?</h3>
+            <p class="search-tag-line">If you have any question you can ask below or enter what you are looking for!</p>
+
+            <form id="search-form" class="search-form clearfix" method="get" action="#" autocomplete="off" 
+                  novalidate="novalidate" _lpchecked="1">
+                <input class="search-term required" type="text" id="s" name="s" placeholder="Type your search terms here" title="* Please enter a search term!" autocomplete="off">
+                <input class="search-btn" type="submit" value="Search">
+                
+            </form>
             
         </div>
         
@@ -57,39 +65,36 @@
             
             <div class="row">
             <a id="welcome"></a>
-                <h2 class="kilo text-center">Welcome to a private cloud solution</h2>
-                <p class="text-lead">Sara Cloud is a private cloud solution designed for security conscious businesses looking to take back control of their sensitive data.  Stop valuable information from leaving your organization and help control access to data with a security focused solution that offers robust reporting, simple access management controls, and easy to use auditing tools.</p>
+                <h2 class="kilo text-center">Get Any Solution of Windows Related Problems</h2>
+                <p class="text-lead text-center">Kara.Guru is a plaftform for getting help on windows issues/problems. </p>
             </div>
-            
-            
-            
             
             
               <header class="text-center">
                 <div class="row">
                     <div class="mobile-12 tablet-10 tablet-offset-1 large-8 large-offset-2">
-                        <h2>Simplify your digital life</h2>
+                        <h2>Get Help In Troubleshooting Windows Problems</h2>
                         <p>
-                            Don't waste your time managing and searching for your files, make them work for you.
-Simplify how you store, access and share your photos, videos and documents. 
+                            Don't waste your time searching internet or forums. We have single place where 
+                            you can search or get professional help on Windows Issues / Problems.
                         </p>
                     </div>
                 </div>
             </header>
             <div class="row text-center">
                 <div class="desktop-4 tablet-4 i">
-                    <i class="material-icons md-64">attach_money</i>
-                    <h3>Save <strong>money</strong></h3>
+                    <i class="material-icons md-64">desktop_windows</i>
+                    <h2>Windows <strong>Problem Solutions</strong></h2>
                     <p>Expand for free with your Dropbox, Google Drive and OneDrive accounts or use the extra free space on your hard drive.</p>
                 </div>
                 <div class="desktop-4 tablet-4 i">
-                    <i class="material-icons md-64">access_time</i>
-                    <h3> Save <strong>Time</strong> </h3>
-                    <p>Single search for all your files. You can search through all your accounts and devices.</p>
+                    <i class="material-icons md-64">developer_board</i>
+                    <h2>Windows <strong>Dedicated Articles</strong></h2>
+                    <p>Tips, Tricks and latest windows information related articles.</p>
                 </div>
                 <div class="desktop-4 tablet-4 i">
-                    <i class="material-icons md-64">access_time</i>
-                    <h3>Save <strong>nerves</strong></h3>
+                    <i class="material-icons md-64">nature_people</i>
+                    <h2>Windows <strong>On Demand Solutions</strong></h2>
                     <p>Works with all modern browsers, iOS, Android, Windows Phone, OS X, Windows, Linux, WebDAV and more.</p>
                 </div>
             </div>
@@ -103,7 +108,7 @@ Simplify how you store, access and share your photos, videos and documents.
     <a id="how"></a>
 				<div class="row">
         	   	<h2 class="kilo text-center">How It <strong>Works</strong></h2>
-						<p class="lead text-center">Unlike other file sharing solutions, Sara Cloud doesn't distribute copies of your data but grants access to it instead:</p>
+						<p class="lead text-center">Unlike other file sharing solutions, Kara.Guru doesn't distribute copies of your data but grants access to it instead:</p>
 
 					<div class="mobile-4 desktop-4 large-4 text-center">
 							<img src="/img/features/how_works1.png" class="img-responsive center-block" alt="">
@@ -174,7 +179,7 @@ Simplify how you store, access and share your photos, videos and documents.
 						</div>
 						<div class="desktop-8 large-8">
 							<h3>Take back control of your shared files</h3>
-							<p>Public cloud solutions, like Dropbox, let users create open links to share files.  Use your existing cloud offering as a personal backup and manage access to your files through Sara Cloud’s simple and secure access controls.</p>
+							<p>Public Guru solutions, like Dropbox, let users create open links to share files.  Use your existing Guru offering as a personal backup and manage access to your files through Kara Guru’s simple and secure access controls.</p>
 						</div>
 
 						<div class="desktop-4 large-4text-center">
@@ -182,7 +187,7 @@ Simplify how you store, access and share your photos, videos and documents.
 						</div>
 						<div class="desktop-8 large-8">
 							<h3>Effectively manage group communication and collaboration</h3>
-							<p>One location to share files and communicate effectively, your conversations are saved and stored through the Sara Cloud application to help you keep track of projects and collaborate effectively.</p>
+							<p>One location to share files and communicate effectively, your conversations are saved and stored through the Kara Guru application to help you keep track of projects and collaborate effectively.</p>
 						</div>
 
 						<div class="desktop-4 large-4text-center">
@@ -305,7 +310,7 @@ Simplify how you store, access and share your photos, videos and documents.
     <div class="section businessTheme">
         <div class="container text-center">
             <h2 class="">Get started now for free</h2>
-            <a href="#" title="#" class="btn btn-lg btn-yellow btn-effect">Contact Sara Cloud <span>Invitation only</span></a>
+            <a href="#" title="#" class="btn btn-lg btn-yellow btn-effect">Contact Kara.Guru <span>Invitation only</span></a>
         </div>
     </div>
     
@@ -319,11 +324,11 @@ Simplify how you store, access and share your photos, videos and documents.
             <a id="about"></a>
             <div class="row">
                 <div class="mobile-12 tablet-6 desktop-4 large-4 i">
-                    <h2>Sara Cloud</h2>
+                    <h2>KaraGuru</h2>
                     <div class="content">
                         199 e Montgomery ave, suite 100<br>
                         rockville, Maryland 20850
-                        info@saracloud.com
+                        info@Kara.Guru
                     </div>
                 </div>
                 <div class="mobile-12 tablet-6 desktop-4 large-4 i">
@@ -339,7 +344,7 @@ Simplify how you store, access and share your photos, videos and documents.
                 <div class="mobile-12 tablet-6 desktop-4 large-4 i">
                     <h2>About</h2>
                     <p>
-                        Sara Cloud is an unlimited online storage service designed for the future era. 
+                        Kara.Guru is an unlimited online storage service designed for the future era. 
                         It allows users to store everything, share anything and play anywhere, effectively 
                         extending the storage capacity of their any devices. 
                      
@@ -354,7 +359,7 @@ Simplify how you store, access and share your photos, videos and documents.
         <div class="copyright">
             
             <div class="row">
-                <div class="mobile-6 i">Copyright &copy; 2014 - All Rights Reserved  <a href="/" title="Sara Cloud">Sara Cloud</a></div>
+                <div class="mobile-6 i">Copyright &copy; 2014 - All Rights Reserved  <a href="/" title="Kara.Guru">Kara.Guru</a></div>
                 
             </div>
             
