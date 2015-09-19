@@ -43,7 +43,8 @@
 					              @endforeach
                               
                            <td>
-                                <a href="{!! route('admin.edit', [$table, $product->id, "page=$page"]) !!}"><i class="i-edit"></i></a>
+                                <a href="{!! route('admin.edit', [$table, $product->id, "page=$page"]) !!}">
+                                <i class="i-edit"></i></a>
                                 <a href="{!! route('admin.delete', [$table, $product->id]) !!}" 
                                 onclick="return confirm('Are you sure wants to delete this Product?')">
                                 <i class="i-close"></i></a>

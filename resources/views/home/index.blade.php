@@ -1,7 +1,6 @@
-@extends('layouts.main')
+@extends('kblayouts.main')
 
 @section('title', 'Homepage Title')
-
 
 
 @section('content')
@@ -11,7 +10,7 @@
     <![endif]-->
     
     <!-- Header -->
-    <header id="header" >
+    <header id="header"             >
         <div class="row">
             
             
@@ -38,21 +37,29 @@
         </div>
         <div class="row text-center info">
 		
-            <h2><strong>Kara<strong>.Guru</strong></strong> for you</h2>
+            <h2><strong>Kara<strong>.Guru</strong></strong> One Stop Solution</h2>
           
-            <h3 class="search-header">Have a Question?</h3>
-            <p class="search-tag-line">If you have any question you can ask below or enter what you are looking for!</p>
+            <h3 class="search-header">Troubleshooting Windows Problems? Try Search</h3>
 
-            <form id="searchform" class="" method="get" action="#" autocomplete="off" 
+            <form id="searchform" class="text-center" method="get" action="#" autocomplete="off" 
                   novalidate="novalidate" _lpchecked="1">
                 
                 <div class="row">
                     <input class="search-term width-per-20 input" type="text" id="s" name="s" 
                        placeholder="Type your search terms here" title="* Please enter a search term!" autocomplete="off">
-                    <button class="width-per-5 button large append success right">Get Support</button>
+                    <button class="search-button modern-button large search">Search</button>
               </div>  
 
             </form>
+            
+            <h3 class="search-tag-line">Facing windows issues, errors. Read dedicated articles on problem or contact us</h3>
+            
+            <div class="row text-center">
+            
+               
+                <a href="http://kara.guru/#" class="modern-button large ask " title="Submit your problem">Ask Question</a>
+                <a href="http://kara.guru/#" class="modern-button large phone " title="We will provide custom solutions for windows technical problems">Contact Us</a>        
+            </div>
             
         </div>
         
@@ -67,16 +74,12 @@
           
             
             
-            <div class="row">
             <a id="welcome"></a>
-                <h2 class="kilo text-center">Get Any Solution of Windows Related Problems</h2>
-                <p class="text-lead text-center">Kara.Guru is a plaftform for getting help on windows issues/problems. </p>
-            </div>
             
-            
+          
               <header class="text-center">
                 <div class="row">
-                    <div class="mobile-12 tablet-10 tablet-offset-1 large-8 large-offset-2">
+                    <div class="mobile-12 tablet-12 large-12">
                         <h2>Get Help In Troubleshooting Windows Problems</h2>
                         <p>
                             Don't waste your time searching internet or forums. We have single place where 
@@ -165,7 +168,9 @@
         
         <a id="features"></a>
         <div class="row">
-            <h2 class="kilo text-center">We're building <strong>Relationships</strong></h2>
+            
+                <h2 class="kilo text-center">Get Any Solution of <strong>Windows Related Problems</strong></h2>
+                <p class="text-lead text-center">Kara.Guru is a plaftform for getting help on windows issues/problems. </p>
             
             
             
