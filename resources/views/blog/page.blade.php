@@ -16,6 +16,7 @@
 
 
         
+    <i class="material-icons md-24">check_circle</i>
     
      <div class="panel panel-box panel-box-default blog-box col-12">   
             <h2 class="kilo"> <a href="/kb/{{$page->url}}"> {{$page->title}} </a> </h2>

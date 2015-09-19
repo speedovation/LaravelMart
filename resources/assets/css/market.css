@@ -719,6 +719,7 @@ a.remove-cart-item:hover {
     position: relative;
     padding:  0 20px 30px 20px ;
     margin-bottom: 40px;
+    background: #eee;
 }
 
 .blog-box .blog-info, .blog-box .read-more

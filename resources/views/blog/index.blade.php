@@ -18,7 +18,7 @@
     
     
     @foreach ($pages as $page)
-    <div class=" col-4">
+    <div class=" col-6">
         <div class="panel panel-box panel-box-default blog-box">
             <h2 class="kilo"> <a href="/kb/{{$page->url}}"> {{$page->title}} </a> </h2>
             <span class="text-small blog-info"> Author: {{$page->author}} | Date : {{$page->created_at->format('F d, Y')}} </span>

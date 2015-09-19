@@ -22,7 +22,9 @@ elixir(function(mix) {
         'sliders-theme.css',
         '../bower_components/fancybox/source/jquery.fancybox.css',
         '../bower_components/raty/lib/jquery.raty.css',
-        '../bower_components/selectize/dist/css/selectize.css'
+        '../bower_components/selectize/dist/css/selectize.css',
+        'materialicon.css',
+        'kara.css'
 /*        '../bower_components/select2/dist/css/select2.css'*/
 /*        '../bower_components/chosen/chosen.min.css'*/
         //'../bower_components/css-modal/dist/modal.css',

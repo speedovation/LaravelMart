@@ -11,21 +11,24 @@ class BlogTableSeeder extends DatabaseSeeder {
         $faker = $this->getFaker();
         
         
-        $blogs = [ "Sample Blog" => "sample-blog" ];
+        $categories = Category::all();
         
-        
-        for($i=0;$i<40;$i++)
-        {
-            $title = $this->title(rand(4,6), $faker);
-            $url = str_replace(' ','-',$title);
-            Blog::create([
-            "title" => $title,
-            "url"  => $url,
-            "status"  => "live",
-            "visibility"  => "public",
-            "body"  =>  $faker->realtext(3000,4),
-            "type"  => "html",
-            ]);
+        foreach ($categories as $category) {
+            
+            for($i=0;$i<40;$i++)
+            {
+                $title = $this->title(rand(4,6), $faker);
+                $url = str_replace(' ','-',$title);
+                Blog::create([
+                "title" => $title,
+                "url"  => $url,
+                "status"  => "live",
+                "visibility"  => "public",
+                "category_id" => $category->id, 
+                "body"  =>  $faker->realtext(3000,4),
+                "type"  => "html",
+                ]);
+            }
         }
         
         
