@@ -1,0 +1,156 @@
+.modern-button {
+	 display: inline-block;
+  font-family: "Montserrat", "Trebuchet MS", Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  padding: 1rem;
+  padding-right:5rem;
+  background: #009ed8;
+  border: none;
+  color: white;
+  transition: .2s;
+}
+.modern-button:before,
+.modern-button:after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  padding-top: inherit;
+  padding-bottom: inherit;
+  width: 4rem;
+  content: "\00a0";
+  font-family: 'Material Icons', sans-serif;
+  font-size: 1.2em;
+  text-align: center;
+  transition: .2s;
+}
+.modern-button:before {
+  background: rgba(0, 0, 0, 0.1);
+}
+.modern-button:hover {
+  background: #0079a5;
+}
+.modern-button:active,
+.modern-button:focus {
+  background: #002e3f;
+  outline: none;
+}
+.modern-button {
+  min-width: 4rem;
+}
+.arrow {
+  background: #FE5F55;
+}
+.arrow:hover {
+  background: #fe2f22;
+}
+.arrow:active,
+.arrow:focus {
+  background: #b90c01;
+}
+.arrow:after {
+  content: "\F054";
+}
+.arrow:hover:after {
+  -webkit-animation: bounceright .3s alternate ease infinite;
+  animation: bounceright .3s alternate ease infinite;
+}
+.phone {
+  background: #139675;
+}
+.phone:hover {
+  background: #0d6952;
+}
+.phone:active,
+.phone:focus {
+  background: #083b2e;
+}
+.phone:after {
+  content: "phone";
+}
+.phone:hover:after {
+  -webkit-animation: wiggle .15s alternate ease infinite;
+  animation: wiggle .15s alternate ease infinite;
+}
+/*.ask {
+  background: #C673B3;
+}
+.ask:hover {
+  background: #b74f9f;
+}
+.ask:active,
+.ask:focus {
+  background: #963d82;
+}*/
+.ask:after {
+  content: "message";
+}
+
+.ask:hover:after {
+  -webkit-animation: none;
+  -webkit-transform: scale(1.4);
+  animation: none;
+  transform: scale(1.4);
+}
+.email {
+  background: #C673B3;
+}
+.email:hover {
+  background: #b74f9f;
+}
+.email:active,
+.email:focus {
+  background: #963d82;
+}
+.email:after {
+  content: "email";
+}
+.email:hover:after {
+  -webkit-animation: none;
+  -webkit-transform: skew(-20deg);
+  animation: none;
+  transform: skew(-20deg);
+  text-indent: .1em;
+}
+.search:after {
+  content: "search";
+}
+.search:hover:after {
+  -webkit-animation: none;
+  -webkit-transform: scale(1.4);
+  animation: none;
+  transform: scale(1.4);
+}
+@-webkit-keyframes bounceright {
+  from {
+    -webkit-transform: translateX(0);
+  }
+  to {
+    -webkit-transform: translateX(3px);
+  }
+}
+@-webkit-keyframes wiggle {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(30deg);
+  }
+}
+@keyframes bounceright {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(3px);
+  }
+}
+@keyframes wiggle {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(30deg);
+  }
+}
