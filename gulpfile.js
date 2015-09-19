@@ -14,7 +14,7 @@ var elixir = require('laravel-elixir');
 elixir(function(mix) {
     mix
     .styles([
-        'base.css', 
+        'inventive.css', 
         'market.css',
         'megamenu.css',
         'rudra.css',

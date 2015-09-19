@@ -17,7 +17,8 @@ Route::any("category/index", [
 
 
 Route::get('page/{url}', 'PageController@getIndex');
-Route::get('kb/{url}', 'BlogController@getIndex');
+Route::get('kb/{url}', 'BlogController@getKb');
+Route::get('kb', 'BlogController@getIndex');
 
 //Authentication
 // Authentication routes...

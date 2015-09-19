@@ -31,12 +31,30 @@ class BlogController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function getIndex($url)
+	public function getIndex()
+	{
+		
+		$pages = Blog::where('status' , 'Live')
+				->orderBy('created_at', 'desc')
+                ->take(10)
+                ->get();
+		
+		
+		
+		return view('blog.index')->with('pages',$pages);
+	}
+
+	/**
+	 * Show the application dashboard to the user.
+	 *
+	 * @return Response
+	 */
+	public function getKb($url)
 	{
 		
 		$page = Blog::where('url', $url )->where('status' , 'Live')->firstOrFail();
 		
-		return view('home.page',$page);
+		return view('blog.page')->with('page',$page);;
 	}
 	
 
