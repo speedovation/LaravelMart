@@ -43,11 +43,15 @@
             <h3 class="search-header">Have a Question?</h3>
             <p class="search-tag-line">If you have any question you can ask below or enter what you are looking for!</p>
 
-            <form id="search-form" class="search-form clearfix" method="get" action="#" autocomplete="off" 
+            <form id="searchform" class="" method="get" action="#" autocomplete="off" 
                   novalidate="novalidate" _lpchecked="1">
-                <input class="search-term required" type="text" id="s" name="s" placeholder="Type your search terms here" title="* Please enter a search term!" autocomplete="off">
-                <input class="search-btn" type="submit" value="Search">
                 
+                <div class="row">
+                    <input class="search-term width-per-20 input" type="text" id="s" name="s" 
+                       placeholder="Type your search terms here" title="* Please enter a search term!" autocomplete="off">
+                    <button class="width-per-5 button large append success right">Get Support</button>
+              </div>  
+
             </form>
             
         </div>
