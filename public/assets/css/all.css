@@ -6730,6 +6730,7 @@ a.remove-cart-item:hover {
     min-height: 400px;
     position: relative;
     padding:  0 20px 30px 20px ;
+    margin-bottom: 40px;
 }
 
 .blog-box .blog-info, .blog-box .read-more
@@ -6746,6 +6747,13 @@ a.remove-cart-item:hover {
 {
     bottom: 0;
     right: 0;
+}
+.blog-box .kilo
+{
+    letter-spacing: -1px;
+    font-size: 2.3rem;
+    line-height: 1;
+    margin-top:  25px;
 }
 
 .megamenu_wrapper {

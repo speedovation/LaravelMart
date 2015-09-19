@@ -16,7 +16,7 @@ class BlogTableSeeder extends DatabaseSeeder {
         
         for($i=0;$i<40;$i++)
         {
-            $title = $this->title(rand(3,6), $faker);
+            $title = $this->title(rand(4,6), $faker);
             $url = str_replace(' ','-',$title);
             Blog::create([
             "title" => $title,
