@@ -14,7 +14,8 @@ Route::any("category/index", [
     "uses" => "CategoryController@indexAction"
 ]);
 
-
+//kg = Kara.Guru
+Route::get('kg', 'IndexController@getKg');
 
 Route::get('page/{url}', 'PageController@getIndex');
 Route::get('kb/{url}', 'BlogController@getKb');
