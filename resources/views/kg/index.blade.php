@@ -10,7 +10,7 @@
 <![endif]-->
 
 <!-- Header -->
-<header id="header"  class="dark-bg"       >
+<header class="dark-bg section"   id="header"    >
     <div class="row">
         
         
@@ -79,6 +79,7 @@
                 Don't waste your time searching internet or forums. We have single place where
                 you can search or get professional help on Windows Issues / Problems.
             </p>
+            <div class="divider"></div>
         </div>
     </div>
     
@@ -105,13 +106,105 @@
     </div>
 </section>
 
+
+<!-- Testimonials -->
+<section class="section gray functions">
+    
+    
+    <a id="features"></a>
+    <div class="row">
+        
+        <h2 class="kilo text-center">Get Any Solution of <strong>Windows Related Problems</strong></h2>
+        <p class="text-lead text-center">Kara.Guru is a plaftform for getting help on windows issues/problems. </p>
+        
+        <div class="divider"></div>
+        
+        <div class="col-4">
+            <h3>Latest Articles</h3>
+            <ul >
+                <li>
+                    <i class="material-icons md-64">people</i> <br>
+                    <a href="">Get Any Solution</a> <br>
+                    <p class="text-small text-mute">
+                        <i class="material-icons md-14">today</i> 2 Sept 2015
+                        <i class="material-icons md-14">person</i> Kara Team
+                    </p>
+                </li>
+                <li>
+                    <i class="material-icons md-64">people</i> <br>
+                    <a href="">Get Any Solution</a> <br>
+                    <i class="material-icons">today</i> 2 Sept 2015
+                    <i class="material-icons">person</i> Kara Team
+                    
+                </li>
+                <li>
+                    <i class="material-icons md-64">people</i> <br>
+                    <a href="">Get Any Solution</a> <br>
+                    <i class="material-icons">today</i> 2 Sept 2015
+                    <i class="material-icons">person</i> Kara Team
+                    
+                </li>
+            </ul>
+        </div>
+        
+        <div class="col-4">
+            <h3>H</h3>
+            <ul class="link-list">
+                <li> <a href="">S</a> </li>
+            </ul>
+        </div>
+        
+        <div class="col-4">
+            <h3>H</h3>
+            <ul class="link-list">
+                <li> <a href="">S</a> </li>
+            </ul>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+    </div>
+    
+</section>
+
+
 <!-- Functions -->
-<section class="section gray functions text-center">
+<section class="section text-center">
     
     <a id="how"></a>
     <div class="row">
         <h2 class="kilo">Latest <strong>Featured Articles</strong></h2>
         <p class="lead">Unlike other file sharing solutions, Kara.Guru doesn't distribute copies of your data but grants access to it instead:</p>
+        <div class="divider"></div>
+        
+        <div class="mobile-4 desktop-4 large-4">
+            <h2>Heading</h2>
+            <img class="img-circle img-responsive center-block" src="http://placehold.it/240x240&amp;text=Cool" alt="image">
+            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+            <p><a class="button button-rounded button-raised button-royal" href="#" role="button">View details »</a></p>
+        </div>
+        
+        <div class="mobile-4 desktop-4 large-4">
+            <h2>Heading</h2>
+            <img class="img-circle img-responsive center-block" src="http://placehold.it/240x240&amp;text=Cool" alt="image">
+            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+            <p><a class="button button-rounded button-raised button-royal" href="#" role="button">View details »</a></p>
+        </div>
+        
+        <div class="mobile-4 desktop-4 large-4">
+            <h2>Heading</h2>
+            <img class="img-circle img-responsive center-block" src="http://placehold.it/240x240&amp;text=Cool" alt="image">
+            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+            <p><a class="button button-rounded button-raised button-royal" href="#" role="button">View details »</a></p>
+        </div>
+        
+        
+        <div class=" clear clearfix"></div>
+        <div class="divider"></div>
         
         <div class="mobile-4 desktop-4 large-4">
             <h2>Heading</h2>
@@ -169,170 +262,158 @@
 </section>
 
 
-<!-- Testimonials -->
-<div class="section testimonials">
-    
-    
-    <a id="features"></a>
+
+<section id="count-down" class="section about-info  text-center gray">
     <div class="row">
-        
-        <h2 class="kilo text-center">Get Any Solution of <strong>Windows Related Problems</strong></h2>
-        <p class="text-lead text-center">Kara.Guru is a plaftform for getting help on windows issues/problems. </p>
-        
-        
-        
-        
-        <div class="desktop-4 large-4text-center">
-            <img style="margin-top: 25px" src="/img/features/share_securely.png" class="img-responsive center-block" alt="">
-        </div>
-        <div class="desktop-8 large-8">
-            <h3>Share large files securely</h3>
-            <p>Send files larger than 20 GB from your computer or NAS device and control exactly who and when sees your files.</p>
-        </div>
-        
-        <div class="desktop-4 large-4text-center">
-            <img style="margin-top: 15px" src="/img/features/why_1.png" class="img-responsive center-block" alt="">
-        </div>
-        <div class="desktop-8 large-8">
-            <h3>Take back control of your shared files</h3>
-            <p>Public Guru solutions, like Dropbox, let users create open links to share files.  Use your existing Guru offering as a personal backup and manage access to your files through Kara Guru’s simple and secure access controls.</p>
-        </div>
-        
-        <div class="desktop-4 large-4text-center">
-            <img style="margin-top: 24px" src="/img/features/why_2.png" class="img-responsive center-block" alt="">
-        </div>
-        <div class="desktop-8 large-8">
-            <h3>Effectively manage group communication and collaboration</h3>
-            <p>One location to share files and communicate effectively, your conversations are saved and stored through the Kara Guru application to help you keep track of projects and collaborate effectively.</p>
-        </div>
-        
-        <div class="desktop-4 large-4text-center">
-            <img style="margin-top: 30px" src="/img/features/why_3.png" class="img-responsive center-block" alt="">
-        </div>
-        <div class="desktop-8 large-8">
-            <h3>Leverage your existing infrastructure. Don't pay for sync anymore.</h3>
-            <p>Use your existing NAS storage or our stylish software for syncing, backing up and sharing your files, even if your PC, Mac or Linux machine is currently off.</p>
-        </div>
-        
-        
-            <!--
-                <div class="mobile-10 mobile-offset-1 tablet-6  desktop-4 large-4">
-                    <img src="img/80x80.jpg" alt="#" width="80" height="80" class="image">
-                    <h3>George Doe</h3>
-                    <h4>– Blackhorse owner –</h4>
-                    <p>Publishing your users stories abount your product can be usefull for your next clients. You can describe how your clients use your product to increase theirs busssinesses. Tempalte is ready to display information from your social media sites.
-                    </p>
-                </div>
+        <div class="counter-content">
+            <div class="col-3 each-counter wow zoomIn animated" style="visibility: visible; animation-name: zoomIn;">
+                <p class="icon">
+                    <i class="material-icons md-64">insert_emoticon</i>
+                </p>
+                <span class="bigtitle count1">8637</span>
+                <p class="title">Happy Clients</p>
                 
-                <div class="mobile-10 mobile-offset-1  tablet-6  desktop-4 large-4">
-                    <img src="img/80x80.jpg" alt="#" width="80" height="80" class="image">
-                    <h3>Nick Doe</h3>
-                    <h4>– Digiapple owner –</h4>
-                    <p>Publishing your users stories abount your product can be usefull for your next clients. You can describe how your clients use your product to increase theirs busssinesses. Tempalte is ready to display information from your social media sites.</p>
-                </div>
+            </div>
+            <div class="col-3 each-counter wow zoomIn animated" style="visibility: visible; animation-name: zoomIn;">
+                <p class="icon">
+                    <i class="material-icons md-64">receipt</i>
+                </p>
+                <span class="bigtitle count2">564</span>
+                <p class="title">Articles</p>
                 
-                <div class="mobile-10 mobile-offset-1  tablet-6  desktop-4 large-4">
-                    <img src="img/80x80.jpg" alt="#" width="80" height="80" class="image">
-                    <h3>Andrew Doe</h3>
-                    <h4>– T-crowd owner –</h4>
-                    <p>Publishing your users stories abount your product can be usefull for your next clients. You can describe how your clients use your product to increase theirs busssinesses. Tempalte is ready to display information from your social media sites.</p>
-                    
-                    
-        </div>-->
-        
-        
-    </div>
-    
-</div>
+            </div>
+            <div class="col-3 each-counter wow zoomIn animated" style="visibility: visible; animation-name: zoomIn;">
+                <p class="icon">
+                    <i class="material-icons md-64">question_answer</i>
+                </p>
+                <span class="bigtitle count3">564</span>
+                <p class="title">Solutions</p>
+                
+            </div>
+            
+            <div class="col-3 each-counter wow zoomIn animated" style="visibility: visible; animation-name: zoomIn;">
+                <p class="icon">
+                    <i class="material-icons md-64">people</i>
+                </p>
+                <span class="bigtitle count3">30</span>
+                <p class="title">Partners</p>
+                
+            </div>
+        </div>
+    </div> <!-- //row -->
+</section>
+
+
+
+
 
 <!-- Clients -->
-<section class="section clients">
+<section class="section ">
     
     <a id="pricing"></a>
     
-    <div class="pricing-table pricing-three-column row">
-        
-        <h2 class="text-center kilo">Plans</h2>
-        
-        <div class="plan mobile-12  desktop-3 large-3">
-            <div class="plan-name-bronze">
-                <h2>Bronze</h2>
-                <span>$8.99 / Month</span>
-            </div>
-            <ul>
-                <li class="plan-feature">10 Users</li>
-                <li class="plan-feature">5TB Disk Space</li>
-                <li class="plan-feature"><a href="#" class="btn btn-primary btn-plan-select"><i class="icon-white icon-ok"></i> Select</a></li>
-            </ul>
-        </div>
-        <div style="z-index:55;" class="plan mobile-12 desktop-3  large-3">
-            <div class="plan-name-silver">
-                <h2>Silver <span class="badge badge-danger">Popular</span></h2>
-                <span><strike>$10.99</strike>   <font color="#c63172">$9.99 - <span class="label label-warning">Sale</span></font></span>
-            </div>
-            <ul>
-                <li class="plan-feature">50 Users</li>
-                <li class="plan-feature">10TB Disk Space</li>
-                <li class="plan-feature"><a href="#" class="btn btn-primary btn-plan-select"><i class="icon-white icon-ok"></i> Select</a></li>
-            </ul>
-        </div>
-        <div class="plan mobile-12 desktop-3  large-3">
-            <div class="plan-name-gold">
-                <h2>Gold</h2>
-                <span>$15.99 / Month</span>
-            </div>
-            <ul>
-                <li class="plan-feature">Unlimited Users</li>
-                <li class="plan-feature">Unlimited Space</li>
-                <li class="plan-feature"><a href="#" class="btn btn-primary btn-plan-select"><i class="icon-white icon-ok"></i> Select</a></li>
-            </ul>
-        </div>
-    </div>
     
-    <p>&nbsp;</p>
-    <header class="text-center">
-        <div class="row">
-            <div class="mobile-12 tablet-10 tablet-offset-1 desktop-8 desktop-offset-2 large-8 large-offset-2">
-                <h2 class="kilo">Clients</h2>
-                <p>Decent listing with your clients.</p>
-            </div>
+    
+    <div class="row text-center flat">
+        
+        <h2 class="kilo">Membership <strong>Plans</strong></h2>
+        <div class="divider"></div>
+        
+        <div class="desktop-8 tablet-8 mobile-12">
+        
+        <h2>One Plan My Plan</h2>
+        <p class="text-lead">No commits. No Advance Payment.</p>
+        
         </div>
-    </header>
+        
+        
+        <div class="desktop-4 tablet-4 mobile-12 ">
+            <ul class="plan plan2">
+                <li class="plan-name">
+                    Standard
+                </li>
+                <li class="plan-price">
+                    <strong>$39</strong> / month
+                </li>
+                <li>
+                    <strong>5GB</strong> Storage
+                </li>
+                <li>
+                    <strong>1GB</strong> RAM
+                </li>
+                <li>
+                    <strong>400GB</strong> Bandwidth
+                </li>
+                <li>
+                    <strong>10</strong> Email Address
+                </li>
+                <li>
+                    <strong>Forum</strong> Support
+                </li>
+                <li class="plan-action">
+                    <a href="#" class="btn btn-danger btn-lg">Signup</a>
+                </li>
+            </ul>
+        </div>
+        
+     </div>
+    
+    
+    
+    
+    
+    
+    
+    
+</section>
+
+
+
+<section class="section about-info gray text-center">
     
     <div class="row">
-        <div class="mobile-4 tablet-4 desktop-2 large-2 i">
-            <img src="img/clients/digiapple.png" alt="#" width="69" height="102" class="img-responsive">
+        <div class="col-3 each-part wow zoomIn animated" style="visibility: visible; animation-name: zoomIn;">
+            <p class="icon">
+                <i class="material-icons md-64">phone</i>
+            </p>
+            <p class="title">CUSTOMER CARE</p>
+            <p class="mdtitle" >
+                4563-52-9670
+            </p>
         </div>
-        <div class="mobile-4 tablet-4 desktop-2 large-2 i">
-            <img src="img/clients/backhorse-digital.png" alt="#" width="106" height="119">
+        <div class="col-3 each-part wow zoomIn animated" style="visibility: visible; animation-name: zoomIn;">
+            <p class="icon">
+                <i class="material-icons md-64">email</i>
+            </p>
+            <p class="title">MAIL INFO</p>
+            <p class="mdtitle" >
+                info@Kara.Guru
+            </p>
+            
         </div>
-        <div class="mobile-4 tablet-4 desktop-2 large-2 i">
-            <img src="img/clients/veagle-technologies.png" alt="#" width="117" height="106">
+        <div class="col-3 each-part wow zoomIn animated" style="visibility: visible; animation-name: zoomIn;">
+            <p class="icon">
+                <i class="material-icons md-64">access_time</i>
+            </p>
+            <p class="title">24x7</p>
+            <p class="mdtitle" >
+                24x7 Available
+            </p>
+            
         </div>
-        <div class="mobile-4 tablet-4 desktop-2 large-2 i">
-            <img src="img/clients/coffetwist.png" alt="#" width="77" height="106">
-        </div>
-        <div class="mobile-4 tablet-4 desktop-2 large-2 i">
-            <img src="img/clients/diagonal.png" alt="#" width="128" height="87">
-        </div>
-        <div class="mobile-4 tablet-4 desktop-2 large-2 i">
-            <img src="img/clients/t-crowd.png" alt="#" width="75" height="103">
+        <div class="col-3 each-part wow zoomIn animated" style="visibility: visible; animation-name: zoomIn;">
+            <p class="icon">
+                <i class="material-icons md-64">business</i>
+            </p>
+            <p class="title">Work Place</p>
+            <p class="mdtitle" >
+                NY 582462, USA
+            </p>
+            
         </div>
     </div>
     
 </section>
-
-<!-- Business theme -->
-<div class="section businessTheme">
-    <div class="container text-center">
-        <h2 class="">Get started now for free</h2>
-        <a href="#" title="#" class="btn btn-lg btn-yellow btn-effect">Contact Kara.Guru <span>Invitation only</span></a>
-    </div>
-</div>
-
-
-
-
 <!-- Footer -->
 <footer id="footer">
     <div class="wrap">

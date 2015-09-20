@@ -12,9 +12,9 @@
                 <h1 class="">{!! ucfirst($table)  !!}</h1>
             </div>
             
-            <div class="desktop-6">
-                <a class="button info" style="margin-top: 10px" href="{!! route('admin.create',[$table,"page=$page"]) !!}">Add New {!! ucfirst( str_singular($table) )  !!}</a>
-                <a class="button " style="margin-top: 10px" href="{!! route('admin.dashboard') !!}">Back to Dashboard</a>
+            <div class="desktop-6 text-right">
+                <a class="button button-royal" style="margin-top: 10px" href="{!! route('admin.create',[$table,"page=$page"]) !!}">Add New {!! ucfirst( str_singular($table) )  !!}</a>
+                <a class="button button-inverse" style="margin-top: 10px" href="{!! route('admin.dashboard') !!}">Back to Dashboard</a>
             </div>
         
         </div>

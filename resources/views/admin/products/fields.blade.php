@@ -7,8 +7,8 @@
 <div class="row">
 <div class="desktop-3">&nbsp;</div>
 <div class="desktop-9">
-    {!! Form::submit('Save Data', ['class' => 'button primary large']) !!}
-    {!! Form::reset('Reset Data', ['class' => 'button large']) !!}
+    {!! Form::submit('Save Data', ['class' => 'button button-royal']) !!}
+    {!! Form::reset('Reset Data', ['class' => 'button']) !!}
 </div>
 </div>
 

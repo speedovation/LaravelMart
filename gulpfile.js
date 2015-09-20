@@ -19,6 +19,7 @@ elixir(function(mix) {
         'megamenu.css',
         'rudra.css',
         'sliders.css',
+        'plans.css',
         'sliders-theme.css',
         '../bower_components/fancybox/source/jquery.fancybox.css',
         '../bower_components/raty/lib/jquery.raty.css',

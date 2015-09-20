@@ -4,7 +4,7 @@
     <h2 class='divide-section' >
         {!!$product->name!!} 
         <small class='text-small'>(#{!!$product->code!!})</small> 
-        <button class='button success add-to-cart-button float-right' product-code='{!!$product->code!!}'> 
+        <button class='butto button-caution add-to-cart-button float-right' product-code='{!!$product->code!!}'> 
             <i class='i-rupee size-24'></i> {!!$discounted_price!!}  
             <i class='i-shopping-cart size-24'></i> ADD TO CART
         </button>

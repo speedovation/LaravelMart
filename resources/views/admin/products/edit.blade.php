@@ -6,10 +6,14 @@
 
 
 <div class="row space-top">
-    
-    <h1>Edit {!! ucfirst( str_singular($table) ) !!}</h1>
-    <a class="desktop-8 button primary" style="margin-top: 10px" href="{!! route('admin.index',[$table]) !!}">Back to {!! ucfirst($table) !!}</a>
+	
+	<h1 class="desktop-3"> Edit {!! ucfirst( str_singular($table) ) !!} </h1>
+	<div class="desktop-9">
+         <a class="button button-inverse" style="margin-top: 10px" href="{!! route('admin.index',[$table]) !!}">Back to {!! ucfirst($table) !!}</a>
+    </div>
+   
 </div>
+
 <div class="row space-top">
     
     

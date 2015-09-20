@@ -700,7 +700,11 @@ a.remove-cart-item:hover {
     min-width: 180px;
     text-align: center; 
 }
-
+/*To be FIXED*/
+.error {
+    float: right;
+    margin: .2rem 0;
+}
 .inventive-button {
     padding: 0.5rem 0.8rem;
     box-shadow: none;

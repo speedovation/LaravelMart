@@ -779,6 +779,7 @@ blockquote p:last-of-type {
 }
 .text-right {
   text-align: right !important;
+  padding-right:  0 !important;
 }
 .text-center {
   text-align: center;
@@ -2060,7 +2061,7 @@ form.row {
   border: 1px solid #ccc;
   color: #333;
   padding: 0.4rem 0.6rem;
-  margin-bottom: 0.6rem;
+/*  margin: 0.2rem 0;*/
 }
 .collapse .input:first-child {
   -webkit-border-radius: 0.2rem 0.2rem 0 0;
@@ -3975,7 +3976,7 @@ rounded_corners {
 .text_shadow {
   text-shadow: 0 -1px 1px rgba(255,255,255,0.8);
 }
-input {
+/*input {
   border: 1px solid #ccc;
   margin: 0 0 20px;
   padding: 10px;
@@ -4024,6 +4025,8 @@ button.shadow_inset_top_shadow_bottom {
 button:hover {
   background: none repeat scroll 0 0 #aaa;
 }
+*/
+
 form.bg {
   background: none repeat scroll 0 0 #eea34a;
   height: 40px;
