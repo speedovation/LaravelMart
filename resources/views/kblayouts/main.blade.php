@@ -11,7 +11,6 @@
         
     <link href="{{  elixir('assets/css/all.css') }}" media="all" rel="stylesheet" />
     
-    <script src="{{  elixir('assets/js/all.js') }}"></script>
     
     <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700|Roboto:400,300,100,700' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"  rel="stylesheet">    

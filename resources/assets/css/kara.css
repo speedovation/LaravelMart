@@ -363,15 +363,7 @@ border-radius: 4px;
 {
     position: relative;
     min-height: 600px;
-    color: #fff;
-    background: -webkit-linear-gradient(#7532c7,#32c7c2);
-    background: -o-linear-gradient(#7532c7,#32c7c2);
-    background: -moz-linear-gradient(#7532c7,#32c7c2);
-    background: linear-gradient(#7532c7,#32c7c2);
     padding-top: 40px;
-    
-    background:   #606CB6 url("../img/1.png") no-repeat right -300px;
-    background-size: cover;
 }
 
 
@@ -680,9 +672,23 @@ header  h2
     height: 75px;
 }
 
+.dark-bg
+{
+    color: #fff;
+    background: -webkit-linear-gradient(#7532c7,#32c7c2);
+    background: -o-linear-gradient(#7532c7,#32c7c2);
+    background: -moz-linear-gradient(#7532c7,#32c7c2);
+    background: linear-gradient(#7532c7,#32c7c2);
+
+    
+    background:   #606CB6 url("../img/1.png") no-repeat right -300px;
+    background-size: cover;
+}
+
 .section
 {
     padding: 75px 0 95px 0;
+    margin: 0;
 }
 
 .section.gray
@@ -690,14 +696,14 @@ header  h2
     background: #f2f1f0;
 }
 
-.section h2
+.section h2.main
 {
     margin: 0 0 25px 0;
 }
 
-.section p
+.section p.seperate
 {
-    line-height: 24px;
+/*    line-height: 24px;*/
     margin: 0 0 50px 0;
 }
 
@@ -2178,9 +2184,9 @@ header  h2
 
 #footer .wrap
 {
-    background: #302f31;
+/*    background: #302f31;*/
     color: #bbb8bf;
-    padding: 75px 0;
+    padding: 30px 0 0 0;
 /*    font-size: 14px;*/
 /*    font-size: 1.4rem;*/
 /*    line-height: 22px;*/
@@ -2497,8 +2503,7 @@ header  h2
 
 #footer .wrap
 {
-    padding: 55px 0;
-}
+    padding: 55px 0;}
 
 #footer .wrap .i{    margin-top: 20px;    margin-bottom: 20px;
 }
@@ -2922,6 +2927,13 @@ header  h2
         max-width: 80%;
 }
 
+#footer
+{
+    padding-top: 0px;
+    margin-top: 0px;
+    height: initial;
+}
+
 #footer .wrap .socials a
 {
     width: 50px;
@@ -3066,7 +3078,7 @@ header  h2
     color: #444;
     font-weight:  bold;
 }
-.footer, footer {
+.footer {
     border-top: 0;
     color: #777;
     margin-top: 0;
@@ -3198,11 +3210,10 @@ input.search-term {
 
 button.search-button
 {
-    padding:  14px !important;   
+/*    padding:  14px !important;   */
     width:  20% !important; 
-    min-width: 20% !important;
     text-transform: none;
-    font-weight: normal;
+    height:  50px;
 }
 
 button.search-button:hover
@@ -3220,4 +3231,14 @@ button.search-button:hover
 #searchform
 {
     margin-top:  35px;
+}
+
+.header-contact-info
+{
+    margin-top:  65px;
+}
+
+.header-contact-info h3
+{
+    margin-bottom: 20px;
 }

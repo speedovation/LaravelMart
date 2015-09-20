@@ -701,7 +701,7 @@ a.remove-cart-item:hover {
     text-align: center; 
 }
 
-.button, button, a.button {
+.inventive-button {
     padding: 0.5rem 0.8rem;
     box-shadow: none;
     border-radius: 0.1rem;

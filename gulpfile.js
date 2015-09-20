@@ -24,7 +24,7 @@ elixir(function(mix) {
         '../bower_components/raty/lib/jquery.raty.css',
         '../bower_components/selectize/dist/css/selectize.css',
         'materialicon.css',
-        'buttons.css',
+        '../bower_components/Buttons/css/buttons.min.css',
         'kara.css'
 /*        '../bower_components/select2/dist/css/select2.css'*/
 /*        '../bower_components/chosen/chosen.min.css'*/
