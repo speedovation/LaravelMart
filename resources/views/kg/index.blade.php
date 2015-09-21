@@ -119,48 +119,98 @@
         
         <div class="divider"></div>
         
-        <div class="col-4">
-            <h3>Latest Articles</h3>
-            <ul >
+        <div class="col-4 text-center">
+            <h2>Latest Articles</h2>
+            <ul class="articles" >
                 <li>
-                    <i class="material-icons md-64">people</i> <br>
-                    <a href="">Get Any Solution</a> <br>
+                    <i class="material-icons md-64">library_books</i> <br>
+                    <a href="#" class="">Get First Solution</a> <br>
                     <p class="text-small text-mute">
                         <i class="material-icons md-14">today</i> 2 Sept 2015
                         <i class="material-icons md-14">person</i> Kara Team
                     </p>
                 </li>
                 <li>
-                    <i class="material-icons md-64">people</i> <br>
-                    <a href="">Get Any Solution</a> <br>
-                    <i class="material-icons">today</i> 2 Sept 2015
-                    <i class="material-icons">person</i> Kara Team
-                    
+                    <i class="material-icons md-64">library_books</i> <br>
+                    <a href="#" class="">Get Second Solution</a> <br>
+                    <p class="text-small text-mute">
+                        <i class="material-icons md-14">today</i> 2 Sept 2015
+                        <i class="material-icons md-14">person</i> Kara Team
+                    </p>
                 </li>
                 <li>
-                    <i class="material-icons md-64">people</i> <br>
-                    <a href="">Get Any Solution</a> <br>
-                    <i class="material-icons">today</i> 2 Sept 2015
-                    <i class="material-icons">person</i> Kara Team
-                    
+                    <i class="material-icons md-64">library_books</i> <br>
+                    <a href="#" class="">Get Third Solution</a> <br>
+                    <p class="text-small text-mute">
+                        <i class="material-icons md-14">today</i> 2 Sept 2015
+                        <i class="material-icons md-14">person</i> Kara Team
+                    </p>
                 </li>
+               
             </ul>
         </div>
         
-        <div class="col-4">
-            <h3>H</h3>
-            <ul class="link-list">
-                <li> <a href="">S</a> </li>
+         <div class="col-4 text-center">
+            <h2>Popular Articles</h2>
+            <ul class="articles" >
+                <li>
+                    <i class="material-icons md-64">perm_media</i> <br>
+                    <a href="#" class="">Get First Solution</a> <br>
+                    <p class="text-small text-mute">
+                        <i class="material-icons md-14">today</i> 2 Sept 2015
+                        <i class="material-icons md-14">person</i> Kara Team
+                    </p>
+                </li>
+                <li>
+                    <i class="material-icons md-64">perm_media</i> <br>
+                    <a href="#" class="">Get Second Solution</a> <br>
+                    <p class="text-small text-mute">
+                        <i class="material-icons md-14">today</i> 2 Sept 2015
+                        <i class="material-icons md-14">person</i> Kara Team
+                    </p>
+                </li>
+                <li>
+                    <i class="material-icons md-64">perm_media</i> <br>
+                    <a href="#" class="">Get Third Solution</a> <br>
+                    <p class="text-small text-mute">
+                        <i class="material-icons md-14">today</i> 2 Sept 2015
+                        <i class="material-icons md-14">person</i> Kara Team
+                    </p>
+                </li>
+               
             </ul>
         </div>
         
-        <div class="col-4">
-            <h3>H</h3>
-            <ul class="link-list">
-                <li> <a href="">S</a> </li>
+         <div class="col-4 text-center">
+            <h2>Recent Activities</h2>
+            <ul class="articles" >
+                <li>
+                    <i class="material-icons md-64">feedback</i> <br>
+                    <a href="#" class="">Get First Solution</a> <br>
+                    <p class="text-small text-mute">
+                        <i class="material-icons md-14">today</i> 2 Sept 2015
+                        <i class="material-icons md-14">person</i> Kara Team
+                    </p>
+                </li>
+                <li>
+                    <i class="material-icons md-64">feedback</i> <br>
+                    <a href="#" class="">Get Second Solution</a> <br>
+                    <p class="text-small text-mute">
+                        <i class="material-icons md-14">today</i> 2 Sept 2015
+                        <i class="material-icons md-14">person</i> Kara Team
+                    </p>
+                </li>
+                <li>
+                    <i class="material-icons md-64">feedback</i> <br>
+                    <a href="#" class="">Get Third Solution</a> <br>
+                    <p class="text-small text-mute">
+                        <i class="material-icons md-14">today</i> 2 Sept 2015
+                        <i class="material-icons md-14">person</i> Kara Team
+                    </p>
+                </li>
+               
             </ul>
         </div>
-        
         
         
         

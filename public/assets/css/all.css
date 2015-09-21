@@ -8707,7 +8707,7 @@ a.remove-cart-item:hover {
   background-color: #fafafa;
 }
 
-// Rules for sizing the icon.
+/* Rules for sizing the icon.*/
 .material-icons.md-14 { font-size: 14px; }
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
@@ -8716,11 +8716,11 @@ a.remove-cart-item:hover {
 .material-icons.md-64 { font-size: 64px; }
 .material-icons.md-128 { font-size: 128px; }
 
-// Rules for using icons as black on a light background.
+/* Rules for using icons as black on a light background.*/
 .material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
 .material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
 
-// Rules for using icons as white on a dark background.
+/* Rules for using icons as white on a dark background.*/
 .material-icons.md-light { color: rgba(255, 255, 255, 1); }
 .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
 
@@ -11241,7 +11241,6 @@ header  h2
 .features .i:first-child,.functions .i:first-child
 {    margin-top: 0;
 }
-
 .businessTheme .btn
 {
     padding: 25px 40px;
@@ -12028,6 +12027,32 @@ button.search-button:hover
 }
 .about-info .info small{
 	font-size: 14px;
+}
+
+ul.articles {
+  list-style: none;
+  margin: 0;
+}
+ul.articles .article-entry {
+  position: relative;
+  border-bottom: 1px solid #f2f2f2;
+  padding: 0 0 0 24px;
+  background: url("../images/standard.png") no-repeat 0 3px;
+}
+ul.articles .article-entry.standard {
+  /* background: url("../images/standard.png") no-repeat 0 3px; */
+}
+ul.articles .article-entry.video {
+  background: url("../images/video.png") no-repeat 0 3px;
+}
+ul.articles .article-entry.image {
+  background: url("../images/image.png") no-repeat 0 3px;
+}
+ul.articles .article-entry.gallery {
+  background: url("../images/image.png") no-repeat 0 3px;
+}
+ul.articles li.article-entry:last-child {
+  border-bottom: 1px solid #f2f2f2;
 }
 
 /*# sourceMappingURL=all.css.map */

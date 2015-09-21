@@ -2497,7 +2497,6 @@ header  h2
 .features .i:first-child,.functions .i:first-child
 {    margin-top: 0;
 }
-
 .businessTheme .btn
 {
     padding: 25px 40px;
@@ -3284,4 +3283,30 @@ button.search-button:hover
 }
 .about-info .info small{
 	font-size: 14px;
+}
+
+ul.articles {
+  list-style: none;
+  margin: 0;
+}
+ul.articles .article-entry {
+  position: relative;
+  border-bottom: 1px solid #f2f2f2;
+  padding: 0 0 0 24px;
+  background: url("../images/standard.png") no-repeat 0 3px;
+}
+ul.articles .article-entry.standard {
+  /* background: url("../images/standard.png") no-repeat 0 3px; */
+}
+ul.articles .article-entry.video {
+  background: url("../images/video.png") no-repeat 0 3px;
+}
+ul.articles .article-entry.image {
+  background: url("../images/image.png") no-repeat 0 3px;
+}
+ul.articles .article-entry.gallery {
+  background: url("../images/image.png") no-repeat 0 3px;
+}
+ul.articles li.article-entry:last-child {
+  border-bottom: 1px solid #f2f2f2;
 }
