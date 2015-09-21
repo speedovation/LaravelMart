@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('kblayouts.main')
 
 @section('title', $title)
 
@@ -18,7 +18,7 @@
     <div class="col-12">
 
         
-            {!! $body !!}
+            {!! $categories !!}
        
 
     </div>

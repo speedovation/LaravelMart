@@ -18,10 +18,11 @@ class IndexController extends CoreController {
 
     public function getCategories() {
         
-        $categories = Category::orderBy('created_at', 'desc')
+        $categories = Category::whereNull('parent_id')
+                ->orderBy('created_at', 'desc')
                 ->get();
 		
-		   return view('kg.categories')->with('categories',$categories);
+		   return view('kg.categories')->with( ['categories'=>$categories, 'title' => 'Yea Categories']);
         
     }
 
