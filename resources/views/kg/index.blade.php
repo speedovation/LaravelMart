@@ -316,13 +316,16 @@
     
     <div class="row text-center flat">
         
-        <h2 class="kilo">Membership <strong>Plans</strong></h2>
+        <h2 class="kilo">Membership <strong>is FREE</strong></h2>
         <div class="divider"></div>
         
         <div class="desktop-8 tablet-8 mobile-12">
         
         <h2>One Plan My Plan</h2>
-        <p class="text-lead">No commits. No Advance Payment.</p>
+        <p class="text-lead">Free Signup. No commits. No Monthly Payments.</p>
+        
+        <p>&nbsp;</p>
+        <img src="build/assets/img/original.jpg" />
         
         </div>
         
@@ -330,28 +333,26 @@
         <div class="desktop-4 tablet-4 mobile-12 ">
             <ul class="plan plan2">
                 <li class="plan-name">
-                    Standard
+                    Members Allowed
                 </li>
                 <li class="plan-price">
-                    <strong>$39</strong> / month
+                    Ask <strong>Unlimited Solutions</strong> 
                 </li>
                 <li>
-                    <strong>5GB</strong> Storage
+                    Post <strong>Comments</strong> 
                 </li>
                 <li>
-                    <strong>1GB</strong> RAM
+                    Hire <strong>Professionals</strong> 
                 </li>
                 <li>
-                    <strong>400GB</strong> Bandwidth
+                    Compare <strong>Professional Services</strong> 
                 </li>
                 <li>
-                    <strong>10</strong> Email Address
+                    Mark solutions, articles in <strong>Wishlist</strong> 
                 </li>
-                <li>
-                    <strong>Forum</strong> Support
-                </li>
+                
                 <li class="plan-action">
-                    <a href="#" class="btn btn-danger btn-lg">Signup</a>
+                    <a href="#" class="button button-caution button-large">Signup</a>
                 </li>
             </ul>
         </div>

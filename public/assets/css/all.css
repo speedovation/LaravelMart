@@ -7817,16 +7817,12 @@ a.remove-cart-item:hover {
   border: 0;
 }
 
-body {
-  padding-top: 40px;
-  background-color: #f5f5f5;
-}
 .flat .plan {
-  border-radius: 6px;
+  border-radius: 2px;
   list-style: none;
   padding: 0 0 20px;
   margin: 0 0 15px;
-  background: #fff;
+  background: #F2F1F0;
   text-align: center;
 }
 .flat .plan li {
@@ -7844,8 +7840,8 @@ body {
   padding: 15px;
   font-size: 24px;
   line-height: 24px;
-  color: #fff;
-  background: #e74c3c;
+  color: #333;
+/*  background: #F2F1F0;*/
   margin-bottom: 30px;
   border-top: 0;
 }
@@ -7865,14 +7861,10 @@ body {
   background: #000;
 }
 .flat .plan.featured:hover li.plan-name {
-  background: #c0392b;
+/*  background: #c0392b;*/
 }
 .flat .plan:hover li.plan-name {
-  background: #000;
-}
-#footer {
-  margin-top: 100px;
-  padding-bottom: 30px;
+/*  background: #000;*/
 }
 
 #wrapper {
