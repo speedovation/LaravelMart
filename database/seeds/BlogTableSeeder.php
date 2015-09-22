@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\Blog;
-
+use App\Models\Category;
 
 class BlogTableSeeder extends DatabaseSeeder {
     
@@ -15,7 +15,7 @@ class BlogTableSeeder extends DatabaseSeeder {
         
         foreach ($categories as $category) {
             
-            for($i=0;$i<40;$i++)
+            for($i=0;$i<10;$i++)
             {
                 $title = $this->title(rand(4,6), $faker);
                 $url = str_replace(' ','-',$title);

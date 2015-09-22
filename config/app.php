@@ -145,6 +145,8 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 		
+		Laravel\Socialite\SocialiteServiceProvider::class,
+		
 /*		'Collective\Html\HtmlServiceProvider',*/
 		'App\Services\Html\HtmlServiceProvider',
 		'Gloudemans\Shoppingcart\ShoppingcartServiceProvider',
@@ -204,9 +206,12 @@ return [
 		'Cart'      => 'Gloudemans\Shoppingcart\Facades\Cart',
         'Flash'     => 'Laracasts\Flash\Flash',
 		
-		'Entrust' => 'Zizaco\Entrust\EntrustFacade'
+		'Entrust' => 'Zizaco\Entrust\EntrustFacade',
 		
+		'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
 	],
+	
+	
 
 ];

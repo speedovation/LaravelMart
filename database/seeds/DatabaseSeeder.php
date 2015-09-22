@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder {
         Model::unguard();
         
         factory(App\Models\User::class,10)->create();
-        factory(App\Models\Category::class,5)->create();
+        //factory(App\Models\Category::class,5)->create();
         
         Model::reguard();
         
@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder {
         $this->call("EmailTableSeeder");
         $this->call("UserTableSeeder");
         $this->call("RoleTableSeeder");
+        $this->call("CategoryTableSeeder");
         $this->call("PageTableSeeder");
         $this->call("BlogTableSeeder");
         $this->call("MenuTableSeeder");
@@ -44,7 +45,6 @@ class DatabaseSeeder extends Seeder {
         $this->call('WishlistsTableSeeder');
         $this->call("OrderItemTableSeeder");
         
-        $this->call("CategoryTableSeeder");
     }
     
 }
