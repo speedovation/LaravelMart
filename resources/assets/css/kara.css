@@ -2497,9 +2497,7 @@ header  h2
 .features .i:first-child,.functions .i:first-child
 {    margin-top: 0;
 }
-.businessTheme .btn
-{
-    padding: 25px 40px;
+.businessTheme .btn{    padding: 25px 40px;
 }
 
 #footer .wrap
@@ -3309,4 +3307,27 @@ ul.articles .article-entry.gallery {
 }
 ul.articles li.article-entry:last-child {
   border-bottom: 1px solid #f2f2f2;
+}
+
+.category-box
+{
+    min-height: 250px;
+    border-right: 1px dotted #333;
+    border-bottom: 1px dotted #333;
+    padding: 10px 20px;
+}
+
+.category-box:nth-child(4n+4)
+{
+     border-right: 0;
+}
+
+.category-box:nth-last-child(-n+4)
+{
+     border-bottom: 0;
+}
+
+.category-box i
+{
+    color: #645CC3;
 }

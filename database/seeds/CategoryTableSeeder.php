@@ -15,6 +15,12 @@ class CategoryTableSeeder extends DatabaseSeeder {
                 [ "name" => 'Cell Phones Accessories' ,'desc'=> 'Random','icon'=> 'desktop_windows' ],
 
                 [
+                    "name" => 'News and Information.',
+                    'desc' => 'Windows News and Information.',
+                    'icon'=> 'desktop_windows' 
+                ],
+
+                [
                     "name" => 'Virtualization',
                     'desc' => 'Windows  Virtualization technology discussion.',
                     'icon'=> 'desktop_windows' 
@@ -32,17 +38,17 @@ class CategoryTableSeeder extends DatabaseSeeder {
                 [
                     "name" => 'Installation & Setup',
                     'desc' => 'Installation, Upgrade and Setup Help.',
-                    'icon'=> 'desktop_windows' 
+                    'icon'=> 'autorenew' 
                 ],
                 [
                     "name" => 'Performance & Maintenance',
                     'desc' => 'Windows tweaking, maintenance and optimization.',
-                    'icon'=> 'desktop_windows' 
+                    'icon'=> 'flight_takeoff' 
                 ],
                 [
                     "name" => 'Network & Sharing ',
                     'desc' => 'Windows network, sharing and homegroup support.',
-                    'icon'=> 'desktop_windows' 
+                    'icon'=> 'settings_input_antenna' 
                 ],
                 [
                     "name" => 'Drivers & Hardware',
@@ -106,6 +112,10 @@ class CategoryTableSeeder extends DatabaseSeeder {
             
                       ];
         
+        
+        // Remove all old data
+/*        DB::table('categories')->truncate();*/
+        Category::truncate();
         
        foreach ($categories as $category) 
        {

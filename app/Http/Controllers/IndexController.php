@@ -22,7 +22,7 @@ class IndexController extends CoreController {
                 ->orderBy('created_at', 'desc')
                 ->get();
 		
-		   return view('kg.categories')->with( ['categories'=>$categories, 'title' => 'Yea Categories']);
+		   return view('kg.categories')->with( ['categories'=>$categories, 'title' => 'All Categories']);
         
     }
 

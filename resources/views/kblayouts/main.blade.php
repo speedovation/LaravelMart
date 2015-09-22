@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>LaraCommerce - @yield('title')</title>
+    <title>@yield('title') - Kara.Guru</title>
     
     <link rel="shortcut icon" href="../../assets/ico/favicon.png">
     
