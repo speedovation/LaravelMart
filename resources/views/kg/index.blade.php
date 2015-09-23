@@ -28,19 +28,19 @@
             <i class="material-icons md-64">desktop_windows</i>
             <h2>Windows <strong>Problem Solutions</strong></h2>
             <p>Expand for free with your Dropbox, Google Drive and OneDrive accounts or use the extra free space on your hard drive.</p>
-            <p><a class="button button-rounded  button-royal" href="#" role="button">View details »</a></p>
+            <p><a class="button button-royal" href="#" role="button">View details »</a></p>
         </div>
         <div class="desktop-4 tablet-4 i">
             <i class="material-icons md-64">developer_board</i>
             <h2>Windows <strong>Dedicated Articles</strong></h2>
             <p>Tips, Tricks and latest windows information related articles.</p>
-            <p><a class="button button-rounded  button-royal" href="#" role="button">View details »</a></p>
+            <p><a class="button button-royal" href="#" role="button">View details »</a></p>
         </div>
         <div class="desktop-4 tablet-4 i">
             <i class="material-icons md-64">nature_people</i>
             <h2>Windows <strong>On Demand Solutions</strong></h2>
             <p>Works with all modern browsers, iOS, Android, Windows Phone, OS X, Windows, Linux, WebDAV and more.</p>
-            <p><a class="button button-rounded  button-royal" href="#" role="button">View details »</a></p>
+            <p><a class="button button-royal" href="#" role="button">View details »</a></p>
         </div>
     </div>
 </section>
@@ -174,21 +174,21 @@
             <h2>Heading</h2>
             <img class="img-circle img-responsive center-block" src="http://placehold.it/240x240&amp;text=Cool" alt="image">
             <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-            <p><a class="button button-rounded  button-royal" href="#" role="button">View details »</a></p>
+            <p><a class="button button-royal" href="#" role="button">View details »</a></p>
         </div>
         
         <div class="mobile-4 desktop-4 large-4">
             <h2>Heading</h2>
             <img class="img-circle img-responsive center-block" src="http://placehold.it/240x240&amp;text=Cool" alt="image">
             <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-            <p><a class="button button-rounded  button-royal" href="#" role="button">View details »</a></p>
+            <p><a class="button button-royal" href="#" role="button">View details »</a></p>
         </div>
         
         <div class="mobile-4 desktop-4 large-4">
             <h2>Heading</h2>
             <img class="img-circle img-responsive center-block" src="http://placehold.it/240x240&amp;text=Cool" alt="image">
             <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-            <p><a class="button button-rounded  button-royal" href="#" role="button">View details »</a></p>
+            <p><a class="button button-royal" href="#" role="button">View details »</a></p>
         </div>
         
         
@@ -199,21 +199,21 @@
             <h2>Heading</h2>
             <img class="img-circle img-responsive center-block" src="http://placehold.it/240x240&amp;text=Cool" alt="image">
             <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-            <p><a class="button button-rounded  button-royal" href="#" role="button">View details »</a></p>
+            <p><a class="button button-royal" href="#" role="button">View details »</a></p>
         </div>
         
         <div class="mobile-4 desktop-4 large-4">
             <h2>Heading</h2>
             <img class="img-circle img-responsive center-block" src="http://placehold.it/240x240&amp;text=Cool" alt="image">
             <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-            <p><a class="button button-rounded  button-royal" href="#" role="button">View details »</a></p>
+            <p><a class="button button-royal" href="#" role="button">View details »</a></p>
         </div>
         
         <div class="mobile-4 desktop-4 large-4">
             <h2>Heading</h2>
             <img class="img-circle img-responsive center-block" src="http://placehold.it/240x240&amp;text=Cool" alt="image">
             <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-            <p><a class="button button-rounded  button-royal" href="#" role="button">View details »</a></p>
+            <p><a class="button button-royal" href="#" role="button">View details »</a></p>
         </div>
         
         

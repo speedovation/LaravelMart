@@ -159,6 +159,7 @@ body
     font-family: Roboto,sans-serif;
     font-size: 16px;
     font-size: 1rem;
+    font-weight: 300;
 }
 
 body a
@@ -186,6 +187,11 @@ body a:hover,body a:active,body a:focus
 h1,h2,h3,h4,h5,h6
 {
     color: #36373c;
+}
+
+strong, b, .strong
+{
+    font-weight: 400;
 }
 
 .btn
@@ -2497,8 +2503,7 @@ header  h2
 .features .i:first-child,.functions .i:first-child
 {    margin-top: 0;
 }
-.businessTheme .btn{    padding: 25px 40px;
-}
+.businessTheme .btn{    padding: 25px 40px;}
 
 #footer .wrap
 {
@@ -3315,6 +3320,7 @@ ul.articles li.article-entry:last-child {
     border-right: 1px dotted #333;
     border-bottom: 1px dotted #333;
     padding: 10px 20px;
+    font-weight:  300;
 }
 
 .category-box:nth-child(4n+4)

@@ -11,8 +11,23 @@ class CategoryTableSeeder extends DatabaseSeeder {
         
            $categories =  [
             
-                [ "name" => 'Cell Phones Accessories' ,'desc'=> 'Random','icon'=> 'desktop_windows' ],
-                [ "name" => 'Cell Phones Accessories' ,'desc'=> 'Random','icon'=> 'desktop_windows' ],
+                [
+                    "name" => 'Windows',
+                    'desc' => 'Windows',
+                    'icon'=> 'desktop_windows' 
+                ],
+                [
+                    "name" => 'Windows 10',
+                    'desc' => 'Windows 10',
+                    'icon'=> 'desktop_windows' 
+                ],
+                [
+                    "name" => 'Windows 8',
+                    'desc' => 'Windows 8',
+                    'icon'=> 'desktop_windows' 
+                ],
+                
+                
 
                 [
                     "name" => 'News and Information.',

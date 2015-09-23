@@ -11,6 +11,10 @@ class BlogTableSeeder extends DatabaseSeeder {
         $faker = $this->getFaker();
         
         
+        Blog::truncate();
+        
+        return;
+        
         $categories = Category::all();
         
         foreach ($categories as $category) {
