@@ -8,3 +8,4 @@
 /laravel4/test/*
 /app/storage/*
 .idea/workspace.xml
+/public/assets/uploads/*

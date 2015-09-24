@@ -4,13 +4,20 @@
     function limit_words($content,$length)
     {
     	
+        if(empty($content))
+            return "";
+        
+        if( strlen($content) < $length )
+            return $content;
+        
     		$pos=strpos($content, ' ', $length);
 		
-		$html = substr($content,0,$pos );
+		   $html = substr($content,0,$pos );
 		
-		//$html = clean_div($html);
+		   //$html = clean_div($html);
 			//return "mAYon";
-    		return ( closetags($html))."..."; 
+    		
+        return ( closetags($html))."..."; 
     	
     }
     function clean_div($content)
