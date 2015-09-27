@@ -2497,9 +2497,7 @@ header  h2
 
 .features .i,.functions .i
 {
-    margin-top: 40px;
-}
-
+    margin-top: 40px;}
 .features .i:first-child,.functions .i:first-child
 {    margin-top: 0;
 }
@@ -3336,4 +3334,43 @@ ul.articles li.article-entry:last-child {
 .category-box i
 {
     color: #645CC3;
+}
+
+p::first-letter {
+    font-weight: bold;
+    color: #1B337A;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+}
+
+.blog-box
+{
+    min-height: 250px;
+    position: relative;
+    padding:  0 20px 30px 20px ;
+    margin-bottom: 40px;
+    background: #eee;
+}
+
+.blog-box .blog-info, .blog-box .read-more
+{
+    position: absolute;
+    
+}
+.blog-box .blog-info
+{
+    top: 0;
+    right: 10px;
+}
+.blog-box .read-more
+{
+    bottom: 0;
+    right: 0;
+}
+.blog-box .kilo
+{
+    letter-spacing: -1px;
+    font-size: 2.3rem;
+    line-height: 1;
+    margin-top:  25px;
 }

@@ -12,12 +12,13 @@
         
     		$pos=strpos($content, ' ', $length);
 		
-		   $html = substr($content,0,$pos );
+        $html = substr($content,0,$pos );
 		
-		   //$html = clean_div($html);
-			//return "mAYon";
-    		
-        return ( closetags($html))."..."; 
+		   
+        $purifier = new HTMLPurifier();
+        return $purifier->purify($html);
+        
+        //return ( closetags($html))."..."; 
     	
     }
     function clean_div($content)

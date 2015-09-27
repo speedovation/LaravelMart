@@ -26,6 +26,7 @@ class BlogTableSeeder extends DatabaseSeeder {
                 Blog::create([
                 "title" => $title,
                 "url"  => $url,
+                "sourceurl"  => $url,
                 "status"  => "live",
                 "visibility"  => "public",
                 "category_id" => $category->id, 

@@ -718,34 +718,3 @@ a.remove-cart-item:hover {
     padding-right: 20px;
 }
 
-.blog-box
-{
-    min-height: 400px;
-    position: relative;
-    padding:  0 20px 30px 20px ;
-    margin-bottom: 40px;
-    background: #eee;
-}
-
-.blog-box .blog-info, .blog-box .read-more
-{
-    position: absolute;
-    
-}
-.blog-box .blog-info
-{
-    top: 0;
-    right: 10px;
-}
-.blog-box .read-more
-{
-    bottom: 0;
-    right: 0;
-}
-.blog-box .kilo
-{
-    letter-spacing: -1px;
-    font-size: 2.3rem;
-    line-height: 1;
-    margin-top:  25px;
-}

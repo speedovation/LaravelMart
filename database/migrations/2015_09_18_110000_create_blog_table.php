@@ -11,6 +11,7 @@ class CreateBlogTable extends Migration {
                     
                     $table->string("title");
                     $table->string("url")->unique();
+                    $table->string("sourceurl")->unique();
                     //Draft, Pending Review, Live
                     $table->string("status");
                     //Public, Password, Private
