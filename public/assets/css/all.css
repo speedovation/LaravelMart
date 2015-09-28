@@ -8876,9 +8876,10 @@ body
     font-weight: 300;
 }
 
-body a
+
+a, a:visited
 {
-    color: #36373c;
+    color: #7B72E9;
     text-decoration: none;
     -webkit-transition: all .3s ease;
     -moz-transition: all .3s ease;
@@ -8886,12 +8887,13 @@ body a
     -o-transition: all .3s ease;
 }
 
-body a:hover,body a:active,body a:focus
+a:hover,a:active,a:focus
 {
     outline: 0;
     text-decoration: none;
     color: #36373c;
 }
+ 
 
 .sprite
 {
@@ -8906,6 +8908,10 @@ h1,h2,h3,h4,h5,h6
 strong, b, .strong
 {
     font-weight: 400;
+}
+
+li {
+    line-height: 1.5;
 }
 
 .btn
@@ -12050,7 +12056,7 @@ ul.articles li.article-entry:last-child {
     color: #645CC3;
 }
 
-p::first-letter {
+.entry-content p::first-letter {
     font-weight: bold;
     color: #1B337A;
     font-size: 1.4rem;
@@ -12063,7 +12069,14 @@ p::first-letter {
     position: relative;
     padding:  0 20px 30px 20px ;
     margin-bottom: 40px;
-    background: #eee;
+    background: #f5f5f5;
+    border:  1px solid #eee;
+}
+
+.single-box
+{
+    background: #fff;
+    border:  1px solid #fff;
 }
 
 .blog-box .blog-info, .blog-box .read-more
@@ -12081,10 +12094,10 @@ p::first-letter {
     bottom: 0;
     right: 0;
 }
-.blog-box .kilo
+.blog-box .kilo, .blog-box i
 {
     letter-spacing: -1px;
-    font-size: 2.3rem;
+    font-size: 2.3rem !important;
     line-height: 1;
     margin-top:  25px;
 }

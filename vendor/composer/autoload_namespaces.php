@@ -9,6 +9,7 @@ return array(
     'yajra\\Datatables' => array($vendorDir . '/yajra/laravel-datatables-oracle/src'),
     'phpDocumentor' => array($vendorDir . '/phpdocumentor/reflection-docblock/src'),
     'Whoops' => array($vendorDir . '/filp/whoops/src'),
+    'Roumen\\Sitemap' => array($vendorDir . '/roumen/sitemap/src'),
     'Psy\\' => array($vendorDir . '/psy/psysh/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log'),
     'Prophecy\\' => array($vendorDir . '/phpspec/prophecy/src'),
