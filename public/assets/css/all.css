@@ -11211,8 +11211,7 @@ header  h2
     background-attachment: scroll;
     -webkit-background-size: auto 100%;
     -moz-background-size: auto 100%;
-    -o-background-size: auto 100%;
-    background-size: auto 100%;
+    -o-background-size: auto 100%;    background-size: auto 100%;
 }
 
 .features .i,.functions .i
@@ -12057,12 +12056,15 @@ ul.articles li.article-entry:last-child {
 }
 
 .entry-content p::first-letter {
-    font-weight: bold;
-    color: #1B337A;
-    font-size: 1.4rem;
+/*    font-weight: bold;*/
+/*    color: #1B337A;*/
+    font-size: 1.3rem;
     text-transform: uppercase;
 }
 
+.panel h2::first-letter, .panel h2 a::first-letter {
+    text-transform: uppercase;
+}
 .blog-box
 {
     min-height: 250px;

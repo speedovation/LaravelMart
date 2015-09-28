@@ -22,6 +22,9 @@ Route::get('page/{url}', 'PageController@getIndex');
 Route::get('kb/{url}', 'BlogController@getKb');
 Route::get('kb', 'BlogController@getIndex');
 
+Route::get('sitemap', 'IndexController@getSitemap');
+Route::get('sitemap.xml', 'IndexController@getSitemap');
+
 //Authentication
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
@@ -75,6 +78,8 @@ Route::get('billings/{id}/delete', [
 ]);
 
 
+Route::post('api/store', 'ApiController@store');
+#Route::resource('api', 'ApiController');
 
 Route::group( ['namespace' => 'Backend', "prefix" => "admin", "as" => "admin."], function(){
 

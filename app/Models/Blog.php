@@ -3,6 +3,8 @@
 use Illuminate\Database\Eloquent\Model;
 
 class Blog extends Model {
+	
+	use \Conner\Tagging\Taggable;
 
     protected $table = "blogs";
     protected $guarded = ["id"];

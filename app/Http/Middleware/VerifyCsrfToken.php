@@ -12,6 +12,12 @@ class VerifyCsrfToken extends BaseVerifier {
 	 * @param  \Closure  $next
 	 * @return mixed
 	 */
+    
+    protected $except = [
+        'api/store',
+        //'api',
+    ];
+    
 	public function handle($request, Closure $next)
 	{
 		return parent::handle($request, $next);

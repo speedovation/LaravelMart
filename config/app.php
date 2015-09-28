@@ -146,6 +146,8 @@ return [
 		'App\Providers\RouteServiceProvider',
 		
 		Laravel\Socialite\SocialiteServiceProvider::class,
+		Conner\Tagging\Providers\TaggingServiceProvider::class,
+		Roumen\Sitemap\SitemapServiceProvider::class,
 		
 /*		'Collective\Html\HtmlServiceProvider',*/
 		'App\Services\Html\HtmlServiceProvider',
